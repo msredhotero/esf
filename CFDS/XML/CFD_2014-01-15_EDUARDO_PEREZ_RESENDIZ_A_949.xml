@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Comprobante xmlns="http://www.sat.gob.mx/cfd/2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" serie="A" folio="949" fecha="2014-01-15T09:20:27" sello="ecFSp+dNl3L8QKIBcgrCVm4dpp6Q4rTMsRZqfTwSoBH6VAFse/f0r3LWI/XkiaUOwFjYGEp08bUwvfNquQ7zuDXMuzKATNww1Vh1S0W2YU9UiRkYqby1MqAh5HDrkInYljDU/b22Lo3ecUeuvq8trmo20n660N1fokkmsfVRHr4=" noAprobacion="2012" anoAprobacion="2012" formaDePago="PAGO EN UNA SOLA EXHIBICION" noCertificado="00001000000102320735" certificado="MIIEUTCCAzmgAwIBAgIUMDAwMDEwMDAwMDAxMDI1NDkyNDIwDQYJKoZIhvcNAQEF
+BQAwggE2MTgwNgYDVQQDDC9BLkMuIGRlbCBTZXJ2aWNpbyBkZSBBZG1pbmlzdHJh
+Y2nDs24gVHJpYnV0YXJpYTEvMC0GA1UECgwmU2VydmljaW8gZGUgQWRtaW5pc3Ry
+YWNpw7NuIFRyaWJ1dGFyaWExHzAdBgkqhkiG9w0BCQEWEGFjb2RzQHNhdC5nb2Iu
+bXgxJjAkBgNVBAkMHUF2LiBIaWRhbGdvIDc3LCBDb2wuIEd1ZXJyZXJvMQ4wDAYD
+VQQRDAUwNjMwMDELMAkGA1UEBhMCTVgxGTAXBgNVBAgMEERpc3RyaXRvIEZlZGVy
+YWwxEzARBgNVBAcMCkN1YXVodGVtb2MxMzAxBgkqhkiG9w0BCQIMJFJlc3BvbnNh
+YmxlOiBGZXJuYW5kbyBNYXJ0w61uZXogQ29zczAeFw0xMDEyMzAwNjAwNDFaFw0x
+MjEyMjkwNjAwNDFaMIHxMTEwLwYDVQQDEyhNSUNST0ZJTkFOQ0lFUkEgQ1JFQ0Ug
+U0EgREUgQ1YgU09GT00gRU5SMTEwLwYDVQQpEyhNSUNST0ZJTkFOQ0lFUkEgQ1JF
+Q0UgU0EgREUgQ1YgU09GT00gRU5SMTEwLwYDVQQKEyhNSUNST0ZJTkFOQ0lFUkEg
+Q1JFQ0UgU0EgREUgQ1YgU09GT00gRU5SMSUwIwYDVQQtExxNQ1IwNzA0MTlLTjIg
+LyBGT1NKODIwNzA1SzIzMR4wHAYDVQQFExUgLyBGT1NKODIwNzA1SERGTk5WMDYx
+DzANBgNVBAsTBk1FWElDTzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA3omd
+xmAFPLMsGgBl8FvXctzexnWNEdpODAmTx3vuyDxnYUcSNn4bzkW25AQxVk4Wb7+E
+D6xzaNExePlzxakCnaszQ63F1DeZbciRNTFq/giY4R3QUISGXH4C9jeDAfDxRq1u
+U3RiS5lj2YGNkRNBxl0kQTwVrFd8HqZ0gczE7LECAwEAAaMdMBswDAYDVR0TAQH/
+BAIwADALBgNVHQ8EBAMCBsAwDQYJKoZIhvcNAQEFBQADggEBACbIC1zng/cPdRIl
+mVR8YWII/47gAkrordfzEiP5TCURBer7KQUwMV77JKbRdNIyYaI2JiqDU5tsAkeg
+LRUOSeRcIyle2wtBzh02itvbbf4TQE6Z6OUOus7xfQWx4um13DWbb8EfYsqe/lsJ
+n/8/FOq0E7u8PcpibocHFcdti90m3W8Mlk6CJyPPCktuhELqkvWEH8qWSmMu5fYE
+7ltz0J2VLdZLoFqamhWZD+TzkpktmP0n6dWnh3S1/21WF1GAA5OykDOtm/J+8YMb
+SynYxAb4esWS5n7wPKV9KypvZcB1grH21IfYKocGFo1HwqHArx41jrrUrEZsp7xI
+nuz0Chk=" condicionesDePago="0 días" subTotal="456.96" total="544.00" tipoDeComprobante="ingreso" xsi:schemaLocation="http://www.sat.gob.mx/cfd/2 http://www.sat.gob.mx/sitio_internet/cfd/2/cfdv2.xsd">
+<Emisor rfc="MCR070419KN2" nombre="Microfinanciera Crece, S.A. de C.V., SOFOM, E.N.R.">
+<DomicilioFiscal calle="AVENIDA REVOLUCION" noExterior="1909" colonia="San Angel" municipio="ALVARO OBREGON" estado="Distrito Federal" pais="México" codigoPostal="01000"/></Emisor>
+<Receptor rfc="XAXX010101000" nombre="EDUARDO PEREZ RESENDIZ">
+<Domicilio calle="HERMOSILLO NUMERO 115" noExterior="0" colonia="VERGEL DE GUADALUPE" localidad="ECATEPEC DE MORELOS" municipio="ECATEPEC DE MORELOS" estado="ESTADO DE MEXICO" pais="Mexico" codigoPostal="57150"/>
+</Receptor>
+<Conceptos>
+<Concepto cantidad="1" unidad="Pago" descripcion="Pagos correspondientes al mes actual" valorUnitario="228.48" importe="228.48"/>
+<Concepto cantidad="1" unidad="Pago" descripcion="Pagos correspondientes al mes actual" valorUnitario="135.95" importe="135.95"/>
+<Concepto cantidad="1" unidad="Pago" descripcion="Pagos correspondientes al mes actual" valorUnitario="38.21" importe="38.21"/>
+<Concepto cantidad="1" unidad="Pago" descripcion="Pagos correspondientes al mes actual" valorUnitario="54.32" importe="54.32"/>
+</Conceptos>
+<Impuestos totalImpuestosTrasladados="87.04"><Traslados><Traslado impuesto="IVA" tasa="16" importe="87.04"/>
+</Traslados>
+</Impuestos>
+</Comprobante>
