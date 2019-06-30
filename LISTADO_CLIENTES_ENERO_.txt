@@ -1,0 +1,600 @@
+ 1952             ALBERTO GARCIA GONZALEZ                                     
+ 2203             BERTHA GUTIERREZ GARCIA                                     
+ 1473TALA711006682ANGELICA TABARES LOPEZ                                      
+ 2908             IVAN QUIROZ SANTOYO                                         
+  296             JESUS MOTA VILLASENOR                                       
+ 1845             Humberta Aquino Lopez                                       
+ 2470             MARIA ESTHER ABREU ARELLANO                                 
+ 1812RESF850601DB7MARIA FERNANDA OLVERA CABRERA                               
+  296             JESUS MOTA VILLASENOR                                       
+ 3434AUAJ750730A17JORGE ADUNA ACOSTA                                          
+ 3847             KARLA IRONDEL RUIZ LOPEZ                                    
+ 1499             JOSE ANTONIO NAVARRO TAPIA                                  
+ 4484             FRANCISCA PEREZ TELLEZ                                      
+ 4957             RAMONA VICTORIA  GARCIA  MEJIA                              
+ 4974             NOE LOPEZ PEREZ                                             
+ 4099             LETICIA ARISDEISI RAMIREZ CARDENAS                          
+ 5072             MONICA PATRICIA PALACIOS AVILES                             
+ 5130             RICARDO  MARTINEZ JUAREZ                                    
+ 3896             RAMONA CAMPOS BARRAGAN                                      
+ 4328             CRESCENCIO OCHOA JIMENEZ                                    
+ 3876             ROSA ELBA CASILLAS GALVAN                                   
+ 4255MAGE480510G16ELBA MARQUEZ GUARDADO                                       
+ 1651             ENRIQUE ACOSTA VARGAS                                       
+ 3339             MA GUADALUPE RODRIGUEZ RICARDO                              
+  985SACF830914D60FERNANDO SANCHEZ CERVANTES                                  
+ 4373             MA CONCEPCION BOLANOS RUIZ                                  
+ 5262             JOSE LUIS  TORRES MARTINEZ                                  
+ 1812             MARIA FERNANDA OLVERA CABRERA                               
+ 4917             GENOVEVA SOTO GONZALEZ                                      
+ 5323             MA  CONCEPCION  BARAJAS  CORDOVA                            
+ 5341             ANTELMO PEREZ MUNOZ                                         
+ 4364ZAVI6202049P1ISAIAS ZAMORA VALDEZ                                        
+ 5449             VERONICA VIANEY  MARTINEZ  LEON                             
+ 5488             HECTOR IVAN  LOPEZ ISORDIA                                  
+ 1385SAVR8209143C6RODRIGO SANCHEZ VAZQUEZ                                     
+ 5570             JOSE ANTONIO JIMENEZ VIDAL                                  
+ 5089             MARIO ALBERTO HERNANDEZ FLORES                              
+ 5584             ROSALBA  DELGADO CAMPOS                                     
+ 3172             FAUSTINO  PRICILIANO MARTINEZ                               
+ 2176             EMELINA HARO GARCIA                                         
+ 5316             MELCHOR RODRIGUEZ RIVERA                                    
+ 4186             MARCELA LOPEZ MUNOZ                                         
+ 5619             ELVIRA TORRES ALVAREZ                                       
+ 5359             CARLOS  CASTILLO  HERNANDEZ                                 
+ 5628             MONICA ELIZABETH NUNEZ SANCHEZ                              
+ 5363             ROSA MARIA  PENA LOPEZ                                      
+ 5188RINM831017F5AMIGUEL ANGEL  RINCON  NUNEZ                                 
+ 2777GANT640326DF1TERESA GRAGEDA NEGRETE                                      
+ 5022             ROSA  RODRIGUEZ  ORNELAS                                    
+ 2988             MA DEL CARMEN ROSAS VAZQUEZ                                 
+ 5182             MA DE LOURDES  SERVIN  ANDRES                               
+ 5639             MARIA HIGINIA GUTIERREZ GARCIA                              
+ 4627             GERARDO NARCISO DE LA CRUZ                                  
+ 5324             ENRIQUE JAVIER MONTES JIMENEZ                               
+ 5028             HECTOR MARIO GALINDO GOMEZ                                  
+ 5062SADA810412P78ALMA ISADORA SANCHEZ DIEZ                                   
+ 5408             VICTORIA  ORTIZ ALCANTAR                                    
+ 5376             FABIOLA DOMINGUEZ FUERTES                                   
+ 5691             ANTONIO HUERTA JIMENEZ                                      
+ 5269             ALBINO ISLAS HERNANDEZ                                      
+ 3380             JOSEFINA OCHOA ORTIZ                                        
+ 5549             ROSA  MAGANA  PRECIADO                                      
+ 4800             MOISES CERVANTES PEREZ                                      
+ 4776             MARIA ELENA  DELGADO  CAMARENA                              
+ 5744             GIL FLORES CUEVAS                                           
+ 5741             GRISELDA  SANCHEZ PEREZ                                     
+ 1289GABL601010VE9LUIS GARCIA BAUTISTA                                        
+ 3434AUAJ750730A17JORGE ADUNA ACOSTA                                          
+ 5774             JOAQUIN BARROSO SORIANO                                     
+ 1385             RODRIGO SANCHEZ VAZQUEZ                                     
+  815MOMR830502SC0RODRIGO MONROY MOHEDANO                                     
+ 5260             BLAS ALBERTO LARA ROMERO                                    
+ 4221             ALMA IVETTE VELAZCO TORRES                                  
+ 3710             MARGARITO ORTEGA ISIDRO                                     
+ 3357             GUILLERMO JUAREZ FUENTES                                    
+ 5827             NORMA NYDIA  MILLAN SANTILLAN                               
+ 5661             JULIO RUBEN RODRIGUEZ MENESES                               
+ 1345             JULIAN PEREZ AVENDANO                                       
+ 5453             AURORA CASTRO MEDINA                                        
+ 5852             GEORGINA MEJIA GARCIA                                       
+   44VAPJ831212322Juan Jose  Valdés  Pedrayes                                 
+ 5855             Saray Garcia Mendoza                                        
+ 5858             Rodolfo Lopez Espinoza                                      
+ 5862             Victor Manuel Hernandez Torres                              
+ 5863             Ma Ventura Yolanda Jacobo Montoya                           
+ 5678             ELISEO ALTAMIRANO RAMIREZ                                   
+ 5820             Nayely Negrete Palacios                                     
+ 4428             VIANEY  BERENICE VALDOVINOS VILLEGAS                        
+ 1467             Emiliano Mireles Gonzalez                                   
+ 2814             IGNACIO EDILBERTO REYES NOLASCO                             
+ 5771             Maribel Fiscal Miros                                        
+ 5703             SILVERIO CARRASCO ALVA                                      
+ 4685             RAQUEL  MARTINEZ  PEREZ                                     
+ 4257             JUANA SANCHEZ VALDE PENA                                    
+ 5880             ELADIO ALEJANDRO CRUZ SANCHEZ                               
+ 5560             REYNA JASSO  MARTINEZ                                       
+ 4710             MARTHA ESTELA  NERI RAMIREZ                                 
+ 5882             ELVIRA  MORALES HERNANDEZ                                   
+ 5883             Felipa Franco Hernandez                                     
+ 5887             MARIA PATRICIA PEREZ FLORES                                 
+ 5888             ESTELA  GARCIA  GUTIERREZ                                   
+ 5877             FLORISELDA SALUSTIA PERES VELASQUEZ                         
+ 5903             JORGE MARTINEZ SANCHEZ                                      
+ 5905             Leticia Olvera Guzman                                       
+ 5828             Mario Melendez Torres                                       
+ 5902             NORMA MARIBEL JIMENEZ CURIEL                                
+ 4328             CRESCENCIO OCHOA JIMENEZ                                    
+ 5897             Maria Teresa Carmona Gutierrez                              
+ 5904             Maria Antonieta Vega Garcia                                 
+ 5909             Nicolas Lopez Lazo                                          
+ 5005             JOSE MANUEL DIAZ GARCIA                                     
+ 3559             GUADALUPE DUQUE VELASQUEZ                                   
+ 5910             Diana Vargas Ibarra                                         
+ 5912             Minerva Nava Barrera                                        
+ 5896             Concepcion Martinez Gonzalez                                
+ 5919             GLORIA OLIVA GALICIA                                        
+ 5914             Alejandra Fuentes Hernandez                                 
+ 2016             ANGELICA SANCHEZ ESPINOSA                                   
+ 5920             FELIPE BENITEZ RODRIGUEZ                                    
+ 5303             MIGUEL LUIS BECERRIL MARTINEZ                               
+ 3685             UBALDO CARDENAS HERNANDEZ                                   
+ 5224             ERNESTO FUENTES PEREZ                                       
+ 5926             TERESA  DIOSTRIA ROJAS                                      
+ 2795             JACQUELINE PACHECO ORTEGA                                   
+ 5380             JOSE LUIS ZUNIGA  GUDINO                                    
+ 5645             MARTIN DE LA ROSA AVILA                                     
+ 2730             EVELIA GONZALEZ PEREZ                                       
+ 5642             MIGUEL  HERNANDEZ ESPINOZA                                  
+ 1544             ALBERTO ELEUTERIO SIXTEGA MIXTEGA                           
+ 5498             ESMERALDA  FERNANDEZ  ALVAREZ                               
+ 5577MIVF700723UU1FELIPE MICHEL VILLASENOR                                    
+ 1736             ALEJANDRO MARTINEZ LEONEL                                   
+ 5933             ARACELI DEL ROCIO ROJAS ESPINOSA                            
+ 5293             MIGUEL  BORJAS  RODRIGUEZ                                   
+ 5311             CLEMENTE HERNANDEZ JIMENEZ                                  
+ 3216             RICARDO HERNANDEZ ROSALES                                   
+ 5662             MODESTO FLORES CALDERON                                     
+ 5672             AGUSTIN HERNANDEZ LARA                                      
+ 5934             Monica Uribe Martinez                                       
+ 5942             Araceli Quiroz Lara                                         
+ 5525             LILIA JOSEFINA  PEDRAZA  GUTIERREZ                          
+ 5130             RICARDO  MARTINEZ JUAREZ                                    
+ 5659SAEB690605M46BONIFACIO SANCHEZ ESPINOZA                                  
+ 5931             FRANCISCO  MARTINEZ LIRA                                    
+ 5945             ELVIA JOSEFA GALINDO FLORES                                 
+ 2798             GERARDO ALEJANDRO ZUBIRAN GONZALEZ                          
+ 4583             MARIA DEL ROSARIO AVILA FLORES                              
+ 5947             PETRA VAZQUEZ ORTEGA                                        
+ 5683             BLANCA SANDOVAL GONZALEZ                                    
+ 5943             Maria Alejandra Flores Martinez                             
+ 5950             ARACELI OROZCO GONZALEZ                                     
+ 5953             MARIA BERNARDA ELEAZAR SANCHEZ BENITEZ                      
+ 5270             MA GRACIELA GARCIA MORENO                                   
+ 5699             ARTURO MORENO GARCIA                                        
+ 5961             GRISELDA GAHONA HERNANDEZ                                   
+ 5962             TERESA TENORIO GUTIERREZ                                    
+ 5667             MA ENCARNACION RUEDA TAPIA                                  
+ 3197             OBDULIA CHINO APOLONIO                                      
+ 5954             Victor Manuel Ruiz Gonzalez                                 
+ 2352             ERNESTINA FLORES FLORES                                     
+ 1833             CARLOS HUMBERTO GODINEZ CRUZ                                
+ 5957             EVANGELINA CRUZ HERNANDEZ                                   
+ 2655             GRISELDA BOLANOS HARO                                       
+ 1535             MARIA DEL CARMEN MURILLO JARAMILLO                          
+ 5969             Ma Trinidad Laureano Trejo                                  
+ 5499             BERTHA PATRICIA RAMOS LOPEZ                                 
+ 5978             Patricia Velazquez Vazquez                                  
+ 5980             Hector Escogido Aguilar                                     
+ 5981             Isabel Reyes Colula                                         
+ 5960             JOSE LUIS ESTEBEZ HERNANDEZ                                 
+ 2177             ALICIA NEPOMUCENO DIONICIO                                  
+ 5668             JUANA LOPEZ JIMENEZ                                         
+ 4964             BLANCA ESTELA  CASTRO OCHOA                                 
+ 5670             LINA APARICIO SOTO                                          
+ 5973             Yaneth Gonzalez Evaristo                                    
+ 2148             PABLO HERNANDEZ CASTRO                                      
+ 1473             ANGELICA TABARES LOPEZ                                      
+ 5992             VERONICA SANCHEZ ROMERO                                     
+ 5993             RITA ALVAREZ DE LA PAZ                                      
+ 5532             ALEJANDRO  ANGUIANO  INIGUEZ                                
+ 5276             JORGE ALBERTO  GUTIERREZ DELGADO                            
+ 5176             LETICIA  REYES  GARCIA                                      
+ 5497             BRENDA ALEJANDRINA  VILLASENOR GUERRERO                     
+ 5986             Ma de Lourdes Almaguer Osorio                               
+ 5959             Elizabeth Perez Lopez                                       
+ 5701             MANUEL GABRIEL ACUÑA GARCIA                                 
+ 5997             Ricardo Escamilla Hernandez                                 
+ 5998             Maria de la Luz Garcia Morales                              
+ 5989             Patricia Camarena Jimenez                                   
+ 1714             VERONICA LOPEZ MORALES                                      
+ 6007             ROSA MARIA SARABIA HERNANDEZ                                
+ 6008             Erika Rosas Rojo                                            
+ 5693             MARLENE MORALES ESPINOZA                                    
+ 3514             ALFONSO ESQUIVEL HERNANDEZ                                  
+ 5996             Adriana Loreto Roldan Juarez                                
+ 1616             JOB ESTRADA MARTINEZ                                        
+ 3872             SUSANA ESPINOZA CORTES                                      
+ 2321VAJM660612BC4MARIBEL VAZQUEZ JUAREZ                                      
+ 2786             LILIA SANCHEZ GARCIA                                        
+ 6011             Rita del Refugio Cedillo Rodriguez                          
+ 6010             Viridiana Urbina Lopez                                      
+ 5322             VERONICA PATRICIA  HERNANDEZ LARIOS                         
+ 3533             PETRA MONTANO DE LA CRUZ                                    
+ 5523             GRISELDA  RODRIGUEZ  NAJERA                                 
+ 6013             Maria Oliva Cruz Moreno                                     
+ 3688             KARLA TERESA VIVEROS HERNANDEZ                              
+ 6019             JOSEFINA ALVA SANCHEZ                                       
+ 5796             SERGIO EMIR SANCHEZ MENDOZA                                 
+ 5655VIVG6611077NAMARIA GUADALUPE VIDAL VELAZQUEZ                             
+ 5297             ANA BELL RAMOS DENIZ                                        
+ 5005             JOSE MANUEL DIAZ GARCIA                                     
+ 4846             IVAN DUANA  FLORES                                          
+ 5729             HERMENEGILDO TORIBIO TORRES RODRIGUEZ                       
+ 6021             ANGEL CASTAÑON GARDUÑO                                      
+ 4574             MARIA ELVIRA POLANCO GUTIERREZ                              
+ 5263             ELI  CABALLERO CARDENAS                                     
+ 4785             ANGELINA  JIMENEZ  ESTEBAN                                  
+ 2233             MARIBEL HERNANDEZ CARRILLO                                  
+ 5652             HERMELINDA RAMOS NARANJO                                    
+ 5673             AMBROCIO FLORES GOMEZ                                       
+ 6029             RAUL GONZALO SANTANA ARAUZ                                  
+ 2978             MARIA DOLORES GRAJEDA VAZQUEZ                               
+ 4487             TOMAS BARTOLO REYES                                         
+ 5266             YURIDIANA PAULINA  FACIO  CERVANTES                         
+ 6028             Nohemi Alejandra Manzo Abundiz                              
+ 4767             JOSE ABRAHAM ALFONSO  ALVARADO ACOLTZI                      
+ 2191             VICTOR GONZALEZ ANTONIO                                     
+ 3958             ROGELIO ANTONIO GABINO                                      
+ 6038             Juana Espinoza Flores                                       
+ 6030             Ma Elena Macias Sanchez                                     
+  476             YOLANDA RIOS PEREZ                                          
+ 1949             JORGE TRINIDAD ACOSTA MARTINEZ                              
+  943             JUAN MANUEL GOMEZ BUSTAMANTE                                
+ 6041             PORFIRIA DURAN AGUILAR                                      
+ 1399             HUGO ARTURO GONZALEZ VILLAR                                 
+ 6043             REYNA ISABEL MARTINEZ HERNANDEZ                             
+ 5650             MARIA ISELA GOMORA RAMIREZ                                  
+ 4267             NESTOR ENRIQUE ARELLANO ESMERADO                            
+ 6054             MARGARITA PATRICIA MARTINEZ  TENORIO                        
+ 6048             NOE ARON MARTINEZ MARTINEZ                                  
+ 6049             MARIA MIGUELINA HUAXON ROLDAN                               
+ 2480             JULIAN SALVADOR PINA LOZANO                                 
+ 6052             Cristina Olivares Perez                                     
+ 6056             Felipa Estrada Padilla                                      
+ 6060             Alejandra Valencia Luna                                     
+ 6055             Alejandro Contreras Corona                                  
+ 6064             JAVIER ARELLANO MARTINEZ                                    
+ 3349             Ma Bernarda Mendieta Mendieta                               
+ 6061             Sandra Valencia Zavala                                      
+ 2973             JOSE LUIS GARCIA BERRIO                                     
+ 3380             JOSEFINA OCHOA ORTIZ                                        
+ 5611             AMPARO MUNOZ CRUZ                                           
+ 4219             PRISCO MARTINEZ LOPEZ                                       
+ 4778             REYNA  LOPEZ VELAZQUEZ                                      
+ 5698             JUANA CANDELARIA CASTRO BOJORGES                            
+ 4942             MARIA ESTELA  GARCIA  LOPEZ                                 
+ 6071             Maria Isabel Lopez Estrada                                  
+ 3712             LAURA ACEVEDO MIRANDA                                       
+ 4927             MIRIAM HERRERA RAFAEL                                       
+ 2715             MIRNA LOPEZ ORTIZ                                           
+  928             ESPERANZA GARCIA ENRIQUEZ                                   
+ 6070             MARIA DE LOS ANGELES RINCON MOCTEZUMA                       
+ 5916             Clementina Morales Teopa                                    
+ 6074             LILIA MERCADO AGUILAR                                       
+ 6063             Paula Romero Jimenez                                        
+ 6104             FULGENCIO MONTES FLORES                                     
+ 5694             JOSEFINA FIGUEROA GONZALEZ                                  
+ 1193             JUANA ROMERO NAVA                                           
+ 6084             Maria del Socorro Ramirez Ordonez                           
+ 6094             Irene Barrera Lopez                                         
+ 6091             Carlos Sanchez Morales                                      
+ 2768AUSC850315942CLAUDIA AGUILAR SANCHEZ                                     
+ 4613             LETICIA LINARES SANCHEZ                                     
+ 5780             MA DEL ROCIO QUEZADA  TELLEZ                                
+ 6098             DONACIANO JIMENEZ SANTAMARIA                                
+ 1450             FRANCISCO CHIMAL RAZO                                       
+ 4612             TOMASA FLORES DE LA CRUZ                                    
+ 5420             JOSEFINA  PAREDES  GONZALEZ                                 
+ 4739             ANGELINA  SALCEDA  OCHOA                                    
+ 6122             EDITH LOPEZ ZULETA                                          
+ 6123             CONRADO CORTES RODRIGUEZ                                    
+ 1986             IRENE ELIZALDE MORIN                                        
+ 4517             GUILLERMO MONTESINOS BOBADILLA                              
+ 2542             MIGUEL ANGEL BENAVIDES ZAMORA                               
+ 5706             GERARDO SANCHEZ BAÑOS                                       
+ 5838             LUIS ALVA CHAVEZ                                            
+ 6114             Rafael Martinez Castillo                                    
+ 6111             Ana Laura Gutierrez Sanchez                                 
+ 4393             JUAN JOSE VALLEJO GARCIA                                    
+ 6110             Petronilo Bazan Perez                                       
+ 4498             ANGELICA MARTINEZ MARTINEZ                                  
+ 2688             ADELINA ESTELA ROJAS CRUZ                                   
+ 3267             MARIA DEL CARMEN GONZALEZ MARTINEZ                          
+ 5864             MARIA GUADALUPE LOPEZ MENDIOLA                              
+ 5037             FRANCISCO  GALVAN  ORTEGA                                   
+ 5387             ROSA ELVA  SANCHEZ OCHOA                                    
+ 6176SACF800909C88federico  Sanchez Cervantes                                 
+ 6183             MONICA CECILIA VAZQUEZ  LEON                                
+ 1289GABL601010VE9LUIS GARCIA BAUTISTA                                        
+ 6185             GLADYS ESTHER HERNANDEZ GARCIA                              
+ 1952             ALBERTO GARCIA GONZALEZ                                     
+ 2203             BERTHA GUTIERREZ GARCIA                                     
+ 1473TALA711006682ANGELICA TABARES LOPEZ                                      
+ 2908             IVAN QUIROZ SANTOYO                                         
+  296             JESUS MOTA VILLASENOR                                       
+ 1845             Humberta Aquino Lopez                                       
+ 2470             MARIA ESTHER ABREU ARELLANO                                 
+ 1812RESF850601DB7MARIA FERNANDA OLVERA CABRERA                               
+  296             JESUS MOTA VILLASENOR                                       
+ 3434AUAJ750730A17JORGE ADUNA ACOSTA                                          
+ 3847             KARLA IRONDEL RUIZ LOPEZ                                    
+ 1499             JOSE ANTONIO NAVARRO TAPIA                                  
+ 4484             FRANCISCA PEREZ TELLEZ                                      
+ 4957             RAMONA VICTORIA  GARCIA  MEJIA                              
+ 4974             NOE LOPEZ PEREZ                                             
+ 4099             LETICIA ARISDEISI RAMIREZ CARDENAS                          
+ 5072             MONICA PATRICIA PALACIOS AVILES                             
+ 5130             RICARDO  MARTINEZ JUAREZ                                    
+ 3896             RAMONA CAMPOS BARRAGAN                                      
+ 4328             CRESCENCIO OCHOA JIMENEZ                                    
+ 3876             ROSA ELBA CASILLAS GALVAN                                   
+ 4255MAGE480510G16ELBA MARQUEZ GUARDADO                                       
+ 1651             ENRIQUE ACOSTA VARGAS                                       
+ 3339             MA GUADALUPE RODRIGUEZ RICARDO                              
+  985SACF830914D60FERNANDO SANCHEZ CERVANTES                                  
+ 4373             MA CONCEPCION BOLANOS RUIZ                                  
+ 5262             JOSE LUIS  TORRES MARTINEZ                                  
+ 1812             MARIA FERNANDA OLVERA CABRERA                               
+ 4917             GENOVEVA SOTO GONZALEZ                                      
+ 5323             MA  CONCEPCION  BARAJAS  CORDOVA                            
+ 5341             ANTELMO PEREZ MUNOZ                                         
+ 4364ZAVI6202049P1ISAIAS ZAMORA VALDEZ                                        
+ 5449             VERONICA VIANEY  MARTINEZ  LEON                             
+ 5488             HECTOR IVAN  LOPEZ ISORDIA                                  
+ 1385SAVR8209143C6RODRIGO SANCHEZ VAZQUEZ                                     
+ 5570             JOSE ANTONIO JIMENEZ VIDAL                                  
+ 5089             MARIO ALBERTO HERNANDEZ FLORES                              
+ 5584             ROSALBA  DELGADO CAMPOS                                     
+ 3172             FAUSTINO  PRICILIANO MARTINEZ                               
+ 2176             EMELINA HARO GARCIA                                         
+ 5316             MELCHOR RODRIGUEZ RIVERA                                    
+ 4186             MARCELA LOPEZ MUNOZ                                         
+ 5619             ELVIRA TORRES ALVAREZ                                       
+ 5359             CARLOS  CASTILLO  HERNANDEZ                                 
+ 5628             MONICA ELIZABETH NUNEZ SANCHEZ                              
+ 5363             ROSA MARIA  PENA LOPEZ                                      
+ 5188RINM831017F5AMIGUEL ANGEL  RINCON  NUNEZ                                 
+ 2777GANT640326DF1TERESA GRAGEDA NEGRETE                                      
+ 5022             ROSA  RODRIGUEZ  ORNELAS                                    
+ 2988             MA DEL CARMEN ROSAS VAZQUEZ                                 
+ 5182             MA DE LOURDES  SERVIN  ANDRES                               
+ 5639             MARIA HIGINIA GUTIERREZ GARCIA                              
+ 4627             GERARDO NARCISO DE LA CRUZ                                  
+ 5324             ENRIQUE JAVIER MONTES JIMENEZ                               
+ 5028             HECTOR MARIO GALINDO GOMEZ                                  
+ 5062SADA810412P78ALMA ISADORA SANCHEZ DIEZ                                   
+ 5408             VICTORIA  ORTIZ ALCANTAR                                    
+ 5376             FABIOLA DOMINGUEZ FUERTES                                   
+ 5691             ANTONIO HUERTA JIMENEZ                                      
+ 5269             ALBINO ISLAS HERNANDEZ                                      
+ 3380             JOSEFINA OCHOA ORTIZ                                        
+ 5549             ROSA  MAGANA  PRECIADO                                      
+ 4800             MOISES CERVANTES PEREZ                                      
+ 4776             MARIA ELENA  DELGADO  CAMARENA                              
+ 5744             GIL FLORES CUEVAS                                           
+ 5741             GRISELDA  SANCHEZ PEREZ                                     
+ 1289GABL601010VE9LUIS GARCIA BAUTISTA                                        
+ 3434AUAJ750730A17JORGE ADUNA ACOSTA                                          
+ 5774             JOAQUIN BARROSO SORIANO                                     
+ 1385             RODRIGO SANCHEZ VAZQUEZ                                     
+  815MOMR830502SC0RODRIGO MONROY MOHEDANO                                     
+ 5260             BLAS ALBERTO LARA ROMERO                                    
+ 4221             ALMA IVETTE VELAZCO TORRES                                  
+ 3710             MARGARITO ORTEGA ISIDRO                                     
+ 3357             GUILLERMO JUAREZ FUENTES                                    
+ 5827             NORMA NYDIA  MILLAN SANTILLAN                               
+ 5661             JULIO RUBEN RODRIGUEZ MENESES                               
+ 1345             JULIAN PEREZ AVENDANO                                       
+ 5453             AURORA CASTRO MEDINA                                        
+ 5852             GEORGINA MEJIA GARCIA                                       
+   44VAPJ831212322Juan Jose  Valdés  Pedrayes                                 
+ 5855             Saray Garcia Mendoza                                        
+ 5858             Rodolfo Lopez Espinoza                                      
+ 5862             Victor Manuel Hernandez Torres                              
+ 5863             Ma Ventura Yolanda Jacobo Montoya                           
+ 5678             ELISEO ALTAMIRANO RAMIREZ                                   
+ 5820             Nayely Negrete Palacios                                     
+ 4428             VIANEY  BERENICE VALDOVINOS VILLEGAS                        
+ 1467             Emiliano Mireles Gonzalez                                   
+ 2814             IGNACIO EDILBERTO REYES NOLASCO                             
+ 5771             Maribel Fiscal Miros                                        
+ 5703             SILVERIO CARRASCO ALVA                                      
+ 4685             RAQUEL  MARTINEZ  PEREZ                                     
+ 4257             JUANA SANCHEZ VALDE PENA                                    
+ 5880             ELADIO ALEJANDRO CRUZ SANCHEZ                               
+ 5560             REYNA JASSO  MARTINEZ                                       
+ 4710             MARTHA ESTELA  NERI RAMIREZ                                 
+ 5882             ELVIRA  MORALES HERNANDEZ                                   
+ 5883             Felipa Franco Hernandez                                     
+ 5887             MARIA PATRICIA PEREZ FLORES                                 
+ 5888             ESTELA  GARCIA  GUTIERREZ                                   
+ 5877             FLORISELDA SALUSTIA PERES VELASQUEZ                         
+ 5903             JORGE MARTINEZ SANCHEZ                                      
+ 5905             Leticia Olvera Guzman                                       
+ 5828             Mario Melendez Torres                                       
+ 5902             NORMA MARIBEL JIMENEZ CURIEL                                
+ 4328             CRESCENCIO OCHOA JIMENEZ                                    
+ 5897             Maria Teresa Carmona Gutierrez                              
+ 5904             Maria Antonieta Vega Garcia                                 
+ 5909             Nicolas Lopez Lazo                                          
+ 5005             JOSE MANUEL DIAZ GARCIA                                     
+ 3559             GUADALUPE DUQUE VELASQUEZ                                   
+ 5910             Diana Vargas Ibarra                                         
+ 5912             Minerva Nava Barrera                                        
+ 5896             Concepcion Martinez Gonzalez                                
+ 5919             GLORIA OLIVA GALICIA                                        
+ 5914             Alejandra Fuentes Hernandez                                 
+ 2016             ANGELICA SANCHEZ ESPINOSA                                   
+ 5920             FELIPE BENITEZ RODRIGUEZ                                    
+ 5303             MIGUEL LUIS BECERRIL MARTINEZ                               
+ 3685             UBALDO CARDENAS HERNANDEZ                                   
+ 5224             ERNESTO FUENTES PEREZ                                       
+ 5926             TERESA  DIOSTRIA ROJAS                                      
+ 2795             JACQUELINE PACHECO ORTEGA                                   
+ 5380             JOSE LUIS ZUNIGA  GUDINO                                    
+ 5645             MARTIN DE LA ROSA AVILA                                     
+ 2730             EVELIA GONZALEZ PEREZ                                       
+ 5642             MIGUEL  HERNANDEZ ESPINOZA                                  
+ 1544             ALBERTO ELEUTERIO SIXTEGA MIXTEGA                           
+ 5498             ESMERALDA  FERNANDEZ  ALVAREZ                               
+ 5577MIVF700723UU1FELIPE MICHEL VILLASENOR                                    
+ 1736             ALEJANDRO MARTINEZ LEONEL                                   
+ 5933             ARACELI DEL ROCIO ROJAS ESPINOSA                            
+ 5293             MIGUEL  BORJAS  RODRIGUEZ                                   
+ 5311             CLEMENTE HERNANDEZ JIMENEZ                                  
+ 3216             RICARDO HERNANDEZ ROSALES                                   
+ 5662             MODESTO FLORES CALDERON                                     
+ 5672             AGUSTIN HERNANDEZ LARA                                      
+ 5934             Monica Uribe Martinez                                       
+ 5942             Araceli Quiroz Lara                                         
+ 5525             LILIA JOSEFINA  PEDRAZA  GUTIERREZ                          
+ 5130             RICARDO  MARTINEZ JUAREZ                                    
+ 5659SAEB690605M46BONIFACIO SANCHEZ ESPINOZA                                  
+ 5931             FRANCISCO  MARTINEZ LIRA                                    
+ 5945             ELVIA JOSEFA GALINDO FLORES                                 
+ 2798             GERARDO ALEJANDRO ZUBIRAN GONZALEZ                          
+ 4583             MARIA DEL ROSARIO AVILA FLORES                              
+ 5947             PETRA VAZQUEZ ORTEGA                                        
+ 5683             BLANCA SANDOVAL GONZALEZ                                    
+ 5943             Maria Alejandra Flores Martinez                             
+ 5950             ARACELI OROZCO GONZALEZ                                     
+ 5953             MARIA BERNARDA ELEAZAR SANCHEZ BENITEZ                      
+ 5270             MA GRACIELA GARCIA MORENO                                   
+ 5699             ARTURO MORENO GARCIA                                        
+ 5961             GRISELDA GAHONA HERNANDEZ                                   
+ 5962             TERESA TENORIO GUTIERREZ                                    
+ 5667             MA ENCARNACION RUEDA TAPIA                                  
+ 3197             OBDULIA CHINO APOLONIO                                      
+ 5954             Victor Manuel Ruiz Gonzalez                                 
+ 2352             ERNESTINA FLORES FLORES                                     
+ 1833             CARLOS HUMBERTO GODINEZ CRUZ                                
+ 5957             EVANGELINA CRUZ HERNANDEZ                                   
+ 2655             GRISELDA BOLANOS HARO                                       
+ 1535             MARIA DEL CARMEN MURILLO JARAMILLO                          
+ 5969             Ma Trinidad Laureano Trejo                                  
+ 5499             BERTHA PATRICIA RAMOS LOPEZ                                 
+ 5978             Patricia Velazquez Vazquez                                  
+ 5980             Hector Escogido Aguilar                                     
+ 5981             Isabel Reyes Colula                                         
+ 5960             JOSE LUIS ESTEBEZ HERNANDEZ                                 
+ 2177             ALICIA NEPOMUCENO DIONICIO                                  
+ 5668             JUANA LOPEZ JIMENEZ                                         
+ 4964             BLANCA ESTELA  CASTRO OCHOA                                 
+ 5670             LINA APARICIO SOTO                                          
+ 5973             Yaneth Gonzalez Evaristo                                    
+ 2148             PABLO HERNANDEZ CASTRO                                      
+ 1473             ANGELICA TABARES LOPEZ                                      
+ 5992             VERONICA SANCHEZ ROMERO                                     
+ 5993             RITA ALVAREZ DE LA PAZ                                      
+ 5532             ALEJANDRO  ANGUIANO  INIGUEZ                                
+ 5276             JORGE ALBERTO  GUTIERREZ DELGADO                            
+ 5176             LETICIA  REYES  GARCIA                                      
+ 5497             BRENDA ALEJANDRINA  VILLASENOR GUERRERO                     
+ 5986             Ma de Lourdes Almaguer Osorio                               
+ 5959             Elizabeth Perez Lopez                                       
+ 5701             MANUEL GABRIEL ACUÑA GARCIA                                 
+ 5997             Ricardo Escamilla Hernandez                                 
+ 5998             Maria de la Luz Garcia Morales                              
+ 5989             Patricia Camarena Jimenez                                   
+ 1714             VERONICA LOPEZ MORALES                                      
+ 6007             ROSA MARIA SARABIA HERNANDEZ                                
+ 6008             Erika Rosas Rojo                                            
+ 5693             MARLENE MORALES ESPINOZA                                    
+ 3514             ALFONSO ESQUIVEL HERNANDEZ                                  
+ 5996             Adriana Loreto Roldan Juarez                                
+ 1616             JOB ESTRADA MARTINEZ                                        
+ 3872             SUSANA ESPINOZA CORTES                                      
+ 2321VAJM660612BC4MARIBEL VAZQUEZ JUAREZ                                      
+ 2786             LILIA SANCHEZ GARCIA                                        
+ 6011             Rita del Refugio Cedillo Rodriguez                          
+ 6010             Viridiana Urbina Lopez                                      
+ 5322             VERONICA PATRICIA  HERNANDEZ LARIOS                         
+ 3533             PETRA MONTANO DE LA CRUZ                                    
+ 5523             GRISELDA  RODRIGUEZ  NAJERA                                 
+ 6013             Maria Oliva Cruz Moreno                                     
+ 3688             KARLA TERESA VIVEROS HERNANDEZ                              
+ 6019             JOSEFINA ALVA SANCHEZ                                       
+ 5796             SERGIO EMIR SANCHEZ MENDOZA                                 
+ 5655VIVG6611077NAMARIA GUADALUPE VIDAL VELAZQUEZ                             
+ 5297             ANA BELL RAMOS DENIZ                                        
+ 5005             JOSE MANUEL DIAZ GARCIA                                     
+ 4846             IVAN DUANA  FLORES                                          
+ 5729             HERMENEGILDO TORIBIO TORRES RODRIGUEZ                       
+ 6021             ANGEL CASTAÑON GARDUÑO                                      
+ 4574             MARIA ELVIRA POLANCO GUTIERREZ                              
+ 5263             ELI  CABALLERO CARDENAS                                     
+ 4785             ANGELINA  JIMENEZ  ESTEBAN                                  
+ 2233             MARIBEL HERNANDEZ CARRILLO                                  
+ 5652             HERMELINDA RAMOS NARANJO                                    
+ 5673             AMBROCIO FLORES GOMEZ                                       
+ 6029             RAUL GONZALO SANTANA ARAUZ                                  
+ 2978             MARIA DOLORES GRAJEDA VAZQUEZ                               
+ 4487             TOMAS BARTOLO REYES                                         
+ 5266             YURIDIANA PAULINA  FACIO  CERVANTES                         
+ 6028             Nohemi Alejandra Manzo Abundiz                              
+ 4767             JOSE ABRAHAM ALFONSO  ALVARADO ACOLTZI                      
+ 2191             VICTOR GONZALEZ ANTONIO                                     
+ 3958             ROGELIO ANTONIO GABINO                                      
+ 6038             Juana Espinoza Flores                                       
+ 6030             Ma Elena Macias Sanchez                                     
+  476             YOLANDA RIOS PEREZ                                          
+ 1949             JORGE TRINIDAD ACOSTA MARTINEZ                              
+  943             JUAN MANUEL GOMEZ BUSTAMANTE                                
+ 6041             PORFIRIA DURAN AGUILAR                                      
+ 1399             HUGO ARTURO GONZALEZ VILLAR                                 
+ 6043             REYNA ISABEL MARTINEZ HERNANDEZ                             
+ 5650             MARIA ISELA GOMORA RAMIREZ                                  
+ 4267             NESTOR ENRIQUE ARELLANO ESMERADO                            
+ 6054             MARGARITA PATRICIA MARTINEZ  TENORIO                        
+ 6048             NOE ARON MARTINEZ MARTINEZ                                  
+ 6049             MARIA MIGUELINA HUAXON ROLDAN                               
+ 2480             JULIAN SALVADOR PINA LOZANO                                 
+ 6052             Cristina Olivares Perez                                     
+ 6056             Felipa Estrada Padilla                                      
+ 6060             Alejandra Valencia Luna                                     
+ 6055             Alejandro Contreras Corona                                  
+ 6064             JAVIER ARELLANO MARTINEZ                                    
+ 3349             Ma Bernarda Mendieta Mendieta                               
+ 6061             Sandra Valencia Zavala                                      
+ 2973             JOSE LUIS GARCIA BERRIO                                     
+ 3380             JOSEFINA OCHOA ORTIZ                                        
+ 5611             AMPARO MUNOZ CRUZ                                           
+ 4219             PRISCO MARTINEZ LOPEZ                                       
+ 4778             REYNA  LOPEZ VELAZQUEZ                                      
+ 5698             JUANA CANDELARIA CASTRO BOJORGES                            
+ 4942             MARIA ESTELA  GARCIA  LOPEZ                                 
+ 6071             Maria Isabel Lopez Estrada                                  
+ 3712             LAURA ACEVEDO MIRANDA                                       
+ 4927             MIRIAM HERRERA RAFAEL                                       
+ 2715             MIRNA LOPEZ ORTIZ                                           
+  928             ESPERANZA GARCIA ENRIQUEZ                                   
+ 6070             MARIA DE LOS ANGELES RINCON MOCTEZUMA                       
+ 5916             Clementina Morales Teopa                                    
+ 6074             LILIA MERCADO AGUILAR                                       
+ 6063             Paula Romero Jimenez                                        
+ 6104             FULGENCIO MONTES FLORES                                     
+ 5694             JOSEFINA FIGUEROA GONZALEZ                                  
+ 1193             JUANA ROMERO NAVA                                           
+ 6084             Maria del Socorro Ramirez Ordonez                           
+ 6094             Irene Barrera Lopez                                         
+ 6091             Carlos Sanchez Morales                                      
+ 2768AUSC850315942CLAUDIA AGUILAR SANCHEZ                                     
+ 4613             LETICIA LINARES SANCHEZ                                     
+ 5780             MA DEL ROCIO QUEZADA  TELLEZ                                
+ 6098             DONACIANO JIMENEZ SANTAMARIA                                
+ 1450             FRANCISCO CHIMAL RAZO                                       
+ 4612             TOMASA FLORES DE LA CRUZ                                    
+ 5420             JOSEFINA  PAREDES  GONZALEZ                                 
+ 4739             ANGELINA  SALCEDA  OCHOA                                    
+ 6122             EDITH LOPEZ ZULETA                                          
+ 6123             CONRADO CORTES RODRIGUEZ                                    
+ 1986             IRENE ELIZALDE MORIN                                        
+ 4517             GUILLERMO MONTESINOS BOBADILLA                              
+ 2542             MIGUEL ANGEL BENAVIDES ZAMORA                               
+ 5706             GERARDO SANCHEZ BAÑOS                                       
+ 5838             LUIS ALVA CHAVEZ                                            
+ 6114             Rafael Martinez Castillo                                    
+ 6111             Ana Laura Gutierrez Sanchez                                 
+ 4393             JUAN JOSE VALLEJO GARCIA                                    
+ 6110             Petronilo Bazan Perez                                       
+ 4498             ANGELICA MARTINEZ MARTINEZ                                  
+ 2688             ADELINA ESTELA ROJAS CRUZ                                   
+ 3267             MARIA DEL CARMEN GONZALEZ MARTINEZ                          
+ 5864             MARIA GUADALUPE LOPEZ MENDIOLA                              
+ 5037             FRANCISCO  GALVAN  ORTEGA                                   
+ 5387             ROSA ELVA  SANCHEZ OCHOA                                    
+ 6176SACF800909C88federico  Sanchez Cervantes                                 
+ 6183             MONICA CECILIA VAZQUEZ  LEON                                
+ 1289GABL601010VE9LUIS GARCIA BAUTISTA                                        
+ 6185             GLADYS ESTHER HERNANDEZ GARCIA                              
