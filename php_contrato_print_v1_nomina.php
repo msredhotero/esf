@@ -33,7 +33,6 @@ if (@$_SESSION["php_project_esf_status"] <> "login") {
 <?php
 
 
-
 // Initialize common variables
 
 $x_formato_docto_id = Null;
@@ -123,6 +122,8 @@ switch ($sAction)
 		}
 
 }
+
+
 
 ?>
 
@@ -389,7 +390,7 @@ switch ($x_forma_pago_id)
 
 		$x_plazo = $x_numero_plazo." semanas ";
 
-		
+
 
 		//$x_tasa_anual_valor = $x_tasa_valor * 52;
 
@@ -579,7 +580,7 @@ $x_tt = explode($x_tasa, "."); // separamos la cadena por el punto decimal
 
  $x_digitos_c = $x_cont_enteros + 3; // los digitos de la parte entera maas el punto mas dos decimales(+3);
 
- 
+
 
 
 
@@ -605,8 +606,11 @@ $x_tasa_anual_letras = covertirPorcientoLetras($x_tasa_anual_valor);
 
 $x_anual_tasa = FormatNumber($x_tasa_anual_valor,$x_tasa_anual_decimales,0,0,1)."%(-".trim($x_tasa_anual_letras)."-) ";
 
+/**** nuevo marcos *****/
+$x_tasa_anual_doble_letras = covertirPorcientoLetras(($x_tasa_anual_valor * 2));
 
-
+$x_anual_doble_tasa = FormatNumber(($x_tasa_anual_valor * 2),($x_tasa_anual_decimales),0,0,1)."%(-".trim($x_tasa_anual_doble_letras)."-) ";
+/**** fin ****/
 
 
 //1.98% (-uno punto noventa y ocho porciento-),
@@ -634,6 +638,7 @@ $x_moratorios = "$".FormatNumber($x_tasa_moratoria_valor,2,0,0,1)." (- $x_tasa_m
 $x_fecha_contrato = FechaLetras(strtotime(ConvertDateToMysqlFormat($x_fecha_otorgamiento_valor)));
 
 
+//die(var_dump($x_fecha_contrato));
 
 $x_fecha_vencimiento = FechaLetras(strtotime(ConvertDateToMysqlFormat($x_fecha_vencimiento_valor)));
 
@@ -673,11 +678,11 @@ if(!empty($x_representante_cliente_id)){
 
 	$x_sexo_rep =   $rowRep["sexo"];
 
-	
+
 
 	phpmkr_free_result($rowRep);
 
-	
+
 
 	if($x_sexo_rep == 1){
 
@@ -689,15 +694,15 @@ if(!empty($x_representante_cliente_id)){
 
 }
 
-	
 
-	
+
+
 
 	}
 
-	
 
-	
+
+
 
 //INTEGRANTES DEL GRUPO
 
@@ -705,9 +710,9 @@ if($GLOBALS["x_creditoSolidario_id"]>0){
 
 	$x_lista_acreditados =	"<table  align='center' >";
 
-	
 
-	
+
+
 
 	//$x_lista_acreditados .= "<tr>";
 
@@ -721,11 +726,11 @@ if($GLOBALS["x_creditoSolidario_id"]>0){
 
 		$x_cliente_id_act = $$x_cliente_id_act;
 
-		
+
 
 		if(($x_cliente_id_act != "newone") && ($x_cliente_id_act != "vacio") && ($x_cliente_id_act != "NEWONE") && ($x_cliente_id_act != "VACIO") ){
 
-			
+
 
 		$sqlintegrante = "SELECT * FROM 	cliente WHERE cliente_id = $x_cliente_id_act";
 
@@ -739,13 +744,13 @@ if($GLOBALS["x_creditoSolidario_id"]>0){
 
 		$x_nombre_completo_int .=   $rowInT["apellido_materno"];
 
-		
+
 
 		phpmkr_free_result($rowInT);
 
-		
 
-		
+
+
 
 		$x_lista_acreditados .="<tr><td align=\"center\" >&nbsp;</td></tr>";
 
@@ -761,15 +766,15 @@ if($GLOBALS["x_creditoSolidario_id"]>0){
 
 		$x_cont_int++;
 
-		
+
 
 		}
 
-	
+
 
 	$x_lista_acreditados .= "</table>";
 
-	
+
 
 	}
 
@@ -893,7 +898,7 @@ while ($row = @phpmkr_fetch_array($rs)) {
 
 			$x_iva_tab = 0;
 
-			
+
 
 		}
 
@@ -911,7 +916,7 @@ while ($row = @phpmkr_fetch_array($rs)) {
 
 		$x_total_interes = $x_total_interes + $x_interes_tab;
 
-		$x_total_iva = $x_total_iva + $x_iva_tab;				
+		$x_total_iva = $x_total_iva + $x_iva_tab;
 
 		$x_total_moratorios = $x_total_moratorios + $x_interes_moratorio_tab;
 
@@ -947,7 +952,7 @@ while ($row = @phpmkr_fetch_array($rs)) {
 
 			$x_total_interes_d = $x_total_interes_d + $x_interes;
 
-			$x_total_interes_d = $x_total_interes_d + $x_iva;						
+			$x_total_interes_d = $x_total_interes_d + $x_iva;
 
 			$x_total_moratorios_d = $x_total_moratorios_d + $x_interes_moratorio;
 
@@ -1358,7 +1363,6 @@ phpmkr_free_result($rs);
 
 
 
-
 //TABLA inicial
 
 
@@ -1389,7 +1393,7 @@ $x_initabla = "<table width='700' height='805' border='1' align='center' cellpad
 
                 <tr>
 
-                  <td height='59' align='left' valign='middle' bgcolor='#F3F3F3'><strong>Monto del Crédito:</strong></td>
+                  <td height='59' align='left' valign='middle' bgcolor='#F3F3F3'><strong>Monto del Crï¿½dito:</strong></td>
 
                   <td align='left' valign='middle'>&nbsp;</td>
 
@@ -1397,7 +1401,7 @@ $x_initabla = "<table width='700' height='805' border='1' align='center' cellpad
 
                 </tr>
 
-                                
+
 
                 <tr>
 
@@ -1411,7 +1415,7 @@ $x_initabla = "<table width='700' height='805' border='1' align='center' cellpad
 
                 <tr>
 
-                  <td height='60' align='left' valign='middle' bgcolor='#F3F3F3'><strong>Tasa de interés:</strong></td>
+                  <td height='60' align='left' valign='middle' bgcolor='#F3F3F3'><strong>Tasa de interï¿½s:</strong></td>
 
                   <td align='left' valign='middle'>&nbsp;</td>
 
@@ -1549,11 +1553,8 @@ $x_initabla = "<div style=\"page-break-after: always;\">$x_initabla</div>";
 
 //$x_initabla = "<div style=\"page-break-after: always;height:0; line-height:0;\">$x_initabla</div>";
 
-
-
-
-
-
+//die(var_dump($x_tasa));
+//die(var_dump($x_contenido));
 
 $x_contenido = str_replace("\$x_banco",$x_banco,$x_contenido);
 
@@ -1617,7 +1618,12 @@ $x_contenido = str_replace("\$x_moratorios",$x_moratorios,$x_contenido);
 
 $x_contenido = str_replace("\$x_tasa",$x_tasa,$x_contenido);
 
+
+
 $x_contenido = str_replace("\$x_anual_tasa",$x_anual_tasa,$x_contenido);
+
+///// marcos agrega
+$x_contenido = str_replace("\$x_anual_doble_tasa",$x_anual_doble_tasa,$x_contenido);
 
 $x_contenido = str_replace("\$x_fecha_contrato",$x_fecha_contrato,$x_contenido);
 
@@ -1682,17 +1688,9 @@ $x_contenido = str_replace("\$x_periodicidad_pago",$x_periodicidad_pago,$x_conte
 
 
 
-
-
-
-
-
-
-
-
 //echo htmlspecialchars_decode($x_contenido);
 
-echo $x_contenido;
+echo utf8_encode($x_contenido);
 
 
 
@@ -1784,17 +1782,17 @@ function LoadData($conn)
 
 		$GLOBALS["x_actividad_desc"] = $row["actividad_desc"];
 
-		
+
 
 		//agregados por lo nuevos formatos
 
 		$GLOBALS["x_nombre_grupo"] = $row["grupo_nombre"];
 
-		
+
 
 		// sleccionamos los datos de garantia liaquida y de penalicacion del credito
 
-		
+
 
 		$sSql = "SELECT * FROM credito  WHERE solicitud_id = ".$GLOBALS["x_solicitud_id"]." ";
 
@@ -1808,21 +1806,21 @@ function LoadData($conn)
 
 		$GLOBALS["x_credito_id"] = $rowC["credito_id"];
 
-		
 
-		
 
-		
 
-		
 
-		
+
+
+
+
+
 
 		if($GLOBALS["x_forma_pago_id"] == 1){
 
 			// es semanal
 
-			$GLOBALS["x_no_pagos_gar_liquida"]=" a los dos últimos pagos del crédito";
+			$GLOBALS["x_no_pagos_gar_liquida"]=" a los dos ï¿½ltimos pagos del crï¿½dito";
 
 			$GLOBALS["x_fech_penultimo_ven"]= "";
 
@@ -1830,15 +1828,15 @@ function LoadData($conn)
 
 			$sqlFVVU = "SELECT * FROM `vencimiento` WHERE `credito_id` = ".$GLOBALS["x_credito_id"]." order by vencimiento_num DESC LIMIT 2,1 ";
 
-			$GLOBALS["x_fech_penultimo_ven"] = " del antepenúltimo pago ";
+			$GLOBALS["x_fech_penultimo_ven"] = " del antepenï¿½ltimo pago ";
 
-			
+
 
 			}else{
 
 				// es mensual, quincenal o catorcenal
 
-						$GLOBALS["x_no_pagos_gar_liquida"]=" al último pago del crédito";	
+						$GLOBALS["x_no_pagos_gar_liquida"]=" al ï¿½ltimo pago del crï¿½dito";
 
 				$GLOBALS["x_fech_penultimo_ven"]= "";
 
@@ -1846,19 +1844,19 @@ function LoadData($conn)
 
 				$sqlFVVU = "SELECT * FROM `vencimiento` WHERE `credito_id` = ".$GLOBALS["x_credito_id"]." order by vencimiento_num DESC LIMIT 1,1 ";
 
-				$GLOBALS["x_fech_penultimo_ven"] = " del penúltimo pago ";
+				$GLOBALS["x_fech_penultimo_ven"] = " del penï¿½ltimo pago ";
 
-				
 
-				
 
-				
+
+
+
 
 				}
 
-				
 
-				
+
+
 
 		$rsCid = phpmkr_query($sqlFVVU,$conn) or die ("erro al seleccionar la fecha del ultimo vencimeinto".phpmkr_error()."sql:".$sqlFVVU);
 
@@ -1866,17 +1864,17 @@ function LoadData($conn)
 
 		$GLOBALS["x_fech_penultimo_ven"] = $rowCid["fecha_vencimiento"];
 
-		
 
-		
 
-		
 
-		
+
+
+
+
 
 		if ($GLOBALS["x_garantia_liquida"] == 1){
 
-			// seleccionamos los datos de la garantia lisquida			
+			// seleccionamos los datos de la garantia lisquida
 
 			$sqlG = "SELECT * FROM garantia_liquida WHERE credito_id = ".$GLOBALS["x_credito_id"]."";
 
@@ -1888,7 +1886,7 @@ function LoadData($conn)
 
 			// entonces formato docto = 26
 
-						
+
 
 			}else{
 
@@ -1896,17 +1894,17 @@ function LoadData($conn)
 
 				}
 
-			
 
-			
 
-		// calculamos la comsion del credito		
+
+
+		// calculamos la comsion del credito
 
 		// esta depende  de la forma de pagao del credito
 
-		// si es semanal la comsion sera de  2 pagos para el caso de semanal y de 1 pago para el caso de los demas tipos de pago	
+		// si es semanal la comsion sera de  2 pagos para el caso de semanal y de 1 pago para el caso de los demas tipos de pago
 
-		
+
 
 		// selecionamos los datos del vencimiento
 
@@ -1920,7 +1918,7 @@ function LoadData($conn)
 
 		$GLOBALS["x_fecha_ultimo_pago"] = $rowV["fecha_vencimiento"];
 
-		
+
 
 		if($GLOBALS["x_forma_pago_id"] == 1){
 
@@ -1938,9 +1936,9 @@ function LoadData($conn)
 
 				}
 
-		
 
-		
+
+
 
 		//INTEGRANTES DEL GRUPO
 
@@ -1950,7 +1948,7 @@ function LoadData($conn)
 
 			// ES UN CREDITO SOLIDARIO
 
-			
+
 
 			$sqlGrupo = "SELECT * FROM creditosolidario WHERE  solicitud_id = $x_soli_id";
 
@@ -1962,23 +1960,23 @@ function LoadData($conn)
 
 			$GLOBALS["x_nombre_grupo"] = $rowGrupo["nombre_grupo"];
 
-			
+
 
 			$x_cont_g = 1;
 
 			while($x_cont_g <= 10){
 
-				
+
 
 				$GLOBALS["x_integrante_$x_cont_g"] = $rowGrupo["integrante_$x_cont_g"];
 
 				$GLOBALS["x_monto_$x_cont_g"] =$rowGrupo["monto_$x_cont_g"];
 
-				$GLOBALS["x_rol_integrante_$x_cont_g"] = $rowGrupo["rol_integrante_$x_cont_g"]; 
+				$GLOBALS["x_rol_integrante_$x_cont_g"] = $rowGrupo["rol_integrante_$x_cont_g"];
 
 				$GLOBALS["x_cliente_id_$x_cont_g"] = $rowGrupo["cliente_id_$x_cont_g"];
 
-				
+
 
 				//BUSCO AL REPRESENTANTE DEL GRUPO
 
@@ -1990,27 +1988,27 @@ function LoadData($conn)
 
 					}
 
-				
+
 
 				$x_cont_g++;
 
 				}
 
-			
 
-			
 
-			
+
+
+
 
 			phpmkr_free_result($rowGrupo);
 
-			
+
 
 			}
 
-		
 
-		
+
+
 
 
 
@@ -2050,9 +2048,9 @@ function LoadData($conn)
 
 		$GLOBALS["x_email"] = $row2["email"];
 
-		
 
-		
+
+
 
 		// nombre de la empresa si es un credito PYME
 
@@ -2070,7 +2068,7 @@ function LoadData($conn)
 
 			phpmkr_free_result($rowPyme);
 
-			
+
 
 			}
 
@@ -2112,11 +2110,11 @@ function LoadData($conn)
 
 		$GLOBALS["x_telefono_secundario"] = $row3["telefono_secundario"];
 
-		
+
 
 		// seleccionamos los datos del estdo
 
-		
+
 
 		if(!empty($GLOBALS["x_entidad"])){
 
@@ -2394,7 +2392,7 @@ function LoadData($conn)
 
 		}*/
 
-		
+
 
 		$sSql = "SELECT nombre_completo AS avales FROM datos_aval WHERE solicitud_id = ".$GLOBALS["x_solicitud_id"];
 
@@ -2410,7 +2408,7 @@ function LoadData($conn)
 
 			}
 
-			
+
 
 			#$x_gara = 0;
 
@@ -2420,7 +2418,7 @@ function LoadData($conn)
 
 		#$x_aval = 0;
 
-		//echo "penalizacion".$GLOBALS["x_penalizacion"]."<br>";	
+		//echo "penalizacion".$GLOBALS["x_penalizacion"]."<br>";
 
 		#$GLOBALS["x_penalizacion"] = 0;
 
@@ -2430,17 +2428,17 @@ function LoadData($conn)
 
 		$GLOBALS["x_garantia"] = $x_gara;
 
-		
+
 
 		#echo "garantia".$GLOBALS["x_garantia"]."<br>";
 
-		
+
 
 		if($GLOBALS["x_solicitud_id"] > 5000){
 
 			#echo "se cargan los formatos nuevos";
 
-			if($GLOBALS["x_penalizacion"] > 0){				
+			if($GLOBALS["x_penalizacion"] > 0){
 
 				if($GLOBALS["x_penalizacion"] > 0 && $GLOBALS["x_garantia_liquida"] > 0 && $x_aval > 0){
 
@@ -2458,19 +2456,19 @@ function LoadData($conn)
 
 							//CONTRATO SIN GAR LIQ, CON PENALIZACIO Y COM Y AVAL
 
-							$x_contenido_id = 33;							
+							$x_contenido_id = 33;
 
 							}else if ($GLOBALS["x_penalizacion"] > 0 && $GLOBALS["x_garantia_liquida"] == 0 && $x_aval == 0 && $GLOBALS["x_garantia"] == 0){
 
 								//CONTRATO SIN GAR LIQ, CON PENALIZACION Y COMISION
 
-								$x_contenido_id = 32;								
+								$x_contenido_id = 32;
 
-								}else if($GLOBALS["x_penalizacion"] > 0 && $GLOBALS["x_garantia_liquida"] == 0 && $GLOBALS["x_garantia"] > 0 && $x_aval > 0){									
+								}else if($GLOBALS["x_penalizacion"] > 0 && $GLOBALS["x_garantia_liquida"] == 0 && $GLOBALS["x_garantia"] > 0 && $x_aval > 0){
 
 									//CONTRATO CON GAR PREN, PENA Y COM Y AVAL
 
-									$x_contenido_id = 37;									
+									$x_contenido_id = 37;
 
 									}else if($GLOBALS["x_penalizacion"] > 0 && $GLOBALS["x_garantia"] > 0 && $x_aval == 0){
 
@@ -2478,7 +2476,7 @@ function LoadData($conn)
 
 											 $x_contenido_id = 36;
 
-										}				
+										}
 
 				}else{
 
@@ -2496,71 +2494,71 @@ function LoadData($conn)
 
 							$x_contenido_id = 34;
 
-							}			
+							}
 
 					}
 
-			
 
-			 
 
-			
 
-			
+
+
+
+
 
 			}else{
 
 				#se cargan los formatos viejitos
 
-				
+
 
 				if(($x_gara > 0) && ($x_aval>0) ){
 
 					// el tipo de contrato es el de INTERES GARANTIA AVAL
 
-					//16 contrato simple con interes, con garantia y aval 
+					//16 contrato simple con interes, con garantia y aval
 
 					$x_contenido_id = 16;
 
-					
+
 
 					}else if($x_gara > 0){
 
-						//14 Contrato credito simple con interes con garantia 
+						//14 Contrato credito simple con interes con garantia
 
 						$x_contenido_id = 14;
 
 						}else if(($x_aval>0)){
 
-							//15 Contarto simple con interres con aval 
+							//15 Contarto simple con interres con aval
 
 							$x_contenido_id = 15;
 
 							}else{
 
-								//17 Contrato simple con interes 
+								//17 Contrato simple con interes
 
 								$x_contenido_id = 17;
 
 								}
 
-				
+
 
 				}
 
-		
 
-		
+
+
 
 		#echo $x_contenido_id;
 
-		
+
 
 	//	if(!empty($GLOBALS["x_penalizacion"]) && $GLOBALS["x_penalizacion"] > 0){
 
 			#1.-Tiene garantia liquida = formato 26
 
-            #2.-con garantia liquida y aval = formato 
+            #2.-con garantia liquida y aval = formato
 
 	//		if($GLOBALS["x_monto_garantia_liquida"] > 0 && $x_aval>0){
 
@@ -2580,11 +2578,11 @@ function LoadData($conn)
 
 						// verificar si tendra de otro tipo de garanbtia
 
-						
+
 
 	//					}*/
 
-						
+
 
 			//TIENE GARANTIA NORMAL, PERO TIENE LLENO EL CAMPO DE PENALIZACION
 
@@ -2592,41 +2590,41 @@ function LoadData($conn)
 
 					// el tipo de contrato es el de INTERES GARANTIA AVAL
 
-					//16 contrato simple con interes, con garantia y aval 
+					//16 contrato simple con interes, con garantia y aval
 
 	//				$x_contenido_id = 29;
 
-					
+
 
 	//				}else if($x_gara > 0){
 
-						//14 Contrato credito simple con interes con garantia 
+						//14 Contrato credito simple con interes con garantia
 
 	//					$x_contenido_id = 28;
 
 	//					}else if(($x_aval>0)){
 
-							//15 Contarto simple con interres con aval 
+							//15 Contarto simple con interres con aval
 
 	//						$x_contenido_id = 15;
 
 	//						}else{
 
-								//17 Contrato simple con interes 
+								//17 Contrato simple con interes
 
 	//							$x_contenido_id = 17;
 
 	//							}
 
-			
 
-			
 
-						
 
-			
 
-	//		}else{		
+
+
+
+
+	//		}else{
 
 	//	if($x_valor_credito_tipo_id == 1){
 
@@ -2636,53 +2634,53 @@ function LoadData($conn)
 
 					// el tipo de contrato es el de INTERES GARANTIA AVAL
 
-					//16 contrato simple con interes, con garantia y aval 
+					//16 contrato simple con interes, con garantia y aval
 
 	//				$x_contenido_id = 16;
 
-					
+
 
 	//				}else if($x_gara > 0){
 
-						//14 Contrato credito simple con interes con garantia 
+						//14 Contrato credito simple con interes con garantia
 
 	//					$x_contenido_id = 14;
 
 	//					}else if(($x_aval>0)){
 
-							//15 Contarto simple con interres con aval 
+							//15 Contarto simple con interres con aval
 
 	//						$x_contenido_id = 15;
 
 	//						}else{
 
-								//17 Contrato simple con interes 
+								//17 Contrato simple con interes
 
 	//							$x_contenido_id = 17;
 
 	//							}
 
-			
 
-			
+
+
 
 	//		}else if($x_valor_credito_tipo_id == 2){
 
 				//el tipo de credito es SOLIDARIO
 
-				//24 Contrato Solidario 
+				//24 Contrato Solidario
 
 	//			$x_contenido_id = 24;
 
 	//			}else if($x_valor_credito_tipo_id == 3){
 
-					//EL TIPÓ DE CREDITO ES MAQUINARIA
+					//EL TIPï¿½ DE CREDITO ES MAQUINARIA
 
 					// NO TIENE GARANTIA...PERO PUEDE TENER AVAL
 
 	//				if(($x_aval>0)){
 
-						//15 Contarto simple con interres con aval 
+						//15 Contarto simple con interres con aval
 
 	//					$x_contenido_id = 15;
 
@@ -2690,47 +2688,47 @@ function LoadData($conn)
 
 							// no tiene aval
 
-							//17 Contrato simple con interes 
+							//17 Contrato simple con interes
 
-	//						$x_contenido_id = 17;							
+	//						$x_contenido_id = 17;
 
 	//						}
 
-					
 
-					
+
+
 
 	//				}else if($x_valor_credito_tipo_id == 4){
 
 						//credito PYME
 
-						//13 Contrato PYME 
+						//13 Contrato PYME
 
 	//					$x_contenido_id = 13;
 
 	//					}
 
-						
+
 
 	//		}// penalizaciones
 
-		
 
-		
 
-		
 
-		
 
-		
 
-		
 
-		
 
-		
 
-			
+
+
+
+
+
+
+
+
+
 
 		//$x_contenido_id = 30;
 
@@ -2770,6 +2768,3 @@ function LoadData($conn)
 }
 
 ?>
-
-
-
