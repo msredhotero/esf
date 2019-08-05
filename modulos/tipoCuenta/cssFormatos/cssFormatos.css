@@ -1,0 +1,80 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:10px;
+	background-color: #FFFFFF;
+}
+
+#contenedor{
+	width:1050px;
+	margin:auto;	
+	
+	}
+	
+.table{
+	background-color: #393;
+}
+
+
+#tableHead{
+	/*background-color: #d7241f;*/
+	text-align:center;
+	font-style:normal;
+	color:#000000;
+	background:url(../formatos/images/encabezadoTablaBdG.png);
+	width:90%;
+	
+}
+
+#declaracione{
+	text-align:justify;
+	font-size:13px;
+	font:Verdana, Geneva, sans-serif;
+	}
+	
+	
+#paginacion div{
+	width:100%;
+	
+	
+	
+	}
+	
+.error_box {
+	height:32px;
+	/*background:url(images/notice-alert.gif) 20px 4px no-repeat ;*/
+	
+	border-bottom: double 1px #C4576C; 
+	border-top: double 1px #C4576C;
+	border-left: double 1px #C4576C;
+	border-right: double 1px #C4576C;
+	background-color:#ECCADD;
+	font-family:Verdana;
+	font-size:12px;
+	font-weight:bold;
+	color:#C4576C;
+}
+#tablePag {
+	
+	}
+	
+#tablePag a {
+	
+	color:#F00;
+	}
+#tablePag a hover{
+	color:#FF2000;
+	}
+#tablePag a visited{
+	color:#F00;
+	}
+	
+.uno{
+	
+	}
