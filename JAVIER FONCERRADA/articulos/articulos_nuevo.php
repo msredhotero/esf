@@ -3,7 +3,7 @@
 	<table style="border-collapse: collapse;" align="center" border="0" cellpadding="0" cellspacing="0" width="800">
 		<tbody>
 			<tr>
-				<td> </td>
+				<td> </td>
 				<td>
 					<p align="center">
 						<span style="font-size: x-small;">
@@ -13,10 +13,10 @@
 						</span>
 					</p>
 				</td>
-				<td></td>
+				<td> </td>
 			</tr>
 			<tr>
-				<td> </td>
+				<td> </td>
 				<td>
 					<p align="center">
 						<span style="font-size: x-small;">
@@ -26,7 +26,7 @@
 						</span>
 					</p>
 				</td>
-				<td></td>
+				<td> </td>
 			</tr>
 			<tr>
 				<td> </td>
@@ -47,7 +47,7 @@
 					<p>
 						<span style="font-size: x-small;">
 							<span style="font-family: Arial;"> 
-								Artículo 56.- La inspección y vigilancia de las organizaciones auxiliares del crédito, casas de cambio y sociedades financieras de objeto múltiple reguladas queda confiada a la Comisión Nacional Bancaria y de Valores, la que tendrá, en lo que no se oponga a esta Ley, respecto de dichas organizaciones auxiliares del crédito, casas de cambio y sociedades financieras de objeto múltiple reguladas, todas las facultades que en materia de inspección y vigilancia le confiere la Ley de Instituciones de Crédito para instituciones de banca múltiple, quien la llevará a cabo sujetándose a lo previsto en su ley, en el Reglamento respectivo y en las demás disposiciones que resulten aplicables.  
+								<b>Artículo 56.-</b> La inspección y vigilancia de las organizaciones auxiliares del crédito, casas de cambio y sociedades financieras de objeto múltiple reguladas queda confiada a la Comisión Nacional Bancaria y de Valores, la que tendrá, en lo que no se oponga a esta Ley, respecto de dichas organizaciones auxiliares del crédito, casas de cambio y sociedades financieras de objeto múltiple reguladas, todas las facultades que en materia de inspección y vigilancia le confiere la Ley de Instituciones de Crédito para instituciones de banca múltiple, quien la llevará a cabo sujetándose a lo previsto en su ley, en el Reglamento respectivo y en las demás disposiciones que resulten aplicables.  
 							</span>
 						</span>
 					</p>
@@ -99,7 +99,7 @@
 					<p>
 						<span style="font-size: x-small;">
 							<span style="font-family: Arial;"> 
-								Artículo 299.- El otorgamiento o transmisión de un título de crédito o de cualquier otro documento por el acreditado al acreditante, como reconocimiento del adeudo que a cargo de aquel resulte en virtud de las disposiciones que haga del crédito concedido, no facultan al acreditante para descontar o ceder el crédito así documentado, antes de su vencimiento, sino hasta cuando el acreditado lo autorice a ello expresamente. 
+								<b>Artículo 299.-</b> El otorgamiento o transmisión de un título de crédito o de cualquier otro documento por el acreditado al acreditante, como reconocimiento del adeudo que a cargo de aquel resulte en virtud de las disposiciones que haga del crédito concedido, no facultan al acreditante para descontar o ceder el crédito así documentado, antes de su vencimiento, sino hasta cuando el acreditado lo autorice a ello expresamente. 
 							</span>
 						</span>
 					</p>
@@ -138,7 +138,7 @@
 					<p>
 						<span style="font-size: x-small;">
 							<span style="font-family: Arial;"> 
-								Artículo 2111.- Nadie está obligado al caso fortuito sino cuando ha dado causa contribuído a él, cuando ha aceptado expresamente esa responsabilidad, o cuando la ley se la impone. 
+								<b>Artículo 2111.-</b> Nadie está obligado al caso fortuito sino cuando ha dado causa contribuído a él, cuando ha aceptado expresamente esa responsabilidad, o cuando la ley se la impone. 
 							</span>
 						</span>
 					</p>
@@ -229,7 +229,7 @@
 					<p>
 						<span style="font-size: x-small;">
 							<span style="font-family: Arial;"> 
-								I.	Personas físicas, y 
+								<b>I.</b>	Personas físicas, y 
 							</span>
 						</span>
 					</p>
@@ -242,7 +242,7 @@
 					<p>
 						<span style="font-size: x-small;">
 							<span style="font-family: Arial;"> 
-								II.	Personas morales con créditos totales inferiores a cuatrocientas mil UDIS, de conformidad con el valor de dicha unidad publicado por el Banco de México a la fecha en que se presente la solicitud de información. Los Usuarios que realicen consultas relacionadas con personas morales con créditos totales superiores a cuatrocientas mil UDIS, no requerirán de la autorización expresa a que se refiere el presente artículo. 
+								<b>II.</b>	Personas morales con créditos totales inferiores a cuatrocientas mil UDIS, de conformidad con el valor de dicha unidad publicado por el Banco de México a la fecha en que se presente la solicitud de información. Los Usuarios que realicen consultas relacionadas con personas morales con créditos totales superiores a cuatrocientas mil UDIS, no requerirán de la autorización expresa a que se refiere el presente artículo. 
 							</span>
 						</span>
 					</p>
@@ -358,8 +358,9 @@
 				<td valign="top" style="text-align: justify;">
 					<p>
 						<span style="font-size: x-small;">
-							<span style="font-family: Arial;"> 
-								<b>DISPOSICIONES de carácter general en materia de transparencia aplicables a las Sociedades Financieras de Objeto Múltiple, Entidades No Reguladas.</b>
+							<span style="font-family: Arial;">
+								<br>
+								<b>DISPOSICIONES de carácter general en materia de transparencia aplicables a las Sociedades Financieras de Objeto Múltiple,</b>
 							</span>
 						</span>
 					</p>
@@ -372,7 +373,7 @@
 					<p>
 						<span style="font-size: x-small;">
 							<span style="font-family: Arial;"> 
-								Artículo 35. Los estados de cuenta deben contener, por lo menos: 
+								<b>Entidades No Reguladas.</b>
 							</span>
 						</span>
 					</p>
@@ -385,6 +386,19 @@
 					<p>
 						<span style="font-size: x-small;">
 							<span style="font-family: Arial;"> 
+								<b>Artículo 35.</b> Los estados de cuenta deben contener, por lo menos: 
+							</span>
+						</span>
+					</p>
+				</td>
+				<td> </td>
+			</tr>
+			<tr>
+				<td> </td>
+				<td valign="top" style="text-align: justify;">
+					<p>
+						<span style="font-size: x-small;">
+							<span style="font-family: Arial; padding-left: 2%;"> 
 								I.	La denominación social de la Entidad Financiera, así como el domicilio, número telefónico y su logotipo; 
 							</span>
 						</span>
@@ -397,7 +411,7 @@
 				<td valign="top" style="text-align: justify;">
 					<p>
 						<span style="font-size: x-small;">
-							<span style="font-family: Arial;"> 
+							<span style="font-family: Arial; padding-left: 2%;"> 
 								II.	El nombre del Usuario, así como el número de cuenta o contrato de que se trate. La Entidad Financiera puede suprimir elnombre del Usuario o imprimir parcialmente el número de cuenta o contrato cuando éste así lo solicite. 
 							</span>
 						</span>
@@ -423,8 +437,8 @@
 				<td valign="top" style="text-align: justify;">
 					<p>
 						<span style="font-size: x-small;">
-							<span style="font-family: Arial;"> 
-								III.	El periodo a que corresponda;
+							<span style="font-family: Arial; padding-left: 2%;"> 
+								III. El periodo a que corresponda;
 							</span>
 						</span>
 					</p>
@@ -436,7 +450,7 @@
 				<td valign="top" style="text-align: justify;">
 					<p>
 						<span style="font-size: x-small;">
-							<span style="font-family: Arial;"> 
+							<span style="font-family: Arial; padding-left: 2%;"> 
 								IV.	Los movimientos de cargo o abono efectuados en el periodo correspondiente y su descripción, incluyendo:a. Monto y fecha de la operación;
 							</span>
 						</span>
@@ -449,7 +463,7 @@
 				<td valign="top" style="text-align: justify;">
 					<p>
 						<span style="font-size: x-small;">
-							<span style="font-family: Arial;"> 
+							<span style="font-family: Arial; padding-left: 3%;"> 
 								b.	Moneda en que se denomine la operación y, en su caso, el tipo de cambio que corresponda;
 							</span>
 						</span>
@@ -462,7 +476,7 @@
 				<td valign="top" style="text-align: justify;">
 					<p>
 						<span style="font-size: x-small;">
-							<span style="font-family: Arial;"> 
+							<span style="font-family: Arial; padding-left: 3%;"> 
 								c.	Nombre del establecimiento y lugar en donde se utilizó el Medio de Disposición, en los términos en que la
 Entidad Financiera lo hubiere recibido, y 
 							</span>
@@ -476,7 +490,7 @@ Entidad Financiera lo hubiere recibido, y
 				<td valign="top" style="text-align: justify;">
 					<p>
 						<span style="font-size: x-small;">
-							<span style="font-family: Arial;"> 
+							<span style="font-family: Arial; padding-left: 3%;"> 
 								d.	Descripción o concepto de la operación.
 							</span>
 						</span>
@@ -489,7 +503,7 @@ Entidad Financiera lo hubiere recibido, y
 				<td valign="top" style="text-align: justify;">
 					<p>
 						<span style="font-size: x-small;">
-							<span style="font-family: Arial;"> 
+							<span style="font-family: Arial; padding-left: 2%;"> 
 								V.	Las Comisiones cobradas, el monto, los conceptos que las generan, su fecha y moneda en que se originaron; 
 							</span>
 						</span>
@@ -502,7 +516,7 @@ Entidad Financiera lo hubiere recibido, y
 				<td valign="top" style="text-align: justify;">
 					<p>
 						<span style="font-size: x-small;">
-							<span style="font-family: Arial;"> 
+							<span style="font-family: Arial; padding-left: 2%;"> 
 								VI.	Un recuadro con el monto total de las Comisiones cobradas;
 							</span>
 						</span>
@@ -515,7 +529,7 @@ Entidad Financiera lo hubiere recibido, y
 				<td valign="top" style="text-align: justify;">
 					<p>
 						<span style="font-size: x-small;">
-							<span style="font-family: Arial;"> 
+							<span style="font-family: Arial; padding-left: 2%;"> 
 								VII.	Los cargos objetados por el Usuario, en el estado de cuenta siguiente al periodo en que se efectuó la objeción, debenincluir el número de folio o reporte de aclaración; 
 							</span>
 						</span>
@@ -528,7 +542,7 @@ Entidad Financiera lo hubiere recibido, y
 				<td valign="top" style="text-align: justify;">
 					<p>
 						<span style="font-size: x-small;">
-							<span style="font-family: Arial;"> 
+							<span style="font-family: Arial; padding-left: 2%;"> 
 								VIII.	Un aviso que indique: "(nombre de la Entidad Financiera) recibe las consultas, reclamaciones o aclaraciones, en su
 Unidad Especializada de Atención a Usuarios, ubicada en (domicilio) y por correo electrónico (dirección) o teléfono (número), así como en cualquiera de sus sucursales u oficinas. En el caso de no obtener una respuesta satisfactoria, podrá acudir a CONDUSEF (página electrónica y número telefónico)", y 
 							</span>
@@ -542,7 +556,7 @@ Unidad Especializada de Atención a Usuarios, ubicada en (domicilio) y por corre
 				<td valign="top" style="text-align: justify;">
 					<p>
 						<span style="font-size: x-small;">
-							<span style="font-family: Arial;"> 
+							<span style="font-family: Arial; padding-left: 2%;"> 
 								IX.	Los impuestos retenidos, así como la información necesaria que establezcan las disposiciones fiscales aplicables.
 							</span>
 						</span>
