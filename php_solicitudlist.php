@@ -2708,13 +2708,15 @@ Otorgamiento
 
 <?php }else{ ?>
 
-	<a href="php_solicitudlist.php?order=<?php echo urlencode("pagare"); ?>">Otorgamiento
+	<a href="php_galeriaview.php?x_galeria_fotografica_id=<?php echo urlencode("pagare"); ?>">Otorgamiento
 
 	<?php if (@$_SESSION["solicitud_x_pagare_Sort"] == "ASC") { ?><img src="images/sortup.gif" width="10" height="9" border="0"><?php } elseif (@$_SESSION["solicitud_x_pagare_Sort"] == "DESC") { ?><img src="images/sortdown.gif" width="10" height="9" border="0"><?php } ?></a>
 
 <?php } ?>
 
-		</span></td>                       
+		</span></td>  
+
+        <td valign="top"><span>Galeria</span></td>                       
 
 	</tr>
 
@@ -3591,6 +3593,26 @@ echo FormatDateTime($x_otorgamiento,7)."\n";?>
  <?php $x_hora_otorgamiento = ""; $x_otorgamiento = "";?>
 
 </span></td>
+
+		<td><span class="toolTipShow" id="<?php echo $x_solicitud_id."-".$x_solicitud_status_id;?>">
+<?php
+ /* codigo para recorrer las galerias marcos */
+	$sqlGalerias = "SELECT * FROM financ13_esf.galeria_fotografica where solicitud_id = ".$x_solicitud_id;
+
+	$resGalerias = phpmkr_query($sqlGalerias, $conn) or die("Error al seleccionar IFE". phpmkr_error()."sql:".$sqlGalerias);
+
+	$numero = mysql_num_rows($resGalerias);
+
+	if($numero >0){
+		while ($row = @phpmkr_fetch_array($resGalerias)) {
+			echo '<p><a href="php_galeriaview.php?x_galeria_fotografica_id='.$row['galeria_fotografica_id'].'" target="_blank">Ingresar</a></p>';
+		}
+	} else {
+		echo '';
+	}
+
+?>
+		</span></td>
 
 	</tr>
 

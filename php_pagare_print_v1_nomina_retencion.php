@@ -2065,7 +2065,7 @@ $x_contenido = str_replace("\$x_consulta_cuenta",$x_consulta_cuenta,$x_contenido
 
 //echo htmlspecialchars_decode($x_contenido); 
 
-echo $x_contenido; 
+echo utf8_encode($x_contenido); 
 
 
 ?>
