@@ -19,7 +19,9 @@ define("ewAllowview", 8, true);
 define("ewAllowlist", 8, true);
 define("ewAllowreport", 8, true);
 define("ewAllowsearch", 8, true);																														
-define("ewAllowadmin", 16, true);						
+define("ewAllowadmin", 16, true);		
+
+$x_mensaje = '';				
 ?>
 <?php
 if (@$_SESSION["php_project_esf_status"] <> "login") {
@@ -43,11 +45,13 @@ if(isset($_GET["x_galeria_fotografica_id"])){
 if(isset($_POST["x_envio"])){
 
 	$x_galeria_fotografica_id = $_POST["x_galeria_fotografica_id"];
+	
 	$x_foto_persona_1 = $_POST["x_foto_persona_1"];
 	$x_foto_persona_2 = $_POST["x_foto_persona_2"];
 	$x_foto_persona_3 = $_POST["x_foto_persona_3"];
 	$x_foto_persona_4 = $_POST["x_foto_persona_4"];
 	$x_foto_persona_5 = $_POST["x_foto_persona_5"];
+	
 	$x_nombre_galeria = $_POST["x_nombre_galeria"];
 		
 	
@@ -262,13 +266,18 @@ function loadData($conn, $id){
 	 $a_x_persona_3 = @$_POST["a_x_persona_3"];
 	 $a_x_persona_4 = @$_POST["a_x_persona_4"];
 	 $a_x_persona_5 = @$_POST["a_x_persona_5"];
+
 	 
 	 
-	 $x_nombre_galeria = $_POST["x_nombre_galeria"];	 
+	 
+	 $x_nombre_galeria = $_POST["x_nombre_galeria"];
+
 	 $x_hoy = date("Y-m-d");	 
 	 $x_nombre_galeria = sanear_string($x_nombre_galeria);
 	 $x_hoy = sanear_string($x_hoy);
 	 $x_nombre_galeria =  $x_nombre_galeria."_". $x_hoy."_".$x_galeria_fotografica_id;
+
+
 	 
 	 // documentos	
 	$EW_MaxFileSize = @$_POST["EW_Max_File_Size"];
@@ -277,7 +286,10 @@ function loadData($conn, $id){
 			die("El tamoño de la imagen es mayor al tamaño permitido, cambien la imagen por una en tamaño mediano o grande");
 		}
 	}
+
+
 	
+
  
 	$fieldList = NULL;
 		$x_imagen1 = "";
@@ -292,7 +304,10 @@ function loadData($conn, $id){
 					$fieldList["`foto_persona_1`"] = "NULL";
 				} else if ($a_x_persona_1 == "3") { // Update
 				if (is_uploaded_file($_FILES["x_foto_persona_1"]["tmp_name"])) {
+
 					$destfile = ewUploadPath(1) . ewUploadFileName($_FILES["x_foto_persona_1"]["name"]);
+
+
 					
 					//aqui es donde debo genera el nombre del archivo
 					 #copiamos la extension del archivo					 

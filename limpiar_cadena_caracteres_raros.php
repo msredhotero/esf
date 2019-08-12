@@ -25,7 +25,7 @@ function sanear_string($string)
         array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
         $string
     );
-echo "entra a e<br> ".$string;
+//echo "entra a e<br> ".$string;
     $string = str_replace(
         array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
         array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),

@@ -1981,6 +1981,7 @@ $x_link_nueva_tasa_tabla = "<a href=\"php_pagare_print_nueva_tasa.php?solicitud_
 
 
 
+die(var_dump($x_contenido));
 
 //}//no de integrantes
 
