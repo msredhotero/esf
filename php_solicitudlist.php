@@ -3,10 +3,10 @@
 <?php
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // date in the past
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); // always modified
-header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1 
-header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1
+header("Cache-Control: post-check=0, pre-check=0", false);
 header("Cache-Control: private");
-header("Pragma: no-cache"); // HTTP/1.0 
+header("Pragma: no-cache"); // HTTP/1.0
 ?>
 <?php
 $ewCurSec = 0; // Initialise
@@ -24,9 +24,9 @@ define("ewAllowlist", 8, true);
 
 define("ewAllowreport", 8, true);
 
-define("ewAllowsearch", 8, true);																														
+define("ewAllowsearch", 8, true);
 
-define("ewAllowadmin", 16, true);						
+define("ewAllowadmin", 16, true);
 
 ?>
 
@@ -38,7 +38,7 @@ if (@$_SESSION["php_project_esf_status"] <> "login") {
 
 	exit();
 
-	
+
 
 }
 
@@ -52,43 +52,43 @@ if (@$_SESSION["php_project_esf_status"] <> "login") {
 
 // Initialize common variables
 
-$x_solicitud_id = Null; 
+$x_solicitud_id = Null;
 
 $ox_solicitud_id = Null;
 
-$x_credito_tipo_id = Null; 
+$x_credito_tipo_id = Null;
 
 $ox_credito_tipo_id = Null;
 
-$x_solicitud_status_id = Null; 
+$x_solicitud_status_id = Null;
 
 $ox_solicitud_status_id = Null;
 
-$x_folio = Null; 
+$x_folio = Null;
 
 $ox_folio = Null;
 
-$x_fecha_registro = Null; 
+$x_fecha_registro = Null;
 
 $ox_fecha_registro = Null;
 
-$x_promotor_id = Null; 
+$x_promotor_id = Null;
 
 $ox_promotor_id = Null;
 
-$x_importe_solicitado = Null; 
+$x_importe_solicitado = Null;
 
 $ox_importe_solicitado = Null;
 
-$x_plazo = Null; 
+$x_plazo = Null;
 
 $ox_plazo = Null;
 
-$x_contrato = Null; 
+$x_contrato = Null;
 
 $ox_contrato = Null;
 
-$x_pagare = Null; 
+$x_pagare = Null;
 
 $ox_pagare = Null;
 
@@ -208,19 +208,19 @@ $filter['x_delegacion_srch'] = '';
 
 $filter['x_sucursal_srch'] = '';
 
-$filter['x_promo_srch'] = ''; 
+$filter['x_promo_srch'] = '';
 
-$filter['x_vendedor_srch'] = ''; 
-
-
+$filter['x_vendedor_srch'] = '';
 
 
 
-if(isset($_GET)) {	
+
+
+if(isset($_GET)) {
 
 	foreach($_GET as $key => $value) {
 
-		
+
 
 		if(isset($filter[$key]))
 
@@ -228,7 +228,7 @@ if(isset($_GET)) {
 
 	}
 
-	
+
 
 }
 
@@ -236,17 +236,17 @@ if(isset($_GET)) {
 
 
 
-if(isset($_POST)) {	
+if(isset($_POST)) {
 
 	foreach($_POST as $key => $value) {
 
 		if(isset($filter[$key])) $filter[$key] = $value;
 
-	}	
+	}
 
-	
 
-	
+
+
 
 }
 
@@ -314,9 +314,9 @@ if(!function_exists('http_build_query')) {
 
 
 
-	 
 
-	 
+
+
 
 
 
@@ -386,11 +386,11 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 	}
 
-    
+
 
 	$ssrch = substr($ssrch, 0, strlen($ssrch)-5);
 
-	
+
 
 	$ssrch_sql = "select cliente.cliente_id from cliente where ".$ssrch;
 
@@ -404,7 +404,7 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 		while ($row_sqry = @phpmkr_fetch_array($rs_qry)) {
 
-			$ssrch_cli .= $row_sqry[0].","; 			
+			$ssrch_cli .= $row_sqry[0].",";
 
 		}
 
@@ -412,7 +412,7 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 			$ssrch_cli = " cliente.cliente_id in (".substr($ssrch_cli, 0, strlen($ssrch_cli)-1).") AND ";
 
-		#echo " cliente".$ssrch_cli;	
+		#echo " cliente".$ssrch_cli;
 
 		}else{
 
@@ -438,7 +438,7 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 if(!empty($filter["x_crenum_srch"])){
 
-	
+
 
 	$ssrch_cre = "";
 
@@ -448,9 +448,9 @@ if(!empty($filter["x_crenum_srch"])){
 
 
 
-	$ssrch = substr($ssrch, 0, strlen($ssrch)-5);	
+	$ssrch = substr($ssrch, 0, strlen($ssrch)-5);
 
-	
+
 
 	$ssrch_sql = "select credito.solicitud_id from credito where ".$ssrch;
 
@@ -464,13 +464,13 @@ if(!empty($filter["x_crenum_srch"])){
 
 		while ($row_sqry = @phpmkr_fetch_array($rs_qry)) {
 
-			$ssrch_cre .= $row_sqry[0].","; 			
+			$ssrch_cre .= $row_sqry[0].",";
 
 		}
 
 		if(strlen($ssrch_cre) > 0 ){
 
-			$ssrch_cre = " solicitud.solicitud_id in (".substr($ssrch_cre, 0, strlen($ssrch_cre)-1).") AND ";	
+			$ssrch_cre = " solicitud.solicitud_id in (".substr($ssrch_cre, 0, strlen($ssrch_cre)-1).") AND ";
 
 		}else{
 
@@ -504,7 +504,7 @@ if(!empty($filter["x_cresta_srch"])){
 
 	///ERROR/////////////////////////////////////////////////////
 
-	//$ssrch_sol = substr($ssrch_sol, 0, strlen($ssrch_sol)-5);	
+	//$ssrch_sol = substr($ssrch_sol, 0, strlen($ssrch_sol)-5);
 
 	////////////////////////////////////////////////////////////
 
@@ -524,11 +524,11 @@ if(!empty($filter["x_cresta_srch"])){
 
 	}
 
-	
 
-	
 
-	
+
+
+
 
  if ((!empty($filter["x_sucursal_srch"])) && (!empty($filter["x_promo_srch"])) || (!empty($filter["x_vendedor_srch"]))){
 
@@ -548,9 +548,9 @@ if(!empty($filter["x_cresta_srch"])){
 
 			#echo "aquiii";
 
-			}												
+			}
 
-															  
+
 
 																																																																																																																				   else if((!empty($filter["x_sucursal_srch"]))){
 
@@ -560,9 +560,9 @@ if(!empty($filter["x_cresta_srch"])){
 
 			$ssrch_cre .= "(promotor.sucursal_id = ".$filter["x_sucursal_srch"].") AND ";
 
-			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);	
+			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
-			#echo "sucursal";	
+			#echo "sucursal";
 
 		}
 
@@ -574,13 +574,13 @@ if(!empty($filter["x_cresta_srch"])){
 
 			$ssrch_cre .= "(promotor.promotor_id = ".$filter["x_promo_srch"].") AND ";
 
-			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);		
+			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}
 
 	}	else if(!empty($filter["x_vendedor_srch"]) ){
 
-		
+
 
 		if((!empty($filter["x_vendedor_srch"])) && ($filter["x_vendedor_srch"] != "1000")){
 
@@ -588,13 +588,13 @@ if(!empty($filter["x_cresta_srch"])){
 
 			$ssrch_cre .= "(solicitud.vendedor_id = ".$filter["x_vendedor_srch"].") AND ";
 
-			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);		
+			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}
 
  }
 
- 
+
 
 
 
@@ -610,7 +610,7 @@ $sSql = "SELECT solicitud.*, cliente.cliente_num, cliente.nombre_completo, clien
 
 
 
-$sSql = "SELECT solicitud.*, cliente.cliente_num, cliente.nombre_completo, cliente.apellido_paterno, cliente.apellido_materno FROM solicitud join solicitud_cliente on solicitud_cliente.solicitud_id = solicitud.solicitud_id join cliente on cliente.cliente_id = solicitud_cliente.cliente_id join promotor on promotor.promotor_id = solicitud.promotor_id  $x_join_credito ";		
+$sSql = "SELECT solicitud.*, cliente.cliente_num, cliente.nombre_completo, cliente.apellido_paterno, cliente.apellido_materno FROM solicitud join solicitud_cliente on solicitud_cliente.solicitud_id = solicitud.solicitud_id join cliente on cliente.cliente_id = solicitud_cliente.cliente_id join promotor on promotor.promotor_id = solicitud.promotor_id  $x_join_credito ";
 
 
 
@@ -618,7 +618,7 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 		$ssrch = "";
 
-		
+
 
 		if(!empty($filter["x_clinum_srch"])){
 
@@ -626,7 +626,7 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 		}
 
-		
+
 
 		if(!empty($filter["x_nombre_srch"])){
 
@@ -646,11 +646,11 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 		}
 
-	
+
 
 		$ssrch = substr($ssrch, 0, strlen($ssrch)-5);
 
-		
+
 
 		$ssrch_sql = "select solicitud.solicitud_id from solicitud join solicitud_cliente on solicitud_cliente.solicitud_id = solicitud.solicitud_id join cliente on cliente.cliente_id = solicitud_cliente.cliente_id where ".$ssrch;
 
@@ -662,13 +662,13 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 			while ($row_sqry = @phpmkr_fetch_array($rs_qry)) {
 
-				$ssrch_cli .= $row_sqry[0].","; 			
+				$ssrch_cli .= $row_sqry[0].",";
 
 			}
 
 			if(strlen($ssrch_cli) > 0 ){
 
-				$ssrch_cli = " solicitud.solicitud_id in (".substr($ssrch_cli, 0, strlen($ssrch_cli)-1).") AND ";	
+				$ssrch_cli = " solicitud.solicitud_id in (".substr($ssrch_cli, 0, strlen($ssrch_cli)-1).") AND ";
 
 			}else{
 
@@ -688,13 +688,13 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 	}
 
-	
 
-	
 
-	
 
-	
+
+
+
+
 
 	// En Credito
 
@@ -702,15 +702,15 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 		$ssrch_cre = "";
 
-		
 
-		
 
-		
 
-		
 
-		
+
+
+
+
+
 
 		if(!empty($filter["x_crenum_srch"])){
 
@@ -726,7 +726,7 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 		if(strlen($ssrch_cre) > 0 ){
 
-			//$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);	
+			//$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}else{
 
@@ -740,15 +740,15 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 	}
 
-	
 
-	
 
-	
+
+
+
 
 	//status
 
-	
+
 
 	if(!empty($filter["x_cresta_srch"])){
 
@@ -760,19 +760,19 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 	///ERROR/////////////////////////////////////////////////////
 
-	//$ssrch_sol = substr($ssrch_sol, 0, strlen($ssrch_sol)-5);	
+	//$ssrch_sol = substr($ssrch_sol, 0, strlen($ssrch_sol)-5);
 
 	////////////////////////////////////////////////////////////
 
 }
 
-	
 
-	
 
-	
 
-	
+
+
+
+
 
 	 if ((!empty($filter["x_sucursal_srch"])) && (!empty($filter["x_promo_srch"]))){
 
@@ -784,9 +784,9 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
-			}												
+			}
 
-															  
+
 
 																																																																																																																				   else if((!empty($filter["x_sucursal_srch"]))){
 
@@ -794,7 +794,7 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 			$ssrch_cre .= "(promotor.sucursal_id = ".$filter["x_sucursal_srch"].") AND ";
 
-			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);		
+			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}
 
@@ -804,25 +804,25 @@ if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (
 
 			$ssrch_cre .= "(promotor.promotor_id = ".$filter["x_promo_srch"].") AND ";
 
-			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);		
+			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}
 
-	}	
+	}
 
  }
 
-	
 
 
 
-	
 
-	
 
-	
 
-	
+
+
+
+
+
 
 /*
 
@@ -894,7 +894,7 @@ $sDefaultOrderBy = "";
 
 	 // se agrega una condicion al where para que en listado solo se vean los credito de la sucursal.
 
-	 
+
 
 	 // se selecciona a todos los promotores que pertenecen a la sucursal del  encargado
 
@@ -906,19 +906,19 @@ $sDefaultOrderBy = "";
 
 	 $x_sucursal_id = $rowEncargadoSucursal["sucursal_id"];
 
-	 
+
 
 		$x_suc_id = $_SESSION["php_project_esf_SucursalID"];
 
-		
 
-		
+
+
 
 		if($_SESSION["php_project_esf_status_UserRolID"] == 12){
 
 						#echo "entro en encargado";
 
-					
+
 
 						$sSqls = "select responsable_sucursal_id, sucursal_id from responsable_sucursal where usuario_id = ".$_SESSION["php_project_esf_status_UserID"];
 
@@ -930,9 +930,9 @@ $sDefaultOrderBy = "";
 
 							$row2 = phpmkr_fetch_array($rs2);
 
-							$_SESSION["php_project_esf_status_ResponsableID"] = $row2["responsable_sucursal_id"];	
+							$_SESSION["php_project_esf_status_ResponsableID"] = $row2["responsable_sucursal_id"];
 
-							$_SESSION["php_project_esf_SucursalID"] = $row2["sucursal_id"];						
+							$_SESSION["php_project_esf_SucursalID"] = $row2["sucursal_id"];
 
 							$bValidPwd = true;
 
@@ -940,11 +940,11 @@ $sDefaultOrderBy = "";
 
 		}
 
-		
+
 
 		if($_SESSION["php_project_esf_status_UserRolID"] == 17){
 
-						#echo "entro en gerente<br>";					
+						#echo "entro en gerente<br>";
 
 						$sSqls = "select gerente_sucursal_id, sucursal_id from gerente_sucursal where usuario_id = ".$_SESSION["php_project_esf_status_UserID"];
 
@@ -956,23 +956,23 @@ $sDefaultOrderBy = "";
 
 							$row2 = phpmkr_fetch_array($rs2);
 
-							$_SESSION["php_project_esf_status_GerenteID"] = $row2["gerente_sucursal_id"];	
+							$_SESSION["php_project_esf_status_GerenteID"] = $row2["gerente_sucursal_id"];
 
-							$_SESSION["php_project_esf_SucursalID"] = $row2["sucursal_id"];						
+							$_SESSION["php_project_esf_SucursalID"] = $row2["sucursal_id"];
 
 							$bValidPwd = true;
 
 						}
 
-		}	
+		}
 
-		
 
-		
+
+
 
 		if($_SESSION["php_project_esf_status_UserRolID"] == 18){
 
-						//echo "entro en encargado";					
+						//echo "entro en encargado";
 
 						$sSqls = "select  sucursal_id from gerente_fashion_price where usuario_id = ".$_SESSION["php_project_esf_status_UserID"];
 
@@ -984,17 +984,17 @@ $sDefaultOrderBy = "";
 
 							$row2 = phpmkr_fetch_array($rs2);
 
-							$_SESSION["php_project_esf_status_GerenteID"] = $row2["gerente_sucursal_id"];	
+							$_SESSION["php_project_esf_status_GerenteID"] = $row2["gerente_sucursal_id"];
 
-							$_SESSION["php_project_esf_SucursalID"] = $row2["sucursal_id"];						
+							$_SESSION["php_project_esf_SucursalID"] = $row2["sucursal_id"];
 
 							$bValidPwd = true;
 
-						}		
+						}
 
 		}
 
-	 
+
 
 	 // seleccionamos todos los promotores que correspondan a esa sucursal
 
@@ -1006,7 +1006,7 @@ $sDefaultOrderBy = "";
 
 	 while($rowPromotores = phpmkr_fetch_array($rsPromotores)){
 
-		 $x_promotores .= $rowPromotores["promotor_id"].", ";	 
+		 $x_promotores .= $rowPromotores["promotor_id"].", ";
 
 		 }
 
@@ -1020,7 +1020,7 @@ $sDefaultOrderBy = "";
 
 		# echo "ntra a la condicion....<br>";
 
-		
+
 
 		 if(!empty($filter["x_cresta_srch"]) && $filter["x_cresta_srch"] != 100){
 
@@ -1034,13 +1034,13 @@ $sDefaultOrderBy = "";
 
 			 $sDbWhereEncargado = " and (solicitud.promotor_id IN ($x_promotores)  ) AND ";
 
-			}	
+			}
 
-			
+
 
 		 }
 
-		 
+
 
 		 if(!empty($filter["x_vendedor_srch"])){
 
@@ -1050,13 +1050,13 @@ $sDefaultOrderBy = "";
 
 			//$ssrch_cre .= "  (solicitud.vendedor_id = ".$filter["x_vendedor_srch"].")  AND  ";
 
-			//$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);		
+			//$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}
 
  }
 
- 
+
 
  if(!empty($filter["x_cresta_srch"]) && $filter["x_cresta_srch"] != 100){
 
@@ -1066,7 +1066,7 @@ $sDefaultOrderBy = "";
 
 			}
 
-			
+
 
 	if($_SESSION["php_project_esf_status_UserRolID"] == 12){
 
@@ -1078,11 +1078,11 @@ $sDefaultOrderBy = "";
 
 			}
 
-	
+
 
 	}
 
-		 
+
 
 	 }else{
 
@@ -1094,7 +1094,7 @@ $sDefaultOrderBy = "";
 
 			$ssrch_cre .= "  (solicitud.vendedor_id = ".$filter["x_vendedor_srch"].")  AND  ";
 
-			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);		
+			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}
 
@@ -1122,7 +1122,7 @@ if($_SESSION["php_project_esf_status_UserRolID"] == 10) {
 
 	while($rowLista = phpmkr_fetch_array($rsLista)){
 
-		$x_lis_externo .= $rowLista["solicitud_id"]. ", ";		
+		$x_lis_externo .= $rowLista["solicitud_id"]. ", ";
 
 		}
 
@@ -1132,11 +1132,11 @@ if($_SESSION["php_project_esf_status_UserRolID"] == 10) {
 
 	}
 
-	
 
-	
 
-	
+
+
+
 
 // si es un gestor de credito
 
@@ -1152,7 +1152,7 @@ if($_SESSION["php_project_esf_status_UserRolID"] == 16) {
 
 	while($rowLista = phpmkr_fetch_array($rsLista)){
 
-		$x_lis_externo .= $rowLista["credito_id"]. ", ";		
+		$x_lis_externo .= $rowLista["credito_id"]. ", ";
 
 		}
 
@@ -1162,13 +1162,13 @@ if($_SESSION["php_project_esf_status_UserRolID"] == 16) {
 
 	$sSql .= " join credito on credito.solicitud_id = solicitud.solicitud_id ";
 
-	
 
-	}	
 
-	
+	}
 
-	
+
+
+
 
 
 
@@ -1176,9 +1176,9 @@ if($_SESSION["php_project_esf_status_UserRolID"] == 16) {
 
 if($_SESSION["php_project_esf_status_UserRolID"] == 7) {
 
-	
 
-	
+
+
 
 	if(empty($filter["x_promo_srch"])){
 
@@ -1210,13 +1210,13 @@ if($_SESSION["php_project_esf_status_UserRolID"] == 7) {
 
 				$x_promotores = trim($x_promotores, ", ");
 
-				
+
 
 				#$sSqlWrk = "SELECT promotor_id, nombre_completo FROM promotor Where promotor_id IN $x_promotores)";
 
 				$sDbWhere = " (solicitud.promotor_id IN ($x_promotores)  ) AND ";
 
-				
+
 
 				}else{
 
@@ -1230,7 +1230,7 @@ if($_SESSION["php_project_esf_status_UserRolID"] == 7) {
 
 	}
 
-	
+
 
 	#$sDbWhere = " (solicitud.promotor_id = ".$_SESSION["php_project_esf_status_PromotorID"]. ") AND ";
 
@@ -1378,7 +1378,7 @@ if ($sOrderBy != "") {
 
 <!--
 
-EW_dateSep = "/"; // set date separator	
+EW_dateSep = "/"; // set date separator
 
 //-->
 
@@ -1411,7 +1411,7 @@ var EW_HTMLArea;
 //-->
 
 </script>
-<style type="text/css"> 
+<style type="text/css">
 #tooltip {
     visibility:hidden;
     position:fixed;
@@ -1420,7 +1420,7 @@ var EW_HTMLArea;
     border:1px solid #F00;
     width:auto;
     height:auto;
-    padding:5px; 
+    padding:5px;
 
 }
 </style>
@@ -1432,9 +1432,9 @@ var EW_HTMLArea;
     <script type="text/javascript" src="scripts/jquery.themeswitcher.js"></script>
    <script>
 
-  
 
-//Cuando el DOM esté descargado por completo:
+
+//Cuando el DOM estï¿½ descargado por completo:
 
 $(document).ready(function(){
 	$("#Submit").click(function(){
@@ -1442,7 +1442,7 @@ $(document).ready(function(){
 
 	});
 
-	
+
 
     //Enlazamos el evento mouseenter (el cursor se posicione encima del elemento):
 
@@ -1454,23 +1454,23 @@ $(document).ready(function(){
 
     e.preventDefault();
 
- 
 
-    // Sacamos la posición de los enlaces en la página, par a posicionar el tooltip después
+
+    // Sacamos la posiciï¿½n de los enlaces en la pï¿½gina, par a posicionar el tooltip despuï¿½s
 
     var a_posicion = $(this).offset();
 
- 
+
 
     //Posiciones el tooltip, con el mismo left, y un poco     por debajo del enlace.
 
     $("#tooltip").css({"top":a_posicion.top + 20,"left":a_posicion.left});
 
- 
+
 
     //Cogemos el ID almacenado en el atributo href
 
-    var ID_href = $(this).attr('id'); 
+    var ID_href = $(this).attr('id');
 
 	//alert(ID_href);
 
@@ -1478,19 +1478,19 @@ $(document).ready(function(){
 
     var Data = "id=" + ID_href
 
- 
+
 
     //Hacemos visible el tooltip, y mostramos un texto informativo mientras hacemos la consulta
 
     $("#tooltip").html("Consultando datos...").fadeOut("fast", function(){ $("#tooltip").css("visibility", "visible"); }).fadeIn("fast");
 
- 
+
 
     //Generamos la llamada AJAX
 
     $.ajax({
 
-        //El archivo PHP que recibirá los datos
+        //El archivo PHP que recibirï¿½ los datos
 
         url:"consultarFechasStatus.php",
 
@@ -1502,7 +1502,7 @@ $(document).ready(function(){
 
         type:"GET",
 
-        //Informamos de que la respuesta recibida será         código HTML
+        //Informamos de que la respuesta recibida serï¿½         cï¿½digo HTML
 
         dataType:"html",
 
@@ -1514,7 +1514,7 @@ $(document).ready(function(){
 
         }
 
-		
+
 
     });
 
@@ -1522,7 +1522,7 @@ $(document).ready(function(){
 
  //alert(HTML_devuelto);
 
-    //Ahora cerramos la llamada, y añadimos el evento mouseleave, para cuando el ratón no esté encima del enlace
+    //Ahora cerramos la llamada, y aï¿½adimos el evento mouseleave, para cuando el ratï¿½n no estï¿½ encima del enlace
 
 }).live('mouseleave', function(){
 
@@ -1532,15 +1532,15 @@ $(document).ready(function(){
 
 });
 
-	
-
-	
-
-	
 
 
 
-   </script> 
+
+
+
+
+
+   </script>
 
 <script type="text/javascript">
 
@@ -1550,7 +1550,7 @@ $(document).ready(function(){
 
 function EW_selectKey(elem) {
 
-	var f = elem.form;	
+	var f = elem.form;
 
 	if (!f.elements["key_d[]"]) return;
 
@@ -1558,11 +1558,11 @@ function EW_selectKey(elem) {
 
 		for (var i=0; i<f.elements["key_d[]"].length; i++)
 
-			f.elements["key_d[]"][i].checked = elem.checked;	
+			f.elements["key_d[]"][i].checked = elem.checked;
 
 	} else {
 
-		f.elements["key_d[]"].checked = elem.checked;	
+		f.elements["key_d[]"].checked = elem.checked;
 
 	}
 
@@ -1592,7 +1592,7 @@ function EW_selectKey(elem) {
 
 function EW_selected(elem) {
 
-	var f = elem.form;	
+	var f = elem.form;
 
 	if (!f.elements["key_d[]"]) return false;
 
@@ -1682,7 +1682,7 @@ SetUpStartRec(); // Set Up Start Record Position
 
 	  <td width="114"><?php
 
-		$conn = phpmkr_db_connect(HOST, USER, PASS, DB, PORT);  
+		$conn = phpmkr_db_connect(HOST, USER, PASS, DB, PORT);
 
 		$x_estado_civil_idList = "<select name=\"x_credito_tipo_id\" >";
 
@@ -1722,7 +1722,7 @@ SetUpStartRec(); // Set Up Start Record Position
 
 		echo $x_estado_civil_idList;
 
-		
+
 
 		?></td>
 
@@ -1900,7 +1900,7 @@ SetUpStartRec(); // Set Up Start Record Position
 
 		}else{
 
-			$x_estado_civil_idList .= "<option value='100' >TODAS</option>";		
+			$x_estado_civil_idList .= "<option value='100' >TODAS</option>";
 
 		}
 
@@ -1952,7 +1952,7 @@ SetUpStartRec(); // Set Up Start Record Position
 
 			$sSqlWrk = "SELECT sucursal.sucursal_id, nombre FROM sucursal join promotor on promotor.sucursal_id = sucursal.sucursal_id Where promotor.promotor_id = ".$_SESSION["php_project_esf_status_PromotorID"];
 
-		
+
 
 		}else if($_SESSION["php_project_esf_status_UserRolID"] == 12){
 
@@ -1962,11 +1962,11 @@ SetUpStartRec(); // Set Up Start Record Position
 
 			}else{
 
-			$sSqlWrk = "SELECT sucursal_id, nombre FROM sucursal ";	
+			$sSqlWrk = "SELECT sucursal_id, nombre FROM sucursal ";
 
-			$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";	
+			$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";
 
-		}		
+		}
 
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 
@@ -2036,11 +2036,11 @@ SetUpStartRec(); // Set Up Start Record Position
 
 				$x_promotores = trim($x_promotores, ", ");
 
-				
+
 
 				$sSqlWrk = "SELECT promotor_id, nombre_completo FROM promotor Where promotor_id IN ($x_promotores)";
 
-				
+
 
 				}else{
 
@@ -2054,15 +2054,15 @@ SetUpStartRec(); // Set Up Start Record Position
 
 		$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";
 
-		
+
 
 		}else{
 
-			$sSqlWrk = "SELECT `promotor_id`, `nombre_completo` FROM `promotor`";	
+			$sSqlWrk = "SELECT `promotor_id`, `nombre_completo` FROM `promotor`";
 
-			$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";	
+			$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";
 
-		}		
+		}
 
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 
@@ -2074,7 +2074,7 @@ SetUpStartRec(); // Set Up Start Record Position
 
 				$x_estado_civil_idList .= "<option value=\"" . htmlspecialchars($datawrk[0]) . "\"";
 
-				if ($datawrk["promotor_id"] == $filter["x_promo_srch"]) {  
+				if ($datawrk["promotor_id"] == $filter["x_promo_srch"]) {
 
 					$x_estado_civil_idList .= "' selected";
 
@@ -2126,15 +2126,15 @@ SetUpStartRec(); // Set Up Start Record Position
 
 		$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";
 
-		
+
 
 		}else{
 
-			$sSqlWrk = "SELECT `vendedor_id`, `nombre_completo` FROM `vendedor`";	
+			$sSqlWrk = "SELECT `vendedor_id`, `nombre_completo` FROM `vendedor`";
 
-			$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";	
+			$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";
 
-		}		
+		}
 
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 
@@ -2146,7 +2146,7 @@ SetUpStartRec(); // Set Up Start Record Position
 
 				$x_estado_civil_idList .= "<option value=\"" . htmlspecialchars($datawrk[0]) . "\"";
 
-				if ($datawrk["vendedor_id"] == $filter["x_vendedor_srch"]) {  
+				if ($datawrk["vendedor_id"] == $filter["x_vendedor_srch"]) {
 
 					$x_estado_civil_idList .= "' selected";
 
@@ -2494,7 +2494,7 @@ Credito Num
 
 	<a href="php_solicitudlist.php?order=<?php //echo urlencode("solicitud_id"); ?>">No<?php //if (@$_SESSION["solicitud_x_solicitud_id_Sort"] == "ASC") { ?><img src="images/sortup.gif" width="10" height="9" border="0"><?php //} elseif (@$_SESSION["solicitud_x_solicitud_id_Sort"] == "DESC") { ?><img src="images/sortdown.gif" width="10" height="9" border="0"><?php //} ?></a>
 
--->    
+-->
 
 <?php } ?>
 
@@ -2518,27 +2518,27 @@ Status
 
 <?php if ($sExport <> "") { ?>
 
-Tipo de Crédito
+Tipo de Crï¿½dito
 
 <?php }else{ ?>
 
-	<a href="php_solicitudlist.php?order=<?php echo urlencode("credito_tipo_id"); ?>">Tipo de Crédito<?php if (@$_SESSION["solicitud_x_credito_tipo_id_Sort"] == "ASC") { ?><img src="images/sortup.gif" width="10" height="9" border="0"><?php } elseif (@$_SESSION["solicitud_x_credito_tipo_id_Sort"] == "DESC") { ?><img src="images/sortdown.gif" width="10" height="9" border="0"><?php } ?></a>
+	<a href="php_solicitudlist.php?order=<?php echo urlencode("credito_tipo_id"); ?>">Tipo de Crï¿½dito<?php if (@$_SESSION["solicitud_x_credito_tipo_id_Sort"] == "ASC") { ?><img src="images/sortup.gif" width="10" height="9" border="0"><?php } elseif (@$_SESSION["solicitud_x_credito_tipo_id_Sort"] == "DESC") { ?><img src="images/sortdown.gif" width="10" height="9" border="0"><?php } ?></a>
 
 <?php } ?>
 
 		</span></td>
 
-		
-
-        
 
 
 
-		<td valign="top"><span>        
 
-Cliente Num.        
 
-		</span></td>        
+
+		<td valign="top"><span>
+
+Cliente Num.
+
+		</span></td>
 
 		<td valign="top"><span>
 
@@ -2554,7 +2554,7 @@ Cliente
 
 		</span></td>
 
-		
+
 
 		<td valign="top"><span>
 
@@ -2616,17 +2616,17 @@ Contrato
 
 <?php if ($sExport <> "") { ?>
 
-Pagaré
+Pagarï¿½
 
 <?php }else{ ?>
 
-	<a href="php_solicitudlist.php?order=<?php echo urlencode("pagare"); ?>">Pagaré<?php if (@$_SESSION["solicitud_x_pagare_Sort"] == "ASC") { ?><img src="images/sortup.gif" width="10" height="9" border="0"><?php } elseif (@$_SESSION["solicitud_x_pagare_Sort"] == "DESC") { ?><img src="images/sortdown.gif" width="10" height="9" border="0"><?php } ?></a>
+	<a href="php_solicitudlist.php?order=<?php echo urlencode("pagare"); ?>">Pagarï¿½<?php if (@$_SESSION["solicitud_x_pagare_Sort"] == "ASC") { ?><img src="images/sortup.gif" width="10" height="9" border="0"><?php } elseif (@$_SESSION["solicitud_x_pagare_Sort"] == "DESC") { ?><img src="images/sortdown.gif" width="10" height="9" border="0"><?php } ?></a>
 
 <?php } ?>
 
 		</span></td>
 
- 
+
 
  <td valign="top"><span>
 
@@ -2640,9 +2640,9 @@ Nueva
 
 <?php } ?>
 
-		</span></td> 
+		</span></td>
 
-                
+
 
  <td valign="top"><span>
 
@@ -2656,7 +2656,7 @@ Preanalisis
 
 <?php } ?>
 
-		</span></td> 
+		</span></td>
 
         <td valign="top"><span>
 
@@ -2670,7 +2670,7 @@ Supervisi&oacute;n
 
 <?php } ?>
 
-		</span></td> 
+		</span></td>
 
 <td valign="top"><span>
 
@@ -2684,7 +2684,7 @@ Comit&eacute;
 
 <?php } ?>
 
-		</span></td>   
+		</span></td>
 
 <td valign="top"><span>
 
@@ -2698,7 +2698,7 @@ Aprobada
 
 <?php } ?>
 
-		</span></td>  
+		</span></td>
 
         <td valign="top"><span>
 
@@ -2714,9 +2714,9 @@ Otorgamiento
 
 <?php } ?>
 
-		</span></td>  
+		</span></td>
 
-        <td valign="top"><span>Galeria</span></td>                       
+        <td valign="top"><span>Galeria</span></td>
 
 	</tr>
 
@@ -2804,7 +2804,7 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 		$x_promotor_id = $row["promotor_id"];
 
-		$x_grupo_nombre = $row["grupo_nombre"];		
+		$x_grupo_nombre = $row["grupo_nombre"];
 
 		$x_cliente_num = $row["cliente_num"];
 
@@ -2814,7 +2814,7 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 		$x_hora_preanalisis = $row["hora_preanalisis"];
 
-		
+
 
 		$x_supervision = $row["fecha_supervision"];
 
@@ -2848,13 +2848,13 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 			}else{
 
-				$x_fecha_visita_supervision = "SUPERVISIÓN ".$x_fecha_visita_supervision;
+				$x_fecha_visita_supervision = "SUPERVISIï¿½N ".$x_fecha_visita_supervision;
 
 				}
 
 		$today = date("Y-m-d");
 
-		
+
 
 		$x_link_edit="";
 
@@ -2862,7 +2862,7 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 		$x_link_print="";
 
-		
+
 
 		if($x_credito_tipo_id == 1){
 
@@ -2930,9 +2930,9 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 						}
 
-		
 
-		//el tipo de credito debe ser diferente a 2 puedes ser 1, 3 o 4 
+
+		//el tipo de credito debe ser diferente a 2 puedes ser 1, 3 o 4
 
 		//if($x_credito_tipo_id == 1){
 
@@ -2954,7 +2954,7 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 		}
 
-		
+
 
 		$sSqlWrk = "SELECT credito.credito_num FROM credito join solicitud on solicitud.solicitud_id = credito.solicitud_id where solicitud.solicitud_id = $x_solicitud_id";
 
@@ -2968,11 +2968,11 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 
 
-		
 
-		
 
-		
+
+
+
 
 ?>
 
@@ -3002,7 +3002,7 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 </span></td>
 
-<?php }else{ 
+<?php }else{
 
 
 
@@ -3079,28 +3079,28 @@ else if($x_solicitud_id >= 10383){
 	echo "php_contrato_print_v1_nomina.php?solicitud_id=" . urlencode($x_solicitud_id)."";
 	} } else { echo "javascript:alert('Invalid Record! Key is null');";} ?>" target="_blank">Contrato Nomina</a>
      <?php if($x_solicitud_id >= 10383){ ?><br />
-     
+
 		<a href="<?php echo"php_contratolist.php?solicitud_id=".urlencode($x_solicitud_id).""?>" target="_blank"> <b>Anexos</b> </a>
 		<?php }?></span><?php }?></td><?php }?>
 
 <td><span class="phpmaker"><?php if($x_solicitud_id < 10383){
 	?>
-    <a href="<?php if ($x_solicitud_id <> "") {if($x_formato_nuevo == 0 && $x_solicitud_id < 10383){echo "php_pagare_print.php?solicitud_id=" . urlencode($x_solicitud_id);}else if($x_formato_nuevo == 1 && $x_solicitud_id < 10383){echo "php_pagare_print_v1.php?solicitud_id=" . urlencode($x_solicitud_id);} 
+    <a href="<?php if ($x_solicitud_id <> "") {if($x_formato_nuevo == 0 && $x_solicitud_id < 10383){echo "php_pagare_print.php?solicitud_id=" . urlencode($x_solicitud_id);}else if($x_formato_nuevo == 1 && $x_solicitud_id < 10383){echo "php_pagare_print_v1.php?solicitud_id=" . urlencode($x_solicitud_id);}
 	} else {
-		 echo "javascript:alert('Invalid Record! Key is null');";} ?>" target="_blank">Pagar&eacute;</a></span><br /><?php 
+		 echo "javascript:alert('Invalid Record! Key is null');";} ?>" target="_blank">Pagar&eacute;</a></span><br /><?php
 		 }else {?><span class="phpmaker"><a href=<?php echo "php_pagare_print_v1_nomina.php?solicitud_id=".urlencode($x_solicitud_id)?> target="_blank">Nomina <?php echo $x_solicitud_id;?></a></span><?php }?></td>
 
 <?php }else{ ?>
 
-	
 
-<?php if(($x_solicitud_status_id == 10) && (($_SESSION["php_project_esf_status_UserRolID"] == 1) || ($_SESSION["php_project_esf_status_UserRolID"] == 2) || ($_SESSION["php_project_esf_status_UserRolID"] == 12))){ 
+
+<?php if(($x_solicitud_status_id == 10) && (($_SESSION["php_project_esf_status_UserRolID"] == 1) || ($_SESSION["php_project_esf_status_UserRolID"] == 2) || ($_SESSION["php_project_esf_status_UserRolID"] == 12))){
 
 if(($_SESSION["php_project_esf_status_UserRolID"] == 12)){
 
-	
 
- if ($x_dia_otorga_credito != $today){ 
+
+ if ($x_dia_otorga_credito != $today){
 
 ?>
 
@@ -3110,17 +3110,17 @@ if(($_SESSION["php_project_esf_status_UserRolID"] == 12)){
 
 	<td style="color:#999999"><span class="phpmaker"><a href="<?php if ($x_solicitud_id <> "") {echo "php_credito_revolventeadd.php?x_solicitud_id=" . urlencode($x_solicitud_id); } else { echo "javascript:alert('Invalid Record! Key is null');";} ?>" target="_self">Otorgar Cr&eacute;dito</a></span> <?php echo "\n".FormatDateTime($x_dia_otorga_credito,7);?></td>
 
-<?php	}?>	
+<?php	}?>
 
-<?php	
+<?php
 
 	}else{
 
 
 
- if (($x_dia_otorga_credito != $today) ){ 
+ if (($x_dia_otorga_credito != $today) ){
 
- 
+
 
 ?>
 
@@ -3302,11 +3302,11 @@ $x_credito_tipo_id = $sTmp;
 
 		<td align="center"><span>
 
-<?php 
+<?php
 
 if($x_credito_tipo_id == 1){
 
-	echo $x_cliente_num; 
+	echo $x_cliente_num;
 
 }
 
@@ -3318,11 +3318,11 @@ if($x_credito_tipo_id == 1){
 
 <td align="left"><span>
 
-<?php 
+<?php
 
 if($x_credito_tipo_id != 2){
 
-	echo $x_cliente; 
+	echo $x_cliente;
 
 }else{
 
@@ -3422,7 +3422,7 @@ if ((!is_null($x_plazo_id)) && ($x_plazo_id <> "")) {
 
 	}
 
-	
+
 
 } else {
 
@@ -3468,11 +3468,11 @@ $ox_plazo_id = $x_plazo_id; // Backup Original Value
 
 	$sTmp = "";
 
-}	
+}
 
-	echo $sTmp;	
+	echo $sTmp;
 
-	
+
 
 	}?>
 
@@ -3605,10 +3605,10 @@ echo FormatDateTime($x_otorgamiento,7)."\n";?>
 
 	if($numero >0){
 		while ($row = @phpmkr_fetch_array($resGalerias)) {
-			echo '<p><a href="php_galeriaedit.php?x_galeria_fotografica_id='.$row['galeria_fotografica_id'].'" target="_blank">Ingresar</a></p>';
+			echo '<p><a href="php_galeriaedit.php?x_galeria_fotografica_id='.$row['galeria_fotografica_id'].'" target="_blank">Editar</a> / <a href="php_galeriaview.php?x_galeria_fotografica_id='.$row['galeria_fotografica_id'].'" target="_blank">Ingresar</a></p>';
 		}
 	} else {
-		echo '';
+		echo '<p><a href="php_galeria_solicitud_crea.php?x_solicitud_id='.$x_solicitud_id.'" target="_blank">Crear</a></p>';
 	}
 
 ?>
@@ -3696,17 +3696,17 @@ function BasicSearchSQL($Keyword)
 
 //		$BasicSearchSQL.= "solicitud.folio LIKE '%" . $sKeyword . "%' OR ";
 
-		$BasicSearchSQL.= "cliente.nombre_completo LIKE '%" . $sKeyword . "%' OR ";	
+		$BasicSearchSQL.= "cliente.nombre_completo LIKE '%" . $sKeyword . "%' OR ";
 
 	}else{
 
 //		$BasicSearchSQL.= "solicitud.folio LIKE '%" . $sKeyword . "%' OR ";
 
-		$BasicSearchSQL.= "solicitud.grupo_nombre LIKE '%" . $sKeyword . "%' OR ";	
+		$BasicSearchSQL.= "solicitud.grupo_nombre LIKE '%" . $sKeyword . "%' OR ";
 
 	}
 
-	
+
 
 	if (substr($BasicSearchSQL, -4) == " OR ") { $BasicSearchSQL = substr($BasicSearchSQL, 0, strlen($BasicSearchSQL)-4); }
 
@@ -4264,7 +4264,7 @@ function ResetCmd()
 
 			if (@$_SESSION["solicitud_x_folio_Sort"] <> "") { $_SESSION["solicitud_x_folio_Sort"] = ""; }
 
-			if (@$_SESSION["solicitud_x_cliente_Sort"] <> "") { $_SESSION["solicitud_x_cliente_Sort"] = ""; }			
+			if (@$_SESSION["solicitud_x_cliente_Sort"] <> "") { $_SESSION["solicitud_x_cliente_Sort"] = ""; }
 
 			if (@$_SESSION["solicitud_x_fecha_registro_Sort"] <> "") { $_SESSION["solicitud_x_fecha_registro_Sort"] = ""; }
 
@@ -4293,4 +4293,3 @@ function ResetCmd()
 }
 
 ?>
-
