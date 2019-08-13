@@ -140,7 +140,7 @@ img {
 
 /* :: 3.4.0 Preloader */
 .preloader {
-  background-color: #003679;
+  background-color: #D20202;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -330,7 +330,7 @@ img {
 
 /* :: 3.6.0 ScrollUp */
 #scrollUp {
-  background-color: #003679;
+  background-color: #D20202;
   border-radius: 5px 0 0 5px;
   bottom: 70px;
   color: #ffffff;
@@ -373,22 +373,22 @@ img {
   .credit-btn:hover, .credit-btn:focus {
     font-size: 14px;
     font-weight: 700;
-    background-color: #003679;
+    background-color: #D20202;
     color: #ffffff; }
   .credit-btn.btn-2 {
-    background-color: #003679;
+    background-color: #D20202;
     color: #ffffff; }
     .credit-btn.btn-2:hover, .credit-btn.btn-2:focus {
       background-color: #ffbb38;
       color: #ffffff; }
   .credit-btn.btn-3 {
     background-color: transparent;
-    color: #003679;
-    border: 2px solid #003679;
+    color: #D20202;
+    border: 2px solid #D20202;
     line-height: 44px; }
     .credit-btn.btn-3:hover, .credit-btn.btn-3:focus {
-      border: 2px solid #003679;
-      background-color: #003679;
+      border: 2px solid #D20202;
+      background-color: #D20202;
       color: #ffffff; }
 
 /* :: 4.0 Header Area CSS */
@@ -426,7 +426,7 @@ img {
         .header-area .top-header-area .top-contact-info a:first-child {
           margin-right: 30px; }
         .header-area .top-header-area .top-contact-info a:hover, .header-area .top-header-area .top-contact-info a:focus {
-          color: #003679; }
+          color: #D20202; }
         @media only screen and (min-width: 768px) and (max-width: 991px) {
           .header-area .top-header-area .top-contact-info a {
             font-size: 13px; } }
@@ -438,7 +438,7 @@ img {
     .header-area .credit-main-menu::after {
       width: 50%;
       height: 100%;
-      background-color: #003679;
+      background-color: #D20202;
       position: absolute;
       top: 0;
       left: 0;
@@ -449,7 +449,7 @@ img {
     .header-area .credit-main-menu .classy-navbar {
       height: 85px;
       padding: 0;
-      background-color: #003679; }
+      background-color: #D20202; }
       @media only screen and (max-width: 767px) {
         .header-area .credit-main-menu .classy-navbar {
           height: 70px; } }
@@ -466,10 +466,10 @@ img {
             font-size: 14px; } }
         @media only screen and (min-width: 768px) and (max-width: 991px) {
           .header-area .credit-main-menu .classy-navbar .classynav ul li a {
-            color: #003679; } }
+            color: #D20202; } }
         @media only screen and (max-width: 767px) {
           .header-area .credit-main-menu .classy-navbar .classynav ul li a {
-            color: #003679; } }
+            color: #D20202; } }
       .header-area .credit-main-menu .classy-navbar .classynav > ul > li:first-child a {
         padding-left: 0; }
         @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -484,13 +484,13 @@ img {
         @media only screen and (min-width: 768px) and (max-width: 991px) {
           .header-area .credit-main-menu .classy-navbar .classynav ul li.megamenu-item > a::after,
           .header-area .credit-main-menu .classy-navbar .classynav ul li.has-down > a::after {
-            color: #003679; } }
+            color: #D20202; } }
         @media only screen and (max-width: 767px) {
           .header-area .credit-main-menu .classy-navbar .classynav ul li.megamenu-item > a::after,
           .header-area .credit-main-menu .classy-navbar .classynav ul li.has-down > a::after {
-            color: #003679; } }
+            color: #D20202; } }
       .header-area .credit-main-menu .classy-navbar .classynav ul li ul li a {
-        color: #003679;
+        color: #D20202;
         font-size: 14px; }
       .header-area .credit-main-menu .classy-navbar .contact {
         position: relative;
@@ -522,7 +522,7 @@ img {
         .header-area .credit-main-menu .classy-navbar .contact a {
           display: inline-block;
           font-size: 24px;
-          color: #003679;
+          color: #D20202;
           font-weight: 700;
           line-height: 85px; }
           .header-area .credit-main-menu .classy-navbar .contact a:hover {
@@ -575,7 +575,7 @@ img {
     margin-top: -23px;
     font-size: 18px;
     color: #ffffff;
-    background-color: #003679;
+    background-color: #D20202;
     left: 20px;
     text-align: center;
     -webkit-transition-duration: 500ms;
@@ -779,7 +779,7 @@ img {
         width: 100%;
         height: 250px; } }
   .special-feature-area.style-2 .special-feature-content {
-    background-color: #003679; }
+    background-color: #D20202; }
     .special-feature-area.style-2 .special-feature-content .feature-text {
       margin-left: 0;
       margin-right: auto;
@@ -865,7 +865,7 @@ img {
 .cta-2-area {
   position: relative;
   z-index: 1;
-  background-color: #003679;
+  background-color: #D20202;
   padding-top: 50px; }
   .cta-2-area .cta-content .cta-text {
     position: relative;
@@ -1021,7 +1021,7 @@ img {
   .contact--area.contact-page .contact-content {
     padding: 35px;
     border: none;
-    background-color: #003679; }
+    background-color: #D20202; }
     .contact--area.contact-page .contact-content h5 {
       color: #ffffff;
       font-weight: 600;
@@ -1088,7 +1088,7 @@ img {
         cursor: pointer;
         z-index: 20; }
         .newsletter-area .nl-content form button:hover {
-          background-color: #003679; }
+          background-color: #D20202; }
         .newsletter-area .nl-content form button:focus {
           outline: none;
           box-shadow: none; }
@@ -1121,7 +1121,7 @@ img {
       width: 100%;
       height: 100%;
       background-color: transparent;
-      border: 8px solid #003679;
+      border: 8px solid #D20202;
       top: 0;
       left: 0;
       position: absolute;
@@ -1145,7 +1145,7 @@ img {
       line-height: 62px;
       font-size: 18px; }
       .single-team-member-area .team-thumb .view-more a:hover {
-        background-color: #003679; }
+        background-color: #D20202; }
     .single-team-member-area .team-thumb:hover {
       box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2); }
       .single-team-member-area .team-thumb:hover::after {
@@ -1171,7 +1171,7 @@ img {
 .footer-area {
   position: relative;
   z-index: 1;
-  background-color: #021c3c; }
+  background-color: #D20202; }
   .footer-area .single-footer-widget {
     position: relative;
     z-index: 1; }
@@ -1453,7 +1453,7 @@ img {
         top: 0;
         right: 0;
         z-index: 99;
-        background-color: #003679;
+        background-color: #D20202;
         color: #ffbb38;
         font-weight: 600;
         font-size: 14px;
@@ -1462,7 +1462,7 @@ img {
         cursor: pointer; }
         .single-widget-area.search-widget form button:hover {
           background-color: #ffbb38;
-          color: #003679; }
+          color: #D20202; }
   .single-widget-area.cata-widget ul {
     padding-left: 35px; }
     .single-widget-area.cata-widget ul li a {
@@ -1470,7 +1470,7 @@ img {
       font-size: 15px;
       padding: 7px 0;
       font-weight: 600;
-      color: #003679; }
+      color: #D20202; }
       .single-widget-area.cata-widget ul li a:hover, .single-widget-area.cata-widget ul li a:focus {
         color: #ffbb38; }
 
@@ -1524,7 +1524,7 @@ img {
       .comment_area .comment-content .comment-meta .post-author:hover,
       .comment_area .comment-content .comment-meta .post-date:hover,
       .comment_area .comment-content .comment-meta .reply:hover {
-        color: #003679; }
+        color: #D20202; }
     .comment_area .comment-content .comment-meta .reply {
       margin-right: 0; }
       .comment_area .comment-content .comment-meta .reply::after {
@@ -1626,7 +1626,7 @@ img {
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); }
     .map-area .contact---area .contact-page {
-      background-color: #003679;
+      background-color: #D20202;
       padding: 70px 45px; }
       @media only screen and (max-width: 767px) {
         .map-area .contact---area .contact-page {
@@ -1663,7 +1663,7 @@ img {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: #003679;
+    background-color: #D20202;
     text-align: center;
     margin-right: 20px;
     line-height: 60px;
@@ -1741,7 +1741,7 @@ img {
   margin-bottom: 0; }
   .single-accordion h6 a {
     font-family: "Open Sans", sans-serif;
-    background-color: #003679;
+    background-color: #D20202;
     border-radius: 5px;
     color: #ffffff;
     display: block;
@@ -1833,7 +1833,7 @@ img {
           padding: 0 15px;
           font-size: 14px; } }
       .credit-tabs-content .nav-tabs .nav-link.active {
-        background-color: #003679;
+        background-color: #D20202;
         color: #ffffff; }
   .credit-tabs-content .credit-tab-text {
     position: relative;
@@ -1847,7 +1847,7 @@ img {
 .single-icons {
   position: relative;
   z-index: 1;
-  background-color: #003679;
+  background-color: #D20202;
   border-radius: 5px;
   text-align: center;
   padding: 50px 20px; }
