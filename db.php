@@ -35,7 +35,7 @@ function phpmkr_num_rows($rs)
 
 {
 
-	return @mysql_num_rows($rs); 
+	return @mysql_num_rows($rs);
 
 }
 
@@ -104,4 +104,3 @@ define("DB", "financ13_esf");
 
 
 ?>
-

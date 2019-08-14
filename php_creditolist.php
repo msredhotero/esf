@@ -3,10 +3,10 @@
 <?php
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // date in the past
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); // always modified
-header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1 
-header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1
+header("Cache-Control: post-check=0, pre-check=0", false);
 header("Cache-Control: private");
-header("Pragma: no-cache"); // HTTP/1.0 
+header("Pragma: no-cache"); // HTTP/1.0
 
 ?>
 
@@ -30,9 +30,9 @@ define("ewAllowlist", 8, true);
 
 define("ewAllowreport", 8, true);
 
-define("ewAllowsearch", 8, true);																														
+define("ewAllowsearch", 8, true);
 
-define("ewAllowadmin", 16, true);						
+define("ewAllowadmin", 16, true);
 
 ?>
 
@@ -54,51 +54,51 @@ if (@$_SESSION["php_project_esf_status"] <> "login") {
 
 // Initialize common variables
 
-$x_credito_id = Null; 
+$x_credito_id = Null;
 
 $ox_credito_id = Null;
 
-$x_credito_tipo_id = Null; 
+$x_credito_tipo_id = Null;
 
 $ox_credito_tipo_id = Null;
 
-$x_solicitud_id = Null; 
+$x_solicitud_id = Null;
 
 $ox_solicitud_id = Null;
 
-$x_credito_status_id = Null; 
+$x_credito_status_id = Null;
 
 $ox_credito_status_id = Null;
 
-$x_fecha_otrogamiento = Null; 
+$x_fecha_otrogamiento = Null;
 
 $ox_fecha_otrogamiento = Null;
 
-$x_importe = Null; 
+$x_importe = Null;
 
 $ox_importe = Null;
 
-$x_tasa = Null; 
+$x_tasa = Null;
 
 $ox_tasa = Null;
 
-$x_plazo = Null; 
+$x_plazo = Null;
 
 $ox_plazo = Null;
 
-$x_fecha_vencimiento = Null; 
+$x_fecha_vencimiento = Null;
 
 $ox_fecha_vencimiento = Null;
 
-$x_tasa_moratoria = Null; 
+$x_tasa_moratoria = Null;
 
 $ox_tasa_moratoria = Null;
 
-$x_medio_pago_id = Null; 
+$x_medio_pago_id = Null;
 
 $ox_medio_pago_id = Null;
 
-$x_referencia_pago = Null; 
+$x_referencia_pago = Null;
 
 $ox_referencia_pago = Null;
 
@@ -222,23 +222,23 @@ $filter['x_delegacion_srch'] = '';
 
 $filter['x_sucursal_srch'] = '';
 
-$filter['x_promo_srch'] = ''; 
+$filter['x_promo_srch'] = '';
 
-$filter['x_vendedor_srch'] = ''; 
+$filter['x_vendedor_srch'] = '';
 
 $filter['x_credito_tipo_id'] = 100;
 
 
 
-$filter['x_gestor_srch'] = ''; 
+$filter['x_gestor_srch'] = '';
 
 
 
-if(isset($_GET)) {	
+if(isset($_GET)) {
 
 	foreach($_GET as $key => $value) {
 
-		
+
 
 		if(isset($filter[$key]))
 
@@ -246,7 +246,7 @@ if(isset($_GET)) {
 
 	}
 
-	
+
 
 }
 
@@ -254,17 +254,17 @@ if(isset($_GET)) {
 
 
 
-if(isset($_POST)) {	
+if(isset($_POST)) {
 
 	foreach($_POST as $key => $value) {
 
 		if(isset($filter[$key])) $filter[$key] = $value;
 
-	}	
+	}
 
-	
 
-	
+
+
 
 }
 
@@ -382,11 +382,11 @@ if(($filter["x_credito_tipo_id"] != 2)  ){
 
 		}
 
-	
+
 
 		$ssrch = substr($ssrch, 0, strlen($ssrch)-5);
 
-		
+
 
 		$ssrch_sql = "select solicitud.solicitud_id from solicitud join solicitud_cliente on solicitud_cliente.solicitud_id = solicitud.solicitud_id join cliente on cliente.cliente_id = solicitud_cliente.cliente_id where ".$ssrch;
 
@@ -398,13 +398,13 @@ if(($filter["x_credito_tipo_id"] != 2)  ){
 
 			while ($row_sqry = @phpmkr_fetch_array($rs_qry)) {
 
-				$ssrch_cli .= $row_sqry[0].","; 			
+				$ssrch_cli .= $row_sqry[0].",";
 
 			}
 
 			if(strlen($ssrch_cli) > 0 ){
 
-				$ssrch_cli = " credito.solicitud_id in (".substr($ssrch_cli, 0, strlen($ssrch_cli)-1).") AND ";	
+				$ssrch_cli = " credito.solicitud_id in (".substr($ssrch_cli, 0, strlen($ssrch_cli)-1).") AND ";
 
 			}else{
 
@@ -424,19 +424,19 @@ if(($filter["x_credito_tipo_id"] != 2)  ){
 
 	}
 
-	
 
-	
 
-	
 
-	
 
-	
 
-	
 
-	
+
+
+
+
+
+
+
 
 	// En Credito
 
@@ -444,7 +444,7 @@ if(($filter["x_credito_tipo_id"] != 2)  ){
 
 		$ssrch_cre = "";
 
-		
+
 
 		//si se selecciono algun tipo de credito
 
@@ -456,15 +456,15 @@ if(($filter["x_credito_tipo_id"] != 2)  ){
 
 				$ssrch_cre .= "(credito.credito_tipo_id = ".$filter["x_credito_tipo_id"].") AND ";
 
-						}	
+						}
 
 		}
 
-		
 
-		
 
-		
+
+
+
 
 		if(!empty($filter["x_crenum_srch"])){
 
@@ -480,7 +480,7 @@ if(($filter["x_credito_tipo_id"] != 2)  ){
 
 		if(strlen($ssrch_cre) > 0 ){
 
-			//$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);	
+			//$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}else{
 
@@ -494,15 +494,15 @@ if(($filter["x_credito_tipo_id"] != 2)  ){
 
 	}
 
-	
+
 
 	if(!empty($filter["x_empresa_id"])){
 
 		if(!empty($filter["x_empresa_id"]) && ($filter["x_empresa_id"] != "999999999")){
 
-			
 
-			
+
+
 
 			if(!empty($filter["x_fondeo_credito_id"])){
 
@@ -514,13 +514,13 @@ if(($filter["x_credito_tipo_id"] != 2)  ){
 
 			}
 
-			
 
-			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);		
+
+			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}
 
-		
+
 
 	}
 
@@ -530,27 +530,27 @@ if(($filter["x_credito_tipo_id"] != 2)  ){
 
 /*
 
-SELECT credito.* FROM credito join solicitud on solicitud.solicitud_id = credito.solicitud_id join promotor on promotor.promotor_id = solicitud.promotor_id WHERE 
+SELECT credito.* FROM credito join solicitud on solicitud.solicitud_id = credito.solicitud_id join promotor on promotor.promotor_id = solicitud.promotor_id WHERE
 
 
 
-(credito.credito_id in 
+(credito.credito_id in
 
- 
+
 
 (select credito_id from fondeo_colocacion join fondeo_credito on fondeo_credito.fondeo_credito_id = fondeo_colocacion.fondeo_credito_id join fondeo_empresa on fondeo_empresa.fondeo_empresa_id = fondeo_credito.fondeo_empresa_id where (fondeo_empresa.fondeo_empresa_id = 7) AND (fondeo_credito.fondeo_credito_id = 7)
 
-																																																																					 
+
 
 																																																																					 )
 
-																																																																											
+
 
 																																																																											ORDER BY credito.credito_num+0 desc
 
 																																																																																																																			 */
 
-																																																																																																																			  
+
 
 																																																																																																																			  if ((!empty($filter["x_sucursal_srch"])) && (!empty($filter["x_promo_srch"]))){																																																																																																																			   // se unen los dos queries..
 
@@ -562,7 +562,7 @@ SELECT credito.* FROM credito join solicitud on solicitud.solicitud_id = credito
 
 			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
-			}																						  
+			}
 
 																																																																																																																				   else if((!empty($filter["x_sucursal_srch"]))){
 
@@ -572,7 +572,7 @@ SELECT credito.* FROM credito join solicitud on solicitud.solicitud_id = credito
 
 			$ssrch_cre .= "(promotor.sucursal_id = ".$filter["x_sucursal_srch"].") AND ";
 
-			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);		
+			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}
 
@@ -584,17 +584,17 @@ SELECT credito.* FROM credito join solicitud on solicitud.solicitud_id = credito
 
 			$ssrch_cre .= "(promotor.promotor_id = ".$filter["x_promo_srch"].") AND ";
 
-			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);		
+			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}
 
-	}	
+	}
 
  }
 
-	
 
-	
+
+
 
 	if ((!empty($filter["x_gestor_srch"]))){
 
@@ -606,15 +606,15 @@ SELECT credito.* FROM credito join solicitud on solicitud.solicitud_id = credito
 
 		}else{
 
-			
+
 
 			$sSqlGestor = "SELECT credito_id FROM gestor_credito WHERE usuario_id = ".$filter["x_gestor_srch"]." ";
 
 			}
 
-		
 
-	
+
+
 
 $rsGestor = phpmkr_query($sSqlGestor, $conn) or die ("Error al seleccionar los credito que pertenecen al gestor". phpmkr_error()."sql :".$sSqlGestor);
 
@@ -624,15 +624,15 @@ while ($rowGestor = mysql_fetch_array($rsGestor)){
 
 	}
 
-	
 
-		$x_listado_creditos_gestor = substr($x_listado_creditos_gestor, 0, strlen($x_listado_creditos_gestor)-2); 		
 
-$sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";		
+		$x_listado_creditos_gestor = substr($x_listado_creditos_gestor, 0, strlen($x_listado_creditos_gestor)-2);
+
+$sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 		}
 
-	
+
 
 	/*
 
@@ -640,11 +640,11 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 	//SetUpBasicSearch();
 
-	
+
 
 	// Build Search Criteria
 
-	
+
 
 	if ($sSrchAdvanced != "") {
 
@@ -658,9 +658,9 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 	}
 
-	
 
-	
+
+
 
 	// Save Search Criteria
 
@@ -668,7 +668,7 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 		$_SESSION["credito_searchwhere"] = $sSrchWhere;
 
-	
+
 
 		// Reset start record counter (new search)
 
@@ -688,21 +688,21 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 	*/
 
-	
+
 
 	// filtros para roles
 
-	
 
 
 
 
 
-	
 
-	
 
-	
+
+
+
+
 
 	$x_join = "";
 
@@ -712,13 +712,13 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 		$x_join = " JOIN fondeo_colocacion ON fondeo_colocacion.credito_id = credito.credito_id";
 
-		
+
 
 		}
 
-	
 
-	
+
+
 
 	if($_SESSION["php_project_esf_status_UserRolID"] == 7) {
 
@@ -734,7 +734,7 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 		$sSql = "SELECT credito.* FROM credito join solicitud on solicitud.solicitud_id = credito.solicitud_id join promotor on promotor.promotor_id = solicitud.promotor_id $x_join";
 
-	
+
 
 //	$sSql = "SELECT credito.* FROM credito join solicitud on solicitud.solicitud_id = credito.solicitud_id join solicitud_cliente on solicitud_cliente.solicitud_id = solicitud.solicitud_id join cliente on cliente.cliente_id = solicitud_cliente.cliente_id ";
 
@@ -742,11 +742,11 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 	//echo $sSql ."<br><br>";
 
-	
 
 
 
-	
+
+
 
 }else{
 
@@ -760,7 +760,7 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 	if((!empty($filter["x_nombre_srch"])) || (!empty($filter["x_apepat_srch"])) || (!empty($filter["x_apemat_srch"])) || (!empty($filter["x_clinum_srch"]))){
 
-	
+
 
 		$ssrch = "";
 
@@ -770,7 +770,7 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 		}
 
-		
+
 
 		if(!empty($filter["x_nombre_srch"])){
 
@@ -790,11 +790,11 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 		}
 
-	
+
 
 		$ssrch = substr($ssrch, 0, strlen($ssrch)-5);
 
-		
+
 
 		$ssrch_sql = "select solicitud.solicitud_id from solicitud where ".$ssrch;
 
@@ -806,13 +806,13 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 			while ($row_sqry = @phpmkr_fetch_array($rs_qry)) {
 
-				$ssrch_cli .= $row_sqry[0].","; 			
+				$ssrch_cli .= $row_sqry[0].",";
 
 			}
 
 			if(strlen($ssrch_cli) > 0 ){
 
-				$ssrch_cli = " credito.solicitud_id in (".substr($ssrch_cli, 0, strlen($ssrch_cli)-1).") AND ";	
+				$ssrch_cli = " credito.solicitud_id in (".substr($ssrch_cli, 0, strlen($ssrch_cli)-1).") AND ";
 
 			}else{
 
@@ -832,11 +832,11 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 	}
 
-	
 
-	
 
-	
+
+
+
 
 if ((!empty($filter["x_gestor_srch"]))){
 
@@ -848,15 +848,15 @@ if ((!empty($filter["x_gestor_srch"]))){
 
 		}else{
 
-			
+
 
 			$sSqlGestor = "SELECT credito_id FROM gestor_credito WHERE usuario_id = ".$filter["x_gestor_srch"]." ";
 
 			}
 
-		
 
-	
+
+
 
 $rsGestor = phpmkr_query($sSqlGestor, $conn) or die ("Error al seleccionar los credito que pertenecen al gestor". phpmkr_error()."sql :".$sSqlGestor);
 
@@ -866,27 +866,27 @@ while ($rowGestor = mysql_fetch_array($rsGestor)){
 
 	}
 
-	
 
-		$x_listado_creditos_gestor = substr($x_listado_creditos_gestor, 0, strlen($x_listado_creditos_gestor)-2); 		
 
-$sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";		
+		$x_listado_creditos_gestor = substr($x_listado_creditos_gestor, 0, strlen($x_listado_creditos_gestor)-2);
 
-		}	
+$sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
-	
+		}
 
-	
 
-	
+
+
+
+
 
 	// En Credito
 
-	
+
 
 	$ssrch_cre .= "(credito.credito_tipo_id = 2) AND ";
 
-	
+
 
 	if((!empty($filter["x_crenum_srch"])) || (!empty($filter["x_cresta_srch"])) || (!empty($filter["x_crenum_srch"]) )){
 
@@ -906,11 +906,11 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 		}
 
-			$ssrch_cre .= "(credito.credito_tipo_id = 2) AND "; 
+			$ssrch_cre .= "(credito.credito_tipo_id = 2) AND ";
 
 		if(strlen($ssrch_cre) > 0 ){
 
-			//$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);	
+			//$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}else{
 
@@ -924,7 +924,7 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 	}
 
-	
+
 
 	if(!empty($filter["x_empresa_id"])){
 
@@ -942,23 +942,23 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 
 
-			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);		
+			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}
 
-		
+
 
 	}
 
-	
 
-	
 
-	
 
-	
 
-	
+
+
+
+
+
 
 	if(!empty($filter["x_sucursal_srch"])){
 
@@ -966,21 +966,21 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 			$ssrch_cre .= "(promotor.sucursal_id = ".$filter["x_sucursal_srch"].") AND ";
 
-			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);		
+			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}
 
 	}
 
-	
 
-	
+
+
 
 	if ((!empty($filter["x_gestor_srch"]))){
 
 		#si el filtro de gestor esta lleno entonces se debe incluir solo los credito que son de ese gestor
 
-		
+
 
 		$sSqlGestor = "SELECT credito_id FROM gestor_credito WHERE usuario_id = ".$filter["x_gestor_srch"]." ";
 
@@ -992,21 +992,21 @@ while ($rowGestor = mysql_fetch_array($rsGestor)){
 
 	}
 
-	
 
-		$x_listado_creditos_gestor = substr($x_listado_creditos_gestor, 0, strlen($x_listado_creditos_gestor)-2); 		
 
-$sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";		
+		$x_listado_creditos_gestor = substr($x_listado_creditos_gestor, 0, strlen($x_listado_creditos_gestor)-2);
+
+$sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 		}
 
-	
 
 
 
-	
 
-	
+
+
+
 
 	$x_join = "";
 
@@ -1014,11 +1014,11 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 		// solo se toma en cuenta los credito de finafim
 
-		$x_join = " JOIN fondeo_colocacion ON fondeo_colocacion.credito_id = credito.credito_id";		
+		$x_join = " JOIN fondeo_colocacion ON fondeo_colocacion.credito_id = credito.credito_id";
 
 		}
 
-	
+
 
 	if($_SESSION["php_project_esf_status_UserRolID"] == 7) {
 
@@ -1032,7 +1032,7 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 		$sSql = "SELECT credito.* FROM credito join solicitud on solicitud.solicitud_id = credito.solicitud_id join promotor on promotor.promotor_id = solicitud.promotor_id  $x_join ";
 
-	
+
 
 
 
@@ -1042,11 +1042,11 @@ $sCreW .= "((credito.credito_id in ($x_listado_creditos_gestor)) ) AND ";
 
 	//echo $sSql ."<br><br>";
 
-	
 
-	
 
-	
+
+
+
 
 }
 
@@ -1102,9 +1102,9 @@ $sDefaultOrderBy = " credito.credito_num+0 desc ";
 
 							$row2 = phpmkr_fetch_array($rs2);
 
-							$_SESSION["php_project_esf_status_ResponsableID"] = $row2["responsable_sucursal_id"];	
+							$_SESSION["php_project_esf_status_ResponsableID"] = $row2["responsable_sucursal_id"];
 
-							$_SESSION["php_project_esf_SucursalID"] = $row2["sucursal_id"];						
+							$_SESSION["php_project_esf_SucursalID"] = $row2["sucursal_id"];
 
 							$bValidPwd = true;
 
@@ -1112,11 +1112,11 @@ $sDefaultOrderBy = " credito.credito_num+0 desc ";
 
 		}
 
-		
+
 
 		if($_SESSION["php_project_esf_status_UserRolID"] == 17){
 
-						//echo "entro en encargado";					
+						//echo "entro en encargado";
 
 						$sSqls = "select gerente_sucursal_id, sucursal_id from gerente_sucursal where usuario_id = ".$_SESSION["php_project_esf_status_UserID"];
 
@@ -1128,23 +1128,23 @@ $sDefaultOrderBy = " credito.credito_num+0 desc ";
 
 							$row2 = phpmkr_fetch_array($rs2);
 
-							$_SESSION["php_project_esf_status_GerenteID"] = $row2["gerente_sucursal_id"];	
+							$_SESSION["php_project_esf_status_GerenteID"] = $row2["gerente_sucursal_id"];
 
-							$_SESSION["php_project_esf_SucursalID"] = $row2["sucursal_id"];						
+							$_SESSION["php_project_esf_SucursalID"] = $row2["sucursal_id"];
 
 							$bValidPwd = true;
 
 						}
 
-						
 
-		}	
 
-		
+		}
+
+
 
 		if($_SESSION["php_project_esf_status_UserRolID"] == 18){
 
-						//echo "entro en encargado";					
+						//echo "entro en encargado";
 
 						$sSqls = "select  sucursal_id from gerente_fashion_price where usuario_id = ".$_SESSION["php_project_esf_status_UserID"];
 
@@ -1156,13 +1156,13 @@ $sDefaultOrderBy = " credito.credito_num+0 desc ";
 
 							$row2 = phpmkr_fetch_array($rs2);
 
-							$_SESSION["php_project_esf_status_GerenteID"] = $row2["gerente_sucursal_id"];	
+							$_SESSION["php_project_esf_status_GerenteID"] = $row2["gerente_sucursal_id"];
 
-							$_SESSION["php_project_esf_SucursalID"] = $row2["sucursal_id"];						
+							$_SESSION["php_project_esf_SucursalID"] = $row2["sucursal_id"];
 
 							$bValidPwd = true;
 
-						}		
+						}
 
 		}
 
@@ -1176,7 +1176,7 @@ $sDefaultOrderBy = " credito.credito_num+0 desc ";
 
 	 while($rowPromotores = phpmkr_fetch_array($rsPromotores)){
 
-		 $x_promotores .= $rowPromotores["promotor_id"].", ";	 
+		 $x_promotores .= $rowPromotores["promotor_id"].", ";
 
 		 }
 
@@ -1186,13 +1186,13 @@ $sDefaultOrderBy = " credito.credito_num+0 desc ";
 
 		 $sDbWhereEncargado = " (solicitud.promotor_id IN ($x_promotores)  ) AND ";
 
-		 
+
 
 		  if($_SESSION["php_project_esf_status_UserRolID"] == 18){
 
 		 $sDbWhereEncargado .=  " credito.credito_tipo_id = 5 AND ";
 
-		  
+
 
 		  }
 
@@ -1206,13 +1206,13 @@ $sDefaultOrderBy = " credito.credito_num+0 desc ";
 
 			//$ssrch_cre .= "  (solicitud.vendedor_id = ".$filter["x_vendedor_srch"].")  AND  ";
 
-			//$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);		
+			//$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}
 
 		  }
 
-		 
+
 
 	 }else{
 
@@ -1224,7 +1224,7 @@ $sDefaultOrderBy = " credito.credito_num+0 desc ";
 
 			$ssrch_cre .= "  (solicitud.vendedor_id = ".$filter["x_vendedor_srch"].")  AND  ";
 
-			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);		
+			$ssrch_cre = substr($ssrch_cre, 0, strlen($ssrch_cre)-5);
 
 		}
 
@@ -1232,9 +1232,9 @@ $sDefaultOrderBy = " credito.credito_num+0 desc ";
 
 	 }
 
-		 
 
-		 
+
+
 
 
 
@@ -1254,7 +1254,7 @@ if($_SESSION["php_project_esf_status_UserRolID"] == 10) {
 
 	while($rowLista = phpmkr_fetch_array($rsLista)){
 
-		$x_lis_externo .= $rowLista["credito_id"]. ", ";		
+		$x_lis_externo .= $rowLista["credito_id"]. ", ";
 
 		}
 
@@ -1264,11 +1264,11 @@ if($_SESSION["php_project_esf_status_UserRolID"] == 10) {
 
 	}
 
-	
+
 
 	// si  el usuario es un gestor de cobranza
 
-	
+
 
 if($_SESSION["php_project_esf_status_UserRolID"] == 16) {
 
@@ -1282,7 +1282,7 @@ if($_SESSION["php_project_esf_status_UserRolID"] == 16) {
 
 	while($rowLista = phpmkr_fetch_array($rsLista)){
 
-		$x_lis_externo .= $rowLista["credito_id"]. ", ";		
+		$x_lis_externo .= $rowLista["credito_id"]. ", ";
 
 		}
 
@@ -1290,7 +1290,7 @@ if($_SESSION["php_project_esf_status_UserRolID"] == 16) {
 
 	$sNPWhere = "(credito.credito_id IN ($x_lis_externo) ) AND ";
 
-	}	
+	}
 
 #echo "$sNPWhere".$sNPWhere;
 
@@ -1306,15 +1306,15 @@ if($filter["php_project_esf_status_UserRolID"] == 7) {
 
 		$filter["x_promo_srch"] = $filter["x_promo_srch"];
 
-		$sDbWhere = "(solicitud.promotor_id = ".$filter["x_promo_srch"]. ") AND ";	
+		$sDbWhere = "(solicitud.promotor_id = ".$filter["x_promo_srch"]. ") AND ";
 
-		$sDbWhereP = "";	
+		$sDbWhereP = "";
 
 	}else{
 
-		$filter["x_promo_srch"] = "";		
+		$filter["x_promo_srch"] = "";
 
-		$sDbWhere = "";		
+		$sDbWhere = "";
 
 	}
 
@@ -1342,7 +1342,7 @@ if(!empty($sWhere)){
 
 		}
 
-		
+
 
 }
 
@@ -1376,13 +1376,13 @@ if ($sDefaultFilter <> "") {
 
 if ($sDbWhere <> "") {
 
-	if ($sWhere <> "") {	
+	if ($sWhere <> "") {
 
 		$sWhere .= " AND (" . $sDbWhere . ") AND ";
 
 	}else{
 
-		$sWhere .= " (" . $sDbWhere . ") AND ";		
+		$sWhere .= " (" . $sDbWhere . ") AND ";
 
 	}
 
@@ -1400,11 +1400,11 @@ if ($sWhere != "") {
 
 }else{
 
-	
 
-	
 
-	
+
+
+
 
 	}
 
@@ -1460,7 +1460,7 @@ if ($sOrderBy != "") {
 
 <!--
 
-EW_dateSep = "/"; // set date separator	
+EW_dateSep = "/"; // set date separator
 
 
 
@@ -1524,7 +1524,7 @@ var EW_HTMLArea;
 
 function EW_selectKey(elem) {
 
-	var f = elem.form;	
+	var f = elem.form;
 
 	if (!f.elements["key_d[]"]) return;
 
@@ -1532,11 +1532,11 @@ function EW_selectKey(elem) {
 
 		for (var i=0; i<f.elements["key_d[]"].length; i++)
 
-			f.elements["key_d[]"][i].checked = elem.checked;	
+			f.elements["key_d[]"][i].checked = elem.checked;
 
 	} else {
 
-		f.elements["key_d[]"].checked = elem.checked;	
+		f.elements["key_d[]"].checked = elem.checked;
 
 	}
 
@@ -1566,7 +1566,7 @@ function EW_selectKey(elem) {
 
 function EW_selected(elem) {
 
-	var f = elem.form;	
+	var f = elem.form;
 
 	if (!f.elements["key_d[]"]) return false;
 
@@ -1602,15 +1602,15 @@ function EW_selected(elem) {
 
    <script>
 
-  
 
-//Cuando el DOM esté descargado por completo:
 
-$(document).ready(function(){	
+//Cuando el DOM estï¿½ descargado por completo:
+
+$(document).ready(function(){
 
 	$(".cambia_fondo").click(function(event) {
 
-		var capa_credito_id = this.id;		
+		var capa_credito_id = this.id;
 
 		var myarr = capa_credito_id.split(".");
 
@@ -1618,7 +1618,7 @@ $(document).ready(function(){
 
 		var capa = myarr[0];
 
-		
+
 
 		//alert("el fondeo del credito se cambiara"+ capa_credito_id);
 
@@ -1630,31 +1630,31 @@ $(document).ready(function(){
 
                 });
 
-	
 
-	
+
+
 
 	$("#Submit").click(function(){
 
 		$("#x_paginacion").val(1);
 
-		
+
 
 	});
 
-	
+
 
 	});
 
-	
-
-	
-
-	
 
 
 
-   </script> 
+
+
+
+
+
+   </script>
 
 
 
@@ -1732,7 +1732,7 @@ SetUpStartRec(); // Set Up Start Record Position
 
 <!-- Personal --> <?php
 
-		$conn = phpmkr_db_connect(HOST, USER, PASS, DB, PORT);  
+		$conn = phpmkr_db_connect(HOST, USER, PASS, DB, PORT);
 
 		$x_estado_civil_idList = "<select name=\"x_credito_tipo_id\" >";
 
@@ -1772,7 +1772,7 @@ SetUpStartRec(); // Set Up Start Record Position
 
 		echo $x_estado_civil_idList;
 
-		
+
 
 		?></td>
 
@@ -1976,7 +1976,7 @@ SetUpStartRec(); // Set Up Start Record Position
 
 		}else{
 
-			$x_estado_civil_idList .= "<option value='100' >TODAS</option>";		
+			$x_estado_civil_idList .= "<option value='100' >TODAS</option>";
 
 		}
 
@@ -2036,15 +2036,15 @@ SetUpStartRec(); // Set Up Start Record Position
 
 			$sSqlWrk = "SELECT sucursal_id, nombre FROM sucursal Where sucursal.sucursal_id = ".$_SESSION["php_project_esf_SucursalID"];
 
-			
+
 
 			}else{
 
-			$sSqlWrk = "SELECT sucursal_id, nombre FROM sucursal ";	
+			$sSqlWrk = "SELECT sucursal_id, nombre FROM sucursal ";
 
-			$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";	
+			$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";
 
-		}		
+		}
 
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 
@@ -2076,11 +2076,11 @@ SetUpStartRec(); // Set Up Start Record Position
 
 		echo $x_estado_civil_idList;
 
-		?>      
+		?>
 
-      
 
-      
+
+
 
       </span></td>
 
@@ -2122,11 +2122,11 @@ SetUpStartRec(); // Set Up Start Record Position
 
 				$x_promotores = trim($x_promotores, ", ");
 
-				
+
 
 				$sSqlWrk = "SELECT promotor_id, nombre_completo FROM promotor Where promotor_id IN ($x_promotores)";
 
-				
+
 
 				}else{
 
@@ -2140,15 +2140,15 @@ SetUpStartRec(); // Set Up Start Record Position
 
 		$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";
 
-		
+
 
 		}else{
 
-			$sSqlWrk = "SELECT `promotor_id`, `nombre_completo` FROM `promotor`";	
+			$sSqlWrk = "SELECT `promotor_id`, `nombre_completo` FROM `promotor`";
 
-			$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";	
+			$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";
 
-		}		
+		}
 
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 
@@ -2160,7 +2160,7 @@ SetUpStartRec(); // Set Up Start Record Position
 
 				$x_estado_civil_idList .= "<option value=\"" . htmlspecialchars($datawrk[0]) . "\"";
 
-				if ($datawrk["promotor_id"] == $filter["x_promo_srch"]) {  
+				if ($datawrk["promotor_id"] == $filter["x_promo_srch"]) {
 
 					$x_estado_civil_idList .= "' selected";
 
@@ -2234,7 +2234,7 @@ if ($rswrk) {
 
 	while ($datawrk = phpmkr_fetch_array($rswrk)) {
 
-		
+
 
 /*
 
@@ -2248,9 +2248,9 @@ if ($rswrk) {
 
 		@phpmkr_free_result($rswrk2);
 
-*/		
+*/
 
-		
+
 
 		$x_medio_pago_idList .= "<option value=\"" . htmlspecialchars($datawrk[0]) . "\"";
 
@@ -2300,7 +2300,7 @@ if ($rswrk) {
 
 
 
-		
+
 
 		$rowcntwrk++;
 
@@ -2320,7 +2320,7 @@ echo $x_medio_pago_idList;
 
 	    <div id="txtlineas" style=" float: left;">
 
-	      
+
 
 	      </div>	    </td>
 
@@ -2342,15 +2342,15 @@ echo $x_medio_pago_idList;
 
 		$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";
 
-		
+
 
 		}else{
 
-			$sSqlWrk = "SELECT `vendedor_id`, `nombre_completo` FROM `vendedor`";	
+			$sSqlWrk = "SELECT `vendedor_id`, `nombre_completo` FROM `vendedor`";
 
-			$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";	
+			$x_estado_civil_idList .= "<option value=\"1000\">TODOS</option>";
 
-		}		
+		}
 
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 
@@ -2362,7 +2362,7 @@ echo $x_medio_pago_idList;
 
 				$x_estado_civil_idList .= "<option value=\"" . htmlspecialchars($datawrk[0]) . "\"";
 
-				if ($datawrk["vendedor_id"] == $filter["x_vendedor_srch"]) {  
+				if ($datawrk["vendedor_id"] == $filter["x_vendedor_srch"]) {
 
 					$x_estado_civil_idList .= "' selected";
 
@@ -2428,11 +2428,11 @@ echo $x_medio_pago_idList;
 
 	    </select>-->
 
-        
 
-          <select name="x_gestor_srch" >  
 
-    <option value="0">Seleccionar</option>    
+          <select name="x_gestor_srch" >
+
+    <option value="0">Seleccionar</option>
 
       <option value="7184" <?php if ($x_gestor_srch == 7184){?> selected="selected"<?php }?>>Angelica Tabares</option>
 
@@ -2440,7 +2440,7 @@ echo $x_medio_pago_idList;
 
       <option value="7183" <?php if ($x_gestor_srch == 7183){?> selected="selected"<?php }?>>Josefina Ochoa</option>
 
-      <option value="7187" <?php if ($x_gestor_srch == 7187){?> selected="selected"<?php }?>>Victoria Garcia</option>      
+      <option value="7187" <?php if ($x_gestor_srch == 7187){?> selected="selected"<?php }?>>Victoria Garcia</option>
 
       <option value="7180" <?php if ($x_gestor_srch == 7180){?> selected="selected"<?php }?>>Rodrigo Sanchez</option>
 
@@ -2452,7 +2452,7 @@ echo $x_medio_pago_idList;
 
       </select>
 
-        
+
 
         </td>
 
@@ -2748,11 +2748,11 @@ if ($nTotalRecs > 0) {
 
 <?php if ($sExport <> "") { ?>
 
-Crédito No
+Crï¿½dito No
 
 <?php }else{ ?>
 
-	<a href="php_creditolist.php?order=<?php echo urlencode("credito_id"); ?>">Crédito No<?php if (@$_SESSION["credito_x_credito_id_Sort"] == "ASC") { ?><img src="images/sortup.gif" width="10" height="9" border="0"><?php } elseif (@$_SESSION["credito_x_credito_id_Sort"] == "ASC") { ?><img src="images/sortdown.gif" width="10" height="9" border="0"><?php } ?></a>
+	<a href="php_creditolist.php?order=<?php echo urlencode("credito_id"); ?>">Crï¿½dito No<?php if (@$_SESSION["credito_x_credito_id_Sort"] == "ASC") { ?><img src="images/sortup.gif" width="10" height="9" border="0"><?php } elseif (@$_SESSION["credito_x_credito_id_Sort"] == "ASC") { ?><img src="images/sortdown.gif" width="10" height="9" border="0"><?php } ?></a>
 
 <?php } ?>
 
@@ -2762,23 +2762,23 @@ Crédito No
 
 Fondo
 
-		</span></td>        
+		</span></td>
 
 		<td valign="top"><span>
 
 Promotor
 
-		</span></td> 
+		</span></td>
 
         <td valign="top"><span>
 
 Gestor
 
-		</span></td>  
+		</span></td>
 
         <td>Tipo Cliente</td>
 
-        <td>Perfil Transaccional</td>      
+        <td>Perfil Transaccional</td>
 
 		<td valign="top"><span>
 
@@ -2794,7 +2794,7 @@ Cliente No
 
 		</span></td>
 
-        
+
 
 		<td valign="top"><span>
 
@@ -2810,7 +2810,7 @@ Cliente
 
 	<a href="php_creditolist.php?order=<?php //echo urlencode("cliente"); ?>">Cliente<?php //if (@$_SESSION["credito_x_cliente_Sort"] == "ASC") { ?><img src="images/sortup.gif" width="10" height="9" border="0"><?php //} elseif (@$_SESSION["credito_x_cliente_Sort"] == "DESC") { ?><img src="images/sortdown.gif" width="10" height="9" border="0"><?php //} ?></a>
 
--->    
+-->
 
 <?php } ?>
 
@@ -2824,19 +2824,19 @@ Grado riesgo
 
 <?php }else{ ?>
 
-Grado riesgo 
+Grado riesgo
 
 <?php } ?>
 
-		</span></td>        
+		</span></td>
 
-        		
 
-		<td valign="top"><span>        
+
+		<td valign="top"><span>
 
 Tarjeta Num.
 
-		</span></td>		        
+		</span></td>
 
 		<td valign="top"><span>
 
@@ -2884,7 +2884,7 @@ Fecha de otrogamiento
 
 <td valign="top"><span>
 
-Conciliar	cheque	
+Conciliar	cheque
 
 		</span></td>
 
@@ -2904,15 +2904,15 @@ Importe
 
 		<td valign="top"><span>
 
-Forma de Pago		
+Forma de Pago
 
-		</span></td>				
+		</span></td>
 
 		<td valign="top"><span>
 
 Numero de Pagos
 
-		</span></td>				
+		</span></td>
 
 		<td valign="top"><span>
 
@@ -2959,9 +2959,20 @@ Reporte Interno Preocupante
 Reporte Inusal
 
 		</span></td>
+		<td valign="top"><span>
+
+CONTRATO FIRMADO
+
+	 </span></td>
+	 <td valign="top"><span>
+
+FOTO DEL CLIENTE
+
+  </span></td>
 
 
-        
+
+
 
 
 
@@ -2973,15 +2984,15 @@ Reporte Inusal
 
     <td>Demanda sin exhorto</td>
 
-	
+
 
 	<?php
 
-	}?>    
+	}?>
 
-    
 
-      
+
+
 
 	</tr>
 
@@ -3044,8 +3055,8 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 		}
 
 		$x_credito_id = $row["credito_id"];
-		$x_credito_num = $row["credito_num"];	
-		$x_cliente_num = $row["cliente_num"];				
+		$x_credito_num = $row["credito_num"];
+		$x_cliente_num = $row["cliente_num"];
 		$x_credito_tipo_id = $row["credito_tipo_id"];
 		$x_solicitud_id = $row["solicitud_id"];
 		$x_credito_status_id = $row["credito_status_id"];
@@ -3053,19 +3064,19 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 		$x_importe = $row["importe"];
 		$x_tasa = $row["tasa"];
-		$x_iva = $row["iva"];		
+		$x_iva = $row["iva"];
 		$x_plazo = $row["plazo_id"];
 		$x_fecha_vencimiento = $row["fecha_vencimiento"];
 		$x_tasa_moratoria = $row["tasa_moratoria"];
 		$x_medio_pago_id = $row["medio_pago_id"];
 		$x_referencia_pago = $row["referencia_pago"];
-		$x_forma_pago_id = $row["forma_pago_id"];		
-		$x_num_pagos = $row["num_pagos"];				
+		$x_forma_pago_id = $row["forma_pago_id"];
+		$x_num_pagos = $row["num_pagos"];
 		$x_tdp = $row["tarjeta_num"];
 		$x_fecha_cobranza_externa =  $row["fecha_cobranza_externa"];
-		$x_fecha_incobrable = $row["fecha_incobrable"];	
+		$x_fecha_incobrable = $row["fecha_incobrable"];
 
-		
+
 
 		$x_tipo_cliente = "";
 
@@ -3073,21 +3084,21 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 		$rsTipociente = phpmkr_query($sqlTipoCliente,$conn) or die("Error tipo cliente".$sqlTipoCliente);
 		$rowTipoCliente =  phpmkr_fetch_array($rsTipociente);
 		$x_tipo_cliente = $rowTipoCliente["tipo_cliente"];
-			
+
 		$sqlTipoCliente = "SELECT cliente_id FROM solicitud_cliente WHERE solicitud_id = $x_solicitud_id ";
 		$rsTipociente = phpmkr_query($sqlTipoCliente,$conn) or die("Error tipo cliente".$sqlTipoCliente);
 		$rowTipoCliente =  phpmkr_fetch_array($rsTipociente);
-		$x_cliente_id = $rowTipoCliente["cliente_id"];	
+		$x_cliente_id = $rowTipoCliente["cliente_id"];
 
-		
+
 
 		$x_perfil_trans="";
 		$sqlTipoCliente = "SELECT * FROM perfil_transaccional WHERE credito_id = $x_credito_id ";
 		$rsTipociente = phpmkr_query($sqlTipoCliente,$conn) or die("Error tipo cliente".$sqlTipoCliente);
 		$rowTipoCliente =  phpmkr_fetch_array($rsTipociente);
-		$x_importe_promedio = $rowTipoCliente["importe_promedio"];	
-		$x_dias_promedio = $rowTipoCliente["dias_promedio"];	
-		$x_total_creditos = $rowTipoCliente["numero_creditos"];	
+		$x_importe_promedio = $rowTipoCliente["importe_promedio"];
+		$x_dias_promedio = $rowTipoCliente["dias_promedio"];
+		$x_total_creditos = $rowTipoCliente["numero_creditos"];
 
 		//echo $x_solicitud_id."solicitud ";
 
@@ -3101,13 +3112,13 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 		}
 
-		
 
-		
+
+
 
 		if($x_fecha_otrogamiento > "2013-07-03"){
 
-		
+
 
 		// buscamos valore en cmite de credito
 
@@ -3139,7 +3150,7 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 					//}*/
 
-					
+
 
 		}
 
@@ -3149,7 +3160,7 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 			}
 
-		
+
 
 		$x_cocilia_cheque_id = 0;
 
@@ -3165,7 +3176,7 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 		$x_status_conciliado = $rowConcilia["status"];
 
-		
+
 
 		$sqlFormato = "SELECT formato_nuevo, fecha_otorga_credito FROM  solicitud WHERE solicitud_id = $x_solicitud_id ";
 
@@ -3177,7 +3188,7 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 		$x_fecha_alta = $rowFormato["fecha_otorga_credito"];
 
-		phpmkr_free_result($rowFormato);	
+		phpmkr_free_result($rowFormato);
 
 		$x_link_edit="";
 
@@ -3185,7 +3196,7 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 		$x_link_print="";
 
-		
+
 
 		$x_link_edit_credito = "";
 
@@ -3213,7 +3224,7 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 					}
 
-				$x_fecha_visita_supervision = "SUPERVISIÓN ".$x_fecha_visita_supervision;
+				$x_fecha_visita_supervision = "SUPERVISIï¿½N ".$x_fecha_visita_supervision;
 
 				}
 
@@ -3221,9 +3232,9 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 			$x_fecha_visita_supervision = "";
 
-			}		
+			}
 
-		
+
 
 		if($x_credito_tipo_id == 1){
 
@@ -3244,10 +3255,10 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 					//$x_link_print = "modulos/tipoCuenta/formatos/php_solicitudIndividualP_print.php";
 
 					$x_link_print = "modulos/php_solicitudeditIndividual.php";
-					
+
 					if($x_solicitud_id > 10453){
 						$x_link_print = "modulos/php_solicitudeditIndividualNomina.php";
-						
+
 						}
 
 					}
@@ -3302,11 +3313,11 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 								$x_link_edit ="modulos/php_solicitudeditIndividual.php";
 
-								$x_link_view = "";				
+								$x_link_view = "";
 
-								$x_link_print = "modulos/php_solicitudeditIndividual.php";					
+								$x_link_print = "modulos/php_solicitudeditIndividual.php";
 
-							
+
 
 							}
 
@@ -3326,19 +3337,19 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 							$x_link_view_credito = "php_creditoview.php";
 
-							}	
+							}
 
-		
 
-		
 
-		
 
-		
 
-		
 
-		
+
+
+
+
+
+
 
 
 
@@ -3358,11 +3369,11 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 		if ($rswrk && $rowwrk = phpmkr_fetch_array($rswrk)) {
 
-			$x_cliente = $rowwrk["cliente_nombre"]." ".$rowwrk["apellido_paterno"]." ".$rowwrk["apellido_materno"];								
+			$x_cliente = $rowwrk["cliente_nombre"]." ".$rowwrk["apellido_paterno"]." ".$rowwrk["apellido_materno"];
 
 		}else{
 
-			$x_cliente = "";										
+			$x_cliente = "";
 
 		}
 
@@ -3370,9 +3381,9 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
 
 
-		
 
-		
+
+
 
 ?>
 
@@ -3460,7 +3471,7 @@ while (($row = @phpmkr_fetch_array($rs)) && ($nRecCount < $nStopRec)) {
 
         <span id="capa_fondo_<?php echo $x_credito_id;?>">
 
-<?php 
+<?php
 
 
 
@@ -3472,11 +3483,11 @@ $rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_
 
 if ($rswrk && $rowwrk = phpmkr_fetch_array($rswrk)) {
 
-	$x_fondo = $rowwrk["nombre"];								
+	$x_fondo = $rowwrk["nombre"];
 
 }else{
 
-	$x_fondo = "Propio";										
+	$x_fondo = "Propio";
 
 }
 
@@ -3492,7 +3503,7 @@ if ($x_fondo == "FONDOS PROPIOS"){
 
 		}
 
-echo $x_fondo."\n"; 
+echo $x_fondo."\n";
 
 ?>
 
@@ -3508,7 +3519,7 @@ echo $x_fondo."\n";
 
 		<td align="left"><span>
 
-<?php 
+<?php
 
 		$sSqlWrk = "SELECT promotor.nombre_completo FROM credito join solicitud on solicitud.solicitud_id = credito.solicitud_id join promotor on promotor.promotor_id = solicitud.promotor_id Where credito.credito_id = $x_credito_id ";
 
@@ -3516,11 +3527,11 @@ echo $x_fondo."\n";
 
 		if ($rswrk && $rowwrk = phpmkr_fetch_array($rswrk)) {
 
-			$x_promotor = $rowwrk["nombre_completo"];								
+			$x_promotor = $rowwrk["nombre_completo"];
 
 		}else{
 
-			$x_promotor = "";										
+			$x_promotor = "";
 
 		}
 
@@ -3528,7 +3539,7 @@ echo $x_fondo."\n";
 
 
 
-echo $x_promotor; 
+echo $x_promotor;
 
 
 
@@ -3538,7 +3549,7 @@ echo $x_promotor;
 
 		<td align="left"><span>
 
-<?php 
+<?php
 
 		$x_gestor = "";
 
@@ -3550,13 +3561,13 @@ echo $x_promotor;
 
 		if ($rswrk && $rowwrk = phpmkr_fetch_array($rswrk)) {
 
-			$x_gestor = $rowwrk["nombre"];	
+			$x_gestor = $rowwrk["nombre"];
 
-			$x_user_gest = $rowwrk["usuario_id"];							
+			$x_user_gest = $rowwrk["usuario_id"];
 
 		}else{
 
-			$x_gestor = "";										
+			$x_gestor = "";
 
 		}
 
@@ -3570,7 +3581,7 @@ if($x_user_gest  == 6824 || $x_user_gest == 6823 || $x_user_gest == 6822 || $x_u
 
 	}
 
-echo $x_gestor; 
+echo $x_gestor;
 
 
 
@@ -3646,7 +3657,7 @@ if ((!is_null($x_credito_tipo_id)) && ($x_credito_tipo_id <> "")) {
 
 				}
 
-		
+
 
 	}
 
@@ -3746,7 +3757,7 @@ $x_credito_status_id = $sTmp;
 
 	#echo 1;
 
-	}	
+	}
 
 	$x_disable = "";
 
@@ -3784,7 +3795,7 @@ $x_credito_status_id = $sTmp;
 
 		<td><span class="ewTableAltRow">
 
-		  <?php 
+		  <?php
 
 		$sSqlWrk = "SELECT descripcion FROM forma_pago where forma_pago_id = $x_forma_pago_id";
 
@@ -3868,7 +3879,7 @@ $x_medio_pago_id = $sTmp;
 
 
 
-		<td align="center"><span>   
+		<td align="center"><span>
 
     <iframe name="comentarios" src="php_comentarios_visor.php?key=<?php echo $x_credito_id;?>" scrolling="no" style="margin-left:0px; width:100px; height:30px; margin-top:-5px" frameborder="0" allowtransparency="true" id="contenido"></iframe>
 
@@ -3903,8 +3914,30 @@ $x_fecha_incobrable = "";
 </span></td>-->
 
 
-<td><span class="phpmaker"><a href="<?php if ($x_solicitud_id <> "") {echo "php_reporte_cnbv_add.php?solicitud_id=".urlencode($x_solicitud_id)."&cliente_id=".urlencode($x_cliente_id)."&tipo=3"; } else { echo "javascript:alert('Invalid Record! Key is null');";} ?>" target='_blank'>Generar reporte</a></span></td>
-<td><span class="phpmaker"><a href="<?php if ($x_solicitud_id <> "") {echo "php_reporte_cnbv_add.php?solicitud_id=".urlencode($x_solicitud_id)."&cliente_id=".urlencode($x_cliente_id)."&tipo=2"; } else { echo "javascript:alert('Invalid Record! Key is null');";} ?>" target='_blank'>Generar reporte</a></span></td>
+<td>
+	<span class="phpmaker"><a href="<?php if ($x_solicitud_id <> "") {echo "php_reporte_cnbv_add.php?solicitud_id=".urlencode($x_solicitud_id)."&cliente_id=".urlencode($x_cliente_id)."&tipo=3"; } else { echo "javascript:alert('Invalid Record! Key is null');";} ?>" target='_blank'>Generar reporte</a></span>
+</td>
+<td>
+	<span class="phpmaker"><a href="<?php if ($x_solicitud_id <> "") {echo "php_reporte_cnbv_add.php?solicitud_id=".urlencode($x_solicitud_id)."&cliente_id=".urlencode($x_cliente_id)."&tipo=2"; } else { echo "javascript:alert('Invalid Record! Key is null');";} ?>" target='_blank'>Generar reporte</a></span>
+</td>
+<td>
+	<?php
+	if ($x_credito_status_id == 1) {
+	?>
+	<span class="phpmaker"><a href="<?php echo "php_galeria_contrato_firmado_subir.php?solicitud_id=".urlencode($x_solicitud_id);  ?>" target='_blank'>Agregar Contrato</a></span>
+	<?php
+	}
+	?>
+</td>
+<td>
+	<?php
+	if ($x_credito_status_id == 1) {
+	?>
+	<span class="phpmaker"><a href="<?php echo "php_galeria_foto_perfil_subir.php?solicitud_id=".urlencode($x_solicitud_id);  ?>" target='_blank'>Agregar Foto</a></span>
+	<?php
+	}
+	?>
+</td>
 
 
 <?php if (($_SESSION["php_project_esf_status_UserRolID"] ==3 ) ){
@@ -3915,7 +3948,7 @@ $x_fecha_incobrable = "";
 
     <td><span class="phpmaker"><a href="<?php if ($x_solicitud_id <> "") {echo "php_demanda_print.php?solicitud_id=" . urlencode($x_solicitud_id); } else { echo "javascript:alert('Invalid Record! Key is null');";} ?>" target='_blank'>Sin exhorto</a></span></td>
 
-	
+
 
 	<?php
 
@@ -3989,7 +4022,7 @@ function BasicSearchSQL($Keyword)
 
 $sKeyword = (!get_magic_quotes_gpc()) ? addslashes($Keyword) : $Keyword;
 
-	
+
 
 $x_entero = intval($sKeyword);
 
@@ -4003,23 +4036,23 @@ $x_entero = intval($sKeyword);
 
 	$BasicSearchSQL.= "credito.credito_num LIKE '%" . $sKeyword . "%' OR ";
 
-	
+
 
 	}else{
 
 /*
 
-	$BasicSearchSQL.= "cliente.nombre_completo LIKE '%" . $sKeyword . "%' OR ";	
+	$BasicSearchSQL.= "cliente.nombre_completo LIKE '%" . $sKeyword . "%' OR ";
 
-	$BasicSearchSQL.= "cliente.apellido_paterno LIKE '%" . $sKeyword . "%' OR ";	
+	$BasicSearchSQL.= "cliente.apellido_paterno LIKE '%" . $sKeyword . "%' OR ";
 
-	$BasicSearchSQL.= "cliente.apellido_materno LIKE '%" . $sKeyword . "%' OR ";	
+	$BasicSearchSQL.= "cliente.apellido_materno LIKE '%" . $sKeyword . "%' OR ";
 
-*/	
+*/
 
 	}
 
-//	$BasicSearchSQL.= "cliente.nombre_completo LIKE '%" . $sKeyword . "%' OR ";	
+//	$BasicSearchSQL.= "cliente.nombre_completo LIKE '%" . $sKeyword . "%' OR ";
 
 	if (substr($BasicSearchSQL, -4) == " OR ") { $BasicSearchSQL = substr($BasicSearchSQL, 0, strlen($BasicSearchSQL)-4); }
 
@@ -4607,11 +4640,11 @@ function ResetCmd()
 
 			$_SESSION["x_empresa_id"] = "";
 
-			$_SESSION["x_fondeo_credito_id"] = "";			
+			$_SESSION["x_fondeo_credito_id"] = "";
 
-			$_SESSION["x_credito_tipo_id"] = "";			
+			$_SESSION["x_credito_tipo_id"] = "";
 
-			
+
 
 
 
@@ -4637,13 +4670,13 @@ function ResetCmd()
 
 			$_SESSION["x_promo_srch"] = "";
 
-			$_SESSION["x_empresa_id"] = "";			
+			$_SESSION["x_empresa_id"] = "";
 
-			$_SESSION["x_fondeo_credito_id"] = "";			
+			$_SESSION["x_fondeo_credito_id"] = "";
 
-			$_SESSION["x_credito_tipo_id"] = "";						
+			$_SESSION["x_credito_tipo_id"] = "";
 
-			
+
 
 		// Reset Sort Criteria
 
@@ -4659,7 +4692,7 @@ function ResetCmd()
 
 			if (@$_SESSION["credito_x_cliente_id_Sort"] <> "") { $_SESSION["credito_x_cliente_id_Sort"] = ""; }
 
-			
+
 
 			if (@$_SESSION["credito_x_credito_tipo_id_Sort"] <> "") { $_SESSION["credito_x_credito_tipo_id_Sort"] = ""; }
 
@@ -4683,7 +4716,7 @@ function ResetCmd()
 
 			if (@$_SESSION["credito_x_referencia_pago_Sort"] <> "") { $_SESSION["credito_x_referencia_pago_Sort"] = ""; }
 
-			if (@$_SESSION["credito_x_cliente_Sort"] <> "") { $_SESSION["credito_x_cliente_Sort"] = ""; }			
+			if (@$_SESSION["credito_x_cliente_Sort"] <> "") { $_SESSION["credito_x_cliente_Sort"] = ""; }
 
 		}
 
@@ -4700,4 +4733,3 @@ function ResetCmd()
 }
 
 ?>
-
