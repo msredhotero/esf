@@ -2030,7 +2030,7 @@ $x_contenido = str_replace("\$x_tasa",$x_tasa,$x_contenido);
 $date_f = new DateTime($x_fecha_otorgamiento_valor);
 $ff =  $date_f->format('d-m-Y');
 
-$x_contenido = str_replace("\$x_fecha_contrato",$ff,$x_contenido);
+$x_contenido = str_replace("\$x_fecha_contrato",$x_fecha_contrato,$x_contenido);
 
 $x_contenido = str_replace("\$x_fecha_vencimiento",$x_fecha_vencimiento,$x_contenido);
 
@@ -2065,7 +2065,7 @@ $x_contenido = str_replace("\$x_consulta_cuenta",$x_consulta_cuenta,$x_contenido
 
 //echo htmlspecialchars_decode($x_contenido); 
 
-echo $x_contenido; 
+echo utf8_encode($x_contenido); 
 
 
 ?>

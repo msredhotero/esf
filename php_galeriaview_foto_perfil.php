@@ -64,38 +64,24 @@ $x_galeria_fotografica_id = $_GET["x_galeria_fotografica_id"];
 
 }
 $x_galeria_fotografica_id = $_GET["x_galeria_fotografica_id"];
-
 $id = $x_galeria_fotografica_id;
 
 $conn = phpmkr_db_connect(HOST, USER, PASS, DB, PORT);
 
-$sqlS = "SELECT foto_negocio_1, foto_negocio_2, foto_negocio_3, foto_negocio_4, foto_negocio_5, foto_negocio_6, foto_negocio_7, foto_negocio_8, foto_negocio_9, foto_negocio_10 FROM galeria_fotografica WHERE galeria_fotografica_id = $id AND (  foto_negocio_1 IS NOT NULL || foto_negocio_2 IS NOT NULL || foto_negocio_3 IS NOT NULL || foto_negocio_4 IS NOT NULL || foto_negocio_5 IS NOT NULL  || foto_negocio_6 IS NOT NULL || foto_negocio_7 IS NOT NULL || foto_negocio_8 IS NOT NULL || foto_negocio_9 IS NOT NULL || foto_negocio_10 IS NOT NULL)";
+$sqlS = "SELECT foto_perfil_1, foto_perfil_2, foto_perfil_3, foto_perfil_4, foto_perfil_5 FROM galeria_fotografica WHERE galeria_fotografica_id = $id AND ( foto_perfil_1 IS NOT NULL || foto_perfil_2 IS NOT NULL || foto_perfil_3 IS NOT NULL || foto_perfil_4 IS NOT NULL || foto_perfil_5 IS NOT NULL )";
 
 $rsS = phpmkr_query($sqlS, $conn) or die("Error al seleccionar IFE". phpmkr_error()."sql:".$sqlS);
 $row = phpmkr_fetch_array($rsS);
-$x_foto_negocio_1 = $row["foto_negocio_1"];
-$x_foto_negocio_2 = $row["foto_negocio_2"];
-$x_foto_negocio_3 = $row["foto_negocio_3"];
-$x_foto_negocio_4 = $row["foto_negocio_4"];
-$x_foto_negocio_5 = $row["foto_negocio_5"];
-$x_foto_negocio_6 = $row["foto_negocio_6"];
-$x_foto_negocio_7 = $row["foto_negocio_7"];
-$x_foto_negocio_8 = $row["foto_negocio_8"];
-$x_foto_negocio_9 = $row["foto_negocio_9"];
-$x_foto_negocio_10 = $row["foto_negocio_10"];
+$x_comprobante_propiedad_1 = $row["foto_perfil_1"];
+$x_comprobante_propiedad_2 = $row["foto_perfil_2"];
+$x_comprobante_propiedad_3 = $row["foto_perfil_3"];
+$x_comprobante_propiedad_4 = $row["foto_perfil_4"];
+$x_comprobante_propiedad_5 = $row["foto_perfil_5"];
 
 	mysql_free_result($rsS);
 
-$sQLgALe = "select * from galeria_fotografica_extra where galeria_fotografica_extra_id = $id ";
-$rsGE = phpmkr_query($sQLgALe,$conn)or die ("Error al seleccionar la galeria extra".phpmkr_error()."sql:".$sQLgALe);
-$x_val = 11;
-while($rowGE = phpmkr_fetch_array($rsGE)){
-	$x_nombre_foto = $rowGE["documento"];
-	$x_tabla .= " <tr background=\"images/headTUpload1.jpg\">
-    <td height=\"27\"><a href=\"".ewUploadPath(0) .$x_nombre_foto."\"  target=\"_blank\">Negocio". $x_val ."</a></td>
-    </tr>";
-	$x_val ++;
-	}
+
+
 
 
 
@@ -206,64 +192,39 @@ var EW_HTMLArea;
 
 <table width="697" border="0">
   <tr>
-    <td height="20" class="ewTableHeaderThin">Cartas liquidación de <?php echo $x_nombre_galeria; ?></td>
+    <td height="20" class="ewTableHeaderThin">Contrato Firmado<?php echo $x_nombre_galeria; ?></td>
    </tr>
     <?php
 
-	  if(!empty($x_foto_negocio_1)){?>
+	  if(!empty($x_comprobante_propiedad_1)){?>
   <tr background="images/headTUpload1.jpg">
-    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_negocio_1 ?>"  target="_blank">Negocio 1</a></td>
+    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_comprobante_propiedad_1 ?>"  target="_blank">Foto Perfil 1</a></td>
     </tr><?php }?>
 
      <?php
 
-	   if(!empty($x_foto_negocio_2)){?>
+	   if(!empty($x_comprobante_propiedad_2)){?>
   <tr background="images/headTUpload2.jpg">
-    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_negocio_2 ?>"  target="_blank">Negocio 2 </a></td>
+    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_comprobante_propiedad_2 ?>"  target="_blank">Foto Perfil 2 </a></td>
     </tr><?php }?>
 
      <?php
-	   if(!empty($x_foto_negocio_3)){?>
+	   if(!empty($x_comprobante_propiedad_3)){?>
      <tr background="images/headTUpload1.jpg">
-    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_negocio_3 ?>"  target="_blank">Negocio 3</a></td>
+    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_comprobante_propiedad_3 ?>"  target="_blank">Foto Perfil 3</a></td>
     </tr><?php }?>
 
-   <?php if(!empty($x_foto_negocio_4)){?>
+   <?php if(!empty($x_comprobante_propiedad_4)){?>
   <tr background="images/headTUpload2.jpg">
-    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_negocio_4 ?>"  target="_blank">Negocio 4</a></td>
+    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_comprobante_propiedad_4 ?>"  target="_blank">Foto Perfil 4</a></td>
     </tr><?php }?>
 
-
-     <?php  if(!empty($x_foto_negocio_5)){?>
+     <?php  if(!empty($x_comprobante_propiedad_5)){?>
      <tr background="images/headTUpload1.jpg">
-    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_negocio_5 ?>"  target="_blank">Negocio 5</a></td>
+    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_comprobante_propiedad_5 ?>"  target="_blank">Foto Perfil 5</a></td>
     </tr><?php }?>
 
-     <?php  if(!empty($x_foto_negocio_6)){?>
-     <tr background="images/headTUpload1.jpg">
-    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_negocio_6 ?>"  target="_blank">Negocio 6</a></td>
-    </tr><?php }?>
 
-     <?php  if(!empty($x_foto_negocio_7)){?>
-     <tr background="images/headTUpload1.jpg">
-    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_negocio_7 ?>"  target="_blank">Negocio 7</a></td>
-    </tr><?php }?>
-
-     <?php  if(!empty($x_foto_negocio_8)){?>
-     <tr background="images/headTUpload1.jpg">
-    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_negocio_8 ?>"  target="_blank">Negocio 8</a></td>
-    </tr><?php }?>
-
-     <?php  if(!empty($x_foto_negocio_9)){?>
-     <tr background="images/headTUpload1.jpg">
-    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_negocio_9 ?>"  target="_blank">Negocio 9</a></td>
-    </tr><?php }?>
-
-     <?php  if(!empty($x_foto_negocio_10)){?>
-     <tr background="images/headTUpload1.jpg">
-    <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_negocio_10 ?>"  target="_blank">Negocio 10</a></td>
-    </tr><?php }?>
-     <?php echo $x_tabla;?>
     <tr><td align="right"></td></tr>
 </table>
 </form>
@@ -284,6 +245,7 @@ function LoadData($conn, $x_id)
 
 
 $id = $x_id;
+
 
 
 return true;

@@ -3920,24 +3920,33 @@ $x_fecha_incobrable = "";
 <td>
 	<span class="phpmaker"><a href="<?php if ($x_solicitud_id <> "") {echo "php_reporte_cnbv_add.php?solicitud_id=".urlencode($x_solicitud_id)."&cliente_id=".urlencode($x_cliente_id)."&tipo=2"; } else { echo "javascript:alert('Invalid Record! Key is null');";} ?>" target='_blank'>Generar reporte</a></span>
 </td>
-<td>
-	<?php
+<?php
+/* codigo para recorrer las galerias marcos */
 	if ($x_credito_status_id == 1) {
-	?>
-	<span class="phpmaker"><a href="<?php echo "php_galeria_contrato_firmado_subir.php?solicitud_id=".urlencode($x_solicitud_id);  ?>" target='_blank'>Agregar Contrato</a></span>
-	<?php
+		$sqlGalerias = "SELECT * FROM galeria_fotografica where tipo_galeria_id is not null and solicitud_id = ".$x_solicitud_id;
+		//die(var_dump($sqlGalerias))
+		$resGalerias = phpmkr_query($sqlGalerias, $conn) or die("Error al seleccionar IFE". phpmkr_error()."sql:".$sqlGalerias);
+
+		$numero = mysql_num_rows($resGalerias);
+
+		if($numero >0){
+		  while ($row = @phpmkr_fetch_array($resGalerias)) {
+			  //die(var_dump($row['galeria_fotografica_id']));
+			  echo '<td>
+			  			<span class="phpmaker"><a href="php_galeria_contrato_firmado_subir.php?x_galeria_fotografica_id='.$row['galeria_fotografica_id'].'" target="_blank">Agregar Contrato</a></span>
+						</td>
+						<td>
+ 			  			<span class="phpmaker"><a href="php_galeria_foto_perfil_subir.php?x_galeria_fotografica_id='.$row['galeria_fotografica_id'].'" target="_blank">Agregar Foto</a></span>
+ 						</td>';
+		  }
+		} else {
+		  echo '<td></td><td></td>';
+		}
+	} else {
+		echo '<td></td><td></td>';
 	}
-	?>
-</td>
-<td>
-	<?php
-	if ($x_credito_status_id == 1) {
-	?>
-	<span class="phpmaker"><a href="<?php echo "php_galeria_foto_perfil_subir.php?solicitud_id=".urlencode($x_solicitud_id);  ?>" target='_blank'>Agregar Foto</a></span>
-	<?php
-	}
-	?>
-</td>
+?>
+
 
 
 <?php if (($_SESSION["php_project_esf_status_UserRolID"] ==3 ) ){

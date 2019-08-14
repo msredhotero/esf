@@ -14,7 +14,7 @@
 			<td colspan="2">
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 	            	<span style="line-height: 115%; font-size: 9pt">
-		            	<font face="Calibri">CONTRATO DE CREDITO SIMPLE CON INTERÉS VÍA DESCUENTO DE NÓMINA QUE CELEBRAN POR UNA PARTE <b>MICROFINANCIERA CRECE, S.A. DE C.V. SOFOM E.N.R.</b>, A QUIEN EN LO SUCESIVO SE LE DENOMINARÁ <b>“CREA”</b> Y POR LA OTRA PARTE, $x_cliente, A QUIEN EN LO SUCESIVO SE LE DENOMINARÁ COMO “EL ACREDITADO” Y EN SU CONJUNTO SE LES DENOMINARÁ COMO “LAS PARTES”, DE CONFORMIDAD CON LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS:
+		            	<font face="Calibri">CONTRATO DE CREDITO SIMPLE CON INTERÉS VÍA DESCUENTO DE NÓMINA QUE CELEBRAN POR UNA PARTE <b>MICROFINANCIERA CRECE, S.A. DE C.V. SOFOM E.N.R.</b>, A QUIEN EN LO SUCESIVO SE LE DENOMINARÁ <b>"CREA"</b> Y POR LA OTRA PARTE, $x_cliente, A QUIEN EN LO SUCESIVO SE LE DENOMINARÁ COMO "EL ACREDITADO" Y EN SU CONJUNTO SE LES DENOMINARÁ COMO "LAS PARTES", DE CONFORMIDAD CON LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS:
 		            	</font>
 	            	</span>
             	</p>
@@ -94,7 +94,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>6.-</b> Que no requiere de autorización por parte de la Secretaría de Hacienda y Crédito Público para su constitución y operación como sociedad financiera de objeto múltiple, y se encuentra sujeta a la inspección y vigilancia de la Comisión Nacional Bancaria y de Valores, pero exclusivamente para verificar el cumplimiento de las disposiciones preventivas de lavado de dinero y financiamiento al terrorismo (Art. 95-Bis de la Ley General de Organizaciones y Actividades Auxiliares del Crédito).
+						<b>6.-</b> Para su constitución y operación no requiere de autorización de la Secretaría de Hacienda y Crédito Público, y, en el caso de las sociedades financieras de objeto múltiple no reguladas, deberán en adición a lo anterior, señalar expresamente que están sujetas a la supervisión de la Comisión Nacional Bancaria y de Valores, únicamente para efectos de lo dispuesto en el artículo 56, de la Ley General de Organizaciones y Actividades Auxiliares del Crédito.
 					</span>
 					</font>
 				</p>
@@ -147,7 +147,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>3.-</b> Haber solicitado a <b>CREA</b> la apertura de un crédito simple con interés vía descuento de nómina, en lo sucesivo “CRÉDITO SIMPLE”, el cual se describe a detalle en la Carátula del Crédito.
+						<b>3.-</b> Haber solicitado a <b>CREA</b> la apertura de un crédito simple con interés vía descuento de nómina, en lo sucesivo "CRÉDITO SIMPLE", el cual se describe a detalle en la Carátula del Crédito.
 						</span>
 					</font>
 				</p>
@@ -255,7 +255,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-							- Consentimiento de retención en nómina (Anexo 6).
+							- Consentimiento de retención (Anexo 6).
 						</span>
 					</font>
 				</p>
@@ -287,7 +287,7 @@
 				<p style="text-align: left; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>EL ACREDITADO confirma haber recibido copia de los anexos mencionados en este apartado.</b>
+						<b>EL ACREDITADO</b> confirma haber recibido copia de los anexos mencionados en este apartado <b>pudiendo consultar el anexo de artículos y disposiciones legales a través del portal www.financieracrea.com al cual accederá a través del usuario y contraseña que le ha sido otorgado por parte de CREA de forma privada para garantizar el buen uso de las mismas.</b>
 						</span>
 					</font>
 				</p>
@@ -298,7 +298,7 @@
 				<p style="text-align: left; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>10.-</b> Previo a la firma del presente Contrato, <b>CREA</b> le explicó y le dio a conocer a su entera satisfacción antes de la firma del presente Contrato: (i) el contenido del mismo y de todos los documentos a suscribir, (ii) los cargos, el monto de las tasas de intereses y comisiones vigentes que cobra por cada uno de los conceptos previstos que se establecen en el presente Contrato, (iii) en su caso, los descuentos y bonificaciones que en su caso pudiera tener derecho, y (iv) que en caso de terminación o baja laboral con su actual Patrón, <b>EL ACREDITADO</b> deberá depositar por sus propios medios y absorviendo el costo que llo implique, cada uno de los pagos pactados en el presente contrato.
+						<b>10.-</b> Previo a la firma del presente Contrato, <b>CREA</b> le explicó y le dio a conocer a su entera satisfacción antes de la firma del presente Contrato: (i) el contenido del mismo y de todos los documentos a suscribir, (ii) los cargos, el monto de las tasas de intereses y comisiones vigentes que cobra por cada uno de los conceptos previstos que se establecen en el presente Contrato, (iii) en su caso, los descuentos y bonificaciones que en su caso pudiera tener derecho, y (iv) que en caso de terminación o baja laboral con su actual Patrón, <b>EL ACREDITADO</b> deberá depositar por sus propios medios y absorviendo el costo que ello implique, cada uno de los pagos pactados en el presente contrato.
 						</span>
 					</font>
 				</p>
@@ -374,7 +374,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>SEGUNDA. Interés Ordinario.</b> Al saldo insoluto del crédito, se adicionará la tasa de interés ordinaria correspondiente a $x_tasa de forma quincenal, la cual, es correspondiente a una tasa de $x_anual_tasa en forma anualizada, en lo sucesivo “TASA ORDINARIA ANUALIZADA”. Su aplicación se realizará única e invariablemente sobre el saldo insoluto del crédito, es decir, sobre el capital del crédito adeudado por <b>EL ACREDITADO</b> y nunca de manera anticipada, sino por períodos vencidos de acuerdo a los establecidos en la tabla de amortización (Anexo 2). Los intereses ordinarios se computarán desde el primer día que transcurra a partir de la disposición del crédito y se calcularán de la siguiente forma:
+						<b>SEGUNDA. Interés Ordinario.</b> Al saldo insoluto del crédito, se adicionará la tasa de interés ordinaria correspondiente a (Insertar datos de tasa de interés, de acuerdo a los parámetros establecidos en la sección de otorgamiento de crédito y expresarla en forma quincenal) de forma quincenal, la cual, es correspondiente a una <b>Tasa de Interés Anual Ordinaria Fija del $x_tasa %</b>, en lo sucesivo "TASA ORDINARIA ANUALIZADA". Su aplicación se realizará única e invariablemente sobre el saldo insoluto del crédito, es decir, sobre el capital del crédito adeudado por <b>EL ACREDITADO</b> y nunca de manera anticipada, sino por períodos vencidos de acuerdo a los establecidos en la tabla de amortización (Anexo 2). Los intereses ordinarios se computarán desde el primer día que transcurra a partir de la disposición del crédito, <b>pudiendo consultar las fechas para dicho cálculo a través del portal www.financieracrea.com al cual accederá a través del usuario y contraseña que le ha sido otorgado por parte de CREA</b> y se calcularán de la siguiente forma:
 						</span>
 					</font>
 				</p>
@@ -385,7 +385,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						El cálculo de los intereses ordinarios, se calculará de la siguiente forma: El monto establecido como TASA ORDINARIA ANUALIZADA, se dividirá entre 360 (trescientos sesenta) días y, el resultado, se multiplicará por el número de días que hubiesen transcurrido, entre la fecha de otorgamiento del crédito y la primer fecha de pago, o bien, entre los días que hubiesen transcurrido entre cada una de las fechas de pago; lo anterior tomando en cuenta la Tabla de amortización del crédito (anexo 2). El factor obtenido de la anterior operación, se multiplicará por el saldo insoluto del crédito que este vigente al momento del cálculo y de forma consistente con la tabla de amortización (Anexo2).
+						El cálculo de los intereses ordinarios, se calculará de la siguiente forma: El monto establecido como TASA ORDINARIA ANUALIZADA, se dividirá entre 360 (trescientos sesenta) días y, el resultado, se multiplicará por el número de días que hubiesen transcurrido, entre la fecha de otorgamiento del crédito y la primer fecha de pago, o bien, entre los días que hubiesen transcurrido entre cada una de las fechas de pago; lo anterior tomando en cuenta la Tabla de amortización del crédito (anexo 2). El factor obtenido de la anterior operación, se multiplicará por el saldo insoluto del crédito que este vigente al momento del cálculo y de forma consistente con la tabla de amortización (Anexo2),<b> la cual no se podrá modificar salvo en caso de reestructura previo consentimiento expreso del usuario.</b>
 						</span>
 					</font>
 				</p>
@@ -396,7 +396,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>TERCERA. Interés Moratorio.</b> La falta de pago de las amortizaciones del crédito de manera puntual de conformidad con lo establecido en la Tabla de Amortización del crédito (Anexo2), generarán intereses moratorios correspondientes a $x_anual_doble_tasa sobre las amortizaciones no pagadas, en lo sucesivo “TASA MORATORIA ANUALIZADA”. Los intereses moratorios se computarán desde el primer día de la falta de pago y hasta la total liquidación de la amortización adeudada.
+						<b>TERCERA. Interés Moratorio.</b> La falta de pago de las amortizaciones del crédito de manera puntual de conformidad con lo establecido en la Tabla de Amortización del crédito (Anexo2), generarán intereses moratorios correspondientes a una <b>Tasa de Interés Anual Moratoria Fija del $x_anual_doble_tasa %</b> sobre las amortizaciones no pagadas, en lo sucesivo "TASA MORATORIA ANUALIZADA". Los intereses moratorios se computarán desde el primer día de la falta de pago y hasta la total liquidación de la amortización adeudada.
 						</span>
 					</font>
 				</p>
@@ -407,7 +407,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						El cálculo de los intereses moratorios, se calculará de la siguiente forma: El monto establecido como TASA MORATORIA ANUALIZADA, se dividirá entre 360 (trescientos sesenta) días y, el resultado, se multiplicará por el número de días que hubiesen transcurrido, entre la fecha de incumplimiento de pago y hasta el momento en que <b>EL ACREDITADO</b> cubra la obligación referida en su totalidad. El factor obtenido de la anterior operación, se multiplicará por el saldo insoluto del crédito que hubiese estado vigente al momento de presentar el atraso.
+						El cálculo de los intereses moratorios, se calculará de la siguiente forma: El monto establecido como TASA MORATORIA ANUALIZADA, se dividirá entre 360 (trescientos sesenta) días y, el resultado, se multiplicará por el número de días que hubiesen transcurrido, entre la fecha de incumplimiento de pago y hasta el momento en que EL ACREDITADO cubra la obligación referida en su totalidad. El factor obtenido de la anterior operación, se multiplicará por el saldo vencido del crédito que hubiese estado vigente al momento de presentar el atraso. <b>Pudiendo consultar las fechas para dicho cálculo a través del portal www.financieracrea.com al cual accederá a través del usuario y contraseña que le ha sido otorgado por parte de CREA</b>
 						</span>
 					</font>
 				</p>
@@ -458,7 +458,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						Cuando la fecha límite de pago de la amortización, coincida con un día inhábil, <b>EL ACREDITADO</b> realizará el pago el día hábil inmediato siguiente, sin que proceda la aplicación de interés moratorio alguno.
+						<b>En cualquier momento, EL ACREDITADO podrá consultar la fecha límite de pago a través del portal www.financieracrea.com al cual accederá a través del usuario y contraseña que le ha sido otorgado por parte de CREA de forma privada para garantizar el buen uso de las mismas y así no generar mora o incurrir en mora.</b>
 						</span>
 					</font>
 				</p>
@@ -469,7 +469,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>SEXTA. Domiciliación de Recursos. EL ACREDITADO</b>, autoriza a <b>CREA</b> para generar domiciliación de pagos a través del anexo 8 de este contrato, que se define como “AUTORIZACIÓN PARA DOMICILIACIÓN DE RECURSOS”, para los siguientes escenarios:
+						<b>SEXTA. Domiciliación de Recursos. EL ACREDITADO</b>, autoriza a <b>CREA</b> para generar domiciliación de pagos a través del anexo 8 de este contrato, que se define como "AUTORIZACIÓN PARA DOMICILIACIÓN DE RECURSOS", para los siguientes escenarios:
 						</span>
 					</font>
 				</p>
@@ -502,7 +502,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>SÉPTIMA. Fuente de Pago. EL ACREDITADO</b> pagará a <b>CREA</b> el monto del crédito simple, los intereses ordinarios y en su caso, los intereses moratorios, con recursos de procedencia lícita y para ello, firma el consetimiento de retención de nómina (anexo 6), en la cual, otorga su consentimiento al patrón, para que de manera directa le pague a <b>CREA</b> en laa fechas establecidas en la tabla de Amortización (anexo2). 
+						<b>SÉPTIMA. Fuente de Pago. EL ACREDITADO</b> pagará a <b>CREA</b> el monto del crédito simple, los intereses ordinarios y en su caso, los intereses moratorios, con recursos de procedencia lícita y para ello, firma el consetimiento de retención de nómina (anexo 6), en la cual, otorga su consentimiento al patrón, para que de manera directa le pague a <b>CREA</b> en las fechas establecidas en la tabla de Amortización (anexo2). 
 						</span>
 					</font>
 				</p>
@@ -513,7 +513,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						Cuando por cualquier motivo el patrón no realice el pago de alguna de las amortizaciones, EL <b>ACREDITADO</b> deberá realizar el pago de la amortización no pagada por su patrón o del monto faltante para cubrir la amortización completa, por alguno de los medios de pago que <b>CREA</b> pone a su disposición señalados en la Clausula Octava del presente clausulado, sin excederse de las fechas límites de pago establecidas en la tabla de amortización (anexo 2). 
+						Cuando por cualquier motivo el patrón no realice el pago de alguna de las amortizaciones, EL <b>ACREDITADO</b> deberá realizar el pago de la amortización no pagada por su patrón o del monto faltante para cubrir la amortización completa, por alguno de los medios de pago que <b>CREA</b> pone a su disposición señalados en la Clausula Novena del presente clausulado, sin excederse de las fechas límites de pago establecidas en la tabla de amortización (anexo 2). 
 						</span>
 					</font>
 				</p>
@@ -623,7 +623,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						En caso de solicitarlo <b>EL ACREDITADO</b>, <b>CREA</b> podrá recibir pagos adelantados, es decir, pagos que aún no sean exigibles, con el fin de aplicarlos a cubrir pagos periódicos inmediatos siguientes, debiendo <b>EL ACREDITADO</b> entregar un escrito con firma autógrafa que incluya la leyenda siguiente: <b>EL ACREDITADO</b> autoriza que los recursos que se entregan en exceso a sus obligaciones exigibles, no se apliquen para pago anticipado del principal, sino que se utilicen para cubrir por adelantado los pagos periódicos del crédito inmediatos siguientes”. Cuando <b>CREA</b> reciba el pago aun no exigible del período o importes inferiores, no será necesario el escrito mencionado. Cada vez que <b>EL ACREDITADO</b> efectúe un pago adelantado, <b>CREA</b> le emitirá y entregará el comprobante correspondiente.
+						En caso de solicitarlo <b>EL ACREDITADO</b>, <b>CREA</b> podrá recibir pagos adelantados, es decir, pagos que aún no sean exigibles, con el fin de aplicarlos a cubrir pagos periódicos inmediatos siguientes, debiendo <b>EL ACREDITADO</b> entregar un escrito con firma autógrafa que incluya la leyenda siguiente: <b>EL ACREDITADO</b> autoriza que los recursos que se entregan en exceso a sus obligaciones exigibles, no se apliquen para pago anticipado del principal, sino que se utilicen para cubrir por adelantado los pagos periódicos del crédito inmediatos siguientes". Cuando <b>CREA</b> reciba el pago aun no exigible del período o importes inferiores, no será necesario el escrito mencionado. Cada vez que <b>EL ACREDITADO</b> efectúe un pago adelantado, <b>CREA</b> le emitirá y entregará el comprobante correspondiente.
 						</span>
 					</font>
 				</p>
@@ -694,7 +694,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						DÉCIMA. Estados de Cuenta e Informes. <b>EL ACREDITADO</b> otorga su consetimiento expreso para recibir de forma electrónica el estado de cuenta referente a éste crédito a través del portal www.financiera<b>CREA</b>.com al cual accederá a través del usuario y contraseña que le ha sido otorgado por parte de <b>CREA</b> de forma privada para garantizar el buen uso de las mismas. Mediante este acto, <b>EL ACREDITADO</b>, se da por recibido de las mismas. Dicho estado de cuenta será actualizado cada vez que <b>CREA</b> se de por recibido de cualquiera de los pagos que haya realizado <b>EL ACREDITADO</b> de conformidad con la tabla de amortización (anexo 2), entendiendo que dicha actualización pudiera tardar en actualizarse en el portal hasta 10 (diez) días hábiles posterior al pago de cualquiera de los vencimientos.
+						DÉCIMA. Estados de Cuenta e Informes. <b>EL ACREDITADO</b> otorga su consetimiento expreso para recibir de forma electrónica el estado de cuenta referente a éste crédito a través del portal www.financiera<b>CREA</b>.com al cual accederá a través del usuario y contraseña que le ha sido otorgado por parte de <b>CREA</b> de forma privada para garantizar el buen uso de las mismas. Mediante este acto, <b>EL ACREDITADO</b>, se da por recibido de las mismas. Dicho estado de cuenta será <b>entregado mensualmente y</b> actualizado cada vez que <b>CREA</b> se de por recibido de cualquiera de los pagos que haya realizado <b>EL ACREDITADO</b> de conformidad con la tabla de amortización (anexo 2), entendiendo que dicha actualización pudiera tardar en actualizarse en el portal hasta 10 (diez) días hábiles posterior al pago de cualquiera de los vencimientos.
 						</span>
 					</font>
 				</p>
@@ -793,35 +793,36 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						DÉCIMA TERCERA Medios de Comunicación. <b>CREA</b> pone a disposición de <b>EL ACREDITADO</b> los siguientes medios de comunicación, en donde atenderá sus solicitudes y consultas los días hábiles en un horario de 9:00 a 17:00 horas de lunes a viernes:
+						<b>DÉCIMA TERCERA Medios de Comunicación y Unidad Especializada de Atención a Usuarios (UNE). CREA</b> pone a disposición de <b>EL ACREDITADO</b> los siguientes medios de comunicación, en donde atenderá sus solicitudes y consultas los días hábiles de lunes a viernes:
 						</span>
 					</font>
 				</p>
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						Números telefónicos: (55) 51 35 02 59 para la Ciudad de México y área metropolitana, LADA sin costo al 01 800 83 76 133 para el resto de la República Mexicana.
+						Números telefónicos: (55) 51 35 02 59, ext. 110 para la Ciudad de México y área metropolitana, LADA sin costo al 01 800 83 76 133 para el resto de la República Mexicana.
 						</span>
 					</font>
 				</p>
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						-	Correo electrónico: consulta@financiera<b>CREA</b>.com
+						<b>Domicilio:</b> Boulevard Adolfo Ruiz Cortines 4302 Interior 212, Colonia Jardines del Pedregal de San Ángel, Alcaldía de Coyoacán, Ciudad de México, C.P. 04500.
 						</span>
 					</font>
 				</p>
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						-	Domicilio: Boulevard Adolfo Ruiz Cortines 4302 Interior 212, Colonia Jardines del Pedregal de San Ángel, Alcaldía de Coyoacán, Ciudad de México, C.P. 04500.
+						Correo electrónico: clientes@financieracrea.com
 						</span>
 					</font>
 				</p>
+				
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						Sitio de internet: www.financiera<b>CREA</b>.com
+						Sitio de internet: www.financieracrea.com
 						</span>
 					</font>
 				</p>
@@ -887,7 +888,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						DÉCIMA SEXTA. Cesión de Deuda o Crédito. <b>EL ACREDITADO</b> no podrá ceder total o parcialmente los derechos y obligaciones que se establecen en el presente contrato.
+						<b>DÉCIMA SEXTA. Cesión de Deuda o Crédito. EL ACREDITADO</b> no podrá ceder total o parcialmente los derechos y obligaciones que se establecen en el presente contrato, salvo lo señalado en la cláusula Décima Séptima.
 						</span>
 					</font>
 				</p>
@@ -909,7 +910,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						DÉCIMA SÉPTIMA. Terminación, Vencimiento Anticipado y Rescisión. Son causas de vencimiento anticipado por las que <b>CREA</b> podrá rescindir el presente contrato, en forma enunciativa mas no limitativa, las siguientes:
+						<b>DÉCIMA SÉPTIMA. Terminación, Vencimiento Anticipado y Rescisión.</b> Son causas de vencimiento anticipado por las que <b>CREA</b> podrá rescindir el presente contrato, las siguientes:
 						</span>
 					</font>
 				</p>
@@ -942,7 +943,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						c) Si <b>EL ACREDITADO</b> destinara el monto del crédito a un fin distinto al establecido y/o ilícito.
+						c) Si <b>EL ACREDITADO</b> destinara el monto del crédito a un fin ilícito.
 						</span>
 					</font>
 				</p>
@@ -975,7 +976,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						Al ocurrir uno o varios de los supuestos antes indicados, <b>CREA</b> podrá dar por vencido anticipadamente el crédito y, en consecuencia, requerirá a <b>EL ACREDITADO</b> el pago inmediato del saldo insoluto del crédito, los intereses devengados hasta la total liquidación o cualquier otro monto que <b>EL ACREDITADO</b> adeude conforme a lo establecido en el presente contrato.
+						Al ocurrir uno o varios de los supuestos antes indicados, <b>CREA</b> podrá dar por vencido anticipadamente el crédito y, en consecuencia, requerirá a <b>EL ACREDITADO</b> el pago inmediato del saldo insoluto del crédito, los intereses devengados hasta la total liquidación o cualquier otro monto que <b>EL ACREDITADO</b> adeude.
 						</span>
 					</font>
 				</p>
@@ -997,7 +998,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>CREA</b> comunicará a <b>EL ACREDITADO</b>, al día hábil siguiente de la recepción de la solicitud, el importe de los adeudos y dentro de los cinco días hábiles siguientes al de la recepción de la solicitud, pondrá a su disposición dicho dato, en el domicilio de <b>CREA</b> por lo que una vez liquidados los adeudos, se dará por terminado el contrato, entregando, de existir, el saldo a favor de <b>EL ACREDITADO</b> informándole que se encuentra a su disposición para que le sea devuelto por transferencia electrónica o cheque nominativo, además <b>CREA</b> emitirá y entregará: i) una carta en la que conste el fin de la relación contractual, ii) la constancia de no adeudos del crédito que ampara el presente contrato dentro de los diez días hábiles siguientes a la fecha en que se realizó el pago, iii) el reporte a las sociedades de información crediticia, informando que la cuenta está completamente liquidada, dentro del plazo que para tales efectos señale la ley aplicable; debiéndose también cancelar Usuario y contraseña del portal electrónico asignado a <b>EL ACREDITADO</b> y, en su caso, los servicios de domiciliación.
+						<b>CREA</b> comunicará a <b>EL ACREDITADO</b>, al día hábil siguiente de la recepción de la solicitud, el importe de los adeudos y dentro de los cinco días hábiles siguientes al de la recepción de la solicitud, pondrá a su disposición dicho dato, en el domicilio de <b>CREA</b> por lo que una vez liquidados los adeudos, <b>se dará por terminado el contrato al día siguiente hábil a aquel en que se reciba la solicitud de terminación siempre y cuando no existan adeudos</b>, entregando, en caso de existir, el saldo a favor de <b>EL ACREDITADO</b> informándole que se encuentra a su disposición para que le sea devuelto por transferencia electrónica o cheque nominativo, además <b>CREA</b> emitirá y entregará: i) una carta en la que conste el fin de la relación contractual, ii) la constancia de no adeudos del crédito que ampara el presente contrato dentro de los diez días hábiles siguientes a la fecha en que se realizó el pago, iii) el reporte a las sociedades de información crediticia, informando que la cuenta está completamente liquidada, dentro del plazo que para tales efectos señale la ley aplicable; debiéndose también cancelar Usuario y contraseña del portal electrónico asignado a EL ACREDITADO y, en su caso, los servicios de domiciliación.
 						</span>
 					</font>
 				</p>

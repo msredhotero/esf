@@ -3,10 +3,10 @@
 <?php
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // date in the past
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); // always modified
-header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1 
-header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1
+header("Cache-Control: post-check=0, pre-check=0", false);
 header("Cache-Control: private");
-header("Pragma: no-cache"); // HTTP/1.0 
+header("Pragma: no-cache"); // HTTP/1.0
 ?>
 <?php
 $ewCurSec = 0; // Initialise
@@ -18,8 +18,8 @@ define("ewAllowedit", 4, true);
 define("ewAllowview", 8, true);
 define("ewAllowlist", 8, true);
 define("ewAllowreport", 8, true);
-define("ewAllowsearch", 8, true);																														
-define("ewAllowadmin", 16, true);						
+define("ewAllowsearch", 8, true);
+define("ewAllowadmin", 16, true);
 ?>
 <?php
 if (@$_SESSION["php_project_esf_status"] <> "login") {
@@ -45,7 +45,7 @@ $x_liga_ife = 0;
 // Get action
 
 if(empty($sAction)){
-$sAction = @$_POST["a_add"];	
+$sAction = @$_POST["a_add"];
 	}
 
 if (($sAction == "") || ((is_null($sAction)))) {
@@ -68,8 +68,8 @@ $id = $x_galeria_fotografica_id;
 
 $conn = phpmkr_db_connect(HOST, USER, PASS, DB, PORT);
 
-$sqlS = "SELECT foto_domicilio_1, foto_domicilio_2, foto_domicilio_3, foto_domicilio_4, foto_domicilio_5 FROM galeria_fotografica WHERE galeria_fotografica_id = $id AND ( foto_domicilio_1 IS NOT NULL || foto_domicilio_2 IS NOT NULL || foto_domicilio_3 IS NOT NULL || foto_domicilio_4 IS NOT NULL || foto_domicilio_5 IS NOT NULL )";	
-		
+$sqlS = "SELECT foto_domicilio_1, foto_domicilio_2, foto_domicilio_3, foto_domicilio_4, foto_domicilio_5 FROM galeria_fotografica WHERE galeria_fotografica_id = $id AND ( foto_domicilio_1 IS NOT NULL || foto_domicilio_2 IS NOT NULL || foto_domicilio_3 IS NOT NULL || foto_domicilio_4 IS NOT NULL || foto_domicilio_5 IS NOT NULL )";
+
 $rsS = phpmkr_query($sqlS, $conn) or die("Error al seleccionar IFE". phpmkr_error()."sql:".$sqlS);
 $row = phpmkr_fetch_array($rsS);
 $x_foto_domicilio_1 = $row["foto_domicilio_1"];
@@ -79,10 +79,10 @@ $x_foto_domicilio_4 = $row["foto_domicilio_4"];
 $x_foto_domicilio_5 = $row["foto_domicilio_5"];
 
 	mysql_free_result($rsS);
-	
-	
-	
-		
+
+
+
+
 
 
 $sAction = "C";
@@ -97,39 +97,39 @@ switch ($sAction)
 			//exit();
 		}
 		break;
-	
+
 }
 ?>
 <?php include ("header.php") ?>
 <script type="text/javascript" src="ew.js"></script>
 <script type="text/javascript">
 <!--
-EW_dateSep = "/"; // set date separator	
+EW_dateSep = "/"; // set date separator
 
 //-->
 </script>
 <script type="text/javascript">
 
 function checkMyformParte1(){
-	
+
 	EW_this = document.Parte1;
 	validada = true;
-	
-	
+
+
 	if (EW_this.x_nombre_galeria && !EW_hasValue(EW_this.x_nombre_galeria, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_nombre_galeria, "TEXT", "EL nombre de la galeria es requerido."))
 		validada = false;
 	}
-	
+
 	if (EW_this.x_tipo_galeria && !EW_hasValue(EW_this.x_tipo_galeria, "SELECT" )) {
 	if (!EW_onError(EW_this, EW_this.x_tipo_galeria, "SELECT", "El tipo de galeria es requerido."))
 		validada = false;
 	}
-	
+
 	//termina validaciones del formato adquision de maquinaria
 	if(validada == true){
 	//EW_this.a_edit.value = "U";
-	
+
 	EW_this.submit();
 ;
 	}
@@ -158,7 +158,7 @@ if (EW_this.x_ingresos_mensuales && !EW_hasValue(EW_this.x_ingresos_mensuales, "
 }
 if (EW_this.x_ingresos_mensuales && !EW_checknumber(EW_this.x_ingresos_mensuales.value)) {
 	if (!EW_onError(EW_this, EW_this.x_ingresos_mensuales, "TEXT", "Los ingresos mensuales son requeridos."))
-		return false; 
+		return false;
 }
 if (EW_this.x_ocupacion && !EW_hasValue(EW_this.x_ocupacion, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_ocupacion, "TEXT", "La oupación es requerida."))
@@ -180,19 +180,19 @@ var EW_HTMLArea;
 
 //-->
 </script>
-  
-   
-   
+
+
+
    <p><span class="phpmaker"><br><br>
      <a href="php_galeriaview.php?x_galeria_fotografica_id=<?php echo $x_galeria_fotografica_id;?>">Regresar</a></span></p>
-   
+
        <?php if(!empty($x_galeria_fotografica_id)){?>
 <form name="avaladd" id="avaladd" action="" method="post" onSubmit="return EW_checkMyForm(this);">
 <input type="hidden" name="x_galeria_fotografica_id" value="<?php echo $x_galeria_fotorafica_id;?>" />
 
 <table width="697" border="0">
   <tr>
-    <td height="20" class="ewTableHeaderThin">Domicilio de <?php echo $x_nombre_galeria; ?></td>
+    <td height="20" class="ewTableHeaderThin">Estado de cuenta bancario de <?php echo $x_nombre_galeria; ?></td>
    </tr>
     <?php
 
@@ -200,31 +200,31 @@ var EW_HTMLArea;
   <tr background="images/headTUpload1.jpg">
     <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_domicilio_1 ?>"  target="_blank">Domicilio 1</a></td>
     </tr><?php }?>
-   
-     <?php 
-	 
+
+     <?php
+
 	   if(!empty($x_foto_domicilio_2)){?>
   <tr background="images/headTUpload2.jpg">
     <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_domicilio_2 ?>"  target="_blank">Domicilio 2 </a></td>
     </tr><?php }?>
-    
+
      <?php
 	   if(!empty($x_foto_domicilio_3)){?>
      <tr background="images/headTUpload1.jpg">
     <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_domicilio_3 ?>"  target="_blank">Domicilio 3</a></td>
     </tr><?php }?>
-    
+
    <?php if(!empty($x_foto_domicilio_4)){?>
   <tr background="images/headTUpload2.jpg">
     <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_domicilio_4 ?>"  target="_blank">Domicilio 4</a></td>
     </tr><?php }?>
-    
+
      <?php  if(!empty($x_foto_domicilio_5)){?>
      <tr background="images/headTUpload1.jpg">
     <td height="27"><a href="<?php echo ewUploadPath(0) .$x_foto_domicilio_5 ?>"  target="_blank">Domicilio 5</a></td>
     </tr><?php }?>
-    
-     
+
+
     <tr><td align="right"></td></tr>
 </table>
 </form>
@@ -242,21 +242,21 @@ phpmkr_db_close($conn);
 
 function LoadData($conn, $x_id)
 {
-	
 
-$id = $x_id;	
+
+$id = $x_id;
 	$sqlS = "SELECT foto_domicilio_1, foto_domicilio_2, foto_domicilio_3, foto_domicilio_4, foto_domicilio_5 FROM galeria_fotografica WHERE galeria_fotografica_id = $id";
-		
+
 	$rsS = phpmkr_query($sqlS, $conn) or die("Error al seleccionar IFE". phpmkr_error()."sql:".$sqlS);
 	$numero = mysql_num_rows($rsS);
 	if($numero >0){
 		$GLOBLALS["x_liga_ife"] = 1;
-	
+
 		}
 	mysql_free_result($rsS);
-	
-	
-	
+
+
+
 		$sqlS = "SELECT foto_persona_1, foto_persona_2, foto_persona_3, foto_persona_4, foto_persona_5 FROM galeria_fotografica WHERE galeria_fotografica_id = $id";
 	$rsS = phpmkr_query($sqlS, $conn) or die("Error al seleccionar IFE". phpmkr_error()."sql:".$sqlS);
 	$numero = mysql_num_rows($rsS);
@@ -264,32 +264,32 @@ $id = $x_id;
 		$GLOBLALS["x_liga_foto"] = 1;
 		}
 	mysql_free_result($rsS);
-	
-		$sqlS = "SELECT foto_domicilio_1, foto_domicilio_2, foto_domicilio_3, foto_domicilio_4, foto_domicilio_5 FROM galeria_fotografica WHERE galeria_fotografica_id = $id";	
+
+		$sqlS = "SELECT foto_domicilio_1, foto_domicilio_2, foto_domicilio_3, foto_domicilio_4, foto_domicilio_5 FROM galeria_fotografica WHERE galeria_fotografica_id = $id";
 	$rsS = phpmkr_query($sqlS, $conn) or die("Error al seleccionar IFE". phpmkr_error()."sql:".$sqlS);
 	$numero = mysql_num_rows($rsS);
 	if($numero >0){
 		$GLOBLALS["x_liga_domicilio"] = 1;
 		}
 	mysql_free_result($rsS);
-	
-		$sqlS = "SELECT comprobante_domicilio_1, comprobante_domicilio_2, comprobante_domicilio_3, comprobante_domicilio_4, comprobante_domicilio_5 FROM galeria_fotografica WHERE galeria_fotografica_id = $id";	
+
+		$sqlS = "SELECT comprobante_domicilio_1, comprobante_domicilio_2, comprobante_domicilio_3, comprobante_domicilio_4, comprobante_domicilio_5 FROM galeria_fotografica WHERE galeria_fotografica_id = $id";
 	$rsS = phpmkr_query($sqlS, $conn) or die("Error al seleccionar IFE". phpmkr_error()."sql:".$sqlS);
 	$numero = mysql_num_rows($rsS);
 	if($numero >0){
 		$GLOBLALS["x_liga_comp_dom"] = 1;
 		}
 	mysql_free_result($rsS);
-	
-		$sqlS = "SELECT comprobante_propiedad_1, comprobante_propiedad_2, comprobante_propiedad_3, comprobante_propiedad_4, comprobante_propiedad_5 FROM galeria_fotografica WHERE galeria_fotografica_id = $id";	
+
+		$sqlS = "SELECT comprobante_propiedad_1, comprobante_propiedad_2, comprobante_propiedad_3, comprobante_propiedad_4, comprobante_propiedad_5 FROM galeria_fotografica WHERE galeria_fotografica_id = $id";
 	$rsS = phpmkr_query($sqlS, $conn) or die("Error al seleccionar IFE". phpmkr_error()."sql:".$sqlS);
 	$numero = mysql_num_rows($rsS);
 	if($numero >0){
 		$GLOBLALS["x_liga_propiedad"] = 1;
 		}
 	mysql_free_result($rsS);
-	
-		$sqlS = "SELECT foto_negocio_1, foto_negocio_2, foto_negocio_3, foto_negocio_4, foto_negocio_5, foto_negocio_6, foto_negocio_7, foto_negocio_8, foto_negocio_9, foto_negocio_10 FROM galeria_fotografica WHERE galeria_fotografica_id = $id";	
+
+		$sqlS = "SELECT foto_negocio_1, foto_negocio_2, foto_negocio_3, foto_negocio_4, foto_negocio_5, foto_negocio_6, foto_negocio_7, foto_negocio_8, foto_negocio_9, foto_negocio_10 FROM galeria_fotografica WHERE galeria_fotografica_id = $id";
 	$rsS = phpmkr_query($sqlS, $conn) or die("Error al seleccionar IFE". phpmkr_error()."sql:".$sqlS);
 	$numero = mysql_num_rows($rsS);
 	if($numero >0){
@@ -310,11 +310,11 @@ return true;
 function AddData($conn)
 {
 	#agregamos la galeria
-	
-	
-	
+
+
+
 	// Field nombre_completo
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_nombre_galeria"]) : $GLOBALS["x_nombre_galeria"]; 
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_nombre_galeria"]) : $GLOBALS["x_nombre_galeria"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`nombre_galeria`"] = $theValue;
 
@@ -322,7 +322,7 @@ function AddData($conn)
 	$theValue = ($GLOBALS["x_tipo_galeria"] != "") ? intval($GLOBALS["x_tipo_galeria"]) : "NULL";
 	$fieldList["`tipo_galeria_id`"] = $theValue;
 
-	
+
 
 	// insert into database
 	$sSql = "INSERT INTO `galeria_fotografica` (";
@@ -332,12 +332,12 @@ function AddData($conn)
 	$sSql .= ")";
 	$x_result = phpmkr_query($sSql, $conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 	$GLOBALS["x_galeria_fotografica_id"] = mysql_insert_id();
-	
+
 	if($x_result){
 	return true;
 	}else{
 		//die("error". phphmkr_error()."sql".$sSql);
-				
+
 		return false;
 		}
 }
