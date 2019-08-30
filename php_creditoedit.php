@@ -178,6 +178,17 @@ if(v_acc == 1){
 		if (!EW_onError(EW_this, EW_this.x_banco_id, "SELECT", "El banco y cta son requeridos."))
 			validada = false;
 	}
+
+	// nuevo marcos 30/08/2019
+	if (validada == true && EW_this.x_banco_cliente_id && !EW_hasValue(EW_this.x_banco_cliente_id, "SELECT" )) {
+		if (!EW_onError(EW_this, EW_this.x_banco_cliente_id, "SELECT", "EL banco del cliente es requerido."))
+			validada = false;
+	}
+
+	if (validada == true && EW_this.x_clave_interbancaria && !EW_hasValue(EW_this.x_clave_interbancaria, "TEXT" )) {
+		if (!EW_onError(EW_this, EW_this.x_clave_interbancaria, "TEXT", "La clave InterBancaria del cliente es requerida."))
+			validada = false;
+	}
 	
 	if (validada == true && EW_this.x_referencia_pago && !EW_hasValue(EW_this.x_referencia_pago, "TEXT" )) {
 		if (!EW_onError(EW_this, EW_this.x_referencia_pago, "TEXT", "La refencia es requerida."))
@@ -240,6 +251,19 @@ if(v_acc == 1){
 		if (!EW_onError(EW_this, EW_this.x_banco_id, "SELECT", "El banco y la cuenta son requeridos."))
 			validada = false;
 	}	
+
+	// nuevo marcos 30/08/2019
+	if (validada == true && EW_this.x_banco_cliente_id && !EW_hasValue(EW_this.x_banco_cliente_id, "SELECT" )) {
+		if (!EW_onError(EW_this, EW_this.x_banco_cliente_id, "SELECT", "EL banco del cliente es requerido."))
+			validada = false;
+	}
+
+	if (validada == true && EW_this.x_clave_interbancaria && !EW_hasValue(EW_this.x_clave_interbancaria, "TEXT" )) {
+		if (!EW_onError(EW_this, EW_this.x_clave_interbancaria, "TEXT", "La clave InterBancaria del cliente es requerida."))
+			validada = false;
+	}
+
+
 	if (validada == true && EW_this.x_referencia_pago && !EW_hasValue(EW_this.x_referencia_pago, "TEXT" )) {
 		if (!EW_onError(EW_this, EW_this.x_referencia_pago, "TEXT", "La refencia es requerida."))
 			validada = false;
@@ -536,6 +560,40 @@ echo $x_medio_pago_idList;} else{
     <td class="ewTableHeaderThin">Tarjeta Num.</td>
     <td class="ewTableAltRow"><input type="text" name="x_tdp" id="x_tdp" size="20" maxlength="50" value="<?php echo htmlspecialchars(@$x_tdp) ?>" /></td>
   </tr>
+
+  <tr>
+	  <td class="ewTableHeaderThin">Banco Cliente</td>
+	  <td class="ewTableAltRow"><span>
+		<?php if (!(!is_null($x_banco_cliente_id)) || ($x_banco_cliente_id == "")) { $x_banco_cliente_id = 0;} // Set default value ?>
+		<?php
+		$x_medio_pago_idList = "<select name=\"x_banco_cliente_id\">";
+		$x_medio_pago_idList .= "<option value=''>Seleccione</option>";
+		$sSqlWrk = "SELECT `idbancocliente`, `nombre`, `cuenta` FROM `banco_cliente`";
+		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
+		if ($rswrk) {
+			$rowcntwrk = 0;
+			while ($datawrk = phpmkr_fetch_array($rswrk)) {
+				$x_medio_pago_idList .= "<option value=\"" . htmlspecialchars($datawrk[0]) . "\"";
+				if ($datawrk["idbancocliente"] == @$x_banco_cliente_id) {
+					$x_medio_pago_idList .= "' selected";
+				}
+				$x_medio_pago_idList .= ">" . $datawrk["nombre"] . "</option>";
+				$rowcntwrk++;
+			}
+		}
+		@phpmkr_free_result($rswrk);
+		$x_medio_pago_idList .= "</select>";
+		echo $x_medio_pago_idList;
+		?>
+		</span></td>
+	  </tr>
+
+	  <tr>
+	  <td class="ewTableHeaderThin">Clave Interbancaria Cliente:</td>
+	  <td class="ewTableAltRow"><input name="x_clave_bancaria" type="text" id="x_clave_bancaria" value="<?php echo @$x_clave_interbancaria; ?>" size="20" maxlength="250" /></td>
+	  </tr>
+
+
   <tr>
     <td width="110" class="ewTableHeaderThin"><span>Status</span></td>
     <td width="678" class="ewTableAltRow"><span> <span>
@@ -919,6 +977,10 @@ function LoadData($conn)
 		$GLOBALS["x_fecha_ultimo_pago"] = $row["fecha_ultimo_pago"];
 		$GLOBALS["x_penalizacion"] = $row["penalizacion"];
 		$GLOBALS["x_garantia_liquida"] = $row["garantia_liquida"];
+
+		// nuevo marcos 30/08/2019
+		$GLOBALS["x_banco_cliente_id"] = $row["banco_cliente_id"];
+		$GLOBALS["x_clave_interbancaria"] = $row["clave_interbancaria"];
 		
 		
 		$sqlGarantiaLiquida = "SELECT * FROM garantia_liquida WHERE credito_id = ".$GLOBALS["x_credito_id"]."";
@@ -1014,6 +1076,7 @@ function LoadData($conn)
 function EditData($conn)
 {
 	global $x_credito_id;
+	$x_usuario_id = 123;		
 	$sSql = "SELECT * FROM `credito`";
 	$sWhere = "";
 	$sGroupBy = "";
@@ -1032,7 +1095,9 @@ function EditData($conn)
 	if ($sOrderBy <> "") {
 		$sSql .= " ORDER BY " . $sOrderBy;
 	}
+
 	$rs = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
+
 	if (phpmkr_num_rows($rs) == 0) {
 		$bEditData = false; // Update Failed
 	}else{
@@ -1043,6 +1108,10 @@ function EditData($conn)
 
 		$theValue = ($GLOBALS["x_banco_id"] != "") ? intval($GLOBALS["x_banco_id"]) : "0";
 		$fieldList["`banco_id`"] = $theValue;
+
+		// nuevo marcos 30/08/2019
+		$theValue = ($GLOBALS["x_banco_cliente_id"] != "") ? intval($GLOBALS["x_banco_cliente_id"]) : "0";
+		$fieldList["`banco_cliente_id`"] = $theValue;
 		
 		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_referencia_pago"]) : $GLOBALS["x_referencia_pago"]; 
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
@@ -1056,6 +1125,10 @@ function EditData($conn)
 
 		$theValue = ($GLOBALS["x_tdp"] != "") ? " '" . $GLOBALS["x_tdp"] . "'" : "NULL";
 		$fieldList["`tarjeta_num`"] = $theValue;
+
+		// nuevo marcos 30/08/2019
+		$theValue = ($GLOBALS["x_clave_bancaria"] != "") ? intval($GLOBALS["x_clave_bancaria"]) : "0";
+		$fieldList["`clave_interbancaria`"] = $theValue;
 		
 		// Field penalizacion
 		$theValue = ($GLOBALS["x_penalizacion"] != "") ? " '" . doubleval($GLOBALS["x_penalizacion"]) . "'" : "NULL";
@@ -1137,12 +1210,14 @@ if(!empty($x_vencimiento_id)){
 		$sqlInsert .= " VALUES (NULL, \"$x_fecha_hoy\", $x_credito_id, $x_vencimiento_id, '1',$x_usuario_id )";
 		$rsQuery = phpmkr_query($sqlInsert,$conn) or die("Error al insertar ".phpmkr_error()."sql:".$sqlInsert);	
 		//echo $sqlInsert ."<br>".$sqlUpdateReg."";
-		}else{			
+		}else{	
+			
 		// se cambia se garda el registro pero no se guarda como nota de credito	
 			$sqlUpdateReg = "UPDATE vencimiento SET vencimiento_status_id  = 8 WHERE vencimiento_id = $x_vencimiento_id ";
 			$rsupdate = phpmkr_query($sqlUpdateReg,$conn) or die("error al actualizar".phpmkr_error()."sql :".$sqlUpdateReg);		
 			$sqlInsert = "INSERT INTO `condonacion` (`condonacion_id`, `fecha_registro`, `credito_id`, `vencimiento_id`, `status_id`,`usuario_id`)";
 			$sqlInsert .= " VALUES (NULL, \"$x_fecha_hoy\", $x_credito_id, $x_vencimiento_id, '2',$x_usuario_id)";
+			
 			$rsQuery = phpmkr_query($sqlInsert,$conn) or die("Error al insertar ".phpmkr_error()."sql:".$sqlInsert);
 			//echo $sqlInsert ."<br>".$sqlUpdateReg."";
 			}

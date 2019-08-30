@@ -55,6 +55,9 @@ $ox_medio_pago_id = Null;
 $x_referencia_pago = Null; 
 $ox_referencia_pago = Null;
 $x_num_pagos = Null;
+
+$x_banco_cliente_id = 0;
+
 ?>
 <?php include ("db.php") ?>
 <?php include ("phpmkrfn.php") ?>
@@ -125,6 +128,11 @@ $x_promotor_id = @$_POST["x_promotor_id"];
 	$x_tipo_calculo = $_POST["x_tipo_calculo"];
 	$x_penalizacion = @$_POST["x_penalizacion"];
 	$x_garantia_liquida = @$_POST["x_garantia_liquida"];	
+
+	// nuevo marcos 30/08/2019
+	$x_banco_cliente_id = @$_POST['x_banco_cliente_id'];
+	$x_clave_interbancaria = @$_POST['x_clave_interbancaria'];
+
 }
 $conn = phpmkr_db_connect(HOST, USER, PASS, DB, PORT);
 switch ($sAction)
@@ -167,11 +175,15 @@ if($GLOBALS["x_credito_tipo_id"] == 1){
 		$row = phpmkr_fetch_array($rs);
 		$GLOBALS["x_cliente_id"] = $row["cliente_id"];		
 		phpmkr_free_result($rs);			
-if(empty($GLOBALS["x_tdp"])){
-		$sSql = "SELECT credito.tarjeta_num FROM credito join solicitud on solicitud.solicitud_id = credito.solicitud_id join solicitud_cliente on solicitud_cliente.solicitud_id = solicitud.solicitud_id join cliente on cliente.cliente_id = solicitud_cliente.cliente_id where cliente.cliente_id = $x_cliente_id and not isnull(credito.tarjeta_num) limit 1";
+
+// nuevo marcos 30/08/2019
+if(empty($GLOBALS["x_tdp"]) || empty($GLOBALS["clave_interbancaria"])) {
+		$sSql = "SELECT credito.tarjeta_num, credito.clave_interbancaria FROM credito join solicitud on solicitud.solicitud_id = credito.solicitud_id join solicitud_cliente on solicitud_cliente.solicitud_id = solicitud.solicitud_id join cliente on cliente.cliente_id = solicitud_cliente.cliente_id where cliente.cliente_id = $x_cliente_id and not isnull(credito.tarjeta_num) limit 1";
 		$rs = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 		$row = phpmkr_fetch_array($rs);
 		$GLOBALS["x_tdp"] = $row["tarjeta_num"];
+		$GLOBALS["clave_interbancaria"] = $row["clave_interbancaria"];
+
 		phpmkr_free_result($rs);		
 }
 
@@ -431,6 +443,17 @@ if (validada == true && EW_this.x_medio_pago_id && !EW_hasValue(EW_this.x_medio_
 }
 if (validada == true && EW_this.x_banco_id && !EW_hasValue(EW_this.x_banco_id, "SELECT" )) {
 	if (!EW_onError(EW_this, EW_this.x_banco_id, "SELECT", "EL banco y cuenta son requeridos."))
+		validada = false;
+}
+
+// nuevo marcos 30/08/2019
+if (validada == true && EW_this.x_banco_cliente_id && !EW_hasValue(EW_this.x_banco_cliente_id, "SELECT" )) {
+	if (!EW_onError(EW_this, EW_this.x_banco_cliente_id, "SELECT", "EL banco del cliente es requerido."))
+		validada = false;
+}
+
+if (validada == true && EW_this.x_clave_interbancaria && !EW_hasValue(EW_this.x_clave_interbancaria, "TEXT" )) {
+	if (!EW_onError(EW_this, EW_this.x_clave_interbancaria, "TEXT", "La clave InterBancaria del cliente es requerida."))
 		validada = false;
 }
 /////////////////////////////////************************////////////////////////////////
@@ -737,6 +760,40 @@ echo $x_medio_pago_idList;
 	  <td class="ewTableHeaderThin">Numero de Tarjeta:</td>
 	  <td class="ewTableAltRow"><input name="x_tdp" type="text" id="x_tdp" value="<?php echo @$x_tdp; ?>" size="20" maxlength="50" /></td>
 	  </tr>
+
+	  <tr>
+	  <td class="ewTableHeaderThin">Banco Cliente</td>
+	  <td class="ewTableAltRow"><span>
+		<?php if (!(!is_null($x_banco_cliente_id)) || ($x_banco_cliente_id == "")) { $x_banco_cliente_id = 0;} // Set default value ?>
+		<?php
+		$x_medio_pago_idList = "<select name=\"x_banco_cliente_id\">";
+		$x_medio_pago_idList .= "<option value=''>Seleccione</option>";
+		$sSqlWrk = "SELECT `idbancocliente`, `nombre`, `cuenta` FROM `banco_cliente`";
+		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
+		if ($rswrk) {
+			$rowcntwrk = 0;
+			while ($datawrk = phpmkr_fetch_array($rswrk)) {
+				$x_medio_pago_idList .= "<option value=\"" . htmlspecialchars($datawrk[0]) . "\"";
+				if ($datawrk["idbancocliente"] == @$x_banco_cliente_id) {
+					$x_medio_pago_idList .= "' selected";
+				}
+				$x_medio_pago_idList .= ">" . $datawrk["nombre"] . "</option>";
+				$rowcntwrk++;
+			}
+		}
+		@phpmkr_free_result($rswrk);
+		$x_medio_pago_idList .= "</select>";
+		echo $x_medio_pago_idList;
+		?>
+		</span></td>
+	  </tr>
+
+	  <tr>
+	  <td class="ewTableHeaderThin">Clave Interbancaria Cliente:</td>
+	  <td class="ewTableAltRow"><input name="x_clave_bancaria" type="text" id="x_clave_bancaria" value="<?php echo @$x_clave_interbancaria; ?>" size="20" maxlength="250" /></td>
+	  </tr>
+
+
       <tr>
 	  <td class="ewTableHeaderThin">Penalizaci&oacute;n:</td>
 	  <td class="ewTableAltRow"><input name="x_penalizacion" type="text" id="x_penalizacion" value="<?php echo @$x_m_4; ?>" size="20" maxlength="50" /></td>
@@ -930,13 +987,20 @@ function AddData($conn)
 	$theValue = ($GLOBALS["x_banco_id"] != "") ? intval($GLOBALS["x_banco_id"]) : "0";
 	$fieldList["`banco_id`"] = $theValue;
 
+	// nuevo marcos 30/08/2019
+	$theValue = ($GLOBALS["x_banco_cliente_id"] != "") ? intval($GLOBALS["x_banco_cliente_id"]) : "0";
+	$fieldList["`banco_cliente_id`"] = $theValue;
+
 	// Field referencia_pago
 	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_referencia_pago"]) : $GLOBALS["x_referencia_pago"]; 
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`referencia_pago`"] = $theValue;
 
 
-	// 
+	// nuevo marcos 30/08/2019
+	$theValue = ($GLOBALS["x_clave_bancaria"] != "") ? intval($GLOBALS["x_clave_bancaria"]) : "0";
+	$fieldList["`clave_interbancaria`"] = $theValue;
+
 	$theValue = ($GLOBALS["x_num_pagos"] != "") ? intval($GLOBALS["x_num_pagos"]) : "0";
 	$fieldList["`num_pagos`"] = $theValue;
 

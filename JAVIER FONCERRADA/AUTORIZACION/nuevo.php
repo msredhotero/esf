@@ -27,7 +27,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>1.</b> Nombre del proveedor del bien, servicio o crédito, según corresponda, que pretende pagarse: ___________________________________________________.
+						<b>1.</b> Nombre del proveedor del bien, servicio o crédito, según corresponda, que pretende pagarse: MICROFINANCIERA CRECE SA DE CV SOFOM ENR.
 					</span>
 					</font>
 				</p>
@@ -38,7 +38,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>2.</b> Bien, servicio o crédito, a pagar:________________________________________. En su caso, el número de identificación generado por el proveedor (dato no obligatorio): _____________.
+						<b>2.</b> Bien, servicio o crédito, a pagar:____________CRÉDITO__________________. En su caso, el número de identificación generado por el proveedor (dato no obligatorio): ___ $x_credito_num .
 					</span>
 					</font>
 				</p>
@@ -49,7 +49,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>3.</b> Periodicidad del pago (Facturación) (Ejemplo: semanal, quincenal, mensual, bimestral, semestral, anual, etc.): _____________________________________ o,
+						<b>3.</b> Periodicidad del pago (Facturación) (Ejemplo: semanal, quincenal, mensual, bimestral, semestral, anual, etc.): ____MENSUAL_____________________ o,
 						<br>
 						en su caso, el día específico en el que se solicita realizar el pago: ____________.
 					</span>
@@ -62,7 +62,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>4.</b> Nombre del banco que lleva la cuenta de depósito a la vista o de ahorro en la que se realizará el cargo: _________________________________.
+						<b>4.</b> Nombre del banco que lleva la cuenta de depósito a la vista o de ahorro en la que se realizará el cargo: $x_banco .
 					</span>
 					</font>
 				</p>
@@ -84,17 +84,6 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>1.</b> Nombre del proveedor del bien, servicio o crédito, según corresponda, que pretende pagarse: ___________________________________________________.
-					</span>
-					</font>
-				</p>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
-					<font face="Calibri">
-						<span style="line-height: 115%; font-size: 9pt">
 						Número de tarjeta de débito (16 dígitos): ____________________________;
 					</span>
 					</font>
@@ -106,7 +95,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						Clave Bancaria Estandarizada ("CLABE") de la Cuenta (18 dígitos):___________, o
+						Clave Bancaria Estandarizada ("CLABE") de la Cuenta (18 dígitos): $x_clave_interbancaria , o
 					</span>
 					</font>
 				</p>
@@ -117,7 +106,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>6.</b> Monto máximo fijo del cargo autorizado por periodo de facturación: $___________.
+						<b>6.</b> Monto máximo fijo del cargo autorizado por periodo de facturación: $_ $x_tasa __.
 					</span>
 					</font>
 				</p>
@@ -172,7 +161,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						Un monto fijo: ( ) (Incluir monto) $______.
+						Un monto fijo: (x) (Incluir monto) $_ $x_tasa _.
 					</span>
 					</font>
 				</p>
@@ -183,7 +172,7 @@
 				<p style="text-align: justify; margin: 0cm 0cm 10pt" class="MsoNormal">
 					<font face="Calibri">
 						<span style="line-height: 115%; font-size: 9pt">
-						<b>7.</b> Esta autorización es por plazo indeterminado ( ), o vence el: _________________.
+						<b>7.</b> Esta autorización es por plazo indeterminado ( ), o vence el: $x_fecha_vencimiento .
 					</span>
 					</font>
 				</p>

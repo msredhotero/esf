@@ -286,7 +286,22 @@ phpmkr_free_result($rs);
 
 //CREDITO
 
-$sSql = "SELECT credito.tarjeta_num, fecha_vencimiento, referencia_pago, tasa, tasa_moratoria, fecha_otrogamiento, credito.credito_id FROM credito where solicitud_id = $x_solicitud_id";
+$sSql = "SELECT 
+		    c.tarjeta_num,
+		    c.fecha_vencimiento,
+		    c.referencia_pago,
+		    c.tasa,
+		    c.tasa_moratoria,
+		    c.fecha_otrogamiento,
+		    c.credito_id,
+		    b.nombre,
+		    coalesce( c.clave_interbancaria,0) as clave_interbancaria
+		FROM
+		    credito c
+		    left join
+		    banco b ON b.banco_id = c.banco_id
+		WHERE
+		    c.solicitud_id = ".$x_solicitud_id;
 
 
 
@@ -311,6 +326,10 @@ $x_fecha_otorgamiento_valor = $row["fecha_otrogamiento"];
 $x_fecha_vencimiento_valor = $row["fecha_vencimiento"];
 
 $x_tarjeta_numero = $row["tarjeta_num"];
+
+$x_banco = $row["nombre"];
+
+$x_clave_interbancaria = $row["clave_interbancaria"];
 
 
 
@@ -1984,6 +2003,17 @@ $x_link_nueva_tasa_tabla = "<a href=\"php_pagare_print_nueva_tasa.php?solicitud_
 
 //}//no de integrantes
 
+// nuevo marcos clave interbancaria //
+//$x_clave_interbancaria = '126151898195';
+
+$x_contenido = str_replace("\$x_clave_interbancaria",$x_clave_interbancaria,$x_contenido);
+
+$x_contenido = str_replace("\$x_banco",$x_banco,$x_contenido);
+
+$x_contenido = str_replace("\$x_credito_num",$x_credito_num,$x_contenido);
+
+// fin nuevo 30/08/2019 //
+
 $x_contenido = str_replace("\$x_numpagos",$x_numpagos,$x_contenido);
 
 $x_contenido = str_replace("\$x_importevenc",$x_importevenc,$x_contenido);
@@ -2175,6 +2205,8 @@ function LoadData($conn)
 		$GLOBALS["x_garantia_liquida"] = $rowC["garantia_liquida"];
 
 		$GLOBALS["x_credito_id"] = $rowC["credito_id"];
+
+		$GLOBALS["x_credito_num"] = $rowC["credito_num"];
 
 		
 
