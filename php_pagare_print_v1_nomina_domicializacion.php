@@ -299,7 +299,7 @@ $sSql = "SELECT
 		FROM
 		    credito c
 		    left join
-		    banco b ON b.banco_id = c.banco_id
+		    banco_cliente b ON b.idbancocliente = c.banco_cliente_id
 		WHERE
 		    c.solicitud_id = ".$x_solicitud_id;
 
