@@ -57,6 +57,12 @@ if(empty($x_solicitud_id)){
    <tr>
     <td><span class="phpmaker"><a href="php_pagare_print_v1_nomina_privacidad.php?solicitud_id=<?php echo $x_solicitud_id;?>" target="_blank"> Aviso de Privacidad</a></span></td>
   </tr>
+  <tr>
+    <td><span class="phpmaker"><a href="php_rpt_carta_autorizacion_buro.php?solicitud_id=<?php echo $x_solicitud_id;?>" target="_blank"> Carta de Autorizaci&oacute;n Bur&oacute;</a></span></td>
+  </tr>
+  <tr>
+    <td><span class="phpmaker"><a href="php_rpt_tabla_amortizacion.php?solicitud_id=<?php echo $x_solicitud_id;?>" target="_blank"> Tabla Amortizaci&oacute;n</a></span></td>
+  </tr>
    
   
   <tr>
