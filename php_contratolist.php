@@ -52,7 +52,7 @@ if(empty($x_solicitud_id)){
     <td><span class="phpmaker"><a href="php_pagare_print_v1_nomina_caratula.php?solicitud_id=<?php echo $x_solicitud_id;?>" target="_blank" > Car&aacute;tula de Cr&eacute;dito</a></span></td>
   </tr>
   <tr>
-    <td><span class="phpmaker"><a href="php_pagare_print_v1_nomina_domicializacion.php?solicitud_id=<?php echo $x_solicitud_id;?>" target="_blank" > Autorizaci&oacute;n para domicializaci&oacute;</a></span></td>
+    <td><span class="phpmaker"><a href="php_pagare_print_v1_nomina_domicializacion.php?solicitud_id=<?php echo $x_solicitud_id;?>" target="_blank" > Autorizaci&oacute;n para domicializaci&oacute;n</a></span></td>
   </tr>
    <tr>
     <td><span class="phpmaker"><a href="php_pagare_print_v1_nomina_privacidad.php?solicitud_id=<?php echo $x_solicitud_id;?>" target="_blank"> Aviso de Privacidad</a></span></td>
