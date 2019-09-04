@@ -3594,7 +3594,7 @@ echo FormatDateTime($x_otorgamiento,7)."\n";?>
 
 </span></td>
 
-		<td><span class="toolTipShow" id="<?php echo $x_solicitud_id."-".$x_solicitud_status_id;?>">
+		<td><span id="<?php echo $x_solicitud_id."-".$x_solicitud_status_id;?>">
 <?php
  /* codigo para recorrer las galerias marcos */
 	$sqlGalerias = "SELECT * FROM galeria_fotografica where tipo_galeria_id is not null and solicitud_id = ".$x_solicitud_id;

@@ -93,11 +93,11 @@ define("DB", "expoco24_esf");
 
 */
 
-define("USER", "root");
+define("USER", "u235498999_esf");
 
-define("PASS", "");
+define("PASS", "rhcp7575");
 
-define("DB", "financ13_esf");
+define("DB", "u235498999_esf");
 
 
 
