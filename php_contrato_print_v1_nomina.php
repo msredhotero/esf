@@ -1690,7 +1690,7 @@ $x_contenido = str_replace("\$x_periodicidad_pago",$x_periodicidad_pago,$x_conte
 
 //echo htmlspecialchars_decode($x_contenido);
 
-echo utf8_encode($x_contenido);
+echo utf8_decode($x_contenido);
 
 
 
