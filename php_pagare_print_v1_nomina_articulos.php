@@ -1981,7 +1981,7 @@ $x_link_nueva_tasa_tabla = "<a href=\"php_pagare_print_nueva_tasa.php?solicitud_
 
 
 
-die(var_dump($x_contenido));
+//die(var_dump($x_contenido));
 
 //}//no de integrantes
 
@@ -2063,7 +2063,7 @@ $x_contenido = str_replace("\$x_consulta_cuenta",$x_consulta_cuenta,$x_contenido
 
 //echo htmlspecialchars_decode($x_contenido); 
 
-echo utf8_decode($x_contenido); 
+echo $x_contenido; 
 
 
 ?>
