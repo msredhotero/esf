@@ -1,5 +1,5 @@
-<?php include ("../../esf/db.php") ?>
-<?php include ("../../esf/phpmkrfn.php") ?>
+<?php include("../db.php") ?>
+<?php include("../phpmkrfn.php") ?>
 <?php
 
 $x_solicitud_id = @$_GET["key"];
