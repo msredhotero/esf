@@ -1016,7 +1016,7 @@ $x_tabla = "
 
 <td valign='top'><span>
 
-<b>Número de pago o vencimiento</b>
+<b>N&uacute;mero de pago o vencimiento</b>
 
 </span></td>
 
@@ -1040,7 +1040,7 @@ $x_tabla = "
 
 <td valign='top'><span>
 
-<b>Interés ordinario pagado en cada vencimiento</b>
+<b>Inter&eacute;s ordinario pagado en cada vencimiento</b>
 
 </span></td>						
 

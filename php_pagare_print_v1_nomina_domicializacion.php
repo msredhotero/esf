@@ -1012,7 +1012,10 @@ if($GLOBALS["x_creditoSolidario_id"]>0){
 
 
 
-
+// marcos nuevo 17/09/2019 retencion * 4 total_venc //
+$total_venc_nuevo = 0; //variable para el reporte de domiciliazacion
+$primero = 0;
+// fin //
 
 
 //TABLA DE VENC
@@ -1084,6 +1087,10 @@ $x_cont_fetc_v = 1;//variable para la tabla 3 integrentes de grupo
 while ($row = @phpmkr_fetch_array($rs)) {
 
 	
+	if ($primero == 0) {
+		$total_venc_nuevo = $row['total_venc'] * 4;
+		$primero = 1;
+	}
 
 	
 
@@ -2054,7 +2061,7 @@ $x_contenido = str_replace("\$x_importe",$x_importe,$x_contenido);
 
 $x_contenido = str_replace("\$x_moratorios",$x_moratorios,$x_contenido);
 
-$x_contenido = str_replace("\$x_tasa",$x_tasa,$x_contenido);
+$x_contenido = str_replace("\$x_tasa",$total_venc_nuevo,$x_contenido);
 
  
 $date_f = new DateTime($x_fecha_otorgamiento_valor);

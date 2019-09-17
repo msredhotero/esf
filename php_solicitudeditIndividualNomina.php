@@ -2291,7 +2291,17 @@ if($x_win == 3){
       <td colspan="12"  align="left" valign="top"class="texto_normal_bold"><div></div></td>
     </tr>
      <tr>
-      <td colspan="12"  align="left" valign="top"class="texto_normal_bold"><iframe name="aval" src="php_visor_aval.php?key=<?php echo $x_solicitud_id;?>" scrolling="no" style="margin-left:0px; width:150px; height:35px; margin-top:-5px" frameborder="0" allowtransparency="true" id="contenido"></iframe><iframe name="aval" src="php_visor_galeria_cliente.php?key=<?php echo $x_solicitud_id;?>" scrolling="no" style="margin-left:0px; width:150px; height:35px; margin-top:-5px" frameborder="0" allowtransparency="true" id="contenido"></iframe><iframe name="aval" src="php_visor_galeria_aval.php?key=<?php echo $x_solicitud_id;?>" scrolling="no" style="margin-left:0px; width:150px; height:35px; margin-top:-5px" frameborder="0" allowtransparency="true" id="contenido"></iframe></td>
+      <td colspan="12"  align="left" valign="top"class="texto_normal_bold">
+      	<iframe name="aval" src="php_visor_aval.php?key=<?php echo $x_solicitud_id;?>" scrolling="no" style="margin-left:0px; width:150px; height:35px; margin-top:-5px" frameborder="0" allowtransparency="true" id="contenido">
+      		
+      	</iframe>
+      	<iframe name="aval" src="php_visor_galeria_cliente.php?key=<?php echo $x_solicitud_id;?>" scrolling="no" style="margin-left:0px; width:150px; height:35px; margin-top:-5px" frameborder="0" allowtransparency="true" id="contenido">
+      		
+      	</iframe>
+      	<iframe name="aval" src="php_visor_galeria_aval.php?key=<?php echo $x_solicitud_id;?>" scrolling="no" style="margin-left:0px; width:150px; height:35px; margin-top:-5px" frameborder="0" allowtransparency="true" id="contenido">
+      		
+      	</iframe>
+      </td>
     </tr>
   <tr>
       <td colspan="12"  align="center" valign="top" bgcolor="#FFE6E6" class="texto_normal_bold">Datos Personales </td>
