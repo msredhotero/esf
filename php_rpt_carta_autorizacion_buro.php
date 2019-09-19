@@ -52,7 +52,7 @@ $sSql = "SELECT
         $row2 = phpmkr_fetch_array($rs2);
         
         $x_nombre_completo      = $row2["nombre_completo"];
-        $x_apellido_paterno     = $row2["apellido_materno"];
+        $x_apellido_paterno     = $row2["apellido_paterno"];
         $x_apellido_materno     = $row2["apellido_materno"];
 
 phpmkr_free_result($rs2);

@@ -796,8 +796,8 @@ echo $x_medio_pago_idList;
 	  </tr>
 
 	  <tr>
-	  <td class="ewTableHeaderThin">Clave Interbancaria Cliente:</td>
-	  <td class="ewTableAltRow"><input name="x_clave_interbancaria" type="text" id="x_clave_interbancaria" value="<?php echo @$x_clave_interbancaria; ?>" size="20" maxlength="250" /></td>
+	  <td class="ewTableHeaderThin">Clabe Interbancaria Cliente:</td>
+	  <td class="ewTableAltRow"><input name="x_clave_interbancaria" type="text" id="x_clave_interbancaria" value="<?php echo @$x_clave_interbancaria; ?>" size="20" maxlength="18" /></td>
 	  </tr>
 
 
