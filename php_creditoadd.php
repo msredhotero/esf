@@ -3,10 +3,10 @@
 <?php
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // date in the past
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); // always modified
-header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1 
-header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1
+header("Cache-Control: post-check=0, pre-check=0", false);
 header("Cache-Control: private");
-header("Pragma: no-cache"); // HTTP/1.0 
+header("Pragma: no-cache"); // HTTP/1.0
 ?>
 <?php
 $ewCurSec = 0; // Initialise
@@ -18,8 +18,8 @@ define("ewAllowedit", 4, true);
 define("ewAllowview", 8, true);
 define("ewAllowlist", 8, true);
 define("ewAllowreport", 8, true);
-define("ewAllowsearch", 8, true);																														
-define("ewAllowadmin", 16, true);						
+define("ewAllowsearch", 8, true);
+define("ewAllowadmin", 16, true);
 ?>
 <?php
 if (@$_SESSION["php_project_esf_status"] <> "login") {
@@ -30,29 +30,29 @@ if (@$_SESSION["php_project_esf_status"] <> "login") {
 <?php
 
 // Initialize common variables
-$x_credito_id = Null; 
+$x_credito_id = Null;
 $ox_credito_id = Null;
-$x_credito_tipo_id = Null; 
+$x_credito_tipo_id = Null;
 $ox_credito_tipo_id = Null;
-$x_solicitud_id = Null; 
+$x_solicitud_id = Null;
 $ox_solicitud_id = Null;
-$x_credito_status_id = Null; 
+$x_credito_status_id = Null;
 $ox_credito_status_id = Null;
-$x_fecha_otrogamiento = Null; 
+$x_fecha_otrogamiento = Null;
 $ox_fecha_otrogamiento = Null;
-$x_importe = Null; 
+$x_importe = Null;
 $ox_importe = Null;
-$x_tasa = Null; 
+$x_tasa = Null;
 $ox_tasa = Null;
-$x_plazo = Null; 
+$x_plazo = Null;
 $ox_plazo = Null;
-$x_fecha_vencimiento = Null; 
+$x_fecha_vencimiento = Null;
 $ox_fecha_vencimiento = Null;
-$x_tasa_moratoria = Null; 
+$x_tasa_moratoria = Null;
 $ox_tasa_moratoria = Null;
-$x_medio_pago_id = Null; 
+$x_medio_pago_id = Null;
 $ox_medio_pago_id = Null;
-$x_referencia_pago = Null; 
+$x_referencia_pago = Null;
 $ox_referencia_pago = Null;
 $x_num_pagos = Null;
 
@@ -82,7 +82,7 @@ if (empty($x_solicitud_id)) {
 	header("Location: php_solicitudlist.php");
 	exit();
 }
-	
+
 // Get action
 $sAction = @$_POST["a_add"];
 if (($sAction == "") || ((is_null($sAction)))) {
@@ -101,33 +101,33 @@ if (($sAction == "") || ((is_null($sAction)))) {
 	if (empty($x_credito_id)) {
 		$x_solicitud_id = @$_POST["x_solicitud_id"];
 	}
-*/	
+*/
 $x_sucursal_id = @$_POST["x_sucursal_id"];
 $x_promotor_id = @$_POST["x_promotor_id"];
-	
-	$x_fondeo_credito_id = $_POST["x_fondeo_credito_id"];	
+
+	$x_fondeo_credito_id = $_POST["x_fondeo_credito_id"];
 	$x_credito_status_id = 1;
-	$x_credito_num = $_POST["x_credito_num"];	
-	$x_cliente_num = $_POST["x_cliente_num"];		
+	$x_credito_num = $_POST["x_credito_num"];
+	$x_cliente_num = $_POST["x_cliente_num"];
 	$x_fecha_otrogamiento = @$_POST["x_fecha_otrogamiento"];
-//	$x_fecha_primerpago = @$_POST["x_fecha_primerpago"];	
-	$x_fecha_abonocap = @$_POST["x_fecha_abonocap"];	
+//	$x_fecha_primerpago = @$_POST["x_fecha_primerpago"];
+	$x_fecha_abonocap = @$_POST["x_fecha_abonocap"];
 	$x_periodos_gracia = @$_POST["x_periodos_gracia"];
 	$x_importe = @$_POST["x_importe"];
 	$x_tasa = @$_POST["x_tasa"];
-	$x_iva = @$_POST["x_iva"];	
+	$x_iva = @$_POST["x_iva"];
 	$x_plazo = @$_POST["x_plazo_id"];
-	$x_forma_pago_id = @$_POST["x_forma_pago_id"];	
+	$x_forma_pago_id = @$_POST["x_forma_pago_id"];
 	$x_fecha_vencimiento = @$_POST["x_fecha_vencimiento"];
 	$x_tasa_moratoria = @$_POST["x_tasa_moratoria"];
 	$x_medio_pago_id = @$_POST["x_medio_pago_id"];
-	$x_banco_id = @$_POST["x_banco_id"];	
+	$x_banco_id = @$_POST["x_banco_id"];
 	$x_referencia_pago = @$_POST["x_referencia_pago"];
-	$x_num_pagos = @$_POST["x_num_pagos"];	
-	$x_tdp = @$_POST["x_tdp"];		
+	$x_num_pagos = @$_POST["x_num_pagos"];
+	$x_tdp = @$_POST["x_tdp"];
 	$x_tipo_calculo = $_POST["x_tipo_calculo"];
 	$x_penalizacion = @$_POST["x_penalizacion"];
-	$x_garantia_liquida = @$_POST["x_garantia_liquida"];	
+	$x_garantia_liquida = @$_POST["x_garantia_liquida"];
 
 	// nuevo marcos 30/08/2019
 	$x_banco_cliente_id = @$_POST['x_banco_cliente_id'];
@@ -147,7 +147,7 @@ switch ($sAction)
 		}
 		break;
 	case "A": // Add
-	
+
 		if (AddData($conn)) { // Add New Record
 			$_SESSION["ewmsg"] = "Los datos han sido registrados.";
 			phpmkr_db_close($conn);
@@ -166,29 +166,29 @@ switch ($sAction)
 		$GLOBALS["x_forma_pago_id"] = $row["forma_pago_id"];
 		$GLOBALS["x_tdp"] = $row["tarjeta_referenciada"];
 		$GLOBALS["x_referencia_pago"] = $row["numero_cheque"];
-				
-		phpmkr_free_result($rs);		
+
+		phpmkr_free_result($rs);
 
 if($GLOBALS["x_credito_tipo_id"] == 1){
 		$sSql = "SELECT cliente_id FROM solicitud_cliente where solicitud_id = $x_solicitud_id";
 		$rs = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 		$row = phpmkr_fetch_array($rs);
-		$GLOBALS["x_cliente_id"] = $row["cliente_id"];		
-		phpmkr_free_result($rs);			
+		$GLOBALS["x_cliente_id"] = $row["cliente_id"];
+		phpmkr_free_result($rs);
 
 // nuevo marcos 30/08/2019
-if(empty($GLOBALS["x_tdp"]) || empty($GLOBALS["clave_interbancaria"])) {
+if(empty($GLOBALS["x_tdp"]) || empty($GLOBALS["x_clave_interbancaria"])) {
 		$sSql = "SELECT credito.tarjeta_num, credito.clave_interbancaria FROM credito join solicitud on solicitud.solicitud_id = credito.solicitud_id join solicitud_cliente on solicitud_cliente.solicitud_id = solicitud.solicitud_id join cliente on cliente.cliente_id = solicitud_cliente.cliente_id where cliente.cliente_id = $x_cliente_id and not isnull(credito.tarjeta_num) limit 1";
 		$rs = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 		$row = phpmkr_fetch_array($rs);
 		$GLOBALS["x_tdp"] = $row["tarjeta_num"];
-		$GLOBALS["clave_interbancaria"] = $row["clave_interbancaria"];
+		$GLOBALS["x_clave_interbancaria"] = $row["clave_interbancaria"];
 
-		phpmkr_free_result($rs);		
+		phpmkr_free_result($rs);
 }
 
 }
-		
+
 		// el campo de penalizacion saldra lleno por default
 		$sqlPenalizacion = " SELECT * FROM penalizacion where forma_pago_id = ".$GLOBALS["x_forma_pago_id"]." ";
 		$rsPenalizacion = phpmkr_query($sqlPenalizacion, $conn) or die ("Error al selccionar los detos de penalizacion".phpmkr_error()."sql:". $sqlPenalizacion);
@@ -200,48 +200,48 @@ if(empty($GLOBALS["x_tdp"]) || empty($GLOBALS["clave_interbancaria"])) {
 		$x_p_incremento_penalizacion = $rowPenalizacion["incremento_penalizacion"];
 		$x_p_rango_para_incremento = $rowPenalizacion["rango_para_incremento"];
 		if($GLOBALS["x_importe_solicitado"] > $x_p_monto_base){
-		$x_m = $GLOBALS["x_importe_solicitado"] - $x_p_monto_base;		
-		$x_m_2 = $x_m / $x_p_rango_para_incremento;		
-		$x_m_2 = ceil($x_m_2);			
-		$x_m_3 = round($x_m_2 * $x_p_incremento_penalizacion);		
+		$x_m = $GLOBALS["x_importe_solicitado"] - $x_p_monto_base;
+		$x_m_2 = $x_m / $x_p_rango_para_incremento;
+		$x_m_2 = ceil($x_m_2);
+		$x_m_3 = round($x_m_2 * $x_p_incremento_penalizacion);
 		$x_m_4 = $x_m_3 + $x_p_penalizacion_base;
 		}else{
 			// si es menor la penalizacio es la indicada en la base
-			$x_m_4 = $x_p_penalizacion_base;			
-			
+			$x_m_4 = $x_p_penalizacion_base;
+
 			}
-		
+
 		#echo "penalizacion ".$x_m_4."<br>";
-		
+
 		$sqlPromotor =  "SELECT promotor_id FROM solicitud WHERE solicitud_id = ".$x_solicitud_id." ";
 		#echo "=>".$sqlPromotor;
-		
-		
+
+
 		$rsPromotor = phpmkr_query($sqlPromotor,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sqlPromotor);
 		if (phpmkr_num_rows($rsPromotor) == 0) {
 			$bLoadData1 = false;
-		}else{	
+		}else{
 			$bLoadData1 = true;
 			$rowPromotor = phpmkr_fetch_array($rsPromotor);
 			$GLOBALS["x_promotor_id"] = $rowPromotor["promotor_id"];
 			$sqlSucursal =  "SELECT sucursal_id FROM promotor WHERE promotor_id = ".$rowPromotor["promotor_id"]." ";
 			$rsSucursal = phpmkr_query($sqlSucursal,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sqlSucursal);
 			$rowSuc = phpmkr_fetch_array($rsSucursal);
-			$GLOBALS["x_sucursal_id"] = $rowSuc["sucursal_id"];	
-			
+			$GLOBALS["x_sucursal_id"] = $rowSuc["sucursal_id"];
+
 			#echo "sucursal=>".$rowSuc["sucursal_id"]." promotor=> ". $rowPromotor["promotor_id"];
-			
-		} 
-		
-		
-		break;		
+
+		}
+
+
+		break;
 }
 ?>
 <?php include ("header.php") ?>
 <script type="text/javascript" src="ew.js"></script>
 <script type="text/javascript">
 <!--
-EW_dateSep = "/"; // set date separator	
+EW_dateSep = "/"; // set date separator
 
 //-->
 </script>
@@ -252,7 +252,7 @@ EW_dateSep = "/"; // set date separator
 <script language="javascript">
 $(document).ready(function(e) {
 	$('#x_num_pagos').change(function(evento){
-		var garantia = $("input[name='x_garantia_liquida']:checked").val(); 
+		var garantia = $("input[name='x_garantia_liquida']:checked").val();
 		var numero_pagos = $('#x_num_pagos').val();
 		var forma_pago_id = $('#x_forma_pago_id').val();
 		if(garantia == 1){
@@ -261,83 +261,83 @@ $(document).ready(function(e) {
 			if((numero_pagos != 20) && (numero_pagos != 40)){
 				alert("El numero de pagos SEMANALES para aplicar garantia liquida solo puede ser 20 o 40 ");
 				 $("input[name='x_garantia_liquida']").attr('checked', false);
-				  $("#x_garantia_liquida_no").attr('checked', true);					
-				}		
+				  $("#x_garantia_liquida_no").attr('checked', true);
+				}
 			}
-			
+
 		if(forma_pago_id == 2){
 			// es semanal solo pueden ser 20 o 40 pagos
 			if((numero_pagos != 12) && (numero_pagos != 24)){
 				alert("El numero de pagos CATROCENALES para  APLICAR GARANTIA LIQUIDA solo puede ser 20 o 40 ");
 				 $("input[name='x_garantia_liquida']").attr('checked', false);
-				 $("#x_garantia_liquida_no").attr('checked', true);				
-				}				
-			}	
-			
+				 $("#x_garantia_liquida_no").attr('checked', true);
+				}
+			}
+
 		if(forma_pago_id == 4){
 			// es semanal solo pueden ser 20 o 40 pagos
 			if((numero_pagos != 12) && (numero_pagos != 24)){
 				alert("El numero de pagos QUINCENALES para APLICAR GARANTIA LIQUIDA solo puede ser 20 o 40 ");
 				 $("input[name='x_garantia_liquida']").attr('checked', false);
-				 $("#x_garantia_liquida_no").attr('checked', true);				
-				}		
-			}	
-			
+				 $("#x_garantia_liquida_no").attr('checked', true);
+				}
+			}
+
 		if(forma_pago_id == 3){
 			// es semanal solo pueden ser 20 o 40 pagos
 			if((numero_pagos != 12) ){
 				alert("El numero de pagos MENSUALES para APLICAR GARANTIA LIQUIDA solo puede ser 20 o 40 ");
 				 $("input[name='x_garantia_liquida']").attr('checked', false);
 				 $("#x_garantia_liquida_no").attr('checked', true);
-				}		
-			
-			}	
+				}
+
+			}
 		}
 		});
-	
-	
+
+
     $("input[name='x_garantia_liquida']").change(function(evento){
-	var garantia = $("input[name='x_garantia_liquida']:checked").val(); 
+	var garantia = $("input[name='x_garantia_liquida']:checked").val();
 	var numero_pagos = $('#x_num_pagos').val();
 	var forma_pago_id = $('#x_forma_pago_id').val();
-	
+
 	if(garantia == 1){
 		if(forma_pago_id == 1){
 			// es semanal solo pueden ser 20 o 40 pagos
 			if((numero_pagos != 20) && (numero_pagos != 40)){
 				alert("El numero de pagos SEMANALES para aplicar garantia liquida solo puede ser 20 o 40 ");
 				 $("input[name='x_garantia_liquida']").attr('checked', false);
-				  $("#x_garantia_liquida_no").attr('checked', true);					
-				}		
+				  $("#x_garantia_liquida_no").attr('checked', true);
+				}
 			}
-			
+
 		if(forma_pago_id == 2){
 			// es semanal solo pueden ser 20 o 40 pagos
 			if((numero_pagos != 12) && (numero_pagos != 24)){
 				alert("El numero de pagos CATROCENALES para  APLICAR GARANTIA LIQUIDA solo puede ser 20 o 40 ");
 				$("input[name='x_garantia_liquida']").attr('checked', false);
-				 $("#x_garantia_liquida_no").attr('checked', true);				
-				}				
-			}	
-			
+				 $("#x_garantia_liquida_no").attr('checked', true);
+				}
+			}
+
 		if(forma_pago_id == 4){
 			// es semanal solo pueden ser 20 o 40 pagos
 			if((numero_pagos != 12) && (numero_pagos != 24)){
 				alert("El numero de pagos QUINCENALES para APLICAR GARANTIA LIQUIDA solo puede ser 20 o 40 ");
 				$("input[name='x_garantia_liquida']").attr('checked', false);
-				 $("#x_garantia_liquida_no").attr('checked', true);				
-				}		
-			}	
-			
+				 $("#x_garantia_liquida_no").attr('checked', true);
+				}
+			}
+
 		if(forma_pago_id == 3){
 			// es semanal solo pueden ser 20 o 40 pagos
 			if((numero_pagos != 12) ){
 				alert("El numero de pagos MENSUALES para APLICAR GARANTIA LIQUIDA solo puede ser 20 o 40 ");
 				$("input[name='x_garantia_liquida']").attr('checked', false);
 				 $("#x_garantia_liquida_no").attr('checked', true);
-				}		
-			
-			}	
+				}
+
+			}
 		}
 	});
 });
@@ -453,8 +453,15 @@ if (validada == true && EW_this.x_banco_cliente_id && !EW_hasValue(EW_this.x_ban
 }
 
 if (validada == true && EW_this.x_clave_interbancaria && !EW_hasValue(EW_this.x_clave_interbancaria, "TEXT" )) {
-	if (!EW_onError(EW_this, EW_this.x_clave_interbancaria, "TEXT", "La clave InterBancaria del cliente es requerida."))
+	if (!EW_onError(EW_this, EW_this.x_clave_interbancaria, "TEXT", "La clabe InterBancaria del cliente es requerida.")) {
 		validada = false;
+	}
+
+}
+
+if (validada == true && EW_this.x_clave_interbancaria.length != 18) {
+	alert("La clabe InterBancaria del cliente debe contener 18 digitos.");
+	validada = false;
 }
 /////////////////////////////////************************////////////////////////////////
 if (validada == true && EW_this.x_fondeo_credito_id && !EW_hasValue(EW_this.x_fondeo_credito_id, "SELECT" )) {
@@ -532,13 +539,13 @@ $rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_
 if ($rswrk) {
 	$rowcntwrk = 0;
 	while ($datawrk = phpmkr_fetch_array($rswrk)) {
-		
+
 /*
 		$sSqlWrk2 = "SELECT sum(importe) as otorgado FROM credito where credito_id in (select credito_id from fondeo_colocacion join fondeo_credito on fondeo_credito.fondeo_credito_id = fondeo_colocacion.fondeo_credito_id where fondeo_credito.fondeo_credito_id = ".$datawrk["fondeo_credito_id"].") and credito.credito_status_id in (1, 3,4,5)";
 		$rswrk2 = phpmkr_query($sSqlWrk2,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk2);
 		$datawrk2 = phpmkr_fetch_array($rswrk2);
-		$x_fondeo_importe = $datawrk["importe"];		
-		$x_fondeo_otorgado = $datawrk2["otorgado"];		
+		$x_fondeo_importe = $datawrk["importe"];
+		$x_fondeo_otorgado = $datawrk2["otorgado"];
 		$x_fondeo_saldo = $datawrk["importe"] - $datawrk2["otorgado"];
 		@phpmkr_free_result($rswrk2);
 */
@@ -558,7 +565,7 @@ if ($rswrk) {
 
 		}
 
-		
+
 		$rowcntwrk++;
 	}
 }
@@ -629,7 +636,7 @@ button : "cx_fecha_otrogamiento" // ID of the button
 	  <td class="ewTableAltRow">
   <span>
   <input type="text" name="x_periodos_gracia" value="0" maxlength="5" size="5"  />
-  </span>      
+  </span>
 	    gracia  solo intereses</td>
 	  </tr>
 	<tr>
@@ -639,24 +646,24 @@ button : "cx_fecha_otrogamiento" // ID of the button
 <input type="hidden" name="x_importe" id="x_importe" value="<?php echo @$x_importe_solicitado; ?>">
 </span></td>
 	</tr>
-	
+
 	<tr>
 		<td class="ewTableHeaderThin"><span>Plazo</span></td>
 		<td class="ewTableAltRow"><span>
-		<?php 
+		<?php
 		$sSqlWrk = "SELECT descripcion FROM plazo where plazo_id = $x_plazo_id";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		$datawrk = phpmkr_fetch_array($rswrk);
 		echo $datawrk["descripcion"];
 		@phpmkr_free_result($rswrk);
-		?>		
+		?>
 <input type="hidden" name="x_plazo_id" id="x_plazo_id" value="<?php echo @$x_plazo_id; ?>">
 </span></td>
 	</tr>
-	
+
 	<tr>
 	  <td class="ewTableHeaderThin">Forma de Pago </td>
-	  <td class="ewTableAltRow"><?php 
+	  <td class="ewTableAltRow"><?php
 		$sSqlWrk = "SELECT descripcion FROM forma_pago where forma_pago_id = $x_forma_pago_id";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		$datawrk = phpmkr_fetch_array($rswrk);
@@ -673,13 +680,13 @@ button : "cx_fecha_otrogamiento" // ID of the button
 	<tr>
 	  <td class="ewTableHeaderThin">Tipo de Calculo</td>
 	  <td class="ewTableAltRow"><input type="radio" name="x_tipo_calculo" value="1" />
-	    Promediado 
+	    Promediado
 	      <input type="radio" name="x_tipo_calculo" value="2"   checked="checked"/>
 	      Tradicional</td>
 	  </tr>
 	<tr>
 	  <td class="ewTableHeaderThin">Tasa Anual</td>
-	  <td class="ewTableAltRow"><input name="x_tasa" type="text" id="x_tasa" value="95" size="8" maxlength="5" /> 
+	  <td class="ewTableAltRow"><input name="x_tasa" type="text" id="x_tasa" value="95" size="8" maxlength="5" />
 	    % </td>
 	  </tr>
 	<tr>
@@ -690,11 +697,11 @@ button : "cx_fecha_otrogamiento" // ID of the button
       <input type="radio" name="x_iva" value="2" <?php if($x_iva == 2){ echo "checked";} ?>/>&nbsp;NO
 	  </td>
 	  </tr>
-      
+
 	<tr>
 		<td class="ewTableHeaderThin"><span>Tasa moratoria</span></td>
 		<td class="ewTableAltRow"><span>
-<input name="x_tasa_moratoria" type="text" id="x_tasa_moratoria" value="<?php echo htmlspecialchars(@$x_tasa_moratoria) ?>" size="10" maxlength="10"> 
+<input name="x_tasa_moratoria" type="text" id="x_tasa_moratoria" value="<?php echo htmlspecialchars(@$x_tasa_moratoria) ?>" size="10" maxlength="10">
 %
 </span></td>
 	</tr>
@@ -790,7 +797,7 @@ echo $x_medio_pago_idList;
 
 	  <tr>
 	  <td class="ewTableHeaderThin">Clave Interbancaria Cliente:</td>
-	  <td class="ewTableAltRow"><input name="x_clave_bancaria" type="text" id="x_clave_bancaria" value="<?php echo @$x_clave_interbancaria; ?>" size="20" maxlength="250" /></td>
+	  <td class="ewTableAltRow"><input name="x_clave_interbancaria" type="text" id="x_clave_interbancaria" value="<?php echo @$x_clave_interbancaria; ?>" size="20" maxlength="250" /></td>
 	  </tr>
 
 
@@ -852,13 +859,13 @@ function LoadData($conn)
 
 		// Get the field contents
 		$GLOBALS["x_credito_id"] = $row["credito_id"];
-		$GLOBALS["x_credito_num"] = $row["credito_num"];		
-		$GLOBALS["x_cliente_num"] = $row["cliente_num"];				
+		$GLOBALS["x_credito_num"] = $row["credito_num"];
+		$GLOBALS["x_cliente_num"] = $row["cliente_num"];
 		$GLOBALS["x_credito_tipo_id"] = $row["credito_tipo_id"];
 		$GLOBALS["x_solicitud_id"] = $row["solicitud_id"];
 		$GLOBALS["x_credito_status_id"] = $row["credito_status_id"];
 		$GLOBALS["x_fecha_otrogamiento"] = $row["fecha_otrogamiento"];
-		$GLOBALS["x_fecha_primerpago"] = $row["fecha_primerpago"];		
+		$GLOBALS["x_fecha_primerpago"] = $row["fecha_primerpago"];
 		$GLOBALS["x_importe"] = $row["importe"];
 		$GLOBALS["x_tasa"] = $row["tasa"];
 		$GLOBALS["x_plazo"] = $row["plazo"];
@@ -866,11 +873,11 @@ function LoadData($conn)
 		$GLOBALS["x_tasa_moratoria"] = $row["tasa_moratoria"];
 		$GLOBALS["x_medio_pago_id"] = $row["medio_pago_id"];
 		$GLOBALS["x_referencia_pago"] = $row["referencia_pago"];
-		$GLOBALS["x_num_pagos"] = $row["num_pagos"];		
+		$GLOBALS["x_num_pagos"] = $row["num_pagos"];
 		$GLOBALS["x_tdp"] = $row["tarjeta_num"];
-		
-		
-		
+
+
+
 	}
 	phpmkr_free_result($rs);
 	die();
@@ -900,7 +907,7 @@ function AddData($conn)
 		$bCheckKey = false;
 	} else {
 		if ($sWhereChk <> "") { $sWhereChk .= " AND "; }
-		$sTmp =  (get_magic_quotes_gpc()) ? stripslashes($x_credito_id) : $x_credito_id;			
+		$sTmp =  (get_magic_quotes_gpc()) ? stripslashes($x_credito_id) : $x_credito_id;
 		$sWhereChk .= "(`credito_id` = " . addslashes($sTmp) . ")";
 	}
 	if ($bCheckKey) {
@@ -992,20 +999,20 @@ function AddData($conn)
 	$fieldList["`banco_cliente_id`"] = $theValue;
 
 	// Field referencia_pago
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_referencia_pago"]) : $GLOBALS["x_referencia_pago"]; 
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_referencia_pago"]) : $GLOBALS["x_referencia_pago"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`referencia_pago`"] = $theValue;
 
 
 	// nuevo marcos 30/08/2019
-	$theValue = ($GLOBALS["x_clave_bancaria"] != "") ? intval($GLOBALS["x_clave_bancaria"]) : "0";
+	$theValue = ($GLOBALS["x_clave_interbancaria"] != "") ? intval($GLOBALS["x_clave_interbancaria"]) : "0";
 	$fieldList["`clave_interbancaria`"] = $theValue;
 
 	$theValue = ($GLOBALS["x_num_pagos"] != "") ? intval($GLOBALS["x_num_pagos"]) : "0";
 	$fieldList["`num_pagos`"] = $theValue;
 
 
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tdp"]) : $GLOBALS["x_tdp"]; 
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tdp"]) : $GLOBALS["x_tdp"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`tarjeta_num`"] = $theValue;
 
@@ -1026,14 +1033,14 @@ function AddData($conn)
 	$x_result = phpmkr_query($sSql, $conn);
 	if(!$x_result){
 		echo phpmkr_error() . '<br>SQL: ' . $sSql;
-		phpmkr_query('rollback;', $conn);	 
+		phpmkr_query('rollback;', $conn);
 	 	exit();
 	}
 	$x_credito_id = mysql_insert_id();
-	
+
 //	$theValue = ($GLOBALS["x_num_pagos"] != "") ? intval($GLOBALS["x_num_pagos"]) : "0";
 	$fieldList["`credito_respaldo_id`"] = intval($x_credito_id);
-	
+
 	// se hace para gaurdar una copia de como se otorgo el credito originalmente.
 	// insert into database
 	$sSql = "INSERT INTO `credito_respaldo` (";
@@ -1042,14 +1049,14 @@ function AddData($conn)
 	$sSql .= implode(",", array_values($fieldList));
 	$sSql .= ")";
 	$x_result = phpmkr_query($sSql, $conn) or die("No se inserto en respaldo credito".phpmkr_error()."sql :". $sSql);
-	
+
 	$fieldList = NULL;
-	
-	
+
+
 	// credito_condicones
-	
-	
-	
+
+
+
 //GENERA VENCIMIENTOS
 
 	include("utilerias/datefunc.php");
@@ -1058,67 +1065,67 @@ function AddData($conn)
 	$rs = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 	$row = phpmkr_fetch_array($rs);
 	$x_plazo = $row["valor"];
-	phpmkr_free_result($rs);		
+	phpmkr_free_result($rs);
 
 	$sSql = "SELECT valor FROM forma_pago where forma_pago_id = ".$GLOBALS["x_forma_pago_id"];
 	$rs = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 	$row = phpmkr_fetch_array($rs);
 	$x_forma_pago = $row["valor"];
-	phpmkr_free_result($rs);		
+	phpmkr_free_result($rs);
 
 
 //	$x_num_pagos = $x_plazo * $x_forma_pago;
-	$x_num_pagos = $GLOBALS["x_num_pagos"];	
+	$x_num_pagos = $GLOBALS["x_num_pagos"];
 
 	$GLOBALS["x_importe"] = str_replace(",","",$GLOBALS["x_importe"]);
-	$temptime = strtotime(ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"]));	
+	$temptime = strtotime(ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"]));
 	$x_interes = 0;
 	$x_pago_act = 1;
-	
+
 
 //tasa mensual
-$x_tasa_mensual = (($GLOBALS["x_tasa"]/12)/100); 
+$x_tasa_mensual = (($GLOBALS["x_tasa"]/12)/100);
 
 //determinar tasa segun forma pago
 switch ($x_forma_pago)
 {
 	case 28: // Mensual
-		$x_tasa_calculada = (($GLOBALS["x_tasa"]/12)/100); 
+		$x_tasa_calculada = (($GLOBALS["x_tasa"]/12)/100);
 		break;
 	case 15: // Quincenal
-		$x_tasa_calculada = (($GLOBALS["x_tasa"]/24)/100); 
+		$x_tasa_calculada = (($GLOBALS["x_tasa"]/24)/100);
 		break;
 	case 14: // Catorcenal
-		$x_tasa_calculada = (($GLOBALS["x_tasa"]/26)/100); 
+		$x_tasa_calculada = (($GLOBALS["x_tasa"]/26)/100);
 		break;
 	case 7: // Semanal
-		$x_tasa_calculada = (($GLOBALS["x_tasa"]/52)/100); 
+		$x_tasa_calculada = (($GLOBALS["x_tasa"]/52)/100);
 		break;
 }
 
 if($GLOBALS["x_iva"] == 1){
 	$x_tasa_calculada_pow = $x_tasa_calculada * 1.16;
 }else{
-	$x_tasa_calculada_pow = $x_tasa_calculada;	
+	$x_tasa_calculada_pow = $x_tasa_calculada;
 }
 
-	
-/////// calculo promediado	
+
+/////// calculo promediado
 if($GLOBALS["x_tipo_calculo"] == 1){
 
 
 	while($x_pago_act < $x_num_pagos + 1){
-		
+
 		if ($GLOBALS["x_forma_pago_id"] == 3){
 			// si la forma de pago es mensuial entonces en lugar de agragra 28 dias que es valor contemplado en la base de datos se agrega un mes completo
 			$temptime = DateAdd('m',1,$temptime);
-			echo "";			
+			echo "";
 			}else{
 				// si no es mensual la
 		$temptime = DateAdd('w',$x_forma_pago,$temptime);
 			}
 
-		$fecha_act = strftime('%Y-%m-%d',$temptime);			
+		$fecha_act = strftime('%Y-%m-%d',$temptime);
 		$x_dia = strftime('%A',$temptime);
 
 //Validar domingos
@@ -1134,24 +1141,24 @@ if($GLOBALS["x_tipo_calculo"] == 1){
 
 
 		$x_interes = $x_interes + $x_interes_act;
-	
+
 		$sSql = "insert into vencimiento values(0,$x_credito_id, $x_pago_act,1, '$fecha_act', 0, 0, 0, 0, 0, 0,NULL)";
 		$x_result = phpmkr_query($sSql, $conn);
 		if(!$x_result){
 			echo phpmkr_error() . '<br>SQL: ' . $sSql;
-			phpmkr_query('rollback;', $conn);	 
+			phpmkr_query('rollback;', $conn);
 			exit();
 		}
-		
+
 		$temptime = strtotime($fecha_act);
-		$x_pago_act++;	
-	}		
+		$x_pago_act++;
+	}
 
 	$x_total_venc = round($GLOBALS["x_importe"] / $x_interes);
 	$x_capital_venc = ($GLOBALS["x_importe"] / $x_num_pagos);
 	$x_interes_venc = round($x_total_venc - $x_capital_venc);
 	if($GLOBALS["x_iva"] == 1){
-		$x_iva_venc = round($x_interes_venc * .15);	
+		$x_iva_venc = round($x_interes_venc * .15);
 		$x_total_venc = $x_total_venc + $x_iva_venc;
 	}else{
 		$x_iva_venc = 0;
@@ -1161,7 +1168,7 @@ if($GLOBALS["x_tipo_calculo"] == 1){
 	$x_result = phpmkr_query($sSql, $conn);
 	if(!$x_result){
 		echo phpmkr_error() . '<br>SQL: ' . $sSql;
-		phpmkr_query('rollback;', $conn);	 
+		phpmkr_query('rollback;', $conn);
 		exit();
 	}
 
@@ -1225,74 +1232,74 @@ calcinteres.xls en doctos accelicap
 
 		//calcular interes con tasa diaria
 		$x_interes_gracia = ($x_importe * (($GLOBALS["x_tasa"]/360)/100)) * $x_dias_total;
-		
+
 		$x_saldo_intereses = $x_interes_gracia;
-		
+
 		if($GLOBALS["x_iva"] == 1){
-			$x_iva_gracia = round($x_saldo_intereses * .16);	
+			$x_iva_gracia = round($x_saldo_intereses * .16);
 		}else{
 			$x_iva_gracia = 0;
 		}
-		
-		
-		
+
+
+
 	}
-	
+
 	$x_venc_num_sac = 0;
 
 	//genera vencimientos sin abono a capital
-	
-	
+
+
 //	if($x_fecha_abonocap != $x_fecha_otrogamiento){
-	if($x_periodos_gracia > 0 && false){		
+	if($x_periodos_gracia > 0 && false){
 		//genera vencimientos sin abono a capital
-		$x_venc_num_sac = 1;		
+		$x_venc_num_sac = 1;
 		$fecha_ant = $x_fecha_otrogamiento;
-		$fecha_act = ConvertDateToMysqlFormat($x_fecha_otrogamiento);		
-		
+		$fecha_act = ConvertDateToMysqlFormat($x_fecha_otrogamiento);
+
 		$x_contador = 1;
-		
+
 //		while(strtotime($fecha_act) < strtotime(ConvertDateToMysqlFormat($x_fecha_abonocap)) || strtotime($fecha_act) == strtotime(ConvertDateToMysqlFormat($x_fecha_abonocap))){
 		while($x_contador <= $x_periodos_gracia || $x_contador == $x_periodos_gracia){
-			
+
 			$fecha_ant = strtotime(ConvertDateToMysqlFormat($fecha_ant));
 			if ($GLOBALS["x_forma_pago_id"] == 3){
 			// si la forma de pago es mensuial entonces en lugar de agragra 28 dias que es valor contemplado en la base de datos se agrega un mes completo
 			$fecha_act = DateAdd('m',1,$temptime);
-			
-			}else{				
+
+			}else{
 			$fecha_act = DateAdd('w',$x_forma_pago,$fecha_ant);
 			}
 			$fecha_act = strftime('%Y-%m-%d',$fecha_act);
 			$fecha_act = strtotime(ConvertDateToMysqlFormat($fecha_act));
 
-			
+
 			$difference = $fecha_act - $fecha_ant; // Difference in seconds
-			$x_dias_total = floor($difference / 86400);		
+			$x_dias_total = floor($difference / 86400);
 
 			$x_interes_sac = ($x_importe * (($GLOBALS["x_tasa"]/360)/100)) * $x_dias_total;
 
 			if($x_saldo_intereses > 0 && $x_venc_num_sac == 1){
 				$x_interes_sac = $x_interes_sac + $x_saldo_intereses;
 			}
-			
+
 			if($GLOBALS["x_iva"] == 1){
-				$x_iva_sac = round($x_interes_sac * .16);	
+				$x_iva_sac = round($x_interes_sac * .16);
 			}else{
 				$x_iva_sac = 0;
 			}
-			
+
 			$x_importe_vencimiento_sac = $x_interes_sac + $x_iva_sac;
 
 
 			$fecha_act = strftime('%Y-%m-%d',$fecha_act);
-			$fecha_ant = strftime('%Y-%m-%d',$fecha_ant);	
+			$fecha_ant = strftime('%Y-%m-%d',$fecha_ant);
 
 			$sSql = "insert into vencimiento values(0,$x_credito_id, $x_venc_num_sac,1, '".$fecha_act."', 0, $x_interes_sac, 0, $x_iva_sac, 0, $x_importe_vencimiento_sac,NULL)";
 			$x_result = phpmkr_query($sSql, $conn);
 			if(!$x_result){
 				echo phpmkr_error() . '<br>SQL: ' . $sSql;
-				phpmkr_query('rollback;', $conn);	 
+				phpmkr_query('rollback;', $conn);
 				exit();
 			}
 
@@ -1303,10 +1310,10 @@ calcinteres.xls en doctos accelicap
 			echo $fecha_act . " < " .  $x_fecha_abonocap." - ".$x_contador."<br>";
 
 			$x_saldo_intereses = $x_saldo_intereses + $x_interes_sac;
-			$fecha_ant = $fecha_act; 
+			$fecha_ant = $fecha_act;
 			$x_contador++;
 			$x_venc_num_sac++;
-			
+
 		}
 		$x_venc_num_sac = $x_venc_num_sac - 1;
 	}
@@ -1321,21 +1328,21 @@ calcinteres.xls en doctos accelicap
 	$x_venc_num_cac = $x_num_pagos - $x_venc_num_sac;
 	$x_saldo_intereses = 0;
 	$x_fecha_abonocap = $fecha_act;
-	
-	
+
+
 	//calculo de pago de vencimientos
 	$temptime = $x_fecha_abonocap;
-//	$temptime = strtotime(ConvertDateToMysqlFormat($x_fecha_abonocap));		
+//	$temptime = strtotime(ConvertDateToMysqlFormat($x_fecha_abonocap));
 	$x_pago_act = 1;
 	while($x_pago_act < ($x_venc_num_cac + 1)){
 		if ($GLOBALS["x_forma_pago_id"] == 3){
 			// si la forma de pago es mensuial entonces en lugar de agragra 28 dias que es valor contemplado en la base de datos se agrega un mes completo
 			$temptime = DateAdd('m',1,$temptime);
-			
+
 			}else{
 		$temptime = DateAdd('w',$x_forma_pago,$temptime);
 			}
-		$fecha_act = strftime('%Y-%m-%d',$temptime);			
+		$fecha_act = strftime('%Y-%m-%d',$temptime);
 		$x_dia = strftime('%A',$temptime);
 
 		//Validar domingos
@@ -1346,35 +1353,35 @@ calcinteres.xls en doctos accelicap
 		}
 
 		$x_interes_act = (1/pow((1+doubleval($x_tasa_calculada_pow)),$x_pago_act));
-		
-		$x_interes = $x_interes + $x_interes_act;
-	
-		$temptime = strtotime($fecha_act);
-		$x_pago_act++;	
-	}		
-	
 
-	$x_total_venc = round($x_importe / $x_interes);	
-/*		
+		$x_interes = $x_interes + $x_interes_act;
+
+		$temptime = strtotime($fecha_act);
+		$x_pago_act++;
+	}
+
+
+	$x_total_venc = round($x_importe / $x_interes);
+/*
 	$x_total_intereses = ($x_total_venc * $x_num_pagos) - $x_importe;
 	if($GLOBALS["x_iva"] == 1){
 		$x_total_intereses = $x_total_intereses * 1.16;
-		$x_interes_venc = round($x_total_intereses / $x_num_pagos);		
+		$x_interes_venc = round($x_total_intereses / $x_num_pagos);
 		$x_total_venc = $x_total_venc + $x_interes_venc;
 	}
 */
-	
-	
+
+
 /*
 	if($x_saldo_intereses > 0){
-		$x_total_venc = ($x_total_venc + (($x_saldo_intereses + $x_iva_gracia) / $x_venc_num_cac)); 
+		$x_total_venc = ($x_total_venc + (($x_saldo_intereses + $x_iva_gracia) / $x_venc_num_cac));
 	}
 */
 	//genera vencimientos saldos insolutos
-	
-	
+
+
 	//$temptime = strtotime(ConvertDateToMysqlFormat($x_fecha_abonocap));		esta fecha viene vacia por eso nos da el error. >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-	$temptime = strtotime(ConvertDateToMysqlFormat(ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"])));	
+	$temptime = strtotime(ConvertDateToMysqlFormat(ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"])));
 	$x_fecha_dd = ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"]);
 	$x_saldo = $x_importe;
 	if($x_venc_num_sac > 0){
@@ -1389,41 +1396,41 @@ calcinteres.xls en doctos accelicap
 
 		if ($GLOBALS["x_forma_pago_id"] == 3){
 			// si la forma de pago es mensuial entonces en lugar de agragra 28 dias que es valor contemplado en la base de datos se agrega un mes completo
-			// si la fecha de pago es 29,30 ó 31 entonces se tomara como fecha de pago el ultimo dia de mes 			
+			// si la fecha de pago es 29,30 ó 31 entonces se tomara como fecha de pago el ultimo dia de mes
 			// temptime trae la fecha de otorgamiento a esta fecha le sacamos el dia
-			
+
 			$sqlDiaMes = "SELECT DAYOFMONTH('$x_fecha_dd') as dia_mes ";
 			$rsDiaMes = phpmkr_query($sqlDiaMes, $conn) or die ("error al seleccionar el dia del mes". phpmkr_error()."sql:".$sqlDiaMes);
 			$rowDiaMes = phpmkr_fetch_array($rsDiaMes);
 			echo "sql".$sqlDiaMes."<br>";
-			$x_dia_de_mes = $rowDiaMes["dia_mes"];	
-			echo "dia de mes".$x_dia_de_mes."<br>";		
+			$x_dia_de_mes = $rowDiaMes["dia_mes"];
+			echo "dia de mes".$x_dia_de_mes."<br>";
 			if($x_dia_de_mes == 28 || $x_dia_de_mes == 29 || $x_dia_de_mes == 30 || $x_dia_de_mes == 31 ){
-				// la fecha del siguiente vencimiento se pasa para el ultimo dia del mes			
+				// la fecha del siguiente vencimiento se pasa para el ultimo dia del mes
 				$x_dias_faltantes = ultimoDiaMes($x_fecha_dd);
 				echo "dias faltantes".$x_dias_faltantes."<br>";
 				$fecha_act = DateAdd('w',$x_dias_faltantes,$temptime);
-								
-				}else{			
+
+				}else{
 					$fecha_act = DateAdd('m',1,$temptime);
 				}
-				
+
 			}else{
 		$fecha_act = DateAdd('w',$x_forma_pago,$temptime);
 			}
-		$fecha_act = strftime('%Y-%m-%d',$fecha_act);	
-		$x_fecha_dd = 	$fecha_act;	
-		$temptime = strftime('%Y-%m-%d',$temptime);					
-		
+		$fecha_act = strftime('%Y-%m-%d',$fecha_act);
+		$x_fecha_dd = 	$fecha_act;
+		$temptime = strftime('%Y-%m-%d',$temptime);
+
 		$difference = strtotime($fecha_act) - strtotime($temptime); // Difference in seconds
 		$x_dias_total = floor($difference / 86400);
 
 
 		//calcular interes con tasa diaria
 		$x_interes_pp = round(($x_saldo * (($GLOBALS["x_tasa"]/360)/100)) * $x_dias_total);
-		
+
 		//calcular interes con tasa caluclada segun forma de pago
-		$x_interes_pp = round($x_saldo * $x_tasa_calculada);		
+		$x_interes_pp = round($x_saldo * $x_tasa_calculada);
 
 		//sumar saldo de interes gracia
 		/*
@@ -1433,7 +1440,7 @@ calcinteres.xls en doctos accelicap
 		}
 		*/
 		if($GLOBALS["x_iva"] == 1){
-			$x_iva_pp = round($x_interes_pp * .16);	
+			$x_iva_pp = round($x_interes_pp * .16);
 		}else{
 			$x_iva_pp = 0;
 		}
@@ -1444,7 +1451,7 @@ calcinteres.xls en doctos accelicap
 
 /*
 		$x_interes_pp = $x_interes_pp + $x_saldo_intereses;
-		
+
 		if((($x_interes_pp + $x_iva_pp) < $x_total_venc) || (($x_interes_pp + $x_iva_pp) == $x_total_venc)){
 			$x_capital_pp = $x_total_venc - $x_interes_pp - $x_iva_pp;
 			$x_saldo_intereses = 0;
@@ -1465,7 +1472,7 @@ calcinteres.xls en doctos accelicap
 //ajuste de ultimo vencimiento
 		$x_capital_ajuste = $x_capital_ajuste + $x_capital_pp;
 		if($x_pago_act == $x_venc_num_cac){
-			
+
 			if($x_capital_ajuste < $x_importe){
 				$x_ajuste = $x_importe - $x_capital_ajuste;
 				$x_capital_pp = $x_capital_pp + $x_ajuste;
@@ -1477,7 +1484,7 @@ calcinteres.xls en doctos accelicap
 				$x_capital_pp = $x_capital_pp - $x_ajuste;
 				$x_interes_pp = $x_interes_pp + $x_ajuste;
 			}
-			
+
 		}
 
 
@@ -1486,15 +1493,15 @@ calcinteres.xls en doctos accelicap
 		$x_result = phpmkr_query($sSql, $conn);
 		if(!$x_result){
 			echo phpmkr_error() . '<br>SQL: ' . $sSql;
-			phpmkr_query('rollback;', $conn);	 
+			phpmkr_query('rollback;', $conn);
 			exit();
 		}
-		
+
 		$temptime = strtotime($fecha_act);
-		$x_saldo = $x_saldo - $x_capital_pp;	
-		$x_venc_num++;	
-		$x_pago_act++;	
-	}		
+		$x_saldo = $x_saldo - $x_capital_pp;
+		$x_venc_num++;
+		$x_pago_act++;
+	}
 
 	//$fecha_act = strftime('%Y-%m-%d',$fecha_act);
 
@@ -1508,32 +1515,32 @@ if($GLOBALS["x_garantia_liquida"] == 1){
 	// si hay garantia liquida se inserta en la tabla
 	// se cambia le calculo ahora la garantia liquida cambia el monto
 	//forma de pago
-	#1 = semanal 
+	#1 = semanal
 	#2 =  catorcenal
 	#3 = mensual
 	# 4 = quincenal
-	
+
 	// siel credito se torga semana y en 40 pagos la garantia liquida correspondera a 3 pagos
 	// si es quincenal o catorcenal en 24 pagos las garantia liquida correspondera a 2 pagos
 	if (($GLOBALS["x_forma_pago_id"] == 1) && ($GLOBALS["x_num_pagos"] == 40)){
 		#garantia liquida = 3 pagos
 		$x_total_venc_doble = $x_total_venc * 3;
-		
-		$sqlIGL = "INSERT INTO garantia_liquida (`garantia_liquida_id`, `credito_id`, `monto`, `status`, `fecha`, `fecha_modificacion`) VALUES (NULL, $x_credito_id, $x_total_venc_doble, '7', \"".ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"])."\", NULL);";	
-		
+
+		$sqlIGL = "INSERT INTO garantia_liquida (`garantia_liquida_id`, `credito_id`, `monto`, `status`, `fecha`, `fecha_modificacion`) VALUES (NULL, $x_credito_id, $x_total_venc_doble, '7', \"".ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"])."\", NULL);";
+
 		echo $sqlIGL."<br>";
-		
+
 		} else 	if((($GLOBALS["x_forma_pago_id"] == 2)  || ($GLOBALS["x_forma_pago_id"] == 4))&& ($GLOBALS["x_num_pagos"] == 24)){
 		$x_total_venc_doble = $x_total_venc * 2;
-		$sqlIGL = "INSERT INTO garantia_liquida (`garantia_liquida_id`, `credito_id`, `monto`, `status`, `fecha`, `fecha_modificacion`) VALUES (NULL, $x_credito_id, $x_total_venc_doble, '7', \"".ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"])."\", NULL);";	
-		
+		$sqlIGL = "INSERT INTO garantia_liquida (`garantia_liquida_id`, `credito_id`, `monto`, `status`, `fecha`, `fecha_modificacion`) VALUES (NULL, $x_credito_id, $x_total_venc_doble, '7', \"".ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"])."\", NULL);";
+
 		}else if($GLOBALS["x_forma_pago_id"] == 1){
 		$x_total_venc_doble = $x_total_venc * 2;
-			$sqlIGL = "INSERT INTO garantia_liquida (`garantia_liquida_id`, `credito_id`, `monto`, `status`, `fecha`, `fecha_modificacion`) VALUES (NULL, $x_credito_id, $x_total_venc_doble, '7', \"".ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"])."\", NULL);";		
-		}else{	
+			$sqlIGL = "INSERT INTO garantia_liquida (`garantia_liquida_id`, `credito_id`, `monto`, `status`, `fecha`, `fecha_modificacion`) VALUES (NULL, $x_credito_id, $x_total_venc_doble, '7', \"".ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"])."\", NULL);";
+		}else{
 	$sqlIGL = "INSERT INTO garantia_liquida (`garantia_liquida_id`, `credito_id`, `monto`, `status`, `fecha`, `fecha_modificacion`) VALUES (NULL, $x_credito_id, $x_total_venc, '7', \"".ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"])."\", NULL);";
 		}
-	$rsIGL = phpmkr_query($sqlIGL, $conn) or die ("Error al insertar en garantia liquida".phpmkr_error()."sql".$sqlIGL);	
+	$rsIGL = phpmkr_query($sqlIGL, $conn) or die ("Error al insertar en garantia liquida".phpmkr_error()."sql".$sqlIGL);
 	}
 
 
@@ -1541,7 +1548,7 @@ if($GLOBALS["x_garantia_liquida"] == 1){
 	$x_result = phpmkr_query($sSql, $conn);
 	if(!$x_result){
 		echo phpmkr_error() . '<br>SQL: ' . $sSql;
-		phpmkr_query('rollback;', $conn);	 
+		phpmkr_query('rollback;', $conn);
 		exit();
 	}
 
@@ -1549,7 +1556,7 @@ if($GLOBALS["x_garantia_liquida"] == 1){
 	$x_result = phpmkr_query($sSql, $conn);
 	if(!$x_result){
 		echo phpmkr_error() . '<br>SQL: ' . $sSql;
-		phpmkr_query('rollback;', $conn);	 
+		phpmkr_query('rollback;', $conn);
 		exit();
 	}
 
@@ -1559,26 +1566,26 @@ if($GLOBALS["x_garantia_liquida"] == 1){
 	while($rowv = phpmkr_fetch_array($rsv)){
 		//seleccionamos todos los campos del vencimiento, y los copiamos a la tabla de respaldo.
 		$x_vencimiento_id = $rowv["vencimiento_id"];
-		$x_vencimiento_num = $rowv["vencimiento_num"];		
+		$x_vencimiento_num = $rowv["vencimiento_num"];
 		$x_credito_id = $rowv["credito_id"];
-		$x_vencimiento_status_id = $rowv["vencimiento_status_id"];		
+		$x_vencimiento_status_id = $rowv["vencimiento_status_id"];
 		$x_fecha_vencimiento = $rowv["fecha_vencimiento"]; //5
 		$x_importe = $rowv["importe"];
 		$x_interes = $rowv["interes"];
-		$x_iva = $rowv["iva"];		
-		$x_iva_mor = $rowv["iva_mor"];	
+		$x_iva = $rowv["iva"];
+		$x_iva_mor = $rowv["iva_mor"];
 		$x_fecha_remanente = $rowv["fecha_genera_remanente"];//10
 		$x_interes_moratorio = $rowv["interes_moratorio"];
 		$x_total_venc = $rowv["total_venc"];
-		
-		
+
+
 		#insertamos el registro de cada vencimiento en la tabla de respaldo vencimiento.
-		
+
 		#$sqlI ="INSERT INTO vencimiento_respaldo values() ";
 		$sqlI = "insert into vencimiento_respaldo values(0,$x_credito_id, $x_vencimiento_num,1, '$x_fecha_vencimiento', $x_importe, $x_interes, 0, $x_iva, 0, $x_total_venc,NULL)";
 		$x_result = phpmkr_query($sqlI, $conn) or die("No se respaldo el vencimineto". phpmkr_error()."sql :".$sqlI);
-		
-		
+
+
 		}// fin while vencimientos
 
 //credito_tipo_id
@@ -1586,14 +1593,14 @@ if($GLOBALS["x_garantia_liquida"] == 1){
 	$x_gestor_id = 7202;//Jose Luis Trejo (Gestor Cobranza Temprana)
 	//insertamos en gestor credito
 	$sSql = "INSERT INTO gestor_credito (`gestor_credito_id`, `credito_id`, `usuario_id`)";
-	$sSql .= " VALUES (NULL, $x_credito_id, $x_gestor_id ) ";	
+	$sSql .= " VALUES (NULL, $x_credito_id, $x_gestor_id ) ";
 	$rs = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 	phpmkr_free_result($rs);
 	$sSql = "SELECT credito_tipo_id FROM solicitud where solicitud_id =  ".$GLOBALS["x_solicitud_id"];
 	$rs = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 	$row = phpmkr_fetch_array($rs);
 	$x_credito_tipo_id = $row["credito_tipo_id"];
-	phpmkr_free_result($rs);		
+	phpmkr_free_result($rs);
 
 
 if($x_credito_tipo_id != 2){
@@ -1602,14 +1609,14 @@ if($x_credito_tipo_id != 2){
 	$rs = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 	$row = phpmkr_fetch_array($rs);
 	$x_cliente_id = $row["cliente_id"];
-	phpmkr_free_result($rs);		
+	phpmkr_free_result($rs);
 
 
 	$sSql = "update cliente set cliente_num = '".$GLOBALS["x_cliente_num"]."' where cliente_id = $x_cliente_id ";
 	$x_result = phpmkr_query($sSql, $conn);
 	if(!$x_result){
 		echo phpmkr_error() . '<br>SQL: ' . $sSql;
-		phpmkr_query('rollback;', $conn);	 
+		phpmkr_query('rollback;', $conn);
 		exit();
 	}
 
@@ -1623,7 +1630,7 @@ if($x_credito_tipo_id != 2){
 		$clave = generate(8, "No", "Yes", "Yes");
 		$sSql = "Select * from usuario where usuario = '$clave'";
 		$rs2 = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
-		if (phpmkr_num_rows($rs2) == 0) {	
+		if (phpmkr_num_rows($rs2) == 0) {
 			$x_usuario = $clave;
 			$x_asignada = 10;
 		}
@@ -1635,8 +1642,8 @@ if($x_credito_tipo_id != 2){
 		$clave = generate(8, "No", "Yes", "Yes");
 		$sSql = "Select * from usuario where clave = '$clave'";
 		$rs2 = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
-		if (phpmkr_num_rows($rs2) == 0) {	
-			/*		
+		if (phpmkr_num_rows($rs2) == 0) {
+			/*
 			$sSql = "update socios set clave = '$clave' where socio_id = $x_socio_id";
 			phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 			*/
@@ -1652,7 +1659,7 @@ if($x_credito_tipo_id != 2){
 	$x_nombre = $row["nombre_completo"]." ". $row["apellido_paterno"]." ".$row["apellido_materno"];
 	$x_email = $row["email"];
 	$x_usuario_name = $row["usuario_id"];
-	phpmkr_free_result($rs);		
+	phpmkr_free_result($rs);
 if(empty($x_usuario_name)){
 
 	$fieldList = NULL;
@@ -1663,17 +1670,17 @@ if(empty($x_usuario_name)){
 	$fieldList["`usuario_status_id`"] = 1;
 
 	// Field usuario
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_usuario) : $x_usuario; 
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_usuario) : $x_usuario;
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`usuario`"] = $theValue;
 
 	// Field clave
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_clave) : $x_clave; 
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_clave) : $x_clave;
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`clave`"] = $theValue;
 
 	// Field nombre
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_nombre) : $x_nombre; 
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_nombre) : $x_nombre;
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`nombre`"] = $theValue;
 
@@ -1694,7 +1701,7 @@ if(empty($x_usuario_name)){
 	$fieldList["`visitas`"] = $theValue;
 
 	// Field email
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_email) : $x_email; 
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_email) : $x_email;
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`email`"] = $theValue;
 
@@ -1707,17 +1714,17 @@ if(empty($x_usuario_name)){
 	$x_result = phpmkr_query($sSql, $conn);
 	if(!$x_result){
 		echo phpmkr_error() . '<br>SQL: ' . $sSql;
-		phpmkr_query('rollback;', $conn);	 
+		phpmkr_query('rollback;', $conn);
 	 	exit();
 	}
-	
+
 	$x_usuario_id = mysql_insert_id();
 
 	$sSql = "update cliente set usuario_id = $x_usuario_id where cliente_id = $x_cliente_id";
 	$x_result = phpmkr_query($sSql, $conn);
 	if(!$x_result){
 		echo phpmkr_error() . '<br>SQL: ' . $sSql;
-		phpmkr_query('rollback;', $conn);	 
+		phpmkr_query('rollback;', $conn);
 	 	exit();
 	}
 }
@@ -1727,7 +1734,7 @@ if(empty($x_usuario_name)){
 
 include("utilerias/gen_pass_ec.php");
 
-				
+
 
 
 	// seleccionamos el grupo_ID
@@ -1735,10 +1742,10 @@ include("utilerias/gen_pass_ec.php");
 	$responseGid = phpmkr_query($sqlGrupo, $conn) or die("Error al seleccionar grupo id".phpmkr_error()."sql:".$sqlGrupo);
 	$rowgid = phpmkr_fetch_array($responseGid);
 	$x_grupo_id =  $rowgid["grupo_id"];
-	
+
 	if(!empty($x_grupo_id)){
-		
-		
+
+
 		//seleccionamos los id de los clientes que pertenecen a ese grupo
 		$sqlClientes = "SELECT * FROM creditosolidario  WHERE creditoSolidario_id = $x_grupo_id ";
 		$resposeClientes = phpmkr_query($sqlClientes, $conn) or die("Error a seleccionar los clientes del grupo".phpmkr_error()."sql:".$sqlClientes);
@@ -1748,52 +1755,52 @@ include("utilerias/gen_pass_ec.php");
 			 echo "seleccionamos los id de los clintes";
 			$x_cont_g = 1;
 			while($x_cont_g <= 10){
-				
+
 				$GLOBALS["x_integrante_$x_cont_g"] = $rowClientes["integrante_$x_cont_g"];
 				$GLOBALS["x_cliente_id_$x_cont_g"] = $rowClientes["cliente_id_$x_cont_g"];
-				
-				
+
+
 				// mientras hay integrantes, si no esta vacio el id y es numerico, se le asigna un numero de usuario.
 				if ( !empty($GLOBALS["x_cliente_id_$x_cont_g"]) && ($GLOBALS["x_cliente_id_$x_cont_g"] != "") && intval($GLOBALS["x_cliente_id_$x_cont_g"])){
 					echo "entramos la while con el id ".$GLOBALS["x_cliente_id_$x_cont_g"]."<br>";
-					// seleccionamos el ultimo numero de cliente asignado y le agregamos 1					 
+					// seleccionamos el ultimo numero de cliente asignado y le agregamos 1
 							$sSqlWrkn = "SELECT max(cliente_num+0) as cliente_num_new FROM cliente ";
 							$rswrkn = phpmkr_query($sSqlWrkn,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrkn);
 							$datawrkn = phpmkr_fetch_array($rswrkn);
 							$x_cliente_num = $datawrkn["cliente_num_new"] + 1;
 							@phpmkr_free_result($rswrkn);
-					 
-	  				// actualizamos el numero de cliente					
+
+	  				// actualizamos el numero de cliente
 							$sSql = "UPDATE cliente SET cliente_num = $x_cliente_num WHERE cliente_id = ". $GLOBALS["x_cliente_id_$x_cont_g"]."";
 							$x_result = phpmkr_query($sSql, $conn);
 							if(!$x_result){
 								echo phpmkr_error() . '<br>SQL: ' . $sSql;
-								phpmkr_query('rollback;', $conn);	 
+								phpmkr_query('rollback;', $conn);
 								exit();
 							}
-							
+
 							echo "numero de cliente = " .$x_cliente_num."<br>";
-					
+
 					//USUARIO Y PASSWORD
 					$x_asignada = 0;
 					while($x_asignada == 0){
 						$clave = generate(8, "No", "Yes", "Yes");
 						$sSql = "Select * from usuario where usuario = '$clave'";
 						$rs2 = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
-						if (phpmkr_num_rows($rs2) == 0) {	
+						if (phpmkr_num_rows($rs2) == 0) {
 							$x_usuario = $clave;
 							$x_asignada = 10;
 						}
 						phpmkr_free_result($rs2);
 					}
-				
+
 					$x_asignada = 0;
 					while($x_asignada == 0){
 						$clave = generate(8, "No", "Yes", "Yes");
 						$sSql = "Select * from usuario where clave = '$clave'";
 						$rs2 = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
-						if (phpmkr_num_rows($rs2) == 0) {	
-							/*		
+						if (phpmkr_num_rows($rs2) == 0) {
+							/*
 							$sSql = "update socios set clave = '$clave' where socio_id = $x_socio_id";
 							phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 							*/
@@ -1802,58 +1809,58 @@ include("utilerias/gen_pass_ec.php");
 						}
 						phpmkr_free_result($rs2);
 					}
-				
+
 					$sSql = "SELECT * FROM cliente where cliente_id =".$GLOBALS["x_cliente_id_$x_cont_g"]. "";
 					$rs = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 					$row = phpmkr_fetch_array($rs);
 					$x_nombre = $row["nombre_completo"]." ". $row["apellido_paterno"]." ".$row["apellido_materno"];
 					$x_email = $row["email"];
-					phpmkr_free_result($rs);		
-				
-				
+					phpmkr_free_result($rs);
+
+
 					$fieldList = NULL;
 					// Field usuario_rol_id
 					$fieldList["`usuario_rol_id`"] = 8;
-				
+
 					// Field usuario_status_id
 					$fieldList["`usuario_status_id`"] = 1;
-				
+
 					// Field usuario
-					$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_usuario) : $x_usuario; 
+					$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_usuario) : $x_usuario;
 					$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 					$fieldList["`usuario`"] = $theValue;
-				
+
 					// Field clave
-					$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_clave) : $x_clave; 
+					$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_clave) : $x_clave;
 					$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 					$fieldList["`clave`"] = $theValue;
-				
+
 					// Field nombre
-					$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_nombre) : $x_nombre; 
+					$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_nombre) : $x_nombre;
 					$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 					$fieldList["`nombre`"] = $theValue;
-				
+
 					// Field fecha_registro
 					$theValue = ($GLOBALS["x_fecha_otrogamiento"] != "") ? " '" . ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"]) . "'" : "Null";
 					$fieldList["`fecha_registro`"] = $theValue;
-				
+
 					// Field fecha_caduca
 					$theValue = ($GLOBALS["x_fecha_caduca"] != "") ? " '" . ConvertDateToMysqlFormat($GLOBALS["x_fecha_caduca"]) . "'" : "Null";
 					$fieldList["`fecha_caduca`"] = $theValue;
-				
+
 					// Field fecha_visita
 					$theValue = ($GLOBALS["x_fecha_visita"] != "") ? " '" . ConvertDateToMysqlFormat($GLOBALS["x_fecha_visita"]) . "'" : "Null";
 					$fieldList["`fecha_visita`"] = $theValue;
-				
+
 					// Field visitas
 					$theValue = ($GLOBALS["x_visitas"] != "") ? intval($GLOBALS["x_visitas"]) : "0";
 					$fieldList["`visitas`"] = $theValue;
-				
+
 					// Field email
-					$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_email) : $x_email; 
+					$theValue = (!get_magic_quotes_gpc()) ? addslashes($x_email) : $x_email;
 					$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 					$fieldList["`email`"] = $theValue;
-				
+
 					// insert into database
 					$sSql = "INSERT INTO `usuario` (";
 					$sSql .= implode(",", array_keys($fieldList));
@@ -1863,30 +1870,30 @@ include("utilerias/gen_pass_ec.php");
 					$x_result = phpmkr_query($sSql, $conn);
 					if(!$x_result){
 						echo phpmkr_error() . '<br>SQL: ' . $sSql;
-						phpmkr_query('rollback;', $conn);	 
+						phpmkr_query('rollback;', $conn);
 						exit();
 					}
-					
+
 					$x_usuario_id = mysql_insert_id();
-				
+
 					$sSql = "update cliente set usuario_id = $x_usuario_id where cliente_id = ". $GLOBALS["x_cliente_id_$x_cont_g"] ." ";
 					$x_result = phpmkr_query($sSql, $conn);
 					if(!$x_result){
 						echo phpmkr_error() . '<br>SQL: ' . $sSql;
-						phpmkr_query('rollback;', $conn);	 
+						phpmkr_query('rollback;', $conn);
 						exit();
-					}					
-					
-					
+					}
+
+
 					}// if vacio! , numerico
 				$x_cont_g++;
 				}// while 10
 		phpmkr_free_result($rowClientes);
-		
-		
+
+
 		}// ! vacio grupo id
 
-		
+
 } // else if tipo !2
 
 
@@ -1895,8 +1902,8 @@ include("utilerias/gen_pass_ec.php");
 	$rs = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 	$row = phpmkr_fetch_array($rs);
 	$x_promotor_id = $row["promotor_id"];
-	$x_solicitud_id_ant = $row["solicitud_id_ant"];	
-	phpmkr_free_result($rs);		
+	$x_solicitud_id_ant = $row["solicitud_id_ant"];
+	phpmkr_free_result($rs);
 
 
 
@@ -1906,17 +1913,17 @@ include("utilerias/gen_pass_ec.php");
 		$rs = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 		$row = phpmkr_fetch_array($rs);
 		$x_credito_id_ant = $row["credito_id"];
-		phpmkr_free_result($rs);		
-	
+		phpmkr_free_result($rs);
+
 		$sSql = "update credito set credito_id_ant = $x_credito_id_ant where credito_id = $x_credito_id";
 		$x_result = phpmkr_query($sSql, $conn);
 		if(!$x_result){
 			echo phpmkr_error() . '<br>SQL: ' . $sSql;
-			phpmkr_query('rollback;', $conn);	 
+			phpmkr_query('rollback;', $conn);
 			exit();
 		}
-	
-		$x_comision_importe = 50;	
+
+		$x_comision_importe = 50;
 	}else{
 		$x_comision_importe = 100;
 	}
@@ -1927,7 +1934,7 @@ include("utilerias/gen_pass_ec.php");
 
 
 	$fieldList = NULL;
-	
+
 	// Field promotor_id
 	$fieldList["`promotor_id`"] = $x_promotor_id;
 
@@ -1979,18 +1986,18 @@ include("utilerias/gen_pass_ec.php");
 //GENERA CASO CRM
 // debe ser dos dias despues de que se otorgo el credito, y se le deben dar dos dias de gracia.
 $currentdatecrm = getdate(time());
-$currtime = $currentdatecrm["hours"].":".$currentdatecrm["minutes"].":".$currentdatecrm["seconds"];	
+$currtime = $currentdatecrm["hours"].":".$currentdatecrm["minutes"].":".$currentdatecrm["seconds"];
 
 $cdate = getdate(time());
-$currdate2 = $cdate["mday"]."/".$cdate["mon"]."/".$cdate["year"];	
+$currdate2 = $cdate["mday"]."/".$cdate["mon"]."/".$cdate["year"];
 $currdate2 = ConvertDateToMysqlFormat($currdate2);
 // fecha en que se otorgo el credito, no la fecha actual.
 $x_fecha_otorg = ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"]);
 $currdate2 = $x_fecha_otorg;
 
-$temptime = strtotime($currdate2);	
+$temptime = strtotime($currdate2);
 $temptime = DateAdd('w',2,$temptime);
-$fecha_tarea = strftime('%Y-%m-%d',$temptime);	
+$fecha_tarea = strftime('%Y-%m-%d',$temptime);
 
 /*$x_dia = strftime('%A',$temptime);
 if($x_dia == "SUNDAY"){
@@ -2004,9 +2011,9 @@ $temptime = strtotime($fecha_tarea);*/
 
 	/*$sSqlWrk = "
 	SELECT *
-	FROM 
+	FROM
 		crm_playlist
-	WHERE 
+	WHERE
 		crm_playlist.crm_caso_tipo_id = 2
 		AND crm_playlist.orden = 1
 	";
@@ -2014,20 +2021,20 @@ $temptime = strtotime($fecha_tarea);*/
 	$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 	$datawrk = phpmkr_fetch_array($rswrk);
 	$x_crm_playlist_id = $datawrk["crm_playlist_id"];
-	$x_prioridad_id = $datawrk["prioridad_id"];	
-	$x_asunto = $datawrk["asunto"];	
-	$x_descripcion = $datawrk["descripcion"];		
-	$x_tarea_tipo_id = $datawrk["tarea_fuente"];		
-	$x_orden = $datawrk["orden"];	
+	$x_prioridad_id = $datawrk["prioridad_id"];
+	$x_asunto = $datawrk["asunto"];
+	$x_descripcion = $datawrk["descripcion"];
+	$x_tarea_tipo_id = $datawrk["tarea_fuente"];
+	$x_orden = $datawrk["orden"];
 	$x_dias_espera = $datawrk["dias_espera"];
 	$x_dias_espera =$x_dias_espera +1;
 	@phpmkr_free_result($rswrk);
 
 
 	//Fecha Vencimiento
-	$temptime = strtotime(ConvertDateToMysqlFormat($fecha_tarea));	
+	$temptime = strtotime(ConvertDateToMysqlFormat($fecha_tarea));
 	$temptime = DateAdd('w',$x_dias_espera,$temptime);
-	$fecha_venc = strftime('%Y-%m-%d',$temptime);	
+	$fecha_venc = strftime('%Y-%m-%d',$temptime);
 	echo "fecha".$fecha_venc."";
 	$x_dia = strftime('%A',$temptime);
 	if($x_dia == "SUNDAY"){
@@ -2043,34 +2050,34 @@ $temptime = strtotime($fecha_tarea);*/
 	$x_bitacora = "Seguimiento de Credito - (".FormatDateTime($fecha_tarea,7)." - $currtime)";
 
 	$x_bitacora .= "\n";
-	$x_bitacora .= "$x_asunto - $x_descripcion ";	
-	
+	$x_bitacora .= "$x_asunto - $x_descripcion ";
+
 
 
 
 	$sSqlWrk = "
 	SELECT usuario_id
-	FROM 
+	FROM
 		usuario
-	WHERE 
+	WHERE
 		usuario.usuario_rol_id = 2
 	LIMIT 1
 	";
-	
+
 	$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 	$datawrk = phpmkr_fetch_array($rswrk);
 	$x_usuario_id = $datawrk["usuario_id"];
 	@phpmkr_free_result($rswrk);
-	
+
 // SE CAMBIO LA FECHA ANTES TENIA FECHA DE OTORGAMIENTO
 	$sSql = "INSERT INTO crm_caso values (0,2,1,1,$x_cliente_id,'".ConvertDateToMysqlFormat($fecha_tarea)."',$x_origen,$x_usuario_id,'$x_bitacora','".ConvertDateToMysqlFormat($GLOBALS["x_fecha_otrogamiento"])."',NULL,$x_credito_id)";
 
 	$x_result = phpmkr_query($sSql, $conn);
-	$x_crm_caso_id = mysql_insert_id();	
-	
+	$x_crm_caso_id = mysql_insert_id();
+
 	if(!$x_result){
 		echo phpmkr_error() . '<br>SQL: ' . $sSql;
-		phpmkr_query('rollback;', $conn);	 
+		phpmkr_query('rollback;', $conn);
 		exit();
 	}*/
 
@@ -2078,26 +2085,26 @@ $temptime = strtotime($fecha_tarea);*/
 /*	$sSql = "INSERT INTO crm_tarea values (0,$x_crm_caso_id, $x_orden, $x_tarea_tipo_id, $x_prioridad_id,'".ConvertDateToMysqlFormat($fecha_tarea)."','$currtime','$fecha_venc',NULL,NULL,NULL, 1, 1, 2, $x_usuario_id, NULL,NULL, '$x_asunto','$x_descripcion',1)";
 
 	$x_result = phpmkr_query($sSql, $conn);
-	
+
 	if(!$x_result){
 		echo phpmkr_error() . '<br>SQL: ' . $sSql;
-		phpmkr_query('rollback;', $conn);	 
+		phpmkr_query('rollback;', $conn);
 		exit();
 	}*/
-	
+
 
 
 
 //FONDEO
-	
+
 	if(!empty($GLOBALS["x_fondeo_credito_id"]) && $GLOBALS["x_fondeo_credito_id"] > 0){
 		$sSql = "INSERT INTO fondeo_colocacion values (0,".$GLOBALS["x_fondeo_credito_id"].",$x_credito_id)";
-	
+
 		$x_result = phpmkr_query($sSql, $conn);
-		
+
 		if(!$x_result){
 			echo phpmkr_error() . '<br>SQL: ' . $sSql;
-			phpmkr_query('rollback;', $conn);	 
+			phpmkr_query('rollback;', $conn);
 			exit();
 		}
 	}
@@ -2106,20 +2113,20 @@ $temptime = strtotime($fecha_tarea);*/
 	$sqlCondi = "INSERT INTO `credito_condiciones` (`credito_condiciones_id` ,`credito_id` ,`fecha` ,`status`) ";
 	$sqlCondi .= " VALUES ( NULL , $x_credito_id, \"$dateC\", '0')";
 	$rsCondi = phpmkr_query ($sqlCondi, $conn) or die ("error al isertar en condiciones de credito". phpmkr_error()."sql :". $sqlCondi);
-	
+
 	$sqlCondi = "INSERT INTO `cheque_conciliado` (`cheque_conciliado_id` ,`credito_id` ,`fecha` ,`status`) ";
 	$sqlCondi .= " VALUES ( NULL , $x_credito_id, \"$dateC\", '0')";
 	$rsCondi = phpmkr_query ($sqlCondi, $conn) or die ("error al isertar en condiciones de credito". phpmkr_error()."sql :". $sqlCondi);
 
 
-	phpmkr_query('commit;', $conn);	
-	
+	phpmkr_query('commit;', $conn);
+
 	//creamos el perfil transaccionl del cliente
 	# 1.- si es un cliente nuevo se queda sin perfil
 	#para el segundo credito se suman los mostos de todos los creditos anteriores y se promedian ; lo mismos se hace con el plazo
-	
+
 	$sqlCreditos = " SELECT * FROM credito WHERE cliente_num = ".$GLOBALS["x_cliente_num"]."  ORDER BY credito_id DESC ";
-	$rsCreditos =  phpmkr_query($sqlCreditos,$conn) or die("error al seleccionar los creditos del cliente".phpmkr_error().$sqlCreditos);	
+	$rsCreditos =  phpmkr_query($sqlCreditos,$conn) or die("error al seleccionar los creditos del cliente".phpmkr_error().$sqlCreditos);
 	$x_total_dias = 0;
 	$x_total_importe = 0;
 	$x_total_creditos = 0;
@@ -2127,28 +2134,28 @@ $temptime = strtotime($fecha_tarea);*/
 		$x_cred_id = $rowCreditos["credito_id"];
 		$x_import = $rowCreditos["importe"];
 		$x_fecha_otrogamiento = $rowCreditos["fecha_otrogamiento"];
-		$x_fecha_vencimiento = $rowCreditos["fecha_vencimiento"];		
+		$x_fecha_vencimiento = $rowCreditos["fecha_vencimiento"];
 		$sqlDias = "SELECT DATEDIFF(\"$x_fecha_vencimiento\",\"$x_fecha_otrogamiento\") as dias_periodo";
 		$rsDiasTrans = phpmkr_query($sqlDias,$conn)or die ("Error al contar los dias".phpmkr_error().$sqlDias);
 		$rowDiasTrans = phpmkr_fetch_array($rsDiasTrans);
 		$x_dias_periodo = $rowDiasTrans["dias_periodo"];
 		$x_total_importe += $x_import;
 		$x_total_dias += $x_dias_periodo;
-		$x_total_creditos += 1; 
+		$x_total_creditos += 1;
 		}
-	
+
 	$x_hh =  date("Y-m-d");
 	if($x_total_importe> 0){
 		$sqlInsert = "INSERT INTO `perfil_transaccional` (`perfil_transaccional_id`, `credito_id`, `fecha_registro`, `importe_promedio`, `dias_promedio`, `numero_creditos`, `numero_cliente`) ";
 		$sqlInsert .= " VALUES (NULL, $x_credito_id, \"$x_hh\",$x_total_importe, $x_total_dias,  $x_total_creditos, ".$GLOBALS["x_cliente_num"].") ";
-		
+
 		$rsInsert = phpmkr_query($sqlInsert,$conn) or die("Error al crear el perfil transaccional- mandar mensaje a sistemas".phpmkr_error().$sqlInsert);
-		
+
 		}
-	 
-	 // seleccionamos todos los datos del credito ortorgado y verificamos sis se trata de un credito de la UNAM, si es así, se hace el proceso para el cambio de las fechhas 
-	 
-	  if($GLOBALS["x_sucursal_id"] == 13 ){		  		  
+
+	 // seleccionamos todos los datos del credito ortorgado y verificamos sis se trata de un credito de la UNAM, si es así, se hace el proceso para el cambio de las fechhas
+
+	  if($GLOBALS["x_sucursal_id"] == 13 ){
 		#  echo " FECHA DE OTORGAMIENTO ==>".$GLOBALS["x_fecha_otrogamiento"]."<BR>";
 		  // buscamos la fecha de otorgamiento del credito
 		  //$GLOBALS["x_fecha_otrogamiento"]
@@ -2156,7 +2163,7 @@ $temptime = strtotime($fecha_tarea);*/
 		  $ar_fech = explode("-",$fecha_de_otr);
 		  $mes_otorgamiento = $ar_fech[1];
 		  $dia_otorgamiento = $ar_fech[2];
-		  
+
 		  #echo "mes otorga ".$mes_otorgamiento." ".$dia_otorgamiento;
 		  $id_fecha = '';
 		  $x_id_temp ='';
@@ -2165,49 +2172,49 @@ $temptime = strtotime($fecha_tarea);*/
 		  $x_siguiente_id = 0;
 		  $sqlFechaPrimerPago = " SELECT * FROM fechas_pagos_UNAM WHERE mes_tramite = ". $mes_otorgamiento. "  ORDER BY  fechas_pagos_UNAM_id DESC ";
 		  $rsFechaPrimerPago = phpmkr_query($sqlFechaPrimerPago,$conn)or die ("Error seleccionar los vencimientos".phpmkr_error().$sqlFechaPrimerPago);
-		 while($rowFechaPrimerPago = phpmkr_fetch_array($rsFechaPrimerPago)){		 
+		 while($rowFechaPrimerPago = phpmkr_fetch_array($rsFechaPrimerPago)){
 			 if($dia_otorgamiento <= $rowFechaPrimerPago["dia_tramite"] ){
 				 $x_id_temp = $rowFechaPrimerPago["fechas_pagos_UNAM_id"];
 				 $id_encontrado = 1;
-				}		
+				}
 				$x_siguiente_id = $rowFechaPrimerPago["fechas_pagos_UNAM_id"] +$x_no_reg;
 				$x_no_reg ++;
 			}
-			
-		 $x_siguiente_id = ($x_siguiente_id ==25)?1:$x_siguiente_id;		  
+
+		 $x_siguiente_id = ($x_siguiente_id ==25)?1:$x_siguiente_id;
 		 $id_fecha_pago = ($id_encontrado)?$x_id_temp:$x_siguiente_id;
 		 $x_anio_primer_pago = date("Y");
 		 #echo "<br>Year=>". $x_año_primer_pago."";
 		 $x_anio_primer_pago = ($id_fecha_pago== 1 || $id_fecha_pago == 2 || $id_fecha_pago == 24 )? ($x_anio_primer_pago + 1): $x_anio_primer_pago;
-		  
+
 		 # echo "<br>Year=>". $x_anio_primer_pago."";
-		  
+
 		 # echo "<BR>ID FECHA PAGO ==>".$id_fecha_pago."<BR>";
 		 // ya tenemos el id de la fcha de pago del primer vencimiento, seleccionamos los datos
 		  $sqlFechaPrimerPago2 = " SELECT * FROM fechas_pagos_UNAM WHERE fechas_pagos_UNAM_id = ". $id_fecha_pago. " ";
 		  $rsFechaPrimerPago2 = phpmkr_query($sqlFechaPrimerPago2,$conn)or die ("Error seleccionar los vencimientos".phpmkr_error().$sqlFechaPrimerPago2);
-		 while($rowFechaPrimerPago2 = phpmkr_fetch_array($rsFechaPrimerPago2)){				 
+		 while($rowFechaPrimerPago2 = phpmkr_fetch_array($rsFechaPrimerPago2)){
 				 $x_dia_primer_pago = $rowFechaPrimerPago2["dia_pago"];
 				 $x_mes_primer_pago = $rowFechaPrimerPago2["mes_pago"];
 				 if($x_mes_primer_pago<10)
 				 $x_mes_primer_pago = "0".$x_mes_primer_pago;
-				 
+
 				 if($x_dia_primer_pago<10)
 				 $x_dia_primer_pago = "0".$x_dia_primer_pago;
-				# ECHO "<BR> DIA=>". $x_dia_primer_pago."<BR>".$x_mes_primer_pago;				
+				# ECHO "<BR> DIA=>". $x_dia_primer_pago."<BR>".$x_mes_primer_pago;
 			}
-			
+
 			$x_fecha_pago_1 = ConvertDateToMysqlFormat($x_anio_primer_pago."-".$x_mes_primer_pago."-".$x_dia_primer_pago);
 			#echo "<BR>fecha primer pago =>".$x_fecha_pago_1;
-			
+
 		$sqlVencimientos =  "SELECT * FROM vencimiento WHERE credito_id = $x_credito_id order by vencimiento_id";
-		
+
 		 $rsVencimientos = phpmkr_query($sqlVencimientos,$conn)or die ("Error seleccionar los vencimientos".phpmkr_error().$sqlVencimientos);
 		 while($rowVencimientos = phpmkr_fetch_array($rsVencimientos)){
 			 $x_vencimiento_id = $rowVencimientos["vencimiento_id"];
 			  $x_vencimiento_num = $rowVencimientos["vencimiento_num"];
 			  $x_vencimiento_anterior_id = ($rowVencimientos["vencimiento_id"] - 1);
-			  
+
 			 if($x_vencimiento_num == 1){
 			  $sqlUpDateVecimiemtos =  "UPDATE vencimiento SET fecha_vencimiento = '".$x_fecha_pago_1."' WHERE vencimiento_id =".$x_vencimiento_id."";
 			  $rsFechaNueva = phpmkr_query($sqlUpDateVecimiemtos,$conn)or die ("Error actualizar la fecha de los vecimientos 2<br> ".phpmkr_error().$sqlUpDateVecimiemtos);
@@ -2220,56 +2227,56 @@ $temptime = strtotime($fecha_tarea);*/
 		 		while($rowVencimientosAnterior = phpmkr_fetch_array($rsVencimientosAnterior)){
 					$x_fecha_vencimiento_anterior = $rowVencimientosAnterior["fecha_vencimiento"];
 				}
-					
-					// buscamos el dia del vecimeinto 
+
+					// buscamos el dia del vecimeinto
 			 	$sqlDia = "SELECT DAYOFMONTH('$x_fecha_vencimiento_anterior') AS dia_pago ";
 				$rsDia = phpmkr_query($sqlDia,$conn)or die ("Error seleccionar fecha nueva de vencimientos".phpmkr_error().$sqlDia);
 			 	$rowDia = phpmkr_fetch_array($rsDia);
-				$x_dia_pago =  $rowDia["dia_pago"];		
-				
+				$x_dia_pago =  $rowDia["dia_pago"];
+
 				if($x_dia_pago == 7){
-				 $x_dias_faltantes = 22 - $x_dia_pago;				 				 
+				 $x_dias_faltantes = 22 - $x_dia_pago;
 				 }
-				 
-			if($x_dia_pago == 22){				
+
+			if($x_dia_pago == 22){
 				// buscamos el último día del mes
 				$sqlUltimoDiaMes = " SELECT LAST_DAY('$x_fecha_vencimiento_anterior') AS ultimo_dia_mes ";
 				$rsUltimoDiaMes = phpmkr_query($sqlUltimoDiaMes,$conn)or die ("Error seleccionar fecha nueva de vencimientos".phpmkr_error().$sqlFecha1Mes);
 			    $rowUltimoDiaMes = phpmkr_fetch_array($rsUltimoDiaMes);
 			    $x_ultimo_dia_mes =  $rowUltimoDiaMes["ultimo_dia_mes"];
-				
+
 				$sqlDiaU = "SELECT DAYOFMONTH('$x_ultimo_dia_mes ') AS dia_pago ";
 			 	$rsDiaU = phpmkr_query($sqlDiaU,$conn)or die ("Error seleccionar fecha nueva de vencimientos".phpmkr_error().$sqlDiaU);
 			    $rowDiaU = phpmkr_fetch_array($rsDiaU);
-			    $x_dia_pagoU =  $rowDiaU["dia_pago"];								
-				$x_dias_faltantes = ($x_dia_pagoU -  $x_dia_pago) + 7;				
-				} 		 
-				 
-				if($x_dias_faltantes>0){ 				
+			    $x_dia_pagoU =  $rowDiaU["dia_pago"];
+				$x_dias_faltantes = ($x_dia_pagoU -  $x_dia_pago) + 7;
+				}
+
+				if($x_dias_faltantes>0){
 				 // ahora actualizamos la fecha sumandole los dias que le faltan para que sea 22
 				  $sqlFecha1Mes = "SELECT DATE_ADD('$x_fecha_vencimiento_anterior', INTERVAL $x_dias_faltantes DAY) AS fecha_nueva_vencimiento ";
 			 	  #echo "<br>". $sqlFecha1Mes;
 				  $rsFechaNueva = phpmkr_query($sqlFecha1Mes,$conn)or die ("Error seleccionar fecha nueva de vencimientos".phpmkr_error().$sqlFecha1Mes);
 			      $rowFechaNueva = phpmkr_fetch_array($rsFechaNueva);
-			      $x_nueva_fecha_vencimiento =  $rowFechaNueva["fecha_nueva_vencimiento"]; 
-				  
-				   
+			      $x_nueva_fecha_vencimiento =  $rowFechaNueva["fecha_nueva_vencimiento"];
+
+
 				  // ya tenemos la nueva fecha, ahora actualizamos el registro en la tabla de vecimeintos
 			 	  $sqlUpDateVecimiemtos =  "UPDATE vencimiento SET fecha_vencimiento = '".$x_nueva_fecha_vencimiento."' WHERE vencimiento_id =".$x_vencimiento_id."";
 			  	  $rsFechaNueva = phpmkr_query($sqlUpDateVecimiemtos,$conn)or die ("Error actualizar la fecha de los vecimientos ".phpmkr_error().$sqlFecha1Mes);
 			 	  // aqui termina el primer proceso
 				# echo "<br>". $sqlUpDateVecimiemtos;
-				   
-				}		
-			
-			}// else vencimeinto1 		
-		}	// while vencimientos				 			 
-	
+
+				}
+
+			}// else vencimeinto1
+		}	// while vencimientos
+
 		  } // if sucursal id 13
-		 
-	 
-	 
-	 	 // seleccionamos todos los datos del credito ortorgado y verificamos sis se trata de un credito de la UNAM, si es así, se hace el proceso para el cambio de las fechhas 
+
+
+
+	 	 // seleccionamos todos los datos del credito ortorgado y verificamos sis se trata de un credito de la UNAM, si es así, se hace el proceso para el cambio de las fechhas
 	 if($GLOBALS["x_sucursal_id"] == 13  && $GLOBALS["x_sucursal_id"] == 14  ){
 		 // es una solicitud de la UNAM se deben cambiar todas las fechas de pago
 		 // seelccionamos las fechas de todos los vecimientos
@@ -2278,98 +2285,98 @@ $temptime = strtotime($fecha_tarea);*/
 		 while($rowVencimientos = phpmkr_fetch_array($rsVencimientos)){
 			 $x_vencimiento_id = $rowVencimientos["vencimiento_id"];
 			 $x_vencimiento_num = $rowVencimientos["vencimiento_num"];
-			 $x_vencimiento_fecha_pago = $rowVencimientos["fecha_vencimiento"];	
-			
+			 $x_vencimiento_fecha_pago = $rowVencimientos["fecha_vencimiento"];
+
 			 $sqlFecha1Mes = "SELECT DATE_ADD('$x_vencimiento_fecha_pago', INTERVAL 1 MONTH) AS fecha_nueva_vencimiento ";
-			 
-			 
+
+
 			 $rsFechaNueva = phpmkr_query($sqlFecha1Mes,$conn)or die ("Error seleccionar fecha nueva de vencimientos 1<br>".phpmkr_error().$sqlFecha1Mes);
 			 $rowFechaNueva = phpmkr_fetch_array($rsFechaNueva);
 			 $x_nueva_fecha_vencimiento =  $rowFechaNueva["fecha_nueva_vencimiento"];
-			 
-			 
+
+
 			  // ya tenemos la nueva fecha, ahora actualizamos el registro en la tabla de vecimeintos
 			  $sqlUpDateVecimiemtos =  "UPDATE vencimiento SET fecha_vencimiento = '".$x_nueva_fecha_vencimiento."' WHERE vencimiento_id =".$x_vencimiento_id."";
 			  $rsFechaNueva = phpmkr_query($sqlUpDateVecimiemtos,$conn)or die ("Error actualizar la fecha de los vecimientos 2<br> ".phpmkr_error().$sqlUpDateVecimiemtos);
-			
-			 // aqui termina el primer proceso	 
+
+			 // aqui termina el primer proceso
 			 }
-		 
+
 		 $x_vencimiento_id = '';
 		 $x_vencimiento_fecha_pago = '';
-		 
-		
+
+
 		 // palicamos el segundo proceso actualizar todas las fechas a 7 o 22 de cada mes
 		  $sqlVencimientos2 =  "SELECT * FROM vencimiento WHERE credito_id = $x_credito_id order by vencimiento_id";
-		
+
 		 $rsVencimientos2 = phpmkr_query($sqlVencimientos2,$conn)or die ("Error seleccionar los vencimientos".phpmkr_error().$sqlVencimientos2);
 		 while($rowVencimientos2 = phpmkr_fetch_array($rsVencimientos2)){
-			 
-			
+
+
 			 $x_vencimiento_id = $rowVencimientos2["vencimiento_id"];
 			 $x_vencimiento_num = $rowVencimientos2["vencimiento_num"];
-			 $x_vencimiento_fecha_pago = $rowVencimientos2["fecha_vencimiento"];	
+			 $x_vencimiento_fecha_pago = $rowVencimientos2["fecha_vencimiento"];
 			 $x_nueva_fecha_vencimiento = '';
 			 $x_dias_faltantes = 0;
-			 // buscamos el dia del vecimeinto 
+			 // buscamos el dia del vecimeinto
 			 $sqlDia = "SELECT DAYOFMONTH('$x_vencimiento_fecha_pago') AS dia_pago ";
 			 $rsDia = phpmkr_query($sqlDia,$conn)or die ("Error seleccionar fecha nueva de vencimientos".phpmkr_error().$sqlDia);
 			 $rowDia = phpmkr_fetch_array($rsDia);
 			 $x_dia_pago =  $rowDia["dia_pago"];
-			 
-			 
-			 
+
+
+
 			 if($x_dia_pago > 7 && $x_dia_pago < 22){
-				 $x_dias_faltantes = 22 - $x_dia_pago;				 				 
+				 $x_dias_faltantes = 22 - $x_dia_pago;
 				 }
-				 
-			if($x_dia_pago > 22){				
+
+			if($x_dia_pago > 22){
 				// buscamos el último día del mes
 				$sqlUltimoDiaMes = " SELECT LAST_DAY('$x_vencimiento_fecha_pago') AS ultimo_dia_mes ";
 				$rsUltimoDiaMes = phpmkr_query($sqlUltimoDiaMes,$conn)or die ("Error seleccionar fecha nueva de vencimientos".phpmkr_error().$sqlFecha1Mes);
 			    $rowUltimoDiaMes = phpmkr_fetch_array($rsUltimoDiaMes);
 			    $x_ultimo_dia_mes =  $rowUltimoDiaMes["ultimo_dia_mes"];
-				
+
 				$sqlDiaU = "SELECT DAYOFMONTH('$x_ultimo_dia_mes ') AS dia_pago ";
 			 	$rsDiaU = phpmkr_query($sqlDiaU,$conn)or die ("Error seleccionar fecha nueva de vencimientos".phpmkr_error().$sqlDiaU);
 			    $rowDiaU = phpmkr_fetch_array($rsDiaU);
 			    $x_dia_pagoU =  $rowDiaU["dia_pago"];
-								
+
 				$x_dias_faltantes = ($x_dia_pagoU -  $x_dia_pago) + 7;
-				
-				} 
-				
+
+				}
+
 			 if($x_dia_pago < 7 ){
-				 $x_dias_faltantes = 7 - $x_dia_pago;				 				 
-				 }	
-				 
-				 
-				if($x_dias_faltantes>0){ 				
+				 $x_dias_faltantes = 7 - $x_dia_pago;
+				 }
+
+
+				if($x_dias_faltantes>0){
 				 // ahora actualizamos la fecha sumandole los dias que le faltan para que sea 22
 				  $sqlFecha1Mes = "SELECT DATE_ADD('$x_vencimiento_fecha_pago', INTERVAL $x_dias_faltantes DAY) AS fecha_nueva_vencimiento ";
 			 	  $rsFechaNueva = phpmkr_query($sqlFecha1Mes,$conn)or die ("Error seleccionar fecha nueva de vencimientos".phpmkr_error().$sqlFecha1Mes);
 			      $rowFechaNueva = phpmkr_fetch_array($rsFechaNueva);
-			      $x_nueva_fecha_vencimiento =  $rowFechaNueva["fecha_nueva_vencimiento"]; 
-				  
-				   
+			      $x_nueva_fecha_vencimiento =  $rowFechaNueva["fecha_nueva_vencimiento"];
+
+
 				  // ya tenemos la nueva fecha, ahora actualizamos el registro en la tabla de vecimeintos
 			 	  $sqlUpDateVecimiemtos =  "UPDATE vencimiento SET fecha_vencimiento = '".$x_nueva_fecha_vencimiento."' WHERE vencimiento_id =".$x_vencimiento_id."";
 			  	  $rsFechaNueva = phpmkr_query($sqlUpDateVecimiemtos,$conn)or die ("Error actualizar la fecha de los vecimientos ".phpmkr_error().$sqlFecha1Mes);
 			 	  // aqui termina el primer proceso
-				   
+
 				}
-			 
-			
-			  
-			  
-			  	 
+
+
+
+
+
 			 }
-		 
-		 
+
+
 		 }
-	 
-	 
-	 
+
+
+
 	return true;
 }
 
@@ -2378,14 +2385,13 @@ $temptime = strtotime($fecha_tarea);*/
 
 function ultimoDiaMes($x_fecha_f){
 	echo "entra a ultimo dia mes con fecha ".$x_fecha_f."<br>";
-					$temptime_f =  strtotime($x_fecha_f);	
+					$temptime_f =  strtotime($x_fecha_f);
 					$x_numero_dia_f =  strftime('%d', $temptime_f);
 					$x_numero_mes_f = strftime('%m', $temptime_f);
 					echo "numero mes".$x_numero_mes_f."<br>";
 					$x_numero_anio_f = strftime('%Y', $temptime_f);
 					$x_ultimo_dia_mes_f = strftime("%d", mktime(0, 0, 0, $x_numero_mes_f+2, 0, $x_numero_anio_f));
-	echo "el ultimo dia de mes es".	$x_ultimo_dia_mes_f ."<br>";			
+	echo "el ultimo dia de mes es".	$x_ultimo_dia_mes_f ."<br>";
 	return $x_ultimo_dia_mes_f;
 }
 ?>
-
