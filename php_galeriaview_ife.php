@@ -181,8 +181,7 @@ var EW_HTMLArea;
 
 //-->
 </script>
-  
-   
+
    
    <p><span class="phpmaker"><br><br>
       <a href="php_galeriaview.php?x_galeria_fotografica_id=<?php echo $x_galeria_fotografica_id;?>">Regresar</a></span></p>

@@ -232,19 +232,19 @@ echo $x_entidad_idList;
     <td height="27"><a href="php_galeria_carga_ife.php?x_galeria_fotografica_id=<?php echo $x_galeria_fotografica_id;?>" target="_blank">Identificaci&oacute;n Oficial</a></td>
     </tr>
   <tr background="images/headTUpload2.jpg">
-    <td height="27"><a href="php_galeria_carga_foto.php?x_galeria_fotografica_id=<?php echo $x_galeria_fotografica_id;?>" target="_blank">Fotograf&iacute;a Personal </a></td>
+    <td height="27"><a href="php_galeria_carga_foto.php?x_galeria_fotografica_id=<?php echo $x_galeria_fotografica_id;?>" target="_blank">Solicitud de Credito </a></td>
     </tr>
      <tr background="images/headTUpload1.jpg">
-    <td height="27"><a href="php_galeria_carga_domicilio.php?x_galeria_fotografica_id=<?php echo $x_galeria_fotografica_id;?>" target="_blank">Domicilio</a></td>
+    <td height="27"><a href="php_galeria_carga_domicilio.php?x_galeria_fotografica_id=<?php echo $x_galeria_fotografica_id;?>" target="_blank">Estado de cuenta bancario</a></td>
     </tr>
   <tr background="images/headTUpload2.jpg">
     <td height="27"><a href="php_galeria_carga_coprebante_domicilio.php?x_galeria_fotografica_id=<?php echo $x_galeria_fotografica_id;?>" target="_blank">Comprobante Domicilio</a></td>
     </tr>
      <tr background="images/headTUpload1.jpg">
-    <td height="27"><a href="php_galeria_carga_coprobante_propiedad.php?x_galeria_fotografica_id=<?php echo $x_galeria_fotografica_id;?>" target="_blank">Comp. Propiedad / Garantia </a></td>
+    <td height="27"><a href="php_galeria_carga_coprobante_propiedad.php?x_galeria_fotografica_id=<?php echo $x_galeria_fotografica_id;?>" target="_blank">Recibos de nomina </a></td>
     </tr>
   <tr background="images/headTUpload2.jpg">
-    <td height="27"><a href="php_galeria_carga_negocio_JQ.php?x_galeria_fotografica_id=<?php echo $x_galeria_fotografica_id;?>" target="_blank">Negocio</a></td>
+    <td height="27"><a href="php_galeria_carga_negocio_JQ.php?x_galeria_fotografica_id=<?php echo $x_galeria_fotografica_id;?>" target="_blank">Cartas liquidaci&oacute;n</a></td>
     </tr>
     <tr><td align="right"><input type="submit" name="Action" value="Terminar" onClick="irAListado();"></td></tr>
 </table>

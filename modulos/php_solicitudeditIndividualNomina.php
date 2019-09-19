@@ -173,8 +173,8 @@ switch ($sAction)
 <link href="../php_project_esf.css" rel="stylesheet" type="text/css" />
 
 <!--googlemaps-->
-<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" /> 
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<link href="https://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript" src="../scripts/jquery-1.4.js"></script>
 <script type="text/javascript" src="../scripts/jquery-ui-1.8.custom.min.js"></script>
 <script type="text/javascript" src="../scripts/jquery.themeswitcher.js"></script>
