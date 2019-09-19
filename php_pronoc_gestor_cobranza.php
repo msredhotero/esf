@@ -1,11 +1,7 @@
 <?php set_time_limit(0); ?>
 <?php session_start(); ?>
 <?php ob_start(); ?> 
-<?php
-die();
-// Initialize common variables
 
-?>
 <?php include ("db.php") ?>
 <?php include ("phpmkrfn.php") ?>
 <?php include ("utilerias/datefunc.php") ?>
@@ -16,6 +12,7 @@ $currdate = ConvertDateToMysqlFormat($currdate);
 $currtime = $currentdate["hours"].":".$currentdate["minutes"].":".$currentdate["seconds"];	
 
 echo "CURDATE".$currdate."<BR>";
+
 //$x_dia = strtoupper($currentdate["weekday"]);
 
 //$currdate = "2007-07-10";

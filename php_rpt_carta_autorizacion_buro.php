@@ -78,6 +78,9 @@ $x_cliente = strtoupper(htmlentities($x_nombre_completo))." ".strtoupper(htmlent
 <table style="border-collapse: collapse;" align="center" border="0" cellpadding="0" cellspacing="0" width="800">
     <tbody>
         <tr>
+            <td colspan="3"><p align="right" style="font-size: 12px;"><b>RECA: 1735-450-031981/01-03620-0819</b></p></td>
+        </tr>
+        <tr>
             <td>&nbsp;</td>
             <td>
             <p align="center"><span style="font-size: x-small;"><span style="font-weight: bold; font-family: Arial;">Carta autorizaci&oacute;n de bur&oacute; de cr&eacute;dito</span></span></p>

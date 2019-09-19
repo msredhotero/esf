@@ -2658,33 +2658,6 @@ Preanalisis
 
 		</span></td>
 
-        <td valign="top"><span>
-
-<?php if ($sExport <> "") { ?>
-
-Supervisi&oacute;n
-
-<?php }else{ ?>
-
-	<a href="php_solicitudlist.php?order=<?php echo urlencode("pagare"); ?>">Supervisi&oacute;n<?php if (@$_SESSION["solicitud_x_pagare_Sort"] == "ASC") { ?><img src="images/sortup.gif" width="10" height="9" border="0"><?php } elseif (@$_SESSION["solicitud_x_pagare_Sort"] == "DESC") { ?><img src="images/sortdown.gif" width="10" height="9" border="0"><?php } ?></a>
-
-<?php } ?>
-
-		</span></td>
-
-<td valign="top"><span>
-
-<?php if ($sExport <> "") { ?>
-
-Comit&eacute;
-
-<?php }else{ ?>
-
-	<a href="php_solicitudlist.php?order=<?php echo urlencode("pagare"); ?>">Comit&eacute; <?php if (@$_SESSION["solicitud_x_pagare_Sort"] == "ASC") { ?><img src="images/sortup.gif" width="10" height="9" border="0"><?php } elseif (@$_SESSION["solicitud_x_pagare_Sort"] == "DESC") { ?><img src="images/sortdown.gif" width="10" height="9" border="0"><?php } ?></a>
-
-<?php } ?>
-
-		</span></td>
 
 <td valign="top"><span>
 
@@ -3540,31 +3513,6 @@ echo @$x_pagare;
 
 <!-- pagare -->
 
-		<td><span class="toolTipShow" id="<?php echo $x_solicitud_id."-".$x_solicitud_status_id;?>">
-
-<?php
-
-echo FormatDateTime($x_supervision,7)."\n";?>
-
-<?php echo $x_hora_supervision; ?>
-
- <?php $x_hora_supervision = ""; $x_supervision = "";?>
-
-</span></td>
-
-<!-- pagare -->
-
-		<td><span class="toolTipShow" id="<?php echo $x_solicitud_id."-".$x_solicitud_status_id;?>">
-
-<?php
-
-echo FormatDateTime($x_comite,7)."\n";?>
-
-<?php echo $x_hora_comite; ?>
-
- <?php $x_hora_comite = ""; $x_comite = "";?>
-
-</span></td>
 
 <!-- pagare -->
 

@@ -2062,7 +2062,20 @@ $x_contenido = str_replace("\$x_consulta_cuenta",$x_consulta_cuenta,$x_contenido
 
 //echo htmlspecialchars_decode($x_contenido); 
 
-echo utf8_decode($x_contenido); 
+$recaNuevo = '<p><font size="2"><table border="0" cellspacing="0" cellpadding="0" width="700" align="center">
+				<tbody>
+					<tr>
+						<td>
+							<p align="right">
+								<span style="font-weight: bold; font-size: 9pt">RECA: 1735-450-031981/01-03620-0819</span>
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table></font></p>';
+
+
+echo utf8_decode($recaNuevo.$x_contenido); 
 
 
 ?>
