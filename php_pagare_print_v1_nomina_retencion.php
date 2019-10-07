@@ -2029,7 +2029,7 @@ $x_contenido = str_replace("\$x_tasa",$x_tasa,$x_contenido);
 $x_contenido = str_replace("\$x_fecha_contrato",$x_fecha_contrato,$x_contenido);
 
 
-$x_lugar_trabajo = "UNAM";
+//$x_lugar_trabajo = "UNAM";
 $x_contenido = str_replace("\$x_lugar_trabajo",$x_lugar_trabajo,$x_contenido);
 
 $x_contenido = str_replace("\$x_fecha_vencimiento",$x_fecha_vencimiento,$x_contenido);
@@ -2134,7 +2134,10 @@ function LoadData($conn)
 
 	
 
-	$sSql = "SELECT * FROM solicitud where solicitud_id = $x_solicitud_id";
+	$sSql = "SELECT s.* , p.nombre_corto
+				FROM solicitud s 
+				inner join  promotor p on s.promotor_id = p.promotor_id
+				where s.solicitud_id = $x_solicitud_id";
 
 	$rs = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 
@@ -2171,6 +2174,8 @@ function LoadData($conn)
 		$GLOBALS["x_contrato"] = $row["contrato"];
 
 		$GLOBALS["x_pagare"] = $row["pagare"];
+
+		$GLOBALS["x_lugar_trabajo"] = $row["nombre_corto"];
 
 		
 

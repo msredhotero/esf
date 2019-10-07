@@ -459,7 +459,7 @@ if (validada == true && EW_this.x_clave_interbancaria && !EW_hasValue(EW_this.x_
 
 }
 
-if (validada == true && EW_this.x_clave_interbancaria.length != 18) {
+if (validada == true && EW_this.x_clave_interbancaria.value.length != 18) {
 	alert("La clabe InterBancaria del cliente debe contener 18 digitos.");
 	validada = false;
 }
@@ -1120,10 +1120,10 @@ if($GLOBALS["x_tipo_calculo"] == 1){
 			// si la forma de pago es mensuial entonces en lugar de agragra 28 dias que es valor contemplado en la base de datos se agrega un mes completo
 			$temptime = DateAdd('m',1,$temptime);
 			echo "";
-			}else{
+		}else{
 				// si no es mensual la
-		$temptime = DateAdd('w',$x_forma_pago,$temptime);
-			}
+			$temptime = DateAdd('w',$x_forma_pago,$temptime);
+		}
 
 		$fecha_act = strftime('%Y-%m-%d',$temptime);
 		$x_dia = strftime('%A',$temptime);
@@ -2277,7 +2277,7 @@ $temptime = strtotime($fecha_tarea);*/
 
 
 	 	 // seleccionamos todos los datos del credito ortorgado y verificamos sis se trata de un credito de la UNAM, si es así, se hace el proceso para el cambio de las fechhas
-	 if($GLOBALS["x_sucursal_id"] == 13  && $GLOBALS["x_sucursal_id"] == 14  ){
+	 if($GLOBALS["x_sucursal_id"] == 12  || $GLOBALS["x_sucursal_id"] == 13  ){
 		 // es una solicitud de la UNAM se deben cambiar todas las fechas de pago
 		 // seelccionamos las fechas de todos los vecimientos
 		 $sqlVencimientos =  "SELECT * FROM vencimiento WHERE credito_id = $x_credito_id order by vencimiento_id";
