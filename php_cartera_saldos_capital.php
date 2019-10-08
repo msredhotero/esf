@@ -243,9 +243,9 @@ if ((!empty($x_gestor_srch))) {
 	echo "getor entra";
 	#si el filtro de gestor esta lleno entonces se debe incluir solo los credito que son de ese gestor
 	if($x_gestor_srch == 18) {
-		$sSqlGestor = "SELECT credito_id FROM gestor_credito limit 30 "; //marcos limit 30
+		$sSqlGestor = "SELECT credito_id FROM gestor_credito"; //marcos limit 30
 	} else {
-		$sSqlGestor = "SELECT credito_id FROM gestor_credito WHERE usuario_id = ".$x_gestor_srch ." limit 30 "; //marcos limit 30
+		$sSqlGestor = "SELECT credito_id FROM gestor_credito WHERE usuario_id = ".$x_gestor_srch; //marcos limit 30
 	}
 
 
