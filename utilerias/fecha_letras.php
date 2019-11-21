@@ -140,7 +140,7 @@ function FechaLetras($x_fecha){
             break;
 	}
 
-	$fecha_letras = $x_dia." de ".$x_mes." del a&ntilde;o ".$year;
+	$fecha_letras = $x_dia." d&iacute;as del mes de ".$x_mes." del a&ntilde;o ".$year;
 	
     return $fecha_letras;
 }

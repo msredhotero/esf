@@ -326,7 +326,7 @@ function FechaLetras($x_fecha){
             break;
 	}
 
-	$fecha_letras = $x_dia." de ".$x_mes." del a&ntilde;o ".$year;
+	$fecha_letras = $x_dia." d&iacute;as del mes de ".$x_mes." del a&ntilde;o ".$year;
 	
     return $fecha_letras;
 }
@@ -475,7 +475,7 @@ function FechaLetras_normal($x_fecha, $x_mexico){
 	if($x_mexico){
 		$fecha_letras = "M&eacute;xico, D.F. a $day de $x_mes del $year";
 	}else{
-		$fecha_letras = " $day de $x_mes del $year";	
+		$fecha_letras = " $day d&iacute;as del mes de $x_mes del $year";	
 	}
 	
     return $fecha_letras;

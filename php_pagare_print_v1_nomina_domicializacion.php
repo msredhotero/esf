@@ -3,10 +3,10 @@
 <?php
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // date in the past
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); // always modified
-header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1 
-header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1
+header("Cache-Control: post-check=0, pre-check=0", false);
 header("Cache-Control: private");
-header("Pragma: no-cache"); // HTTP/1.0 
+header("Pragma: no-cache"); // HTTP/1.0
 ?>
 
 <?php
@@ -29,9 +29,9 @@ define("ewAllowlist", 8, true);
 
 define("ewAllowreport", 8, true);
 
-define("ewAllowsearch", 8, true);																														
+define("ewAllowsearch", 8, true);
 
-define("ewAllowadmin", 16, true);						
+define("ewAllowadmin", 16, true);
 
 ?>
 
@@ -53,15 +53,15 @@ if (@$_SESSION["php_project_esf_status"] <> "login") {
 
 // Initialize common variables
 
-$x_formato_docto_id = Null; 
+$x_formato_docto_id = Null;
 
 $ox_formato_docto_id = Null;
 
-$x_descripcion = Null; 
+$x_descripcion = Null;
 
 $ox_descripcion = Null;
 
-$x_contenido = Null; 
+$x_contenido = Null;
 
 $ox_contenido = Null;
 
@@ -87,7 +87,7 @@ $x_solicitud_id = @$_GET["solicitud_id"];
 
 if (($x_solicitud_id == "") || ((is_null($x_solicitud_id)))) {
 
-	ob_end_clean(); 
+	ob_end_clean();
 
 	echo "NO se localizaron los datos.";
 
@@ -173,7 +173,7 @@ switch ($sAction)
 
 <font size="2">
 
-<?php 
+<?php
 
 include("utilerias/datefunc.php");
 
@@ -286,7 +286,7 @@ phpmkr_free_result($rs);
 
 //CREDITO
 
-$sSql = "SELECT 
+$sSql = "SELECT
 		    c.tarjeta_num,
 		    c.fecha_vencimiento,
 		    c.referencia_pago,
@@ -295,7 +295,8 @@ $sSql = "SELECT
 		    c.fecha_otrogamiento,
 		    c.credito_id,
 		    b.nombre,
-		    coalesce( c.clave_interbancaria,0) as clave_interbancaria
+		    coalesce( c.clave_interbancaria,0) as clave_interbancaria,
+			 coalesce( b.idbancocliente,0) as idbanco
 		FROM
 		    credito c
 		    left join
@@ -331,6 +332,8 @@ $x_banco = $row["nombre"];
 
 $x_clave_interbancaria = $row["clave_interbancaria"];
 
+$x_idbanco = $row["idbanco"];
+
 
 
 phpmkr_free_result($rs);
@@ -363,19 +366,19 @@ switch ($x_forma_pago_id)
 
 		$x_forma_pago_periodo = "semanal";
 
-		
+
 
 		//$x_numero_plazo = $x_plazo_valor * 4;
 
 		$x_numero_plazo = $x_plazo_valor ;
 
-		$x_plazo = $x_numero_plazo." semanas ";		
+		$x_plazo = $x_numero_plazo." semanas ";
 
-		
+
 
 	//	$x_tasa_anual_valor = $x_tasa_valor * 52;
 
-		
+
 
 		break;
 
@@ -393,11 +396,11 @@ switch ($x_forma_pago_id)
 
 		$x_numero_plazo = $x_plazo_valor;
 
-		$x_plazo = $x_numero_plazo." catorcenas ";		
+		$x_plazo = $x_numero_plazo." catorcenas ";
 
-		
 
-//		$x_tasa_anual_valor = $x_tasa_valor * 26;		
+
+//		$x_tasa_anual_valor = $x_tasa_valor * 26;
 
 
 
@@ -417,13 +420,13 @@ switch ($x_forma_pago_id)
 
 		$x_numero_plazo = $x_plazo_valor;
 
-		$x_plazo = $x_numero_plazo." meses ";		
+		$x_plazo = $x_numero_plazo." meses ";
 
-		
 
-		//$x_tasa_anual_valor = $x_tasa_valor * 13.03;		
 
-	
+		//$x_tasa_anual_valor = $x_tasa_valor * 13.03;
+
+
 
 		break;
 
@@ -441,17 +444,17 @@ switch ($x_forma_pago_id)
 
 		$x_numero_plazo = $x_plazo_valor ;
 
-		$x_plazo = $x_numero_plazo." quincenas ";		
+		$x_plazo = $x_numero_plazo." quincenas ";
 
-		
+
 
 	//	$x_tasa_anual_valor = $x_tasa_valor * 24.33;
 
-		
+
 
 		break;
 
-		
+
 
 }
 
@@ -463,7 +466,7 @@ $x_importe_letras = covertirNumLetras($x_importe_solicitado);
 
 $x_importe = "$".FormatNumber($x_importe_solicitado,2,0,0,1)." (-$x_importe_letras-) ";
 
-//$5,000.00 (-Cinco mil pesos, 00/100 M.N.-), 
+//$5,000.00 (-Cinco mil pesos, 00/100 M.N.-),
 
 
 
@@ -581,7 +584,7 @@ if(intval($centavos) > 0){
 
 
 
-// tasa valor la tasa que se registra es la tasa anual ahora se debe dividir entre la forma de pago 
+// tasa valor la tasa que se registra es la tasa anual ahora se debe dividir entre la forma de pago
 
 // mensual queincenal semananal. catorcenal.
 
@@ -599,21 +602,21 @@ switch ($x_forma_pago_id)
 
 		$x_forma_pago_periodo = "semanal";
 
-		
+
 
 		//$x_numero_plazo = $x_plazo_valor * 4;
 
 		$x_numero_plazo = $x_plazo_valor ;
 
-		$x_plazo = $x_numero_plazo." semanas ";		
+		$x_plazo = $x_numero_plazo." semanas ";
 
-		
+
 
 		$x_tasa_anual_valor = $x_tasa_valor ;
 
 		$x_tasa_valor = $x_tasa_valor / 52;
 
-		
+
 
 		break;
 
@@ -631,11 +634,11 @@ switch ($x_forma_pago_id)
 
 		$x_numero_plazo = $x_plazo_valor;
 
-		$x_plazo = $x_numero_plazo." catorcenas ";		
+		$x_plazo = $x_numero_plazo." catorcenas ";
 
-		
 
-		$x_tasa_anual_valor = $x_tasa_valor ;	
+
+		$x_tasa_anual_valor = $x_tasa_valor ;
 
 		$x_tasa_valor = $x_tasa_valor / 26;
 
@@ -657,15 +660,15 @@ switch ($x_forma_pago_id)
 
 		$x_numero_plazo = $x_plazo_valor;
 
-		$x_plazo = $x_numero_plazo." meses ";		
+		$x_plazo = $x_numero_plazo." meses ";
 
-		
 
-		$x_tasa_anual_valor = $x_tasa_valor ;	
+
+		$x_tasa_anual_valor = $x_tasa_valor ;
 
 		$x_tasa_valor = $x_tasa_valor / 13.03;
 
-	
+
 
 		break;
 
@@ -683,9 +686,9 @@ switch ($x_forma_pago_id)
 
 		$x_numero_plazo = $x_plazo_valor ;
 
-		$x_plazo = $x_numero_plazo." quincenas ";		
+		$x_plazo = $x_numero_plazo." quincenas ";
 
-		
+
 
 		$x_tasa_anual_valor = $x_tasa_valor ;
 
@@ -693,7 +696,7 @@ switch ($x_forma_pago_id)
 
 		break;
 
-		
+
 
 }
 
@@ -705,7 +708,7 @@ switch ($x_forma_pago_id)
 
  $x_digitos_c = $x_cont_enteros + 3; // los digitos de la parte entera maas el punto mas dos decimales(+3);
 
- 
+
 
 
 
@@ -757,7 +760,7 @@ $x_penalizacion= "$".FormatNumber($x_penalizacion,2,0,0,1)." ( -$x_penalizacion_
 
 //$x_moratorios = "$".FormatNumber($x_tasa_moratoria_valor,2,0,0,1)." (-$x_tasa_moratoria_letras-) ";
 
-//1.98% (-uno punto noventa y ocho porciento-), 
+//1.98% (-uno punto noventa y ocho porciento-),
 
 
 
@@ -819,11 +822,11 @@ if($GLOBALS["x_creditoSolidario_id"]>0){
 
 		$x_cliente_id_act = $$x_cliente_id_act;
 
-		
+
 
 		if(($x_cliente_id_act != "newone") && ($x_cliente_id_act != "vacio") && ($x_cliente_id_act != "NEWONE") && ($x_cliente_id_act != "VACIO") ){
 
-		
+
 
 		$sqlintegrante = "SELECT * FROM cliente WHERE cliente_id = $x_cliente_id_act";
 
@@ -837,9 +840,9 @@ if($GLOBALS["x_creditoSolidario_id"]>0){
 
 		$x_nombre_completo_int .=   $rowInT["apellido_materno"];
 
-		
 
-		phpmkr_free_result($rowInT);	
+
+		phpmkr_free_result($rowInT);
 
 		$x_lista_acreditados .= "<tr><td> $conta_num.-</td><td> $x_nombre_completo_int </td> <td>______________________________</td></tr>";
 
@@ -847,17 +850,17 @@ if($GLOBALS["x_creditoSolidario_id"]>0){
 
 		}// FIN DIFERENTE DE TEXTO
 
-		
 
-		$x_cont_int++;		
+
+		$x_cont_int++;
 
 		}
 
-	
+
 
 	$x_lista_acreditados .= "</table>";
 
-	
+
 
 	}
 
@@ -875,13 +878,13 @@ if($GLOBALS["x_creditoSolidario_id"]>0){
 
 // tabla de integrantes del grupo   solidario     //
 
-//////////////////////////////////////////(¡///////
+//////////////////////////////////////////(ï¿½///////
 
-										   
 
-										   
 
-										   
+
+
+
 
 if(!empty($x_representante_cliente_id)){
 
@@ -901,11 +904,11 @@ if(!empty($x_representante_cliente_id)){
 
 	$x_sexo_rep =   $rowRep["sexo"];
 
-	
+
 
 	phpmkr_free_result($rowRep);
 
-	
+
 
 	if($x_sexo_rep == 1){
 
@@ -917,13 +920,13 @@ if(!empty($x_representante_cliente_id)){
 
 }
 
-	
 
-	
+
+
 
 	}
 
-										   
+
 
 //INTEGRANTES DEL GRUPO
 
@@ -943,9 +946,9 @@ if($GLOBALS["x_creditoSolidario_id"]>0){
 
 		$x_cliente_id_act = $$x_cliente_id_act;
 
-		
 
-		
+
+
 
 		if(($x_cliente_id_act != "newone") && ($x_cliente_id_act != "vacio") && ($x_cliente_id_act != "NEWONE") && ($x_cliente_id_act != "VACIO") ){
 
@@ -963,15 +966,15 @@ if($GLOBALS["x_creditoSolidario_id"]>0){
 
 		$x_nombre_completo_int .=   $rowInT["apellido_materno"];
 
-		
 
-		
+
+
 
 		$GLOBALS["x_nombre_integrante_$x_cont_int"] =  $rowInT["nombre_completo"]. " ".$rowInT["apellido_paterno "];
 
 		phpmkr_free_result($rowInT);
 
-		
+
 
 		$x_lista_acreditados .="<tr><td align=\"center\" >&nbsp;</td></tr>";
 
@@ -987,7 +990,7 @@ if($GLOBALS["x_creditoSolidario_id"]>0){
 
 		}// FIN IF DIERENTE DE TEXTO
 
-		
+
 
 		}
 
@@ -995,15 +998,15 @@ if($GLOBALS["x_creditoSolidario_id"]>0){
 
 		}
 
-	
+
 
 	$x_lista_acreditados .= "</table>";
 
-	
+
 
 	// se crea la tabla numero dos
 
-	
+
 
 	//calculo del la catidada a pagar por integrante
 
@@ -1034,7 +1037,7 @@ $x_tabla = "
 
 <td valign='top'><span>
 
-<b>Número de pago o vencimiento</b>
+<b>Nï¿½mero de pago o vencimiento</b>
 
 </span></td>
 
@@ -1042,37 +1045,37 @@ $x_tabla = "
 
 <b>Fecha de Pago</b>
 
-</span></td>       
+</span></td>
 
 <td valign='top'><span>
 
 <b>Saldo Insoluto de Capital</b>
 
-</span></td>				
+</span></td>
 
 <td valign='top'><span>
 
 <b>Capital pagado en cada vencimiento</b>
 
-</span></td>						
+</span></td>
 
 <td valign='top'><span>
 
-<b>Interés ordinario pagado en cada vencimiento</b>
+<b>Interï¿½s ordinario pagado en cada vencimiento</b>
 
-</span></td>						
+</span></td>
 
 <td valign='top'><span>
 
 <b>IVA pagado en cada vencimiento</b>
 
-</span></td>						
+</span></td>
 
 <td valign='top'><span>
 
 <b>Pago Total de cada vencimiento</b>
 
-</span></td>						
+</span></td>
 
 </tr>";
 
@@ -1086,13 +1089,13 @@ $x_cont_fetc_v = 1;//variable para la tabla 3 integrentes de grupo
 
 while ($row = @phpmkr_fetch_array($rs)) {
 
-	
+
 	if ($primero == 0) {
 		$total_venc_nuevo = $row['total_venc'] * 4;
 		$primero = 1;
 	}
 
-	
+
 
 	$nRecCount = $nRecCount + 1;
 
@@ -1118,13 +1121,13 @@ while ($row = @phpmkr_fetch_array($rs)) {
 
 		}
 
-	
+
 
 		//selccion de los valores de tabla de vencimientos
 
 		$x_vencimiento_id = $row["vencimiento_id"];
 
-		$x_vencimiento_num = $row["vencimiento_num"];		
+		$x_vencimiento_num = $row["vencimiento_num"];
 
 		$x_credito_id = $row["credito_respaldo_id"];
 
@@ -1134,7 +1137,7 @@ while ($row = @phpmkr_fetch_array($rs)) {
 
 
 
-		
+
 
 		$x_fecha_vencimiento_tab = $row["fecha_vencimiento"];
 
@@ -1144,33 +1147,33 @@ while ($row = @phpmkr_fetch_array($rs)) {
 
 		$x_interes_tab = $row["interes"];
 
-		$x_iva_tab = $row["iva"];	
+		$x_iva_tab = $row["iva"];
 
-		
+
 
 		// varible para la tabla 3 integrantes del grupo
 
 		//$x_cont_fetc_v = 1;
 
-		
+
 
 		//valores para la tabla 3
 
-		
 
-		$x_fecha_vto= $x_fecha_vencimiento_tab; // tu sabrás como la obtienes, solo asegurate que tenga este formato
 
-		//$dias= 2; // los días a restar
+		$x_fecha_vto= $x_fecha_vencimiento_tab; // tu sabrï¿½s como la obtienes, solo asegurate que tenga este formato
+
+		//$dias= 2; // los dï¿½as a restar
 
 		$x_fecha_vto = ConvertDateToMysqlFormat($x_fecha_vencimiento_tab);
 
-		
+
 
 		$sqlDIAMENOS = "SELECT DATE_SUB('$x_fecha_vto', INTERVAL 1 DAY )as fecha";
 
 		$resposDM = phpmkr_query($sqlDIAMENOS,$conn) or die("error en dia menos".phpmkr_error()."sql:".$sqlDIAMENOS);
 
-		
+
 
 		$rowDM = phpmkr_fetch_array($resposDM);
 
@@ -1178,7 +1181,7 @@ while ($row = @phpmkr_fetch_array($rs)) {
 
 		//echo  $x_fecha_new_1_day;
 
-		 date("Y-m-d", strtotime("$x_fecha_vto -$dias day")); 
+		 date("Y-m-d", strtotime("$x_fecha_vto -$dias day"));
 
 		$GLOBALS["x_fech_venci_$x_cont_fetc_v"] = $x_fecha_new_1_day;
 
@@ -1186,7 +1189,7 @@ while ($row = @phpmkr_fetch_array($rs)) {
 
 		///fin varible tabla 3
 
-		
+
 
 		if(empty($x_iva_tab)){
 
@@ -1196,7 +1199,7 @@ while ($row = @phpmkr_fetch_array($rs)) {
 
 		$x_interes_moratorio_tab = $row["interes_moratorio"];
 
-		
+
 
 		$x_total = $x_importe_tab + $x_interes_tab + $x_interes_moratorio_tab + $x_iva_tab;
 
@@ -1208,17 +1211,17 @@ while ($row = @phpmkr_fetch_array($rs)) {
 
 		$x_total_interes = $x_total_interes + $x_interes_tab;
 
-		$x_total_iva = $x_total_iva + $x_iva_tab;		
+		$x_total_iva = $x_total_iva + $x_iva_tab;
 
 		$x_total_moratorios = $x_total_moratorios + $x_interes_moratorio_tab;
 
 		$x_total_total = $x_total_total + $x_total;
 
-		
+
 
 		if(($x_vencimiento_status_id == 2) || ($x_vencimiento_status_id == 5)){
 
-		
+
 
 			$sSqlWrk = "SELECT fecha_pago FROM recibo join recibo_vencimiento on recibo_vencimiento.recibo_id = recibo.recibo_id where recibo_vencimiento.vencimiento_id = $x_vencimiento_id";
 
@@ -1244,13 +1247,13 @@ while ($row = @phpmkr_fetch_array($rs)) {
 
 			$x_total_interes_d = $x_total_interes_d + $x_interes;
 
-			$x_total_interes_d = $x_total_interes_d + $x_iva;			
+			$x_total_interes_d = $x_total_interes_d + $x_iva;
 
 			$x_total_moratorios_d = $x_total_moratorios_d + $x_interes_moratorio;
 
 			$x_total_total_d = $x_total_total_d + $x_total;
 
-			
+
 
 		}
 
@@ -1340,21 +1343,21 @@ $x_filas_tabla_2 .= "<tr>
 
  while($x_int_g<=10){
 
-	 
 
-	 
 
-	 
 
-	 
+
+
+
+
 
 	 $x_int_g++;
 
 	 }//fin while integrantes
 
-	 
 
-	
+
+
 
 	}
 
@@ -1424,7 +1427,7 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
 ////////////////////////////////////////////////////////////////calculo del credito con tasa nueva
 
-	$x_num_pagos = $x_plazo_valor;	
+	$x_num_pagos = $x_plazo_valor;
 
 	$x_importe_c = 	$GLOBALS["x_importe_solicitado"];
 
@@ -1440,33 +1443,33 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
 	case 28: // Mensual
 
-		$x_tasa_nueva= (($x_tasa_nueva/12)); 
+		$x_tasa_nueva= (($x_tasa_nueva/12));
 
 		break;
 
 	case 15: // Quincenal
 
-		$x_tasa_nueva = (($x_tasa_nueva/24)); 
+		$x_tasa_nueva = (($x_tasa_nueva/24));
 
 		break;
 
 	case 14: // Catorcenal
 
-		$x_tasa_nueva= (($x_tasa_nueva/26)); 
+		$x_tasa_nueva= (($x_tasa_nueva/26));
 
 		break;
 
 	case 7: // Semanal
 
-		$x_tasa_nueva = (($x_tasa_nueva/52)); 
+		$x_tasa_nueva = (($x_tasa_nueva/52));
 
 		break;
 
-		
+
 
 }
 
-	
+
 
 
 
@@ -1492,19 +1495,19 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
 			echo phpmkr_error() . '<br>SQL: ' . $sSql;
 
-			phpmkr_query('rollback;', $conn);	 
+			phpmkr_query('rollback;', $conn);
 
 			exit();
 
 		}*/
 
-		
+
 
 		$temptime = strtotime($fecha_act);
 
-		$x_pago_act++;	
+		$x_pago_act++;
 
-	}// fin  numero de venciamientos  	
+	}// fin  numero de venciamientos
 
 	//el total del vencimiento
 
@@ -1518,15 +1521,15 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
 	while($x_num_ven_tasa_new <= $GLOBALS["x_total_numero_vencimeintos"]){
 
-		
 
-			$x_fecha_vencimiento_act = "x_fecha_vencimeinto_$x_num_ven_tasa_new";	
+
+			$x_fecha_vencimiento_act = "x_fecha_vencimeinto_$x_num_ven_tasa_new";
 
 			$x_fecha_vencimiento_act = $$x_fecha_vencimiento_act;
 
-			
 
-						
+
+
 
 						// Set row color
 
@@ -1548,7 +1551,7 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
 						if($GLOBALS["x_iva"] == 1){
 
-							$x_iva_venc = round($x_interes_venc * .16);	
+							$x_iva_venc = round($x_interes_venc * .16);
 
 							$x_total_venc = $x_total_venc + $x_iva_venc;
 
@@ -1558,11 +1561,11 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
 						}
 
-		
+
 
 		$x_total_ven = $GLOBALS["x_total_venc_2"];
 
-		
+
 
 		$interes = ($GLOBALS["x_saldo_N"] * ( $x_tasa_nueva/100));
 
@@ -1586,7 +1589,7 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
 									<td align='right'>". FormatNumber($x_total_ven,2,0,0,1). "</td>
 
-			
+
 
 			</tr>";
 
@@ -1608,25 +1611,25 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
 									</tr>";
 
-		
+
 
 		$GLOBALS["x_saldo_N"] = $x_saldo_N - $x_importe_n;
 
-		
 
-		
+
+
 
 		$x_num_ven_tasa_new ++;
 
 		}//FIN NUMERO DE VENCIMIENTOS
 
-	
 
-	
 
-	
 
-	
+
+
+
+
 
 	$x_nueva_tasa_tabla = "<table class='ewTable' align='center'> <tr>
 
@@ -1644,33 +1647,33 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
 									<td><strong>Total</strong></td>
 
-			
+
 
 			</tr>";
 
-	
 
-	
+
+
 
 	$x_nueva_tasa_tabla .= $x_filas_tasa_nueva;
 
 	$x_nueva_tasa_tabla .= $x_fila_final_nueva;
 
-	
+
 
 	$x_nueva_tasa_tabla .= "</table>";
 
-	
 
-	
 
-	
 
-	
 
-	//////////////////////////////////////////////////////////////termina calculo de tasa nueva		
 
-		
+
+
+
+	//////////////////////////////////////////////////////////////termina calculo de tasa nueva
+
+
 
 
 
@@ -1706,7 +1709,7 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
 	while($x_cont_cal <= 10){
 
-		
+
 
 		$x_cant_soli_integrante = "x_monto_$x_cont_cal";
 
@@ -1730,13 +1733,13 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
 		$GLOBALS["x_monto_pago_int_$x_cont_cal"] = $x_monto_por_integrante ;
 
-		
 
-		
 
-		
 
-		
+
+
+
+
 
 		$x_cont_cal++;
 
@@ -1754,11 +1757,11 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
 //sugue tabla dos
 
-	
 
-	
 
-	$x_grupo_t = " 
+
+
+	$x_grupo_t = "
 
 	<table class='ewTable' width='800' align='center'>
 
@@ -1844,13 +1847,13 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
      $x_grupo_t .= "<td>&nbsp;</td>
 
-   
+
 
   </tr>
 
-   
 
-  
+
+
 
   ";//termina encabezado
 
@@ -1858,7 +1861,7 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
  $x_link_representante_grupo .="&nbsp;&nbsp;<a href=\"php_tabla_representante_firmas.php?solicitud_id=$x_solicitud_id\" class=\"link_oculto\">Tabla para Representante con firmas </a>" ;
 
-  
+
 
   $x_grupo_t .= $x_filas_tabla_2 ;
 
@@ -1892,7 +1895,7 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 
   </tr></table>";
 
-	
+
 
 
 
@@ -1900,13 +1903,13 @@ $x_no_integrante = 1;
 
 while($x_no_integrante <= 10){
 
-	
+
 
 	$x_nombre_int = "x_nombre_integrante_$x_no_integrante";
 
 	$x_nombre_int = $$x_nombre_int;
 
-	
+
 
 	//integrante_id
 
@@ -1914,7 +1917,7 @@ while($x_no_integrante <= 10){
 
 	$x_id_int = $$x_id_int ;
 
-	
+
 
 	if(!empty($x_nombre_int)){
 
@@ -1924,19 +1927,19 @@ while($x_no_integrante <= 10){
 
 	//echo"cantidad de integrante".$x_saldo_grupo;
 
-	
+
 
 	$x_monto_integrante = (($x_total_a_pagar * $x_cant_soli_integrante)/$x_saldo_grupo);
 
 	//$x_monto_integrante = $x_monto_por_integrante;
 
-	
 
-	
+
+
 
 	//link para las tablas de  los integrantes
 
-	
+
 
 	 $x_link_integrantes_grupo .= "<a href=\"php_pagare_print_integrante.php?solicitud_id=$x_solicitud_id&integrante_id=$x_id_int\" class=\"link_oculto\">$x_nombre_int </a>&nbsp;";
 
@@ -1964,7 +1967,7 @@ $x_ciclo = 1;
 
 while($x_ciclo < $x_cont_fetc_v){
 
-	
+
 
 	$x_fecha = "x_fech_venci_$x_ciclo";
 
@@ -1980,7 +1983,7 @@ while($x_ciclo < $x_cont_fetc_v){
 
   </tr>";
 
- 
+
 
  $x_ciclo++;
 
@@ -1988,7 +1991,7 @@ while($x_ciclo < $x_cont_fetc_v){
 
  $_integrates_tablas .= "</table>";
 
-	
+
 
 	}
 
@@ -2013,6 +2016,10 @@ $x_link_nueva_tasa_tabla = "<a href=\"php_pagare_print_nueva_tasa.php?solicitud_
 // nuevo marcos clave interbancaria //
 //$x_clave_interbancaria = '126151898195';
 
+if ($x_idbanco == 1) {
+	$x_clave_interbancaria = '';
+	$x_banco = '';
+}
 $x_contenido = str_replace("\$x_clave_interbancaria",$x_clave_interbancaria,$x_contenido);
 
 $x_contenido = str_replace("\$x_banco",$x_banco,$x_contenido);
@@ -2063,7 +2070,7 @@ $x_contenido = str_replace("\$x_moratorios",$x_moratorios,$x_contenido);
 
 $x_contenido = str_replace("\$x_tasa",$total_venc_nuevo,$x_contenido);
 
- 
+
 $date_f = new DateTime($x_fecha_otorgamiento_valor);
 $ff =  $date_f->format('d-m-Y');
 
@@ -2073,16 +2080,16 @@ $x_contenido = str_replace("\$x_fecha_vencimiento",$x_fecha_vencimiento,$x_conte
 
 //esatdo
 
-$x_estado =  " Ciudad de M&eacute;xico "; 
+$x_estado =  " Ciudad de M&eacute;xico ";
 $x_contenido = str_replace("\$x_edo",$x_estado,$x_contenido);
 
 $x_contenido = str_replace("\$x_lista_acreditados",$x_lista_acreditados,$x_contenido);
 
 $x_contenido = str_replace("\$x_representate_grupo",$x_nombre_completo_rep,$x_contenido);
 
-$x_contenido = str_replace("\$x_group_tabla_2",$x_link_representante_grupo,$x_contenido); 
+$x_contenido = str_replace("\$x_group_tabla_2",$x_link_representante_grupo,$x_contenido);
 
-$x_contenido = str_replace("\$_integrates_tablas",$x_link_integrantes_grupo,$x_contenido); 
+$x_contenido = str_replace("\$_integrates_tablas",$x_link_integrantes_grupo,$x_contenido);
 
 $x_contenido = str_replace("\$x_nueva_tasa",$x_link_nueva_tasa_tabla,$x_contenido);
 
@@ -2100,7 +2107,7 @@ $x_contenido = str_replace("\$x_penalizacion",$x_penalizacion,$x_contenido);
 
 $x_contenido = str_replace("\$x_consulta_cuenta",$x_consulta_cuenta,$x_contenido);
 
-//echo htmlspecialchars_decode($x_contenido); 
+//echo htmlspecialchars_decode($x_contenido);
 
 
 $recaNuevo = '<p><font size="2"><table border="0" cellspacing="0" cellpadding="0" width="700" align="center">
@@ -2115,7 +2122,7 @@ $recaNuevo = '<p><font size="2"><table border="0" cellspacing="0" cellpadding="0
 				</tbody>
 			</table></font></p>';
 
-echo utf8_decode($recaNuevo.$x_contenido); 
+echo utf8_decode($recaNuevo.$x_contenido);
 
 
 ?>
@@ -2130,7 +2137,7 @@ phpmkr_query($sSql, $conn);
 
 
 
-?>	  
+?>
 
 </font>
 
@@ -2170,7 +2177,7 @@ function LoadData($conn)
 
 	global $x_solicitud_id;
 
-	
+
 
 	$sSql = "SELECT * FROM solicitud where solicitud_id = $x_solicitud_id";
 
@@ -2204,15 +2211,15 @@ function LoadData($conn)
 
 		$GLOBALS["x_plazo_id"] = $row["plazo_id"];
 
-		$GLOBALS["x_forma_pago_id"] = $row["forma_pago_id"];		
+		$GLOBALS["x_forma_pago_id"] = $row["forma_pago_id"];
 
 		$GLOBALS["x_contrato"] = $row["contrato"];
 
 		$GLOBALS["x_pagare"] = $row["pagare"];
 
-		
 
-		
+
+
 
 		$sSql = "SELECT * FROM credito  WHERE solicitud_id = ".$GLOBALS["x_solicitud_id"]." ";
 
@@ -2228,9 +2235,9 @@ function LoadData($conn)
 
 		$GLOBALS["x_credito_num"] = $rowC["credito_num"];
 
-		
 
-		
+
+
 
 		//INTEGRANTES DEL GRUPO
 
@@ -2254,13 +2261,13 @@ function LoadData($conn)
 
 			$GLOBALS["x_nombre_grupo"] = $rowGrupo["nombre_grupo"];
 
-			
+
 
 			$x_cont_g = 1;
 
 			while($x_cont_g <= 10){
 
-				
+
 
 				$GLOBALS["x_integrante_$x_cont_g"] = $rowGrupo["integrante_$x_cont_g"];
 
@@ -2270,11 +2277,11 @@ function LoadData($conn)
 
 				$GLOBALS["x_monto_$x_cont_g"] =  $rowGrupo["monto_$x_cont_g"];
 
-				$GLOBALS["x_rol_integrante_$x_cont_g"] = $rowGrupo["rol_integrante_$x_cont_g"]; 
+				$GLOBALS["x_rol_integrante_$x_cont_g"] = $rowGrupo["rol_integrante_$x_cont_g"];
 
 				$GLOBALS["x_cliente_id_$x_cont_g"] = $rowGrupo["cliente_id_$x_cont_g"];
 
-				
+
 
 				//BUSCO AL REPRESENTANTE DEL GRUPO
 
@@ -2286,21 +2293,21 @@ function LoadData($conn)
 
 					}
 
-				
+
 
 				$x_cont_g++;
 
 				}
 
-			
 
-			
 
-			
+
+
+
 
 			phpmkr_free_result($rowGrupo);
 
-			
+
 
 			}
 
@@ -2322,7 +2329,7 @@ function LoadData($conn)
 
 
 
-		$sSql = "select cliente.* from cliente join solicitud_cliente on solicitud_cliente.cliente_id = cliente.cliente_id where solicitud_cliente.solicitud_id = $x_solicitud_id";		
+		$sSql = "select cliente.* from cliente join solicitud_cliente on solicitud_cliente.cliente_id = cliente.cliente_id where solicitud_cliente.solicitud_id = $x_solicitud_id";
 
 		$rs2 = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 
@@ -2334,9 +2341,9 @@ function LoadData($conn)
 
 		$GLOBALS["x_nombre_completo"] = $row2["nombre_completo"];
 
-		$GLOBALS["x_apellido_paterno"] = $row2["apellido_paterno"];		
+		$GLOBALS["x_apellido_paterno"] = $row2["apellido_paterno"];
 
-		$GLOBALS["x_apellido_materno"] = $row2["apellido_materno"];				
+		$GLOBALS["x_apellido_materno"] = $row2["apellido_materno"];
 
 		$GLOBALS["x_tipo_negocio"] = $row2["tipo_negocio"];
 
@@ -2350,11 +2357,11 @@ function LoadData($conn)
 
 		$GLOBALS["x_nombre_conyuge"] = $row2["nombre_conyuge"];
 
-		$GLOBALS["x_email"] = $row2["email"];		
+		$GLOBALS["x_email"] = $row2["email"];
 
-		
 
-		
+
+
 
 //USUARIO
 
@@ -2374,7 +2381,7 @@ $GLOBALS["x_consulta_cuenta"] = "<p>Consulta tu estado de cuenta desde www.finan
 
 
 
-				
+
 
 		$sSql = "select * from direccion where cliente_id = ".$GLOBALS["x_cliente_id"]." and direccion_tipo_id = 1";
 
@@ -2460,7 +2467,7 @@ $GLOBALS["x_consulta_cuenta"] = "<p>Consulta tu estado de cuenta desde www.finan
 
 		$GLOBALS["x_apellido_paterno_aval"] = $row5["apellido_paterno"];
 
-		$GLOBALS["x_apellido_materno_aval"] = $row5["apellido_materno"];										
+		$GLOBALS["x_apellido_materno_aval"] = $row5["apellido_materno"];
 
 		$GLOBALS["x_parentesco_tipo_id_aval"] = $row5["parentesco_tipo_id"];
 
@@ -2552,7 +2559,7 @@ $GLOBALS["x_consulta_cuenta"] = "<p>Consulta tu estado de cuenta desde www.finan
 
 		$GLOBALS["x_garantia_desc"] = $row7["descripcion"];
 
-		$GLOBALS["x_garantia_valor"] = $row7["valor"];		
+		$GLOBALS["x_garantia_valor"] = $row7["valor"];
 
 
 
@@ -2626,7 +2633,7 @@ $GLOBALS["x_consulta_cuenta"] = "<p>Consulta tu estado de cuenta desde www.finan
 
 		$GLOBALS["x_parentesco_tipo_id_ref_1"] = "";
 
-	
+
 
 
 
@@ -2660,7 +2667,7 @@ $GLOBALS["x_consulta_cuenta"] = "<p>Consulta tu estado de cuenta desde www.finan
 
 		$x_contenido_id = 0;
 
-		
+
 
 		$sSql = "SELECT count(*) as gara FROM garantia where solicitud_id = ".$GLOBALS["x_solicitud_id"];
 
@@ -2684,7 +2691,7 @@ $GLOBALS["x_consulta_cuenta"] = "<p>Consulta tu estado de cuenta desde www.finan
 
 		}*/
 
-		
+
 
 		$sSql = "SELECT nombre_completo AS avales FROM datos_aval WHERE solicitud_id = ".$GLOBALS["x_solicitud_id"];
 
@@ -2702,13 +2709,13 @@ $GLOBALS["x_consulta_cuenta"] = "<p>Consulta tu estado de cuenta desde www.finan
 
 		$x_valor_credito_tipo_id = $GLOBALS["x_credito_tipo_id"];
 
-		
 
-		
+
+
 
 		if($GLOBALS["x_solicitud_id"] > 5000){
 
-			
+
 
 			if($GLOBALS["x_penalizacion"] > 0){
 
@@ -2720,15 +2727,15 @@ $GLOBALS["x_consulta_cuenta"] = "<p>Consulta tu estado de cuenta desde www.finan
 
 				$x_contenido_id = 41;
 
-				
+
 
 				}else{
 
-					$x_contenido_id = 40;					
+					$x_contenido_id = 40;
 
 					}
 
-			
+
 
 			}else{
 
@@ -2740,29 +2747,29 @@ $GLOBALS["x_consulta_cuenta"] = "<p>Consulta tu estado de cuenta desde www.finan
 
 				$x_contenido_id = 39;
 
-				
+
 
 				}else{
 
-					$x_contenido_id = 38;					
+					$x_contenido_id = 38;
 
 					}
 
-				
 
-				
+
+
 
 				}
 
-			
 
-			
 
-			
+
+
+
 
 			}else{
 
-		
+
 
 		if($x_valor_credito_tipo_id == 1){
 
@@ -2772,43 +2779,43 @@ $GLOBALS["x_consulta_cuenta"] = "<p>Consulta tu estado de cuenta desde www.finan
 
 					// el tipo de Pagare es el de INTERES GARANTIA AVAL
 
-					//22 Pagare interes garantia y aval 
+					//22 Pagare interes garantia y aval
 
 					$x_contenido_id = 22;
 
-					
+
 
 					}else if($x_gara > 0){
 
-						//20 Pagare interes con garantia 
+						//20 Pagare interes con garantia
 
 						$x_contenido_id = 20;
 
-						
+
 
 						}else if(($x_aval>0)){
 
-							//21 Pagara interes con aval  
+							//21 Pagara interes con aval
 
 							$x_contenido_id = 21;
 
 							}else{
 
-								//23 Pagare con interes  
+								//23 Pagare con interes
 
 								$x_contenido_id = 23;
 
 								}
 
-			
 
-			
+
+
 
 			}else if($x_valor_credito_tipo_id == 2){
 
 				//el tipo de credito es SOLIDARIO
 
-				//25 Pagare Solidario  
+				//25 Pagare Solidario
 
 				$x_contenido_id = 25;
 
@@ -2816,13 +2823,13 @@ $GLOBALS["x_consulta_cuenta"] = "<p>Consulta tu estado de cuenta desde www.finan
 
 				}else if($x_valor_credito_tipo_id == 3){
 
-					//EL TIPÓ DE CREDITO ES MAQUINARIA
+					//EL TIPï¿½ DE CREDITO ES MAQUINARIA
 
 					// NO TIENE GARANTIA...PERO PUEDE TENER AVAL
 
 					if(($x_aval>0)){
 
-						//21 Pagara interes con aval  
+						//21 Pagara interes con aval
 
 							$x_contenido_id = 21;
 
@@ -2830,35 +2837,35 @@ $GLOBALS["x_consulta_cuenta"] = "<p>Consulta tu estado de cuenta desde www.finan
 
 							// no tiene aval
 
-							//23 Pagare con interes  
+							//23 Pagare con interes
 
-								$x_contenido_id = 23;							
+								$x_contenido_id = 23;
 
 							}
 
-					
 
-					
+
+
 
 					}else if($x_valor_credito_tipo_id == 4){
 
 						//credito PYME
 
-						//19 Pagare PYME 
+						//19 Pagare PYME
 
 						$x_contenido_id = 19;
 
 						}
 
-						
 
-						
+
+
 
 			}
 
-				
 
-				//echo "contenido".$x_contenido_id;		
+
+				//echo "contenido".$x_contenido_id;
 
 		$sSql = "select contenido from formato_docto where formato_docto_id = 62";
 
@@ -2868,7 +2875,7 @@ $GLOBALS["x_consulta_cuenta"] = "<p>Consulta tu estado de cuenta desde www.finan
 
 		$GLOBALS["x_contenido"] = $row10["contenido"];
 
-		
+
 
 
 
@@ -2876,31 +2883,26 @@ $GLOBALS["x_consulta_cuenta"] = "<p>Consulta tu estado de cuenta desde www.finan
 
 	phpmkr_free_result($rs);
 
-	phpmkr_free_result($rs2);	
+	phpmkr_free_result($rs2);
 
-	phpmkr_free_result($rs3);		
+	phpmkr_free_result($rs3);
 
-	phpmkr_free_result($rs4);			
+	phpmkr_free_result($rs4);
 
-	phpmkr_free_result($rs5);				
+	phpmkr_free_result($rs5);
 
-	phpmkr_free_result($rs6);					
+	phpmkr_free_result($rs6);
 
-	phpmkr_free_result($rs7);						
+	phpmkr_free_result($rs7);
 
 	phpmkr_free_result($rs8);
 
-	phpmkr_free_result($rs9);								
+	phpmkr_free_result($rs9);
 
-	phpmkr_free_result($rs10);									
+	phpmkr_free_result($rs10);
 
 	return $bLoadData;
 
 }
 
 ?>
-
-
-
-
-
