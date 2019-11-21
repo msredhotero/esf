@@ -1,12 +1,8 @@
+
 <?php session_start(); ?>
 <?php ob_start(); ?>
 <?php
-header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // date in the past
-header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); // always modified
-header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1 
-header("Cache-Control: post-check=0, pre-check=0", false); 
-header("Cache-Control: private");
-header("Pragma: no-cache"); // HTTP/1.0 
+
 ?>
 
 <?php
@@ -18,43 +14,36 @@ if (@$_SESSION["php_project_esf_status"]  <> "login") {
 $ewCurSec = 0; // Initialise
 
 // User levels
-define("ewAllowadd", 1, true);
-define("ewAllowdelete", 2, true);
-define("ewAllowedit", 4, true);
-define("ewAllowview", 8, true);
-define("ewAllowlist", 8, true);
-define("ewAllowreport", 8, true);
-define("ewAllowsearch", 8, true);																														
-define("ewAllowadmin", 16, true);						
+
 ?>
 <?php
 $currentdate = getdate(time());
-$currdate = $currentdate["mday"]."/".$currentdate["mon"]."/".$currentdate["year"];	
+$currdate = $currentdate["mday"]."/".$currentdate["mon"]."/".$currentdate["year"];
 $currtime = $currentdate["hours"].":".$currentdate["minutes"].":".$currentdate["seconds"];
 $currdate = $currentdate["year"]."/".$currentdate["mon"]."/".$currentdate["mday"];
 ?>
 <?php
 
 // Initialize common variables
-$x_solicitud_id = Null; 
+$x_solicitud_id = Null;
 $ox_solicitud_id = Null;
-$x_credito_tipo_id = Null; 
+$x_credito_tipo_id = Null;
 $ox_credito_tipo_id = Null;
-$x_solicitud_status_id = Null; 
+$x_solicitud_status_id = Null;
 $ox_solicitud_status_id = Null;
-$x_folio = Null; 
+$x_folio = Null;
 $ox_folio = Null;
-$x_fecha_registro = Null; 
+$x_fecha_registro = Null;
 $ox_fecha_registro = Null;
-$x_promotor_id = Null; 
+$x_promotor_id = Null;
 $ox_promotor_id = Null;
-$x_importe_solicitado = Null; 
+$x_importe_solicitado = Null;
 $ox_importe_solicitado = Null;
-$x_plazo = Null; 
+$x_plazo = Null;
 $ox_plazo = Null;
-$x_contrato = Null; 
+$x_contrato = Null;
 $ox_contrato = Null;
-$x_pagare = Null; 
+$x_pagare = Null;
 $ox_pagare = Null;
 ?>
 <?php include ("db.php") ?>
@@ -67,63 +56,82 @@ $ox_pagare = Null;
 
 
 $conn = phpmkr_db_connect(HOST, USER, PASS, DB, PORT);
+$sqlCompleto = '';
+$sSqlWrk = '';
 
-//obtenemos el archivo .csv
-$tipo = $_FILES['archivo2']['type'];
- 
-$tamanio = $_FILES['archivo2']['size'];
- 
-$archivotmp = $_FILES['archivo2']['tmp_name'];
- 
-//cargamos el archivo
-$lineas = file($archivotmp);
- $conn = phpmkr_db_connect(HOST, USER, PASS, DB, PORT);
-//inicializamos variable a 0, esto nos ayudará a indicarle que no lea la primera línea
-$i=0;
- 
-//Recorremos el bucle para leer línea por línea
-foreach ($lineas as $linea_num => $linea)
-{ 
-   //abrimos bucle
-   /*si es diferente a 0 significa que no se encuentra en la primera línea 
-   (con los títulos de las columnas) y por lo tanto puede leerla*/
-   if($i != 0) 
-   { 
-       //abrimos condición, solo entrará en la condición a partir de la segunda pasada del bucle.
-       /* La funcion explode nos ayuda a delimitar los campos, por lo tanto irá 
-       leyendo hasta que encuentre un ; */
-       $datos = explode(",",$linea);
- 
-       //Almacenamos los datos que vamos leyendo en una variable
-       //usamos la función utf8_encode para leer correctamente los caracteres especiales
-	   $campo0 = strtoupper(utf8_decode($datos[0]));
-       $campo1 = strtoupper(utf8_decode(str_replace(";",",",$datos[1])));
-	   $campo2 = strtoupper(utf8_decode($datos[2]));
-	   $campo3 = strtoupper(utf8_decode($datos[3]));
-	   $campo4 = strtoupper(utf8_decode($datos[4]));
-	   $campo5 = strtoupper(utf8_decode($datos[5]));
-	   $campo6 = strtoupper(utf8_decode($datos[6]));
-	   $campo7 = strtoupper(utf8_decode($datos[7]));
-	   $campo8 = strtoupper(utf8_decode($datos[8]));
-	   $campo9 = strtoupper(utf8_decode($datos[9]));
-	   $campo10 = strtoupper(utf8_decode($datos[10]));
-	   $campo11 = strtoupper(utf8_decode($datos[11]));
-	   
-       //guardamos en base de datos la línea leida
-       
- 		$sSqlWrk = "INSERT INTO csv_sdn(ent_num,sdn_name,sdn_type,program,title,call_sign,vess_type,tonnage,grt,vess_flag,vess_owner,remarks)";
-		$sSqlWrk .=" VALUES('$campo0','$campo1','$campo2','$campo3','$campo4','$campo5','$campo6','$campo7','$campo8','$campo9','$campo10','$campo11')";
-		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("<b><center><span class=\"texto_titulo\">Error al importar los registros, por favor verifique que su archivo tiene el formato correcto.</b><p><br> Contacte al administrador y envie el siguiente error junto con el archivo que intento cargar<br><p> " . phpmkr_error() . ' SQL:' . $sSqlWrk);
-		
-	#echo $sSqlWrk."<br>";
-       //cerramos condición,
-   }
- 
-   /*Cuando pase la primera pasada se incrementará nuestro valor y a la siguiente pasada ya 
-   entraremos en la condición, de esta manera conseguimos que no lea la primera línea.*/
-   $i++;
-   //cerramos bucle
+$inipath = php_ini_loaded_file();
+
+//die(var_dump($_FILES['archivo2']['name']));
+$ar = array();
+
+$has_title_row = true;
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+	if(is_uploaded_file($_FILES['csvfile']['tmp_name'])){
+
+		$sql = 'delete from csv_sdn';
+		$rswrk = phpmkr_query($sql,$conn) or die("<p>Error al borrar</p> " . phpmkr_error() . ' SQL:' . $sql);
+
+		$filename = basename($_FILES['csvfile']['name']);
+
+		if(substr($filename, -3) == 'csv'){
+
+			$tmpfile = $_FILES['csvfile']['tmp_name'];
+
+			if (($fh = fopen($tmpfile, "r")) !== FALSE) {
+				$i = 0;
+				while (($items = fgetcsv($fh, 10000, ",")) !== FALSE) {
+					if($has_title_row === true && $i == 0){ // skip the first row if there is a tile row in CSV file
+						$i++;
+						continue;
+					}
+					$sSqlWrk = '';
+
+
+					$campo0 = strtoupper(utf8_decode(str_replace("'","",str_replace(";",",",$items[0]))));
+					$campo1 = strtoupper(utf8_decode(str_replace("'","",str_replace(";",",",$items[1]))));
+					$campo2 = strtoupper(utf8_decode(str_replace("'","",str_replace(";",",",$items[2]))));
+					$campo3 = strtoupper(utf8_decode(str_replace("'","",str_replace(";",",",$items[3]))));
+					$campo4 = strtoupper(utf8_decode(str_replace("'","",str_replace(";",",",$items[4]))));
+					$campo5 = strtoupper(utf8_decode(str_replace("'","",str_replace(";",",",$items[5]))));
+					$campo6 = strtoupper(utf8_decode(str_replace("'","",str_replace(";",",",$items[6]))));
+					$campo7 = strtoupper(utf8_decode(str_replace("'","",str_replace(";",",",$items[7]))));
+					$campo8 = strtoupper(utf8_decode(str_replace("'","",str_replace(";",",",$items[8]))));
+					$campo9 = strtoupper(utf8_decode(str_replace("'","",str_replace(";",",",$items[9]))));
+					$campo10 = strtoupper(utf8_decode(str_replace("'","",str_replace(";",",",$items[10]))));
+					$campo11 = strtoupper(utf8_decode(str_replace("'","",str_replace(";",",",$items[11]))));
+
+					//guardamos en base de datos la lï¿½nea leida
+
+					$sSqlWrk = "INSERT INTO csv_sdn(ent_num,sdn_name,sdn_type,program,title,call_sign,vess_type,tonnage,grt,vess_flag,vess_owner,remarks)";
+					$sSqlWrk .=" VALUES('$campo0','$campo1','$campo2','$campo3','$campo4','$campo5','$campo6','$campo7','$campo8','$campo9','$campo10','$campo11')";
+					$rswrk = phpmkr_query($sSqlWrk,$conn) or die("<b><center><span class=\"texto_titulo\">Error al importar los registros, por favor verifique que su archivo tiene el formato correcto.</b><p><br> Contacte al administrador y envie el siguiente error junto con el archivo que intento cargar<br><p> " . phpmkr_error() . ' SQL:' . $sSqlWrk);
+
+					$sqlCompleto .= $sSqlWrk.'<br>';
+					//print_r($items);
+					$i++;
+
+					$leyenda = '';
+				}
+			}
+			}
+			else{
+				$leyenda = 'Formato invalido';
+				//die('Invalid file format uploaded. Please upload CSV.');
+			}
+    }
+    else{
+		 $leyenda = 'Por favor seleccione un archivo';
+        //die('Please upload a CSV file.');
+    }
 }
+
+$exito = 0;
+
+
+
+
+//echo $sqlCompleto;
+
 ?>
 
 
@@ -146,20 +154,20 @@ foreach ($lineas as $linea_num => $linea)
 $(document).ready(function() {
 	ocultaCampos();
 	//alert("entro a jqyery");
-	$('#btnAdd').click(function() {	
+	$('#btnAdd').click(function() {
 		var num     = $('.clonedInput').length;
 		var newNum  = new Number(num + 1);
 		$('#contador').attr('value',num);
 		var newElem = $('#cel_' + num).clone().attr('id', 'cel_' + newNum);
 		newElem.find('td:eq(0) ').html('Celular ' + newNum);
 		newElem.find('td:eq(1) input:eq(0)').attr({'id':'x_celular_'+newNum,'name':'x_celular_'+newNum,'value': 0});
-		newElem.find('td:eq(3) select:eq(0)').attr({'id':'x_compania_id_'+newNum,'name':'x_compania_id_'+newNum,'value': 0});	
+		newElem.find('td:eq(3) select:eq(0)').attr({'id':'x_compania_id_'+newNum,'name':'x_compania_id_'+newNum,'value': 0});
 		 $('#cel_' + num).after(newElem);
 		 newElem.find('td:eq(4) button:eq(0)').remove();
-		
-		
+
+
 		});// botonadd
-		
+
 	//check box
 	$("#x_aviso_de_privacidad").change(function(){
 			if($(this).is(':checked')){
@@ -167,31 +175,31 @@ $(document).ready(function() {
 				$('#enviar').removeAttr("disabled");
 			}
 		});
-	
-	
-	
+
+
+
 	function ocultaCampos(){
-		
+
 		tipo_reporte_id = $('#x_tipo_reporte_id').val();
 			if(tipo_reporte_id == 1){
-				
-	$(".quita_r").hide();	
-				
+
+	$(".quita_r").hide();
+
 				}else{
 					$(".quita_r").show();
 					}
 		}
 		$('#x_tipo_reporte_id').change(function(){
-			
+
 			ocultaCampos();
-			
+
 			});
-		
-	
+
+
 	});
 </script>
 
-<script src="paisedohint.js"></script> 
+<script src="paisedohint.js"></script>
 <script src="muestra_dir_empresa.js"></script>
 <script src="muestra_outsourcing.js"></script>
 <style type="text/css">
@@ -200,16 +208,16 @@ $(document).ready(function() {
 	border:2px solid #b7eff9;
 	padding:10px;
 	}
-	
+
 .REQURIDO{
 	color:#F60;
-	
+
 	}
 </style>
 
 <script type="text/javascript">
 <!--
-EW_dateSep = "/"; // set date separator	
+EW_dateSep = "/"; // set date separator
 
 //-->
 </script>
@@ -220,8 +228,8 @@ EW_dateSep = "/"; // set date separator
 
 function show_address(empresa_id){
 	x_empresa_id = empresa_id.value;
-	process(x_empresa_id);	
-	process_2(x_empresa_id);	
+	process(x_empresa_id);
+	process_2(x_empresa_id);
 	}
 
 function solonumeros(myfield, e, dec){
@@ -291,15 +299,15 @@ var EW_HTMLArea;
   <input type="hidden"  name="x_direccion_id" value="<?php echo $x_direccion_id; ?>" />
   <input type="hidden" name="x_entrevista_inicial_id" id="x_entrevista_inicial_id" value="<?php echo $x_entrevista_inicial_id;?>" />
   <input type="hidden" name="x_reporte_cnbv_id" value="<?php echo $x_reporte_cnbv_id;?>" />
-  
-  
+
+
   <?php
   $currdate =  date("Y-m-d");
   if( empty($x_fecha_registro)){
 	  $x_fecha_registro = $currdate;
 	  }
 if (@$_SESSION["ewmsg"] <> "") {
-		
+
 ?>
   <p><span class="ewmsg">
     <?php  echo $_SESSION["ewmsg"] ?>
@@ -308,14 +316,14 @@ if (@$_SESSION["ewmsg"] <> "") {
 	$_SESSION["ewmsg"] = ""; // Clear message
 }
 ?>
-<table  border="0" 
+<table  border="0"
    cellpadding="1" cellspacing="0" >
     <tr>
     <td ><a href="php_ofaclist.php?cmd=resetall">Lista OFAC</a></td>
-    
-      
-      
-     
+
+
+
+
     </tr>
 </table>
   <p></p>
@@ -326,7 +334,11 @@ if (@$_SESSION["ewmsg"] <> "") {
 
 <p>
 <div class="content-box-gray">
+	<?php if ($leyenda == '') { ?>
 <br /><b>Importar registros a la lista negra de la CNBV:</b> Se importaron con existo <b><?php echo ($i -1);?></b> registros en la lista negra de la CNBV<p>
+<?php } else {
+echo $leyenda;
+ } ?>
   </div>
   <p>&nbsp;</p>
 </form>
@@ -335,7 +347,7 @@ if (@$_SESSION["ewmsg"] <> "") {
 <?php
 //phpmkr_db_close($conn);
 ?>
-<?php 
+<?php
 
 
 
