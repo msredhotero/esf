@@ -3,10 +3,10 @@
 <?php
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // date in the past
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); // always modified
-header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1 
-header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1
+header("Cache-Control: post-check=0, pre-check=0", false);
 header("Cache-Control: private");
-header("Pragma: no-cache"); // HTTP/1.0 
+header("Pragma: no-cache"); // HTTP/1.0
 ?>
 
 <?php
@@ -24,37 +24,37 @@ define("ewAllowedit", 4, true);
 define("ewAllowview", 8, true);
 define("ewAllowlist", 8, true);
 define("ewAllowreport", 8, true);
-define("ewAllowsearch", 8, true);																														
-define("ewAllowadmin", 16, true);						
+define("ewAllowsearch", 8, true);
+define("ewAllowadmin", 16, true);
 ?>
 <?php
 $currentdate = getdate(time());
-$currdate = $currentdate["mday"]."/".$currentdate["mon"]."/".$currentdate["year"];	
+$currdate = $currentdate["mday"]."/".$currentdate["mon"]."/".$currentdate["year"];
 $currtime = $currentdate["hours"].":".$currentdate["minutes"].":".$currentdate["seconds"];
 $currdate = $currentdate["year"]."/".$currentdate["mon"]."/".$currentdate["mday"];
 ?>
 <?php
 
 // Initialize common variables
-$x_solicitud_id = Null; 
+$x_solicitud_id = Null;
 $ox_solicitud_id = Null;
-$x_credito_tipo_id = Null; 
+$x_credito_tipo_id = Null;
 $ox_credito_tipo_id = Null;
-$x_solicitud_status_id = Null; 
+$x_solicitud_status_id = Null;
 $ox_solicitud_status_id = Null;
-$x_folio = Null; 
+$x_folio = Null;
 $ox_folio = Null;
-$x_fecha_registro = Null; 
+$x_fecha_registro = Null;
 $ox_fecha_registro = Null;
-$x_promotor_id = Null; 
+$x_promotor_id = Null;
 $ox_promotor_id = Null;
-$x_importe_solicitado = Null; 
+$x_importe_solicitado = Null;
 $ox_importe_solicitado = Null;
-$x_plazo = Null; 
+$x_plazo = Null;
 $ox_plazo = Null;
-$x_contrato = Null; 
+$x_contrato = Null;
 $ox_contrato = Null;
-$x_pagare = Null; 
+$x_pagare = Null;
 $ox_pagare = Null;
 ?>
 <?php include ("db.php") ?>
@@ -108,11 +108,11 @@ switch ($sAction)
 		if (EditData($conn)) { // Add New Record
 			$_SESSION["ewmsg"] .= "***EL  REPORTE A CNBV FUE REGISTRADO CORRECTAMENTE. ***";
 			phpmkr_db_close($conn);
-			ob_end_clean();		 
+			ob_end_clean();
 			header("Location: php_reporte_cnbvlist.php");
 			exit();
 		}
-		
+
 }
 ?>
 
@@ -136,20 +136,20 @@ switch ($sAction)
 $(document).ready(function() {
 	ocultaCampos();
 	//alert("entro a jqyery");
-	$('#btnAdd').click(function() {	
+	$('#btnAdd').click(function() {
 		var num     = $('.clonedInput').length;
 		var newNum  = new Number(num + 1);
 		$('#contador').attr('value',num);
 		var newElem = $('#cel_' + num).clone().attr('id', 'cel_' + newNum);
 		newElem.find('td:eq(0) ').html('Celular ' + newNum);
 		newElem.find('td:eq(1) input:eq(0)').attr({'id':'x_celular_'+newNum,'name':'x_celular_'+newNum,'value': 0});
-		newElem.find('td:eq(3) select:eq(0)').attr({'id':'x_compania_id_'+newNum,'name':'x_compania_id_'+newNum,'value': 0});	
+		newElem.find('td:eq(3) select:eq(0)').attr({'id':'x_compania_id_'+newNum,'name':'x_compania_id_'+newNum,'value': 0});
 		 $('#cel_' + num).after(newElem);
 		 newElem.find('td:eq(4) button:eq(0)').remove();
-		
-		
+
+
 		});// botonadd
-		
+
 	//check box
 	$("#x_aviso_de_privacidad").change(function(){
 			if($(this).is(':checked')){
@@ -157,31 +157,31 @@ $(document).ready(function() {
 				$('#enviar').removeAttr("disabled");
 			}
 		});
-	
-	
-	
+
+
+
 	function ocultaCampos(){
-		
+
 		tipo_reporte_id = $('#x_tipo_reporte_id').val();
 			if(tipo_reporte_id == 1){
-				
-	$(".quita_r").hide();	
-				
+
+	$(".quita_r").hide();
+
 				}else{
 					$(".quita_r").show();
 					}
 		}
 		$('#x_tipo_reporte_id').change(function(){
-			
+
 			ocultaCampos();
-			
+
 			});
-		
-	
+
+
 	});
 </script>
 
-<script src="paisedohint.js"></script> 
+<script src="paisedohint.js"></script>
 <script src="muestra_dir_empresa.js"></script>
 <script src="muestra_outsourcing.js"></script>
 <style type="text/css">
@@ -190,16 +190,16 @@ $(document).ready(function() {
 	border:2px solid #b7eff9;
 	padding:10px;
 	}
-	
+
 .REQURIDO{
 	color:#F60;
-	
+
 	}
 </style>
 
 <script type="text/javascript">
 <!--
-EW_dateSep = "/"; // set date separator	
+EW_dateSep = "/"; // set date separator
 
 //-->
 </script>
@@ -210,8 +210,8 @@ EW_dateSep = "/"; // set date separator
 
 function show_address(empresa_id){
 	x_empresa_id = empresa_id.value;
-	process(x_empresa_id);	
-	process_2(x_empresa_id);	
+	process(x_empresa_id);
+	process_2(x_empresa_id);
 	}
 
 function solonumeros(myfield, e, dec){
@@ -281,15 +281,15 @@ var EW_HTMLArea;
   <input type="hidden"  name="x_direccion_id" value="<?php echo $x_direccion_id; ?>" />
   <input type="hidden" name="x_entrevista_inicial_id" id="x_entrevista_inicial_id" value="<?php echo $x_entrevista_inicial_id;?>" />
   <input type="hidden" name="x_reporte_cnbv_id" value="<?php echo $x_reporte_cnbv_id;?>" />
-  
-  
+
+
   <?php
   $currdate =  date("Y-m-d");
   if( empty($x_fecha_registro)){
 	  $x_fecha_registro = $currdate;
 	  }
 if (@$_SESSION["ewmsg"] <> "") {
-		
+
 ?>
   <p><span class="ewmsg">
     <?php  echo $_SESSION["ewmsg"] ?>
@@ -298,14 +298,14 @@ if (@$_SESSION["ewmsg"] <> "") {
 	$_SESSION["ewmsg"] = ""; // Clear message
 }
 ?>
-<table  border="0" 
+<table  border="0"
    cellpadding="1" cellspacing="0" >
     <tr>
     <td ><a href="mmmmphp_alerta_pld_list.php?cmd=resetall">Listado alertas PLD</a></td>
       <td>&nbsp;&nbsp;</td>
       <td ><a href="php_reporte_cnbvlist.php?>">Listado de reporte CNBV</a></td>
-      
-     
+
+
     </tr>
 </table>
   <p></p>
@@ -315,32 +315,32 @@ if (@$_SESSION["ewmsg"] <> "") {
   <br />
 <table width="800" border="0" align="center" cellpadding="1" cellspacing="0"  class="texto_normal_SIP">
     <tr>
-      <td colspan="7" valign="top"  class="encabezado_crea"> Reporte a la  Comisión Nacional Bancaria y de Valores </td>
+      <td colspan="7" valign="top"  class="encabezado_crea"> Reporte a la  Comisiï¿½n Nacional Bancaria y de Valores </td>
     </tr>
      <tr>
       <td width="114" class="linea_sip">Fecha registro</td>
       <td width="177" class="linea_sip"><span class="texto_normal">
-      
+
 	 <input type="hidden" name="x_fecha_registro" id="x_fecha_registro" value="<? echo $x_fecha_registro;?>" maxlength="8" />
       <?php echo $x_fecha_registro ;?>
       </td>
-      <td width="32" class="linea_sip">&nbsp;</td> 
+      <td width="32" class="linea_sip">&nbsp;</td>
       <td width="122" colspan="2" class="linea_sip">&nbsp;</td>
       <td colspan="2" class="linea_sip">&nbsp;</td>
 </tr>
-    
+
    </table>
 <table  width="800" border="0" align="center" cellpadding="1" cellspacing="0"  class="texto_normal_SIP">
   <tr>
       <td colspan="3"></td>
       </tr>
-      
+
       <tr>
       <td width="24">1</td>
       <td width="344">Tipo de reporte</td>
       <td width="326">
-      <?php		 
-		$x_estado_civil_idList = "<select name=\"x_tipo_reporte_id\"  id=\"x_tipo_reporte_id\" >";		
+      <?php
+		$x_estado_civil_idList = "<select name=\"x_tipo_reporte_id\"  id=\"x_tipo_reporte_id\" >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS</option>";
 		$sSqlWrk = "SELECT * FROM `reporte_cnbv_tipo` order by  reporte_cnbv_tipo_id";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -357,28 +357,28 @@ if (@$_SESSION["ewmsg"] <> "") {
 		}
 		@phpmkr_free_result($rswrk);
 		$x_estado_civil_idList .= "</select>";
-		echo $x_estado_civil_idList;		
+		echo $x_estado_civil_idList;
 		?>
-      
-      
-      
-      
+
+
+
+
      </td>  </tr>
      <tr>
      <td>2</td>
       <td>Periodo del reporte</td>
-      <?php 
-	 
+      <?php
+
 	  $TODAY= date("Y-m-d");
 	  $AtODAY = explode("-",$TODAY);
 	  $temp_periodo =  $AtODAY[0]. $AtODAY[1];
 	  $temp_periodo2 =  $AtODAY[0]. $AtODAY[1].$AtODAY[2];
 	  if($x_tipo_id ==1)
-	  $x_periodo = (!empty($x_periodo)) ? $x_periodo:$temp_periodo ; 
+	  $x_periodo = (!empty($x_periodo)) ? $x_periodo:$temp_periodo ;
 	  if($x_tipo_id ==2 || $x_tipo_id == 3)
-	   $x_periodo = (!empty($x_periodo)) ? $temp_periodo2:$temp_periodo2 ; 
+	   $x_periodo = (!empty($x_periodo)) ? $temp_periodo2:$temp_periodo2 ;
 	  ?>
-      
+
       <td>
       <?php if($x_tipo_id ==1){?>
       <input  type="text" name="x_periodo" id="" value="<?php echo $x_periodo ; ?>"  maxlength="6"   size="60" />
@@ -392,7 +392,7 @@ if (@$_SESSION["ewmsg"] <> "") {
       <td>Folio</td>
       <td>
       <?PHP
-	  // SI EST AVCIO BUSCAMOS EL FOLIO; DEBE SER CONSECUTIVO DENTRO DEL ARCHIVO 
+	  // SI EST AVCIO BUSCAMOS EL FOLIO; DEBE SER CONSECUTIVO DENTRO DEL ARCHIVO
 	  if(empty($x_folio) ){
 		  $x_folio = '';
 		  if(!empty($x_tipo_reporte_id))
@@ -404,7 +404,7 @@ if (@$_SESSION["ewmsg"] <> "") {
 		  $numero_registro = $rowCountFolio["TOTAL"];
 		   #$numero_registro = 100;
 		  for($n=1;$n<=(6 - strlen($numero_registro));$n++ ){
-			  $x_folio .= '0'; 
+			  $x_folio .= '0';
 			  }
 			 $x_folio .=  $numero_registro+ 1;
 		  }
@@ -415,8 +415,8 @@ if (@$_SESSION["ewmsg"] <> "") {
       <td>4</td>
       <td>Organo supervisor</td>
       <td>
-          <?php		 
-		$x_estado_civil_idList = "<select name=\"x_organo_supervisor\"  >";		
+          <?php
+		$x_estado_civil_idList = "<select name=\"x_organo_supervisor\"  >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS</option>";
 		$sSqlWrk = "SELECT * FROM `reporte_cnbv_organo_supervisor` order by  reporte_cnbv_organo_supervisor_id ";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -433,19 +433,19 @@ if (@$_SESSION["ewmsg"] <> "") {
 		}
 		@phpmkr_free_result($rswrk);
 		$x_estado_civil_idList .= "</select>";
-		echo $x_estado_civil_idList;		
+		echo $x_estado_civil_idList;
 		?>
-      
+
       </td>
       </tr>
       <tr>
-      
+
       <td>5</td>
       <td>Clave del sujeto obligado</td>
       <td><input type="hidden" name="x_clave_sujeto_obligado" value="069119" />
-       <?php	   
-	   $x_clave_sujeto_obligado	 = '069119'; 
-		$x_estado_civil_idList = "<select name=\"x_clave_sujeto_obligado2\"  disabled=\"disabled\" >";		
+       <?php
+	   $x_clave_sujeto_obligado	 = '069119';
+		$x_estado_civil_idList = "<select name=\"x_clave_sujeto_obligado2\"  disabled=\"disabled\" >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS</option>";
 		$sSqlWrk = "SELECT * FROM `reporte_cnbv_sujeto_obligado` order by  reporte_cnbv_sujeto_obligado_id ";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -462,9 +462,9 @@ if (@$_SESSION["ewmsg"] <> "") {
 		}
 		@phpmkr_free_result($rswrk);
 		$x_estado_civil_idList .= "</select>";
-		echo $x_estado_civil_idList;		
+		echo $x_estado_civil_idList;
 		?>
-      
+
       </td>
       </tr>
       <tr>
@@ -472,18 +472,18 @@ if (@$_SESSION["ewmsg"] <> "") {
       <td>Localidad</td>
       <td>
       <?php
-      $x_estado_civil_idList = "<select name=\"x_localidad\"  >";		
+      $x_estado_civil_idList = "<select name=\"x_localidad\"  >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS</option>";
-		$sSqlWrk = "SELECT * FROM `reporte_cnbv_localidad` group by  cve_localidad_INEGI ";
+		$sSqlWrk = "SELECT * FROM `localidades_cnbv` order by localidad ";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
 			while ($datawrk = phpmkr_fetch_array($rswrk)) {
-				$x_estado_civil_idList .= "<option value=\"" . htmlspecialchars($datawrk[7]) . "\"";
-				if ($datawrk["reporte_localidad_id"] == $x_localidad) {
+				$x_estado_civil_idList .= "<option value=\"" . htmlspecialchars($datawrk[1]) . "\"";
+				if ($datawrk["clave_localidad"] == $x_localidad) {
 					$x_estado_civil_idList .= "' selected";
 				}
-				$x_estado_civil_idList .= ">" . $datawrk["cve_colonia_siti _(Colonia)"] ." - " .htmlentities($datawrk["dc_localidad_INEGI"]) . "  </option>";
+				$x_estado_civil_idList .= ">" . $datawrk["clave_localidad"] ." - " .htmlentities($datawrk["localidad"]) . "  </option>";
 				$rowcntwrk++;
 			}
 		}
@@ -503,9 +503,9 @@ if (@$_SESSION["ewmsg"] <> "") {
       <td>8</td>
       <td>Tipo de operacion</td>
       <td>
-       <?php	   
-	   
-		$x_estado_civil_idList = "<select name=\"x_tipo_operacion_id\"  >";		
+       <?php
+
+		$x_estado_civil_idList = "<select name=\"x_tipo_operacion_id\"  >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS( NULO )</option>";
 		$sSqlWrk = "SELECT * FROM `reporte_cnbv_tipo_operacion` order by  reporte_cnbv_tipo_operacion_id ";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -522,18 +522,18 @@ if (@$_SESSION["ewmsg"] <> "") {
 		}
 		@phpmkr_free_result($rswrk);
 		$x_estado_civil_idList .= "</select>";
-		echo $x_estado_civil_idList;		
+		echo $x_estado_civil_idList;
 		?>
      </td>
       </tr>
       <tr>
       <td>9</td>
       <td>Instrumento monetario</td>
-    
+
       <td>
         <?php
-		
-      $x_estado_civil_idList = "<select name=\"x_instrumento_monetario_id\"  >";		
+
+      $x_estado_civil_idList = "<select name=\"x_instrumento_monetario_id\"  >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS</option>";
 		$sSqlWrk = "SELECT * FROM `reporte_cnbv_instrumento_monetario` order by  reporte_cnbv_instrumento_monetario_id ";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -565,10 +565,10 @@ if (@$_SESSION["ewmsg"] <> "") {
       </tr>
       <tr>
       <td>12</td>
-      <td>Moneda</td>      
-      <td>      
+      <td>Moneda</td>
+      <td>
        <?php
-      $x_estado_civil_idList = "<select name=\"x_moneda\"  >";		
+      $x_estado_civil_idList = "<select name=\"x_moneda\"  >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS</option>";
 		$sSqlWrk = "SELECT * FROM `reporte_cnbv_moneda` order by  reporte_cnbv_moneda_id ";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -593,7 +593,7 @@ if (@$_SESSION["ewmsg"] <> "") {
       <td>13</td>
       <td>Fecha de la operacion </td>
       <td>
-      
+
       <span class="texto_normal">
 	 <input type="text" name="x_fecha_operacion" id="x_fecha_operacion" value="<?php echo FormatDateTime(@$x_fecha_operacion,7); ?>" size="40">
     &nbsp;<img src="images/ew_calendar.gif" id="cx_fecha_operacion" alt="Calendario" style="cursor:pointer;cursor:hand;">
@@ -623,8 +623,8 @@ if (@$_SESSION["ewmsg"] <> "") {
     }
     );
     </script></span>
-      
-      
+
+
       </td>
       </tr>
       <tr>
@@ -632,7 +632,7 @@ if (@$_SESSION["ewmsg"] <> "") {
       <td>Nacionalidad</td>
       <td>
        <?php
-      $x_estado_civil_idList = "<select name=\"x_nacionalidad\"  >";		
+      $x_estado_civil_idList = "<select name=\"x_nacionalidad\"  >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS</option>";
 		$sSqlWrk = "SELECT * FROM `reporte_cnbv_nacionalidad` order by  reporte_cnbv_nacionalidad_id ";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -658,7 +658,7 @@ if (@$_SESSION["ewmsg"] <> "") {
       <td>Tipopersona</td>
       <td>
       <?php
-      $x_estado_civil_idList = "<select name=\"x_tipo_persona_id\"  >";		
+      $x_estado_civil_idList = "<select name=\"x_tipo_persona_id\"  >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS</option>";
 		$sSqlWrk = "SELECT * FROM `reporte_cnbv_tipo_persona` order by  reporte_cnbv_tipo_persona_id ";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -742,7 +742,7 @@ if (@$_SESSION["ewmsg"] <> "") {
       <td>Ciudad / poblacion</td>
       <td>
       <?php
-      $x_estado_civil_idList = "<select name=\"x_cuidad\"  >";		
+      $x_estado_civil_idList = "<select name=\"x_cuidad\"  >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS</option>";
 		$sSqlWrk = "SELECT * FROM `reporte_cnbv_ciudad` order by  reporte_cnbv_ciudad_id ";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -761,9 +761,9 @@ if (@$_SESSION["ewmsg"] <> "") {
 		$x_estado_civil_idList .= "</select>";
 		//echo $x_estado_civil_idList;
       ?>
-      
+
        <?php
-      $x_estado_civil_idList = "<select name=\"x_cuidad\"  >";		
+      $x_estado_civil_idList = "<select name=\"x_cuidad\"  >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS</option>";
 		$sSqlWrk = "SELECT * FROM `reporte_cnbv_localidad` group by  cve_localidad_INEGI ";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -782,7 +782,7 @@ if (@$_SESSION["ewmsg"] <> "") {
 		$x_estado_civil_idList .= "</select>";
 		echo $x_estado_civil_idList;
       ?>
-      
+
       </td>
       </tr>
       <tr>
@@ -795,7 +795,7 @@ if (@$_SESSION["ewmsg"] <> "") {
       <td>Actividad economica <strong>*</strong></td>
       <td>
        <?php
-      $x_estado_civil_idList = "<select name=\"x_actividad_economica\"  >";		
+      $x_estado_civil_idList = "<select name=\"x_actividad_economica\"  >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS</option>";
 		$sSqlWrk = "SELECT * FROM `reporte_cnbv_actividad_economica` order by  reporte_cnbv_actividad_economica_id ";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -831,7 +831,7 @@ if (@$_SESSION["ewmsg"] <> "") {
       <td>Clave del sujeto obligado <strong>*</strong></td>
       <td>
        <?php
-      $x_estado_civil_idList = "<select name=\"x_clave_aval\"  >";		
+      $x_estado_civil_idList = "<select name=\"x_clave_aval\"  >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS</option>";
 		$sSqlWrk = "SELECT * FROM `reporte_cnbv_aval` order by  reporte_cnbv_aval_id ";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -850,9 +850,9 @@ if (@$_SESSION["ewmsg"] <> "") {
 		$x_estado_civil_idList .= "</select>";
 		//echo $x_estado_civil_idList;
       ?>
-       <?php	   
-	  // $x_clave_aval	 = '069119'; 
-		$x_estado_civil_idList = "<select name=\"x_clave_aval\"   >";		
+       <?php
+	  // $x_clave_aval	 = '069119';
+		$x_estado_civil_idList = "<select name=\"x_clave_aval\"   >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS(NULO)</option>";
 		$sSqlWrk = "SELECT * FROM `reporte_cnbv_sujeto_obligado` order by  reporte_cnbv_sujeto_obligado_id ";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -869,9 +869,9 @@ if (@$_SESSION["ewmsg"] <> "") {
 		}
 		@phpmkr_free_result($rswrk);
 		$x_estado_civil_idList .= "</select>";
-		echo $x_estado_civil_idList;		
+		echo $x_estado_civil_idList;
 		?>
-      
+
       </td>
       </tr>
       <tr class="quita_r">
@@ -904,15 +904,15 @@ if (@$_SESSION["ewmsg"] <> "") {
       </td>
       </tr>
       <tr>
-      
+
      <tr>
        <td colspan="3" class="linea_sip"><input   type="button"  name="enviar"  id="enviar" value="GUARDAR"  onclick="EW_checkMyForm();" /></td>
      </tr>
-     
+
 </table>
 <p>
 <div class="content-box-gray">
-En caso de personas y/o cuantas relacionadas que esten involucradas con Reportes de Operaciones Inusuales e Internas Preocupantes, sólo deberan llenarse las columnas 29 a 34, sin que sea necesario que se repita la información de la cuanta principal, con excepción de la información contenida en las columnas 1 a 5,que corresponden a los datos de referencia del reporte. 
+En caso de personas y/o cuantas relacionadas que esten involucradas con Reportes de Operaciones Inusuales e Internas Preocupantes, sï¿½lo deberan llenarse las columnas 29 a 34, sin que sea necesario que se repita la informaciï¿½n de la cuanta principal, con excepciï¿½n de la informaciï¿½n contenida en las columnas 1 a 5,que corresponden a los datos de referencia del reporte.
 <br /><b>NOTA:</b> Para la operacion principal, el consecutivo de cuentas  y/o personas relacionadas(columna 29) contendra el numero doble cero(00)</div>
   <p>&nbsp;</p>
   <p>&nbsp;</p>
@@ -922,41 +922,41 @@ En caso de personas y/o cuantas relacionadas que esten involucradas con Reportes
 <?php
 //phpmkr_db_close($conn);
 ?>
-<?php 
+<?php
 
 function LoadData($conn, $cliente_id, $solicitud_id, $tipo_reporte_id, $id){
-		
+
 		$x_load_data = true;
-	 	
-		
+
+
 		#echo  $GLOBALS["x_reporte_cnbv_id"]."<br>.. $tipo_reporte_id";
 		$reporte_id = $GLOBALS["x_reporte_cnbv_id"];
 		#echo "tio.... =>".$tipo_reporte_id;
 		#$GLOBALS["x_tipo_reporte_id"] = $tipo_reporte_id;
 		$x_today = date("Y-m-d");
 		$GLOBALS["x_fecha_registro"] = $x_today;
-		
+
 		if($solicitud_id>0){
-			
+
 			if (!empty($id)){
 				$sql_and =  " AND  reporte_cnbv_id  = ".$id." ";
 				}
 		#$sSql = " SELECT * FROM reporte_cnbv WHERE reporte_cnbv_id  = ".$reporte_id;
 		$sSql = " SELECT * FROM reporte_cnbv WHERE cliente_id = ".$cliente_id." AND solicitud_id = ".$solicitud_id." AND tipo_reporte_id = ".$tipo_reporte_id."" .$sql_and ;
 		#33echo "<BR>".$sSql."==><BR>";
-		
+
 		$rs = phpmkr_query($sSql,$conn) or die("Error al seleccionar los datos de la solicitud".phpmkr_error()."sql :".$sql);
 		//echo  $sSql ;
 		if(!$rs ){
 			$x_load_data  = false;
 			}
 		$row = phpmkr_fetch_array($rs);
-		
+
 		$sql_Campos = " DESCRIBE reporte_cnbv ";
-		$rs_CAMPOS = phpmkr_query($sql_Campos,$conn) or die("Error al seleccionar los datos de la solicitud".phpmkr_error()."sql :".$sql_Campos);	
+		$rs_CAMPOS = phpmkr_query($sql_Campos,$conn) or die("Error al seleccionar los datos de la solicitud".phpmkr_error()."sql :".$sql_Campos);
 		while($rowcMPOS = phpmkr_fetch_array($rs_CAMPOS)){
 			//
-			
+
 			$x_nombre_campo = $rowcMPOS["Field"];
 			if($x_nombre_campo != 'tipo_reporte_id' && $x_nombre_campo != 'solicitud_id' && $x_nombre_campo != 'cliente_id' && $x_nombre_campo != 'reporte_cnbv_id' ){
 			$x_campo = "x_".$rowcMPOS["Field"];
@@ -966,65 +966,65 @@ function LoadData($conn, $cliente_id, $solicitud_id, $tipo_reporte_id, $id){
 			}
 			}
 			$x_tipo_credito = '';
-			
-			
-			
+
+
+
 			if(empty($GLOBALS["x_numero_cuenta"]) && ($cliente_id >0 &&  $solicitud_id>0)){
-				
+
 				$sqlCreditoNum = "SELECT *  FROM credito WHERE solicitud_id = ".$solicitud_id;
 				#echo $sqlCreditoNum."<br>";
-				$rs_CAMPOSc = phpmkr_query($sqlCreditoNum,$conn) or die("Error al seleccionar los datos de la solicitud".phpmkr_error()."sql :".$sqlCreditoNum);	
+				$rs_CAMPOSc = phpmkr_query($sqlCreditoNum,$conn) or die("Error al seleccionar los datos de la solicitud".phpmkr_error()."sql :".$sqlCreditoNum);
 				$rowcMPOS = phpmkr_fetch_array($rs_CAMPOSc);
-			
+
 				$GLOBALS["x_numero_cuenta"] =$rowcMPOS["credito_num"];
 				#echo "<br>..".$rowcMPOS["credito_num"];
 				$x_tipo_credito = $rowcMPOS["credito_tipo_id"];
 				#1==> Nomina 7 ==> Moral 3 ==> cuenta corriente
-				
+
 				$GLOBALS["x_tipo_persona_id"] = ($x_tipo_credito==1)?1:2;
 				}
-				
+
 				if(empty($GLOBALS["x_monto"]) && ($cliente_id >0 &&  $solicitud_id>0)){
 					$sqlAlerta = "SELECT *  FROM alerta_pld WHERE solicitud_id = ".$solicitud_id;
 				#echo $sqlCreditoNum."<br>";
-				$rs_CAMPOSc = phpmkr_query($sqlAlerta,$conn) or die("Error al seleccionar los datos de la solicitud".phpmkr_error()."sql :".$sqlCreditoNum);	
+				$rs_CAMPOSc = phpmkr_query($sqlAlerta,$conn) or die("Error al seleccionar los datos de la solicitud".phpmkr_error()."sql :".$sqlCreditoNum);
 				$rowcMPOS = phpmkr_fetch_array($rs_CAMPOSc);
-			
+
 				$GLOBALS["x_monto"] = $rowcMPOS["monto_pago"];
 				$x_feca_pld = $rowcMPOS["fecha"];
 				$arrFPLD = explode("/",$x_feca_pld);
 				$GLOBALS["x_fecha_operacion"] = $rowcMPOS["fecha"];
-				
+
 				if($tipo_reporte_id==1)
 				$GLOBALS["x_fecha_deteccion_operacion"]= $rowcMPOS["fecha"];
-					
-					
+
+
 					}
-					
+
 				if(empty($GLOBALS["x_razon_social"]) || empty($GLOBALS["x_nombre"])){
-					
+
 					$sqlAlerta = "SELECT *  FROM cliente WHERE cliente_id = ".$cliente_id;
 					#echo $sqlCreditoNum."<br>";
-					$rs_CAMPOSc = phpmkr_query($sqlAlerta,$conn) or die("Error al seleccionar los datos de la solicitud".phpmkr_error()."sql :".$sqlCreditoNum);	
+					$rs_CAMPOSc = phpmkr_query($sqlAlerta,$conn) or die("Error al seleccionar los datos de la solicitud".phpmkr_error()."sql :".$sqlCreditoNum);
 					$rowcMPOS = phpmkr_fetch_array($rs_CAMPOSc);
-			
+
 					$GLOBALS["x_razon_social"] = $rowcMPOS["razon_social"];
 					$GLOBALS["x_nombre"] = $rowcMPOS["nombre_completo"];
 					$GLOBALS["x_paterno"] = $rowcMPOS["apellido_paterno"];
-					$GLOBALS["x_materno"] = $rowcMPOS["apellido_materno"];				
+					$GLOBALS["x_materno"] = $rowcMPOS["apellido_materno"];
 					$GLOBALS["x_rfc"] = $rowcMPOS["rfc"];
-					$GLOBALS["x_curp"] = $rowcMPOS["curp"];					
+					$GLOBALS["x_curp"] = $rowcMPOS["curp"];
 					if($x_tipo_credito ==1){
 						$GLOBALS["x_fecha_nacimiento"] = $rowcMPOS["fecha_nac"];
 						}
 					#}
 					}
-					
-					
-		
+
+
+
 		$sSql = "select * from direccion where cliente_id = ".$cliente_id." AND direccion_tipo_id = 1";
-		$rs = phpmkr_query($sSql,$conn) or die("Error al seleccionar los datos de la solicitud direccion oficina".phpmkr_error()."sql :".$sql);	
-			
+		$rs = phpmkr_query($sSql,$conn) or die("Error al seleccionar los datos de la solicitud direccion oficina".phpmkr_error()."sql :".$sql);
+
 		$row = phpmkr_fetch_array($rs);
 		//datos de tabla direccion
 		$GLOBALS["x_direccion_id_1"] = $row["direccion_id"];
@@ -1037,28 +1037,28 @@ function LoadData($conn, $cliente_id, $solicitud_id, $tipo_reporte_id, $id){
 		$GLOBALS["x_entidad_id"] = $row["entidad"];
 		$GLOBALS["x_telefono"] = $row["telefono"];
 		$GLOBALS["x_fax"] = $row["fax"];
-		
-		
-		
-		
-		
-		
-		phpmkr_free_result($rs);		
+
+
+
+
+
+
+		phpmkr_free_result($rs);
 		phpmkr_free_result($rs_CAMPOS);
 		}
-		
+
 		// si es un reporte inusual o interno preocupante
 		if($solicitud_id=='0' && !empty($id) ){
-			// viene vacio es un reporte nuevo			
+			// viene vacio es un reporte nuevo
 		$sSql = " SELECT * FROM reporte_cnbv WHERE reporte_cnbv_id = ".$id." ";
 		$rs = phpmkr_query($sSql,$conn) or die("Error al seleccionar los datos de la solicitud".phpmkr_error()."sql :".$sql);
 		if(!$rs ){
 			$x_load_data  = false;
 			}
 		$row = phpmkr_fetch_array($rs);
-		
+
 		$sql_Campos = " DESCRIBE reporte_cnbv ";
-		$rs_CAMPOS = phpmkr_query($sql_Campos,$conn) or die("Error al seleccionar los datos de la solicitud".phpmkr_error()."sql :".$sql_Campos);	
+		$rs_CAMPOS = phpmkr_query($sql_Campos,$conn) or die("Error al seleccionar los datos de la solicitud".phpmkr_error()."sql :".$sql_Campos);
 		while($rowcMPOS = phpmkr_fetch_array($rs_CAMPOS)){
 			//
 			$x_nombre_campo = $rowcMPOS["Field"];
@@ -1066,193 +1066,193 @@ function LoadData($conn, $cliente_id, $solicitud_id, $tipo_reporte_id, $id){
 			$$campo = $row[$x_nombre_campo];
 			$GLOBALS[$x_campo] = $row[$x_nombre_campo];
 			}
-			
+
 			}
 		#echo "tio.... =>".$tipo_reporte_id;
-		
-	return $x_load_data;	
-	
+
+	return $x_load_data;
+
 	}
 
 
 
 function EditData($conn){
-	
+
 	phpmkr_query('START TRANSACTION;', $conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: BEGIN TRAN');
 	// Field empresa_outsourcing
-		
+
 	// Field promotor_id
 	$theValue = ($GLOBALS["x_tipo_reporte_id"] != "") ? intval($GLOBALS["x_tipo_reporte_id"]) : "NULL";
 	$fieldList["`tipo_reporte_id`"] = $theValue;
-	
+
 	// Field promotor_id
 	$theValue = ($GLOBALS["x_solicitud_id"] != "") ? intval($GLOBALS["x_solicitud_id"]) : "NULL";
 	$fieldList["`solicitud_id`"] = $theValue;
 	$theValue = ($GLOBALS["x_cliente_id"] != "") ? intval($GLOBALS["x_cliente_id"]) : "NULL";
 	$fieldList["`cliente_id`"] = $theValue;
 	#echo "<br>periodo=>".$GLOBALS["x_periodo"];
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_periodo"]) : $GLOBALS["x_periodo"]; 
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_periodo"]) : $GLOBALS["x_periodo"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`periodo`"] = $theValue;
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_folio"]) : $GLOBALS["x_folio"]; 
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_folio"]) : $GLOBALS["x_folio"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`folio`"] = $theValue;
-	
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_organo_supervisor"]) : $GLOBALS["x_organo_supervisor"]; 
+
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_organo_supervisor"]) : $GLOBALS["x_organo_supervisor"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`organo_supervisor`"] = $theValue;
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_clave_sujeto_obligado"]) : $GLOBALS["x_clave_sujeto_obligado"]; 
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_clave_sujeto_obligado"]) : $GLOBALS["x_clave_sujeto_obligado"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`clave_sujeto_obligado`"] = $theValue;
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_localidad"]) : $GLOBALS["x_localidad"]; 
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_localidad"]) : $GLOBALS["x_localidad"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`localidad`"] = $theValue;
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_cp_sucursal"]) : $GLOBALS["x_cp_sucursal"]; 
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_cp_sucursal"]) : $GLOBALS["x_cp_sucursal"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`cp_sucursal`"] = $theValue;
-	
-	
+
+
 	$theValue = ($GLOBALS["x_tipo_operacion_id"] != "") ? intval($GLOBALS["x_tipo_operacion_id"]) : "NULL";
 	$fieldList["`tipo_operacion_id`"] = $theValue;
-	
+
 	$theValue = ($GLOBALS["x_instrumento_monetario_id"] != "") ? intval($GLOBALS["x_instrumento_monetario_id"]) : "NULL";
 	$fieldList["`instrumento_monetario_id`"] = $theValue;
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_numero_cuenta"]) : $GLOBALS["x_numero_cuenta"]; 
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_numero_cuenta"]) : $GLOBALS["x_numero_cuenta"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`numero_cuenta`"] = $theValue;
-	
+
 	$theValue = ($GLOBALS["x_monto"] != "") ? doubleval($GLOBALS["x_monto"]) : "NULL";
 	$fieldList["`monto`"] = $theValue;
-	
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_moneda"]) : $GLOBALS["x_moneda"]; 
+
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_moneda"]) : $GLOBALS["x_moneda"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`moneda`"] = $theValue;
-	
+
 	$theValue = ($GLOBALS["x_fecha_operacion"] != "") ? " '" . ConvertDateToMysqlFormat($GLOBALS["x_fecha_operacion"]) . "'" : "Null";
 	$fieldList["`fecha_operacion`"] = $theValue;
-	
+
 	$theValue = ($GLOBALS["x_fecha_deteccion_operacion"] != "") ? " '" . ConvertDateToMysqlFormat($GLOBALS["x_fecha_deteccion_operacion"]) . "'" : "Null";
 	$fieldList["`fecha_deteccion_operacion`"] = $theValue;
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_nacionalidad"]) : $GLOBALS["x_nacionalidad"]; 
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_nacionalidad"]) : $GLOBALS["x_nacionalidad"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`nacionalidad`"] = $theValue;
-	
-	
-	
+
+
+
 	$theValue = ($GLOBALS["x_tipo_persona_id"] != "") ? intval($GLOBALS["x_tipo_persona_idd"]) : "NULL";
 	$fieldList["`tipo_persona_id`"] = $theValue;
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_razon_social"]) : $GLOBALS["x_razon_social"]; 
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_razon_social"]) : $GLOBALS["x_razon_social"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`razon_social`"] = $theValue;
-	
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_nombre"]) : $GLOBALS["x_nombre"]; 
+
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_nombre"]) : $GLOBALS["x_nombre"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`nombre`"] = $theValue;
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_paterno"]) : $GLOBALS["x_paterno"]; 
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_paterno"]) : $GLOBALS["x_paterno"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`paterno`"] = $theValue;
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_materno"]) : $GLOBALS["x_materno"]; 
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_materno"]) : $GLOBALS["x_materno"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`materno`"] = $theValue;
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_rfc"]) : $GLOBALS["x_rfc"]; 
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_rfc"]) : $GLOBALS["x_rfc"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`rfc`"] = $theValue;
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_curp"]) : $GLOBALS["x_curp"]; 
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_curp"]) : $GLOBALS["x_curp"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`curp`"] = $theValue;
-	
+
 	$theValue = ($GLOBALS["x_fecha_nacimiento"] != "") ? " '" . ConvertDateToMysqlFormat($GLOBALS["x_fecha_nacimiento"]) . "'" : "Null";
 	$fieldList["`fecha_nacimiento`"] = $theValue;
-	
-	
-	
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_domicilio"]) : $GLOBALS["x_domicilio"]; 
+
+
+
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_domicilio"]) : $GLOBALS["x_domicilio"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`domicilio`"] = $theValue;
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_colonia"]) : $GLOBALS["x_colonia"]; 
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_colonia"]) : $GLOBALS["x_colonia"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`colonia`"] = $theValue;
-	
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_cuidad"]) : $GLOBALS["x_cuidad"]; 
+
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_cuidad"]) : $GLOBALS["x_cuidad"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`cuidad`"] = $theValue;
-	
 
-	
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_telefono"]) : $GLOBALS["x_telefono"]; 
+
+
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_telefono"]) : $GLOBALS["x_telefono"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`telefono`"] = $theValue;
-	
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_actividad_economica"]) : $GLOBALS["x_actividad_economica"]; 
+
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_actividad_economica"]) : $GLOBALS["x_actividad_economica"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`actividad_economica`"] = $theValue;
-	
+
 	// Field empresa_outsourcing
 	$theValue = ($GLOBALS["x_consecutivo_cuentas"] != "") ? intval($GLOBALS["x_consecutivo_cuentas"]) : "NULL";
 	$fieldList["`consecutivo_cuentas`"] = $theValue;
-	
+
 	// Field empresa_outsourcing
 	$theValue = ($GLOBALS["x_numero_contrato"] != "") ? intval($GLOBALS["x_numero_contrato"]) : "NULL";
 	$fieldList["`numero_contrato`"] = $theValue;
-	
-	
+
+
 	// Field empresa_outsourcing
 	$theValue = ($GLOBALS["x_clave_aval"] != "") ? intval($GLOBALS["x_clave_aval"]) : "NULL";
 	$fieldList["`clave_aval`"] = $theValue;
-	
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_nombre_titular"]) : $GLOBALS["x_nombre_titular"]; 
+
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_nombre_titular"]) : $GLOBALS["x_nombre_titular"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`nombre_titular`"] = $theValue;
-	
+
 	// Field empresa_outsourcing
 	$theValue = ($GLOBALS["x_paterno_titular"] != "") ? intval($GLOBALS["x_paterno_titular"]) : "NULL";
 	$fieldList["`paterno_titular`"] = $theValue;
-	
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_materno_titular"]) : $GLOBALS["x_materno_titular"]; 
+
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_materno_titular"]) : $GLOBALS["x_materno_titular"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`materno_titular`"] = $theValue;
-	
-	
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_descripcion_operacion"]) : $GLOBALS["x_descripcion_operacion"]; 
+
+
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_descripcion_operacion"]) : $GLOBALS["x_descripcion_operacion"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`descripcion_operacion`"] = $theValue;
-	
-	
-	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_razon_reporte"]) : $GLOBALS["x_razon_reporte"]; 
+
+
+	$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_razon_reporte"]) : $GLOBALS["x_razon_reporte"];
 	$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 	$fieldList["`razon_reporte`"] = $theValue;
-	
-		
+
+
 	// Field fecha_otrogamiento
 	$theValue = ($GLOBALS["x_fecha_registro"] != "") ? " '" . ConvertDateToMysqlFormat($GLOBALS["x_fecha_registro"]) . "'" : "Null";
 	$fieldList["`fecha_registro`"] = $theValue;
 
-	
+
 		if(!empty($GLOBALS["x_reporte_cnbv_id"]) ){
 			// si esta lleno se actualiza el registro
-			
+
 			$sSql = "UPDATE `reporte_cnbv` SET ";
 			foreach ($fieldList as $key=>$temp) {
 						$sSql .= "$key = $temp, ";
@@ -1263,19 +1263,19 @@ function EditData($conn){
 				$sSql .= " WHERE reporte_cnbv_id = ".$GLOBALS["x_reporte_cnbv_id"]."";
 
 		$x_result = phpmkr_query($sSql,$conn);
-		
+
 		echo "<br>".$sSql;
 
 		if(!$x_result){
 			$x_add_data = false;
 			echo phpmkr_error() . '<br>SQL: ' . $sSql;
-			phpmkr_query('rollback;', $conn);	 
+			phpmkr_query('rollback;', $conn);
 			exit();
 		}
-			
-			
+
+
 			}else{
-				//si esta vacio se inserta el registro				
+				//si esta vacio se inserta el registro
 				$strsql = "INSERT INTO `reporte_cnbv` (";
 				$strsql .= implode(",", array_keys($fieldList));
 				$strsql .= ") VALUES (";
@@ -1284,26 +1284,26 @@ function EditData($conn){
 				$x_result = phpmkr_query($strsql, $conn);
 				if(!$x_result){
 					echo phpmkr_error() . '<br>SQL: ' . $strsql;
-					phpmkr_query('rollback;', $conn);	 
+					phpmkr_query('rollback;', $conn);
 				 	exit();
-				}	
-				
-				#echo "<br>".$sSql;
-				
 				}
-	
 
-		
-						
-			
-			
-		
-	phpmkr_query('commit;', $conn);	 
+				#echo "<br>".$sSql;
 
-	return true;	
-		
-	
-	
-	
+				}
+
+
+
+
+
+
+
+	phpmkr_query('commit;', $conn);
+
+	return true;
+
+
+
+
 	}
 ?>
