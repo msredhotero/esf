@@ -1,0 +1,26 @@
+div.hprint {
+	position: fixed;
+	height: 10px;
+	display: block;
+	top:-10px;
+	left: 35%;
+}
+
+@page {
+  size: auto;   /* auto es el valor inicial */
+  margin-top: 40px;
+  padding-top: 45px;
+}
+
+html, body {
+	width: 210mm;
+	height: 297mm;
+	overflow:visible;
+	padding-top:15mm;
+}
+
+
+table { page-break-inside:auto }
+tr    { page-break-inside:avoid; page-break-after:auto; margin-top: 50px; }
+thead { display:table-header-group }
+tfoot { display:table-footer-group }

@@ -146,13 +146,19 @@ switch ($sAction)
 
 <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"/>
 
-
+<link rel="stylesheet" type="text/css" href="cssprint.css" media="print" />
+<link rel="stylesheet" type="text/css" href="cssnoprint.css" media="screen" />
 
 </head>
 
 <body bgcolor="#FFFFFF">
 
+<div class="hprint" align="center">
+    <p>RECA 1735-450-031981/01-03620-0819</p>
+</div>
+
 <script type="text/javascript" src="ew.js"></script>
+
 
 <p>
 

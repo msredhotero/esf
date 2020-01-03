@@ -442,9 +442,9 @@ if (@$_SESSION["ewmsg"] <> "") {
 
       <td>5</td>
       <td>Clave del sujeto obligado</td>
-      <td><input type="hidden" name="x_clave_sujeto_obligado" value="069119" />
+      <td><input type="hidden" name="x_clave_sujeto_obligado" value="0690119" />
        <?php
-	   $x_clave_sujeto_obligado	 = '069119';
+	   $x_clave_sujeto_obligado	 = '0690119';
 		$x_estado_civil_idList = "<select name=\"x_clave_sujeto_obligado2\"  disabled=\"disabled\" >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS</option>";
 		$sSqlWrk = "SELECT * FROM `reporte_cnbv_sujeto_obligado` order by  reporte_cnbv_sujeto_obligado_id ";
@@ -456,7 +456,7 @@ if (@$_SESSION["ewmsg"] <> "") {
 				if ($datawrk["reporte_cnbv_sujeto_obligado_id"] == $x_clave_sujeto_obligado	) {
 					$x_estado_civil_idList .= "' selected";
 				}
-				$x_estado_civil_idList .= ">(069119) - " . htmlentities($datawrk["descripcion"]) . "  </option>";
+				$x_estado_civil_idList .= ">(0690119) - " . htmlentities($datawrk["descripcion"]) . "  </option>";
 				$rowcntwrk++;
 			}
 		}
@@ -765,16 +765,16 @@ if (@$_SESSION["ewmsg"] <> "") {
        <?php
       $x_estado_civil_idList = "<select name=\"x_cuidad\"  >";
 		$x_estado_civil_idList .= "<option value='100' selected>TODOS</option>";
-		$sSqlWrk = "SELECT * FROM `reporte_cnbv_localidad` group by  cve_localidad_INEGI ";
+		$sSqlWrk = "SELECT * FROM `localidades_ana` ";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
 			while ($datawrk = phpmkr_fetch_array($rswrk)) {
-				$x_estado_civil_idList .= "<option value=\"" . htmlspecialchars($datawrk[0]) . "\"";
-				if ($datawrk["reporte_localidad_id"] == $x_cuidad) {
+				$x_estado_civil_idList .= "<option value=\"" . htmlspecialchars($datawrk[1]) . "\"";
+				if ($datawrk["clave"] == $x_cuidad) {
 					$x_estado_civil_idList .= "' selected";
 				}
-				$x_estado_civil_idList .= ">" . $datawrk["cve_localidad_INEGI"] ." - " .htmlentities($datawrk["dc_localidad_INEGI"]) . "  </option>";
+				$x_estado_civil_idList .= ">" . $datawrk["clave"] ." - " .htmlentities($datawrk["localidad"]) . "  </option>";
 				$rowcntwrk++;
 			}
 		}
@@ -863,7 +863,7 @@ if (@$_SESSION["ewmsg"] <> "") {
 				if ($datawrk["reporte_cnbv_sujeto_obligado_id"] == $x_clave_aval	) {
 					$x_estado_civil_idList .= "' selected";
 				}
-				$x_estado_civil_idList .= ">(069119) - " . htmlentities($datawrk["descripcion"]) . "  </option>";
+				$x_estado_civil_idList .= ">(0690119) - " . htmlentities($datawrk["descripcion"]) . "  </option>";
 				$rowcntwrk++;
 			}
 		}
