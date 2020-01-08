@@ -163,6 +163,21 @@ switch ($sAction)
 
 <link href="pagare_css.css" rel="stylesheet" type="text/css" media="print" />
 
+<style type="text/css">
+	@media all {
+	   div.saltodelinea{
+	      display: none;
+	   }
+	}
+	   
+	@media print{
+	   div.saltodelinea{
+	      display:block;
+	      page-break-before:always;
+	   }
+	}
+</style>
+
 </head>
 
 <body bgcolor="#FFFFFF">

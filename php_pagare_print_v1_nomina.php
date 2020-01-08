@@ -163,6 +163,20 @@ switch ($sAction)
 
 <link href="pagare_css.css" rel="stylesheet" type="text/css" media="print" />
 
+<style type="text/css">
+	@media all {
+	   div.saltodelinea{
+	      display: none;
+	   }
+	}
+	   
+	@media print{
+	   div.saltodelinea{
+	      display:block;
+	      page-break-before:always;
+	   }
+	}
+</style>
 </head>
 
 <body bgcolor="#FFFFFF">
@@ -1232,6 +1246,65 @@ while ($row = @phpmkr_fetch_array($rs)) {
 
 		}
 
+if (($x_vencimiento_num % 45) == 0) {
+	$x_tabla .= '</table><div class="saltodelinea">
+</div><p><font size="2"><table border="0" cellspacing="0" cellpadding="0" width="800" align="center">
+				<tbody>
+					<tr>
+						<td>
+							<p align="right">
+								<span style="font-weight: bold; font-size: 9pt">RECA: 1735-450-031981/01-03620-0819</span>
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table></font></p><table class="ewTable" align="center"><tr>
+
+<td valign="top"><span>
+
+<b>N&uacute;mero de pago o vencimiento</b>
+
+</span></td>
+
+<td valign="top"><span>
+
+<b>Fecha de Pago</b>
+
+</span></td>       
+
+<td valign="top"><span>
+
+<b>Saldo Insoluto de Capital</b>
+
+</span></td>				
+
+<td valign="top"><span>
+
+<b>Capital pagado en cada vencimiento</b>
+
+</span></td>						
+
+<td valign="top"><span>
+
+<b>Inter&eacute;s ordinario pagado en cada vencimiento</b>
+
+</span></td>						
+
+<td valign="top"><span>
+
+<b>IVA pagado en cada vencimiento</b>
+
+</span></td>						
+
+<td valign="top"><span>
+
+<b>Pago Total de cada vencimiento</b>
+
+</span></td>						
+
+</tr>';
+
+}
 
 
 $x_tabla .= "

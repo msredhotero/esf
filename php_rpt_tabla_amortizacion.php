@@ -425,6 +425,41 @@ while ($row = @phpmkr_fetch_array($rs)) {
             
         }
 
+
+if (($x_vencimiento_num % 50) == 0) {
+    $x_tabla .= '</table><div class="saltodelinea">
+</div><p><font size="2"><table style="border-collapse: collapse;" align="center" border="0" cellpadding="0" cellspacing="0" width="800">
+    <tbody>
+        <tr>
+            <td colspan="3"><p align="right" style="font-size: 12px;"><b>RECA: 1735-450-031981/01-03620-0819</b></p></td>
+        </tr>
+                </tbody>
+            </table></font></p><table class="ewTable" align="center"><tr>
+<td valign="top"><span>
+<b>Número de pago o vencimiento</b>
+</span></td>
+<td valign="top"><span>
+<b>Fecha de Pago</b>
+</span></td>       
+<td valign="top"><span>
+<b>Saldo Insoluto de Capital</b>
+</span></td>                
+<td valign="top"><span>
+<b>Capital pagado en cada vencimiento</b>
+</span></td>                        
+<td valign="top"><span>
+<b>Interés ordinario pagado en cada vencimiento</b>
+</span></td>                        
+<td valign="top"><span>
+<b>IVA pagado en cada vencimiento</b>
+</span></td>                        
+<td valign="top"><span>
+<b>Pago Total de cada vencimiento</b>
+</span></td>                        
+</tr>';
+
+}
+
 $x_tabla .= "
 <tr $sItemRowClass $sListTrJs>
 <td align='right'><span>
@@ -515,6 +550,22 @@ $x_importevenc = "$".FormatNumber($x_importevenc,2,0,0,1)." (-$x_importevenc_let
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">td img {display: block;}</style>
 <link href="php_project_esf.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+    @media all {
+       div.saltodelinea{
+          display: none;
+       }
+    }
+       
+    @media print{
+       div.saltodelinea{
+          display:block;
+          page-break-before:always;
+       }
+    }
+</style>
+
 </head>
 <body bgcolor="#FFFFFF">
 <script type="text/javascript" src="ew.js"></script>
