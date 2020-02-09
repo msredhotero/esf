@@ -5,7 +5,7 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 $conn = phpmkr_db_connect(HOST, USER, PASS, DB, PORT);
 $x_delegacion_id = $_GET["q1"];
 $x_localidad_name = $_GET["q2"];
-$x_localidad_id = $_GET["q3"];
+//$x_localidad_id = $_GET["q3"];
 
 if($x_delegacion_id > 0) {
 $x_delegacion_idList = "<select name=\"$x_localidad_name\" class=\"texto_normal\" >";

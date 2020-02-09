@@ -56,6 +56,67 @@ $x_contrato = Null;
 $ox_contrato = Null;
 $x_pagare = Null; 
 $ox_pagare = Null;
+/* variables no inicializadas */
+$x_readonly2 = '';
+$x_monto_solicitado = 0;
+$x_readonly = '';
+$x_nombre_completo = '';
+$x_sexo= '';
+$x_ppe = '';
+$x_nombre_ppe = '';
+$x_apellido_paterno_ppe = '';
+$x_apellido_materno_ppe = '';
+$x_calle_domicilio = '';
+$x_numero_exterior = '';
+$x_entidad_domicilio = '';
+$contador_telefono = '';
+$contador_celular = '';
+$x_telefono_celular_1 = '';
+$x_telefono_casa_1 = '';
+$x_telefono_casa_2 = '';
+$x_telefono_casa_3 = '';
+$x_telefono_casa_4 = '';
+$x_telefono_casa_5 = '';
+$x_telefono_casa_6 = '';
+$x_telefono_casa_7 = '';
+$x_telefono_casa_8 = '';
+$x_telefono_casa_9 = '';
+$x_telefono_casa_10 = '';
+$x_comentario_celular_1 = '';
+$x_calle_negocio = '';
+$x_entidad_negocio = '';
+$x_delegacion_id2 = 0;
+$x_comentario_promotor = '';
+$crm_UserRolID = 0;
+$x_ing_fam_total = 0;
+$x_ingreso_negocio = 0;
+$x_renta_mensula_domicilio = 0;
+$x_renta_mensual =0;
+$x_dependientes =0;
+$x_ingresos_mensuales =0;
+$x_otros_ingresos_aval =0;
+$x_ingresos_familiar_1_aval =0;
+$x_ingresos_familiar_2_aval =0;
+$x_gastos_prov1_aval =0;
+$x_gastos_prov2_aval =0;
+$x_gastos_prov3_aval =0;
+$x_otro_prov_aval =0;
+$x_gastos_empleados_aval =0;
+$x_gastos_renta_negocio_aval =0;
+$x_gastos_renta_casa2 =0;
+$x_gastos_credito_hipotecario_aval =0;
+$x_gastos_otros_aval =0;
+$x_numero_hijos_dep_aval =0;
+/* fin variables */
+
+/* nuevo marcos */
+$minimo = 0;
+$maximo = 0;
+$proveedor_nombrecompleto = '';
+$beneficiario_nombrecompleto = '';
+/* fin nuevo */
+
+
 ?>
 
 <?php include("../db.php") ?>
@@ -1483,9 +1544,15 @@ var EW_HTMLArea;
 <input type="hidden" name="x_ppe_id" value="<?php echo $x_ppe_id ?>" />
 
 <span class="texto_normal">
-<?php echo $x_mensaje;
-if(!empty($x_mensaje)){exit();
-}
+<?php 
+
+	if (isset($x_mensaje)) {
+		echo $x_mensaje;
+		if(!empty($x_mensaje)){exit();
+		}
+	}
+	
+
 ?>
 
 <?php if($x_win == 1){ ?>
@@ -1595,9 +1662,10 @@ if($x_win == 3){
         <td class="texto_normal">Promotor:</td>
         <td colspan="2"><div class="phpmaker">
             <?php
-		$x_estado_civil_idList = "<select name=\"x_promotor_id\" $x_readonly2 class=\"texto_normal\">";
+
+		@$x_estado_civil_idList = "<select name=\"x_promotor_id\" $x_readonly2 class=\"texto_normal\">";
 		$x_estado_civil_idList .= "<option value=''>Seleccione</option>";
-		if($_SESSION["crm_UserRolID"] == 7) {
+		if(@$_SESSION["crm_UserRolID"] == 7) {
 			$sSqlWrk = "SELECT promotor_id, nombre_completo FROM promotor Where promotor_id = ".$_SESSION["crm_PromotorID"];
 		}else{
 			$sSqlWrk = "SELECT `promotor_id`, `nombre_completo` FROM `promotor`";		
@@ -1626,9 +1694,9 @@ if($x_win == 3){
         <tr>
         <td class="texto_normal">Zona:</td>
         <td colspan="3"><?php
-		$x_estado_civil_idList = "<select name=\"x_zona_id\"  id=\"x_zona_id\" $x_readonly2 class=\"texto_normal\">";
+		@$x_estado_civil_idList = "<select name=\"x_zona_id\"  id=\"x_zona_id\" $x_readonly2 class=\"texto_normal\">";
 		$x_estado_civil_idList .= "<option value=''>Seleccione</option>";
-		if($_SESSION["crm_UserRolID"] == 1) {
+		if(@$_SESSION["crm_UserRolID"] == 1) {
 			$sSqlWrk = "SELECT `zona_id`, `descripcion` FROM `zona`";
 		}else{
 			if(!empty($x_zona_id)){
@@ -1672,7 +1740,7 @@ if($x_win == 3){
         <td width="111" colspan="2"><div align="left">
           <?php if($x_solicitud_status_id < 5){?>
           <span class="texto_normal">
-          <input type="text" name="x_plazo_id" id="x_plazo_id"  value="<?php echo $x_plazo_id;?>" maxlength="3" size="15" onkeypress="return solonumeros(this,event)" onchange="valorMax();" <?php echo $x_readonly;?> />
+          <input type="text" name="x_plazo_id" id="x_plazo_id"  value="<?php echo @$x_plazo_id;?>" maxlength="3" size="15" onkeypress="return solonumeros(this,event)" onchange="valorMax();" <?php echo @$x_readonly;?> />
           </span><span class="texto_normal">
           <?php } else {  echo $x_plazo_id; ?>
           </span><span class="texto_normal">
@@ -1706,7 +1774,7 @@ if($x_win == 3){
         <td><span class="texto_normal">
           <?php
 		 
-		$x_estado_civil_idList = "<select name=\"x_forma_pago_id\" $x_readonly2 class=\"texto_normal\">";
+		@$x_estado_civil_idList = "<select name=\"x_forma_pago_id\" $x_readonly2 class=\"texto_normal\">";
 		$x_estado_civil_idList .= "<option value=''>Seleccione</option>";
 		$sSqlWrk = "SELECT `forma_pago_id`, `descripcion` FROM `forma_pago`";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -2331,7 +2399,7 @@ echo $x_delegacion_idList;
       <td colspan="2"><?php if(!empty($x_compania_celular_id)){?><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_id\" id=\"x_compania_celular_id\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -2357,7 +2425,7 @@ echo $x_delegacion_idList;
       <td colspan="2"><?php if(!empty($x_compania_celular_id_2)){?><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_id_2\" id=\"x_compania_celular_id_2\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -2415,7 +2483,7 @@ echo $x_delegacion_idList;
 		<?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_1\" id=\"x_compania_celular_1\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -2467,7 +2535,7 @@ echo $x_delegacion_idList;
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_2\" id=\"x_compania_celular_2\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 
@@ -2523,7 +2591,7 @@ echo $x_delegacion_idList;
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_3\" id=\"x_compania_celular_3\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -2577,7 +2645,7 @@ echo $x_delegacion_idList;
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_4\" id=\"x_compania_celular_4\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -2629,7 +2697,7 @@ echo $x_delegacion_idList;
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_5\" id=\"x_compania_celular5\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -2681,7 +2749,7 @@ echo $x_delegacion_idList;
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_6\" id=\"x_compania_celular_6\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -2733,7 +2801,7 @@ echo $x_delegacion_idList;
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_7\" id=\"x_compania_celular_7\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -2785,7 +2853,7 @@ echo $x_delegacion_idList;
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_8\" id=\"x_compania_celular_8\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -2837,7 +2905,7 @@ echo $x_delegacion_idList;
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_9\" id=\"x_compania_celular_9\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -2889,7 +2957,7 @@ echo $x_delegacion_idList;
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_10\" id=\"x_compania_celular_10\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;

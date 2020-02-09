@@ -45,6 +45,7 @@ if ((isset($_POST["userid"])) && ($_POST["userid"] != "") ){
 					$_SESSION["php_project_esf_status_UserID"] = $row["usuario_id"];
 					$_SESSION["php_project_esf_status_UserRolID"] = $row["usuario_rol_id"];					
 					$_SESSION["php_project_esf_status_UserName"] = $row["nombre"];					
+					$_SESSION["crm_UserRolID"] = $row["usuario_rol_id"];
 					$_SESSION["php_project_esf_SysAdmin"] = 0; // non System Administrator
 					echo "la clave corresponde <br>";
 					if($_SESSION["php_project_esf_status_UserRolID"] == 7){
