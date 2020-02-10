@@ -107,6 +107,8 @@ $x_gastos_renta_casa2 =0;
 $x_gastos_credito_hipotecario_aval =0;
 $x_gastos_otros_aval =0;
 $x_numero_hijos_dep_aval =0;
+$x_delegacion_id = 0;
+$x_comentario_casa_1 = '';
 /* fin variables */
 
 /* nuevo marcos */
@@ -949,12 +951,12 @@ if (validada == true && EW_this.x_fecha_nacimiento && !EW_hasValue(EW_this.x_fec
 }
 
 if (validada == true && EW_this.x_sexo && !EW_hasValue(EW_this.x_sexo, "TEXT" )) {
-	if (!EW_onError(EW_this, EW_this.x_sexo, "TEXT", "Por favor introduzca el campo requerido - sexo"))
+	if (!EW_onError(EW_this, EW_this.x_sexo, "TEXT", "Por favor introduzca el campo requerido - genero"))
 		validada = false;
 }
 
 if (validada == true && EW_this.x_entidad_nacimiento && !EW_hasValue(EW_this.x_entidad_nacimiento, "SELECT" )) {
-	if (!EW_onError(EW_this, EW_this.x_entidad_nacimiento, "SELECT", "Seleccione el lugar de nacimiento, este dato se necesita para calcular el CURP"))
+	if (!EW_onError(EW_this, EW_this.x_entidad_nacimiento, "SELECT", "Seleccione el país de nacimiento, este dato se necesita para calcular el CURP"))
 		validada = false;
 }
 
@@ -1728,8 +1730,12 @@ if($x_win == 3){
       </tr>
       <tr>
         <td width="159" class="texto_normal">Tipo de Cr&eacute;dito: </td>
-        <td colspan="3" class="texto_normal"><b>Personal</b>
-		<input type="hidden" name="x_credito_tipo_id" value="1"/>
+        <td colspan="3" class="texto_normal">
+        	<select name="x_credito_tipo_id" id="x_credito_tipo_id">
+        		<option value="1">PERSONAL</option>
+        		<option value="6">SIMPLE</option>
+        	</select>
+		
         </td>
         <td width="230"><div align="right"><span class="texto_normal">&nbsp;Fecha Solicitud:</span></div></td>
         <td width="164"><span class="texto_normal"> <b> <?php echo $currdate; ?> </b> </span>
@@ -1813,12 +1819,12 @@ if($x_win == 3){
         <td>&nbsp;</td>
       </tr>
       <tr>
-        <td rowspan="2"><span class="texto_normal">Monto solicitado</span></td>
-        <td rowspan="2"><input class="importe"  size="10" maxlength="10" type="text" name="x_monto_solicitado"  <?php echo $x_readonly;?> id="x_monto_solicitado" value="<?php if ($x_solicitud_status_id == 2 and $_SESSION["php_project_esf_status_UserRolID"] != 2 ){echo "----";}else{ echo  FormatNumber(@$x_monto_solicitado,0,0,0,0);}?>" /></td>
-        <td>&nbsp;</td>
-        <td rowspan="2">&nbsp;</td>
-        <td rowspan="2" style="color:#00F"><?php if ($x_solicitud_status_id == 3 || $x_solicitud_status_id == 12 ){ ?><div align="right"><strong>Indique el d&iacute;a en que se otorgar&aacute; el cr&eacute;dito</strong></div><?php }?></td>
-        <td rowspan="2"><?php if ($x_solicitud_status_id == 3 || $x_solicitud_status_id == 12 ){ ?><span class="texto_normal">
+        <td colspan="2"><span class="texto_normal">Monto solicitado</span></td>
+        <td colspan="2"><input class="importe"  size="10" maxlength="10" type="text" name="x_monto_solicitado"  <?php echo $x_readonly;?> id="x_monto_solicitado" value="<?php if ($x_solicitud_status_id == 2 and $_SESSION["php_project_esf_status_UserRolID"] != 2 ){echo "----";}else{ echo  FormatNumber(@$x_monto_solicitado,0,0,0,0);}?>" /></td>
+        <td colspan="2">&nbsp;</td>
+        <td colspan="2">&nbsp;</td>
+        <td colspan="2" style="color:#00F"><?php if ($x_solicitud_status_id == 3 || $x_solicitud_status_id == 12 ){ ?><div align="right"><strong>Indique el d&iacute;a en que se otorgar&aacute; el cr&eacute;dito</strong></div><?php }?></td>
+        <td colspan="2"><?php if ($x_solicitud_status_id == 3 || $x_solicitud_status_id == 12 ){ ?><span class="texto_normal">
               <input name="x_dia_otorga_credito" maxlength="" type="text"  id="x_dia_otorga_credito" value="<?php echo FormatDateTime(@$x_dia_otorga_credito,7); ?>" size="20"  />
               &nbsp;<img src="../images/ew_calendar.gif" id="cx_dia_otorga_credito" onClick="javascript: Calendar.setup(
             {
@@ -1828,6 +1834,16 @@ if($x_win == 3){
             }
             );" style="cursor:pointer;cursor:hand;" />
               </span><?php }?></td>
+      </tr>
+      
+      <tr>
+      	<td colspan="2"><span class="texto_normal">Minimo de depositos</span></td>
+      	<td colspan="2"><input class="importe"  size="10" maxlength="10" type="text" name="x_minimo" id="x_minimo" value="0" /></td>
+        <td colspan="2"><span class="texto_normal">Maximo de depositos</span></td>
+      	<td colspan="2"><input class="importe"  size="10" maxlength="10" type="text" name="x_maximo" id="x_maximo" value="0" /></td>
+      </tr>
+      <tr>
+      	<td colspan="10"><p>* Recuerde que si ingresa 0 no se tomara en cuenta el minimo o el maximo</p></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
@@ -1901,7 +1917,8 @@ if($x_win == 3){
     </tr>
     <tr>
       <td width="98" class="texto_normal" >Titular</td>
-      <td colspan="9" align="center"><table width="98%">
+      <td colspan="9" align="center">
+      	<table width="98%">
         <tr>
           <td width="33%">
           <input type="text" name="x_nombre" id="x_nombre" value="<?php echo htmlentities($x_nombre_completo)?>" maxlength="250" size="35" <?php echo $x_readonly;?>  />
@@ -1914,8 +1931,45 @@ if($x_win == 3){
           <td>Apellido Paterno</td>
           <td>Apellido Materno</td>
           </tr>
-        </table></td>
+        </table>
+    </td>
     </tr>
+
+    <tr>
+      <td width="98" class="texto_normal" >Proveedor de Recursos</td>
+      <td colspan="9" align="center">
+      	<table width="98%">
+	        <tr>
+	          <td width="90">
+	          <input type="text" name="x_proveedor_nombrecompleto" id="x_proveedor_nombrecompleto" value="" maxlength="250" size="150" required="required"  />
+	          </td>
+	         
+	        </tr>
+	        <tr>
+	          <td class="texto_normal"> Nombre Completo</td>
+	        </tr>
+        </table>
+    </td>
+    </tr>
+
+    <tr>
+      <td width="98" class="texto_normal" >Beneficiario</td>
+      <td colspan="9" align="center">
+      	<table width="98%">
+	        <tr>
+	          <td width="90">
+	          <input type="text" name="x_beneficiario_nombrecompleto" id="x_beneficiario_nombrecompleto" value="" maxlength="250" size="150" required="required"  />
+	          </td>
+	         
+	        </tr>
+	        <tr>
+	          <td class="texto_normal"> Nombre Completo</td>
+	        </tr>
+        </table>
+    </td>
+    </tr>
+
+
      <tr>
       <td>Fecha Nac</td>
       <td colspan="2"><span class="texto_normal">
@@ -1928,14 +1982,14 @@ if($x_win == 3){
             }
             );" style="cursor:pointer;cursor:hand;" />
               </span></td>
-      <td width="66">Sexo</td>
+      <td width="66">Genero</td>
       <td width="110"><label>
         <select name="x_sexo" id="x_sexo" <?php echo $x_readonly2;?> onChange="generaCurpRfc(this,'txtHintcurp', 'txtHintrfc');">
         <option value="1" <?php if($x_sexo == 1){echo("SELECTED");} ?> >Masculino</option> 
 		<option value="2" <?php if($x_sexo == 2){echo("SELECTED");} ?>>Femenino</option>
         </select>
       </label></td>
-       <td width="317" colspan="2">Lugar de nacimiento</td>
+       <td width="317" colspan="2">País nacimiento</td>
       <td colspan="5"><?php
 		$x_entidad_idList = "<select name=\"x_entidad_nacimiento\" $x_readonly2 id=\"x_entidad_nacimiento\" onchange=\"generaCurpRfc(this,'txtHintcurp', 'txtHintrfc')\" >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
@@ -1978,7 +2032,7 @@ if($x_win == 3){
       <td colspan="11"><input type="text" name="x_esposa" id="x_esposa"  value="<?php echo htmlspecialchars(@$x_esposa) ?>" maxlength="250" size="100" <?php echo $x_readonly;?>/></td>
     </tr>
      <tr>
-      <td>Nacionalidad del titular</td>
+      <td>País de residencia</td>
       <td colspan="2"><?php
 		$x_entidad_idList = "<select name=\"x_nacionalidad_id\"  $x_readonly2 id=\"x_nacionalidad_id\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
@@ -2099,6 +2153,31 @@ if($x_win == 3){
 		$x_entidad_idList .= "</select>";
 		echo $x_entidad_idList;
 		?></td>
+    </tr>
+    <tr>
+    	<td>Actividad Productiva</td>
+    	<td colspan="7"><?php
+		$x_actividad_idList = "<select name='x_actividad_id' id='x_actividad_id'  >";
+		$x_actividad_idList .= "<option value='0'>Seleccione</option>";
+		$sSqlWrk = "SELECT catalogo_actividad_economica_is, actividad_economica FROM catalogo_actividad_economica";
+		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
+		if ($rswrk) {
+			$rowcntwrk = 0;
+			while ($datawrk = phpmkr_fetch_array($rswrk)) {
+				$x_actividad_idList .= "<option value=\"" . htmlspecialchars($datawrk[0]) . "\"";
+				if ($datawrk["catalogo_actividad_economica_is"] == @$x_actividad_id) {
+					$x_actividad_idList .= "' selected";
+				}
+				$x_actividad_idList .= ">" . htmlentities($datawrk["actividad_economica"]) . "</option>";
+				$rowcntwrk++;
+			}
+		}
+		@phpmkr_free_result($rswrk);
+		$x_actividad_idList .= "</select>";
+		echo $x_actividad_idList;
+		?></td>
+		<td colspan="2"></td>
+		<td colspan="2"></td>
     </tr>
     <tr>
       <td colspan="12" id="tableHead"></td>
@@ -2251,7 +2330,7 @@ if($x_win == 3){
         
         </span><span class="texto_normal">
           <div id="txtHint1" class="texto_normal">
-            Del/Mun:
+            Alcaldia:
             <?php
 			
 		if($x_entidad_domicilio > 0) {
@@ -2319,7 +2398,7 @@ echo $x_delegacion_idList;
       <td>Tipo Vivienda</td>
       <td colspan="4">
       <?php
-		$x_vivienda_tipo_idList = "<select name=\"x_tipo_vivienda\" $x_readonly2 id=\"x_tipo_vivienda\"  class=\"texto_normal\" onchange=\"viviendatipo('1')\">";
+		$x_vivienda_tipo_idList = "<select name=\"x_tipo_vivienda\" $x_readonly2 id=\"x_tipo_vivienda\"  class=\"texto_normal\" >";
 		$x_vivienda_tipo_idList .= "<option value=''>Seleccione</option>";
 		$sSqlWrk = "SELECT `vivienda_tipo_id`, `descripcion` FROM `vivienda_tipo`";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
@@ -3049,7 +3128,7 @@ echo $x_delegacion_idList;
         
         </span><span class="texto_normal">
           <div id="txtHint2" class="texto_normal">        
-            Del/Mun:        
+            Alcaldia:        
             <?php
 		if($x_entidad_negocio > 0 ){
 		$x_delegacion_idList = "<select name=\"x_delegacion_id2\" $x_readonly2 >";

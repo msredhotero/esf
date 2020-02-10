@@ -5,7 +5,7 @@
 $conn = phpmkr_db_connect(HOST, USER, PASS, DB, PORT);
 $x_entidad_id = $_GET["q1"];
 $x_delegacion_name = $_GET["q2"];
-$x_delegacion_id = $_GET["q3"];
+$x_delegacion_id = $_GET["q2"];
 $x_estado = $_GET["qe"];
 if($x_delegacion_name == "x_delegacion_id"){
 		if($x_entidad_id > 0) {
@@ -27,7 +27,7 @@ if ($rswrk) {
 @phpmkr_free_result($rswrk);
 phpmkr_db_close($conn);
 $x_delegacion_idList .= "</select>";
-echo "Del/Mun: ".$x_delegacion_idList;
+echo "Alcaldia: ".$x_delegacion_idList;
 }else{
  echo "No localizado";
 }
@@ -52,7 +52,7 @@ if ($rswrk) {
 @phpmkr_free_result($rswrk);
 phpmkr_db_close($conn);
 $x_delegacion_idList .= "</select>";
-echo "Del/Mun: ".$x_delegacion_idList;
+echo "Alcaldia: ".$x_delegacion_idList;
 }else{
  echo "No localizado";
 }
