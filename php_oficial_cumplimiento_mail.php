@@ -227,8 +227,8 @@ function AddData($conn)
 				
 						$para  = 'oficialdecumplimiento@financieracrea.com'; // atencion a la coma
 						// subject
-						$titulo = 'E-MAIL ENVIADO POR '.$_SESSION["php_project_esf_status_UserName"]."";						
-						$cabeceras = 'From: zortiz@createc.mx';									
+						$titulo = 'E-MAIL ENVIADO POR ANONIMO';						
+						$cabeceras = 'From: anonimo@financieracrea.com';									
 						$mensajeMail = $x_mensaje."\n \n * Este mensaje ha sido enviado de forma automatica, por favor no lo responda. \n \n";			 
 						// Mail it						
 						mail($para, $titulo, $mensajeMail, $cabeceras);

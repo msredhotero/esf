@@ -320,6 +320,23 @@ switch ($sAction)
 
 <link href="../php_project_esf.css" rel="stylesheet" type="text/css" />
 
+<style type="text/css">
+	.boton_medium_validar {
+    background: #05C113 url(../images/corners_medium.gif) no-repeat left bottom;
+    margin: 0 0 0;
+    padding: 0 0 2px;
+    color: #ffffff;
+    width: 120px;
+    height: 20px;
+    font-weight: bold;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+</style>
+
 <!--googlemaps-->
 <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -1773,10 +1790,9 @@ if($x_win == 3){
         <td class="texto_normal">Promotor:</td>
         <td colspan="2"><div class="phpmaker">
             <?php
-
 		@$x_estado_civil_idList = "<select name=\"x_promotor_id\" $x_readonly2 class=\"texto_normal\">";
 		$x_estado_civil_idList .= "<option value=''>Seleccione</option>";
-		if(@$_SESSION["crm_UserRolID"] == 7) {
+		if($_SESSION["crm_UserRolID"] == 7) {
 			$sSqlWrk = "SELECT promotor_id, nombre_completo FROM promotor Where promotor_id = ".$_SESSION["crm_PromotorID"];
 		}else{
 			$sSqlWrk = "SELECT `promotor_id`, `nombre_completo` FROM `promotor`";
@@ -1807,7 +1823,7 @@ if($x_win == 3){
         <td colspan="3"><?php
 		@$x_estado_civil_idList = "<select name=\"x_zona_id\"  id=\"x_zona_id\" $x_readonly2 class=\"texto_normal\">";
 		$x_estado_civil_idList .= "<option value=''>Seleccione</option>";
-		if(@$_SESSION["crm_UserRolID"] == 1) {
+		if($_SESSION["crm_UserRolID"] == 1) {
 			$sSqlWrk = "SELECT `zona_id`, `descripcion` FROM `zona`";
 		}else{
 			if(!empty($x_zona_id)){
@@ -1855,7 +1871,7 @@ if($x_win == 3){
         <td width="111" colspan="2"><div align="left">
           <?php if($x_solicitud_status_id < 5){?>
           <span class="texto_normal">
-          <input type="text" name="x_plazo_id" id="x_plazo_id"  value="<?php echo @$x_plazo_id;?>" maxlength="3" size="15" onkeypress="return solonumeros(this,event)" onchange="valorMax();" <?php echo @$x_readonly;?> />
+          <input type="text" name="x_plazo_id" id="x_plazo_id"  value="<?php echo @$x_plazo_id;?>" maxlength="3" size="15" onkeypress="return solonumeros(this,event)" onchange="valorMax();" <?php echo $x_readonly;?> />
           </span><span class="texto_normal">
           <?php } else {  echo $x_plazo_id; ?>
           </span><span class="texto_normal">
@@ -3689,12 +3705,48 @@ Esto solo lo ve el coordinador de credito.
 <table align="center">
 	<tr>
 		<td>
-			<input name="Action2" type="button" class="boton_medium" value="Agregar Solicitud" onclick="EW_checkMyForm();" /><?php ?>
+			<input name="ActionValidar" type="button" id="btnValidar" class="boton_medium_validar" value="Validar Lista Negra" /><?php ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input name="Action2" type="button" id="agregarSolicitud" class="boton_medium" value="Agregar Solicitud" onclick="EW_checkMyForm();" /><?php ?>
 		</td>
 	</tr>
 </table>
 </form>
 </body>
+<script>
+	$(document).ready(function(){
+		$('#agregarSolicitud').hide();
+
+		$('#btnValidar').click(function() {
+			$.ajax({
+				data:  {
+					apellidopaterno: $('#x_apellido_parterno').val(),
+					apellidomaterno: $('#x_apellido_materno').val(),
+					nombre: $('#x_nombre').val(),
+					proveedor: $('#x_proveedor_nombrecompleto').val(),
+					beneficiario: $('#x_beneficiario_nombrecompleto').val(),
+					accion: 'verificarListaNegraOfac'},
+				url:   '../ajax/ajax.php',
+				type:  'post',
+				beforeSend: function () {
+
+				},
+				success:  function (response) {
+					if (response.error == true) {
+						alert('No es poscible cargar la solicitud: ' + ' \n\r ' + response.datoscliente + ' \n\r ' + response.datosproveedor + ' \n\r ' + response.datosbeneficiario);
+						$('#agregarSolicitud').hide();
+					} else {
+						$('#agregarSolicitud').show();
+					}
+
+				}
+			});
+		});
+	});
+</script>
 </html>
 
 <?php
@@ -3909,8 +3961,6 @@ echo $x_solicitud_status_id;
 		$GLOBALS["x_v_s_d_a"] = $row2["visita_domicilio"];
 		$GLOBALS["x_v_s_n_a"] = $row2["visita_negocio"];
 		$GLOBALS["x_resultado_visita_sup_aval"] = $row2["resultado"];	*/
-
-
 
 
 
@@ -4697,10 +4747,6 @@ function AddData($conn){
 		phpmkr_query('rollback;', $conn);
 	 	exit();
 	}
-
-
-
-
 
 		//PERSONAS POLITICAMENTE EXPUESTAS
 
@@ -5574,9 +5620,6 @@ function AddData($conn){
 	$strsql .= implode(",", array_values($fieldList));
 	$strsql .= ")";
 		//phpmkr_query($strsql, $conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $strsql);
-
-
-
 
 
 

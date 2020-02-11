@@ -19,6 +19,82 @@ class ServiciosReferencias {
 		return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
 	}
 
+	function verificarListaNegraOfac($cliente, $proveedor, $beneficiario) {
+		$validaC = true;
+		$validaP = true;
+		$validaB = true;
+
+		$cliente 		= strtolower(str_replace('"', '', str_replace('/', '', str_replace('.', '', str_replace(')', '', str_replace('(', '', str_replace('_', '', str_replace('-', '', str_replace(',', '', str_replace('.', '', trim(str_replace(' ', '', trim($cliente)))))))))))));
+		$proveedor 		= strtolower(str_replace('"', '', str_replace('/', '', str_replace('.', '', str_replace(')', '', str_replace('(', '', str_replace('_', '', str_replace('-', '', str_replace(',', '', str_replace('.', '', trim(str_replace(' ', '', trim($proveedor)))))))))))));
+		$beneficiario 	= strtolower(str_replace('"', '', str_replace('/', '', str_replace('.', '', str_replace(')', '', str_replace('(', '', str_replace('_', '', str_replace('-', '', str_replace(',', '', str_replace('.', '', trim(str_replace(' ', '', trim($beneficiario)))))))))))));
+
+		$sqlClienteOfac = sprintf("SELECT * FROM csv_sdn WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(sdn_name, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', '')) ='%s'",
+            mysql_real_escape_string($cliente));
+
+		//die(var_dump($sqlClienteOfac));
+
+		$resClienteOfac = $this->query($sqlClienteOfac,0);
+		if (mysql_num_rows($resClienteOfac) > 0) {
+			$validaC = false;
+		}
+
+		$sqlProveedorOfac = sprintf("SELECT * FROM csv_sdn WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(sdn_name, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', '')) ='%s'",
+            mysql_real_escape_string($proveedor));
+
+		//die(var_dump($sqlProveedorOfac));
+
+		$resProveedorOfac = $this->query($sqlProveedorOfac,0);
+		if (mysql_num_rows($resProveedorOfac) > 0) {
+			$validaP = false;
+		}
+
+		$sqlBeneficiarioOfac = sprintf("SELECT * FROM csv_sdn WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(sdn_name, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', '')) ='%s'",
+            mysql_real_escape_string($beneficiario));
+
+		//die(var_dump($sqlProveedorOfac));
+
+		$resBeneficiarioOfac = $this->query($sqlBeneficiarioOfac,0);
+		if (mysql_num_rows($resBeneficiarioOfac) > 0) {
+			$validaB = false;
+		}
+
+		/**********************  fin ofac ***************************************/
+
+
+		$sqlClienteLN = sprintf("SELECT * FROM csv_lista_lpb WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', '')) ='%s'",
+            mysql_real_escape_string($cliente));
+
+		//die(var_dump($sqlClienteOfac));
+
+		$resClienteLN = $this->query($sqlClienteLN,0);
+		if (mysql_num_rows($resClienteLN) > 0) {
+			$validaC = false;
+		}
+
+		$sqlProveedorLN = sprintf("SELECT * FROM csv_lista_lpb WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', '')) ='%s'",
+            mysql_real_escape_string($proveedor));
+
+		//die(var_dump($sqlProveedorOfac));
+
+		$resProveedorLN = $this->query($sqlProveedorLN,0);
+		if (mysql_num_rows($resProveedorLN) > 0) {
+			$validaP = false;
+		}
+
+		$sqlBeneficiarioLN = sprintf("SELECT * FROM csv_lista_lpb WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', '')) ='%s'",
+            mysql_real_escape_string($beneficiario));
+
+		//die(var_dump($sqlProveedorOfac));
+
+		$resBeneficiarioLN = $this->query($sqlBeneficiarioLN,0);
+		if (mysql_num_rows($resBeneficiarioLN) > 0) {
+			$validaB = false;
+		}
+
+
+		return array('cliente'=>$validaC,'proveedor'=>$validaP,'beneficiario'=>$validaB);
+	}
+
 	function devolverEvaluacion($idsolicitud) {
 		$sql = "SELECT
 				    r.ppe,

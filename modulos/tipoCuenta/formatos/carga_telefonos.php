@@ -26,7 +26,7 @@ if($x_tipo == 1){
 	}else{	
 		$x_entidad_idList = "<select name=\"x_compania_celular_$x_id\" id=\"x_compania_celular_$x_id\" class=\"texto_normal\">";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . " SQL:" . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;

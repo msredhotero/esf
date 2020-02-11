@@ -4505,7 +4505,7 @@ echo $x_solicitud_status_id;
 
 		$GLOBALS["x_otro_telefono_domicilio_2"] = $row8["otro_telefono_domicilio_2"];
 		$GLOBALS["x_giro_negocio"] = $row8["giro_negocio"];
-		$GLOBALS["x_propiedad_hipot"]= $row8["prop_hipotec"];
+		//$GLOBALS["x_propiedad_hipot"]= $row8["prop_hipotec"];
 		//$GLOBALS["x_solicitud_compra"] = $row8["solicitud_compra"];
 		$GLOBALS["x_ing_fam_negocio"] = $row8["ing_fam_negocio"];
 		$GLOBALS["x_ing_fam_otro_th"] = $row8["ing_fam_otro_th"];//este no estaba
