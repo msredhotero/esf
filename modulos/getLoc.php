@@ -16,7 +16,7 @@ if ($rswrk) {
 	$rowcntwrk = 0;
 	while ($datawrk = phpmkr_fetch_array($rswrk)) {
 		$x_delegacion_idList .= "<option value=\"" . htmlspecialchars($datawrk[0]) . "\"";
-		if ($datawrk["delegacion_id"] == @$x_delegacion_id) {
+		if ($datawrk["localidad_id"] == @$x_delegacion_id) {
 			$x_delegacion_idList .= "' selected";
 		}
 		$x_delegacion_idList .= ">" . $datawrk["descripcion"] . "</option>";
