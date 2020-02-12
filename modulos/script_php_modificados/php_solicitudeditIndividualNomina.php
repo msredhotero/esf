@@ -56,32 +56,6 @@ $x_contrato = Null;
 $ox_contrato = Null;
 $x_pagare = Null;
 $ox_pagare = Null;
-
-/* nuevos cambios marcos 10/02/2020 */
-$x_readonly2 = '';
-$x_readonly = '';
-$x_telefono_casa_1 = '';
-$x_telefono_casa_2 = '';
-$x_telefono_casa_3 = '';
-$x_telefono_casa_4 = '';
-$x_telefono_casa_5 = '';
-$x_telefono_casa_6 = '';
-$x_telefono_casa_7 = '';
-$x_telefono_casa_8 = '';
-$x_telefono_casa_9 = '';
-$x_telefono_casa_10 = '';
-$x_mensaje = '';
-
-/* fin cambios */
-
-/* nuevo marcos */
-$x_minimo = 0;
-$x_maximo = 0;
-$x_proveedor_nombrecompleto = '';
-$x_beneficiario_nombrecompleto = '';
-/* fin nuevo */
-
-
 ?>
 
 <?php
@@ -111,7 +85,7 @@ $x_cliente_id = $datawrk["cliente_id"];
 
 $x_win = @$_GET["win"];
 if(empty($x_win)){
-	$x_win = @$_POST["x_win"];
+	$x_win = $_POST["x_win"];
 
 }
 
@@ -977,12 +951,12 @@ if (EW_this.x_fecha_nacimiento && !EW_checkdate(EW_this.x_fecha_nacimiento.value
 		validada = false;
 }*/
 if (EW_this.x_sexo && !EW_hasValue(EW_this.x_sexo, "TEXT" )) {
-	if (!EW_onError(EW_this, EW_this.x_sexo, "TEXT", "Por favor introduzca el campo requerido - genero"))
+	if (!EW_onError(EW_this, EW_this.x_sexo, "TEXT", "Por favor introduzca el campo requerido - sexo"))
 		validada = false;
 }
 
 if (EW_this.x_entidad_nacimiento && !EW_hasValue(EW_this.x_entidad_nacimiento, "SELECT" )) {
-	if (!EW_onError(EW_this, EW_this.x_entidad_nacimiento, "SELECT", "Seleccione el pais de nacimiento, este dato se necesita para calcular el CURP"))
+	if (!EW_onError(EW_this, EW_this.x_entidad_nacimiento, "SELECT", "Seleccione el lugar de nacimiento, este dato se necesita para calcular el CURP"))
 		validada = false;
 }
 if (EW_this.x_integrantes_familia && !EW_hasValue(EW_this.x_integrantes_familia, "TEXT" )) {
@@ -2220,12 +2194,12 @@ if($x_win == 3){
         </span></td>
       </tr>
       <tr>
-        <td colspan="2"><span class="texto_normal">Monto solicitado</span></td>
-        <td colspan="2"><input class="importe"  size="10" maxlength="10" type="text" name="x_monto_solicitado"  <?php echo $x_readonly;?> id="x_monto_solicitado" value="<?php if ($x_solicitud_status_id == 2 and $_SESSION["php_project_esf_status_UserRolID"] != 2 ){echo "----";}else{ echo  FormatNumber(@$x_monto_solicitado,0,0,0,0);}?>" /></td>
-        <td colspan="2">&nbsp;</td>
-        <td colspan="2">&nbsp;</td>
-        <td colspan="2" style="color:#00F"><?php if ($x_solicitud_status_id == 3 || $x_solicitud_status_id == 12 ){ ?><div align="right"><strong>Indique el d&iacute;a en que se otorgar&aacute; el cr&eacute;dito</strong></div><?php }?></td>
-        <td colspan="2"><?php if ($x_solicitud_status_id == 3 || $x_solicitud_status_id == 12 ){ ?><span class="texto_normal">
+        <td rowspan="2"><span class="texto_normal">Monto solicitado</span></td>
+        <td rowspan="2"><input class="importe"  size="10" maxlength="10" type="text" name="x_monto_solicitado"  <?php echo $x_readonly;?> id="x_monto_solicitado" value="<?php if ($x_solicitud_status_id == 2 and $_SESSION["php_project_esf_status_UserRolID"] != 2 ){echo "----";}else{ echo  FormatNumber(@$x_monto_solicitado,0,0,0,0);}?>" /></td>
+        <td>&nbsp;</td>
+        <td rowspan="2">&nbsp;</td>
+        <td rowspan="2" style="color:#00F"><?php if ($x_solicitud_status_id == 3 || $x_solicitud_status_id == 12 ){ ?><div align="right"><strong>Indique el d&iacute;a en que se otorgar&aacute; el cr&eacute;dito</strong></div><?php }?></td>
+        <td rowspan="2"><?php if ($x_solicitud_status_id == 3 || $x_solicitud_status_id == 12 ){ ?><span class="texto_normal">
               <input name="x_dia_otorga_credito" maxlength="" type="text"  id="x_dia_otorga_credito" value="<?php echo FormatDateTime(@$x_dia_otorga_credito,7); ?>" size="20"  />
               &nbsp;<img src="../images/ew_calendar.gif" id="cx_dia_otorga_credito" onClick="javascript: Calendar.setup(
             {
@@ -2235,15 +2209,6 @@ if($x_win == 3){
             }
             );" style="cursor:pointer;cursor:hand;" />
               </span><?php }?></td>
-      </tr>
-		<tr>
-      	<td colspan="2"><span class="texto_normal">Minimo de depositos</span></td>
-      	<td colspan="2"><input class="importe"  size="10" maxlength="10" type="text" name="x_minimo" id="x_minimo" value="<?php echo $x_minimo; ?>" <?php echo $x_readonly;?> /></td>
-        <td colspan="2"><span class="texto_normal">Maximo de depositos</span></td>
-      	<td colspan="2"><input class="importe"  size="10" maxlength="10" type="text" name="x_maximo" id="x_maximo" value="<?php echo $x_maximo; ?>" <?php echo $x_readonly;?> /></td>
-      </tr>
-      <tr>
-      	<td colspan="10"><p>* Recuerde que si ingresa 0 no se tomara en cuenta el minimo o el maximo</p></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
@@ -2359,39 +2324,6 @@ if($x_win == 3){
           </tr>
         </table></td>
     </tr>
-	 <tr>
-      <td width="98" class="texto_normal" >Proveedor de Recursos</td>
-      <td colspan="9" align="center">
-      	<table width="98%">
-	        <tr>
-	          <td width="90">
-	          <input type="text" name="x_proveedor_nombrecompleto" id="x_proveedor_nombrecompleto" value="<?php echo htmlentities(@$x_proveedor_nombrecompleto) ?>" <?php echo $x_readonly;?> maxlength="250" size="150" required="required"  />
-	          </td>
-
-	        </tr>
-	        <tr>
-	          <td class="texto_normal"> Nombre Completo</td>
-	        </tr>
-        </table>
-    </td>
-    </tr>
-
-    <tr>
-      <td width="98" class="texto_normal" >Beneficiario</td>
-      <td colspan="9" align="center">
-      	<table width="98%">
-	        <tr>
-	          <td width="90">
-	          <input type="text" name="x_beneficiario_nombrecompleto" id="x_beneficiario_nombrecompleto" value="<?php echo htmlentities(@$x_beneficiario_nombrecompleto) ?>" <?php echo $x_readonly;?> maxlength="250" size="150" required="required"  />
-	          </td>
-
-	        </tr>
-	        <tr>
-	          <td class="texto_normal"> Nombre Completo</td>
-	        </tr>
-        </table>
-    </td>
-    </tr>
      <tr>
       <td>Fecha Nac</td>
       <td colspan="2"><span class="texto_normal">
@@ -2404,14 +2336,14 @@ if($x_win == 3){
             }
             );" style="cursor:pointer;cursor:hand;" />
               </span></td>
-      <td width="66">Genero</td>
+      <td width="66">Sexo</td>
       <td width="110"><label>
         <select name="x_sexo" id="x_sexo" <?php echo $x_readonly2;?> onChange="generaCurpRfc(this,'txtHintcurp', 'txtHintrfc');">
         <option value="1" <?php if($x_sexo == 1){echo("SELECTED");} ?> >Masculino</option>
 		<option value="2" <?php if($x_sexo == 2){echo("SELECTED");} ?>>Femenino</option>
         </select>
       </label></td>
-       <td width="317" colspan="2">Pais de nacimiento</td>
+       <td width="317" colspan="2">Lugar de nacimiento</td>
       <td colspan="5"><?php
 		$x_entidad_idList = "<select name=\"x_entidad_nacimiento\" $x_readonly2 id=\"x_entidad_nacimiento\" onchange=\"generaCurpRfc(this,'txtHintcurp', 'txtHintrfc')\" >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
@@ -2454,7 +2386,7 @@ if($x_win == 3){
       <td colspan="11"><input type="text" name="x_esposa" id="x_esposa"  value="<?php echo htmlspecialchars(@$x_esposa) ?>" maxlength="250" size="100" <?php echo $x_readonly;?>/></td>
     </tr>
     <tr>
-      <td>Pais de residencia</td>
+      <td>Nacionalidad del titular</td>
       <td colspan="2"><?php
 		$x_entidad_idList = "<select name=\"x_nacionalidad_id\"  $x_readonly2 id=\"x_nacionalidad_id\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
@@ -2575,31 +2507,6 @@ if($x_win == 3){
 		$x_entidad_idList .= "</select>";
 		echo $x_entidad_idList;
 		?></td>
-    </tr>
-	 <tr>
-    	<td>Actividad Productiva</td>
-    	<td colspan="7"><?php
-		$x_actividad_idList = "<select name='x_actividad_id' id='x_actividad_id'  >";
-		$x_actividad_idList .= "<option value='0'>Seleccione</option>";
-		$sSqlWrk = "SELECT catalogo_actividad_economica_is, actividad_economica FROM catalogo_actividad_economica";
-		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
-		if ($rswrk) {
-			$rowcntwrk = 0;
-			while ($datawrk = phpmkr_fetch_array($rswrk)) {
-				$x_actividad_idList .= "<option value=\"" . htmlspecialchars($datawrk[0]) . "\"";
-				if ($datawrk["catalogo_actividad_economica_is"] == @$x_actividad_id) {
-					$x_actividad_idList .= "' selected";
-				}
-				$x_actividad_idList .= ">" . htmlentities($datawrk["actividad_economica"]) . "</option>";
-				$rowcntwrk++;
-			}
-		}
-		@phpmkr_free_result($rswrk);
-		$x_actividad_idList .= "</select>";
-		echo $x_actividad_idList;
-		?></td>
-		<td colspan="2"></td>
-		<td colspan="2"></td>
     </tr>
     <tr>
       <td colspan="12" id="tableHead"></td>
@@ -2786,7 +2693,7 @@ if($x_win == 3){
 
         </span><span class="texto_normal">
           <div id="txtHint1" class="texto_normal">
-            Alcaldia:
+            Del/Mun:
             <?php
 		if($x_entidad_domicilio > 0) {
 			if($x_readonly2){
@@ -2959,7 +2866,7 @@ if($x_win == 3){
       <td colspan="2"><?php if(!empty($x_compania_celular_id)){?><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_id\" id=\"x_compania_celular_id\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -2985,7 +2892,7 @@ if($x_win == 3){
       <td colspan="2"><?php if(!empty($x_compania_celular_id_2)){?><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_id_2\" id=\"x_compania_celular_id_2\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -3043,7 +2950,7 @@ if($x_win == 3){
 		<?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_1\" id=\"x_compania_celular_1\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -3095,7 +3002,7 @@ if($x_win == 3){
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_2\" id=\"x_compania_celular_2\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 
@@ -3151,7 +3058,7 @@ if($x_win == 3){
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_3\" id=\"x_compania_celular_3\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -3205,7 +3112,7 @@ if($x_win == 3){
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_4\" id=\"x_compania_celular_4\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -3257,7 +3164,7 @@ if($x_win == 3){
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_5\" id=\"x_compania_celular5\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -3309,7 +3216,7 @@ if($x_win == 3){
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_6\" id=\"x_compania_celular_6\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -3361,7 +3268,7 @@ if($x_win == 3){
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_7\" id=\"x_compania_celular_7\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -3413,7 +3320,7 @@ if($x_win == 3){
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_8\" id=\"x_compania_celular_8\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -3465,7 +3372,7 @@ if($x_win == 3){
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_9\" id=\"x_compania_celular_9\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -3517,7 +3424,7 @@ if($x_win == 3){
         <td width="2%"><?php
 		$x_entidad_idList = "<select name=\"x_compania_celular_10\" id=\"x_compania_celular_10\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
-		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular";
+		$sSqlWrk = "SELECT `compania_celular_id`, `nombre` FROM compania_celular`";
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -3623,7 +3530,7 @@ if($x_win == 3){
 
         </span><span class="texto_normal">
           <div id="txtHint2" class="texto_normal">
-            Alcaldia:
+            Del/Mun:
             <?php
 
 
@@ -4150,12 +4057,6 @@ function LoadData($conn)
 		$GLOBALS["x_doctos_completos_id"] = $row["doctos_completos_id"];
 		$GLOBALS["x_lugar_otorgamiento"] = $row["lugar_otorgamiento"];
 
-		/* nuevo marcos 10/02/2020 */
-		$GLOBALS["x_minimo"] = $row["minimo"];
-		$GLOBALS["x_maximo"] = $row["maximo"];
-		$GLOBALS["x_proveedor_nombrecompleto"] = $row["proveedor_nombrecompleto"];
-		$GLOBALS["x_beneficiario_nombrecompleto"] = $row["beneficiario_nombrecompleto"];
-
 
 
 
@@ -4179,7 +4080,7 @@ function LoadData($conn)
 			}else{
 				$GLOBALS["x_actualiza_fecha_investigacion"] = "si";
 				}
-//echo $x_solicitud_status_id;
+echo $x_solicitud_status_id;
 		if($GLOBALS["x_solicitud_status_id"] == 10 || $GLOBALS["x_solicitud_status_id"] == 5 || $GLOBALS["x_solicitud_status_id"] == 6 || $GLOBALS["x_solicitud_status_id"] == 7 || $GLOBALS["x_solicitud_status_id"]  == 8 || $GLOBALS["x_solicitud_status_id"]  == 4 || $GLOBALS["x_solicitud_status_id"]  == 3 || $GLOBALS["x_solicitud_status_id"] == 9   || $GLOBALS["x_solicitud_status_id"] == 12){
 			$GLOBALS["x_readonly"] = 'readonly = "readonly"';
 			$GLOBALS["x_readonly2"] = 'disabled="disabled"';
@@ -4365,7 +4266,7 @@ function LoadData($conn)
 		$row4 = phpmkr_fetch_array($rs4);
 
 			$GLOBALS["x_direccion_id2"] = $row4["direccion_id"];
-			//$GLOBALS["x_giro_negocio"] = $row4["giro_negocio"];
+			$GLOBALS["x_giro_negocio"] = $row4["giro_negocio"];
 			$GLOBALS["x_calle_negocio"] = $row4["calle"];
 			$GLOBALS["x_colonia_negocio"] = $row4["colonia"];
 			$GLOBALS["x_entidad_negocio"] = $row4["entidad"];
@@ -4374,7 +4275,7 @@ function LoadData($conn)
 			$GLOBALS["x_tipo_local_negocio"] = $row4["vivienda_tipo_id"];
 			$GLOBALS["x_antiguedad_negocio"] = $row4["antiguedad"];
 			$GLOBALS["x_tel_arrendatario_negocio"] = $row4["propietario"];
-			//$GLOBALS["x_renta_mensual"] = $row4["renta_mensual"]; //renta mensula esta en gasto...mas bien no esta guardada deberia estar en gastos
+			$GLOBALS["x_renta_mensual"] = $row4["renta_mensual"]; //renta mensula esta en gasto...mas bien no esta guardada deberia estar en gastos
 			$GLOBALS["x_tel_negocio"] = $row4["telefono"];
 			$GLOBALS["x_delegacion_id2"] = $row4["delegacion_id"];
 			$GLOBALS["x_localidad_id2"] = $row4["localidad_id"];
@@ -4604,7 +4505,7 @@ function LoadData($conn)
 
 		$GLOBALS["x_otro_telefono_domicilio_2"] = $row8["otro_telefono_domicilio_2"];
 		$GLOBALS["x_giro_negocio"] = $row8["giro_negocio"];
-		//$GLOBALS["x_propiedad_hipot"]= $row8["prop_hipotec"];
+		$GLOBALS["x_propiedad_hipot"]= $row8["prop_hipotec"];
 		//$GLOBALS["x_solicitud_compra"] = $row8["solicitud_compra"];
 		$GLOBALS["x_ing_fam_negocio"] = $row8["ing_fam_negocio"];
 		$GLOBALS["x_ing_fam_otro_th"] = $row8["ing_fam_otro_th"];//este no estaba
@@ -4776,13 +4677,8 @@ function LoadData($conn)
 		$x_coordenadas = explode(",", $x_latlong);
 		$GLOBALS["x_google_maps_id"] = $row8["google_maps_id"];
 		//echo"google_id".$GLOBALS["x_google_maps_id"];
-		if ($x_latlong != null) {
-			$GLOBALS["x_latitud"] = trim($x_coordenadas[0], "(");
-			$GLOBALS["x_longitud"] = trim($x_coordenadas[1],")") ;
-		} else {
-			$GLOBALS["x_latitud"] = 0;
-			$GLOBALS["x_longitud"] = 0;
-		}
+		$GLOBALS["x_latitud"] = trim($x_coordenadas[0], "(");
+		$GLOBALS["x_longitud"] = trim($x_coordenadas[1],")") ;
 		//$GLOBALS["x_latlong"] = $row8["latlong"];
 
 
@@ -4795,13 +4691,8 @@ function LoadData($conn)
 		$x_coordenadas2 = explode(",", $x_latlong2);
 		$GLOBALS["x_google_maps_neg_id"] = $row9["google_maps_neg_id"];
 		//echo"google_id".$GLOBALS["x_google_maps_id"];
-		if ($x_latlong2 != null) {
-			$GLOBALS["x_latitud2"] = trim($x_coordenadas2[0], "(");
-			$GLOBALS["x_longitud2"] = trim($x_coordenadas2[1],")") ;
-		} else {
-			$GLOBALS["x_latitud2"] = 0;
-			$GLOBALS["x_longitud2"] = 0;
-		}
+		$GLOBALS["x_latitud2"] = trim($x_coordenadas2[0], "(");
+		$GLOBALS["x_longitud2"] = trim($x_coordenadas2[1],")") ;
 		//$GLOBALS["x_latlong"] = $row8["latlong"];
 
 if($x_coordenadas2 == $x_coordenadas){
@@ -4817,30 +4708,14 @@ if($x_coordenadas2 == $x_coordenadas){
 	phpmkr_free_result($rs3);
 	phpmkr_free_result($rs4);
 	phpmkr_free_result($rs5);
-	if (isset($rs6)) {
-		phpmkr_free_result($rs6);
-	}
-	if (isset($rs6_2)) {
-		phpmkr_free_result($rs6_2);
-	}
-	if (isset($rs7)) {
-		phpmkr_free_result($rs7);
-	}
-	if (isset($rs8)) {
-		phpmkr_free_result($rs8);
-	}
-	if (isset($rs9)) {
-		phpmkr_free_result($rs9);
-	}
-	if (isset($rs10)) {
-		phpmkr_free_result($rs10);
-	}
-	if (isset($rs11)) {
-		phpmkr_free_result($rs11);
-	}
-	if (isset($rowg)) {
-		phpmkr_free_result($rowg);
-	}
+	phpmkr_free_result($rs6);
+	phpmkr_free_result($rs6_2);
+	phpmkr_free_result($rs7);
+	phpmkr_free_result($rs8);
+	phpmkr_free_result($rs9);
+	phpmkr_free_result($rs10);
+	phpmkr_free_result($rs11);
+	phpmkr_free_result($rowg);
 	return $bLoadData;
 }
 ?>

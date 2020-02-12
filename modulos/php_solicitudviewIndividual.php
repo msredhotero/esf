@@ -3,10 +3,10 @@
 <?php
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // date in the past
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); // always modified
-header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1 
-header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1
+header("Cache-Control: post-check=0, pre-check=0", false);
 header("Cache-Control: private");
-header("Pragma: no-cache"); // HTTP/1.0 
+header("Pragma: no-cache"); // HTTP/1.0
 ?>
 <?php
 $ewCurSec = 0; // Initialise
@@ -18,8 +18,8 @@ define("ewAllowedit", 4, true);
 define("ewAllowview", 8, true);
 define("ewAllowlist", 8, true);
 define("ewAllowreport", 8, true);
-define("ewAllowsearch", 8, true);																														
-define("ewAllowadmin", 16, true);						
+define("ewAllowsearch", 8, true);
+define("ewAllowadmin", 16, true);
 ?>
 <?php
 /*
@@ -32,33 +32,34 @@ if (@$_SESSION["php_project_esf_status"] <> "login") {
 <?php
 
 $currentdate = getdate(time());
-$currdate = $currentdate["mday"]."/".$currentdate["mon"]."/".$currentdate["year"];	
-$currtime = $currentdate["hours"].":".$currentdate["minutes"].":".$currentdate["seconds"];		
+$currdate = $currentdate["mday"]."/".$currentdate["mon"]."/".$currentdate["year"];
+$currtime = $currentdate["hours"].":".$currentdate["minutes"].":".$currentdate["seconds"];
 
 // Initialize common variables
-$x_solicitud_id = Null; 
+$x_solicitud_id = Null;
 $ox_solicitud_id = Null;
-$x_credito_tipo_id = Null; 
+$x_credito_tipo_id = Null;
 $ox_credito_tipo_id = Null;
-$x_solicitud_status_id = Null; 
+$x_solicitud_status_id = Null;
 $ox_solicitud_status_id = Null;
-$x_folio = Null; 
+$x_folio = Null;
 $ox_folio = Null;
-$x_fecha_registro = Null; 
+$x_fecha_registro = Null;
 $ox_fecha_registro = Null;
-$x_promotor_id = Null; 
+$x_promotor_id = Null;
 $ox_promotor_id = Null;
-$x_importe_solicitado = Null; 
+$x_importe_solicitado = Null;
 $ox_importe_solicitado = Null;
-$x_plazo = Null; 
+$x_plazo = Null;
 $ox_plazo = Null;
-$x_contrato = Null; 
+$x_contrato = Null;
 $ox_contrato = Null;
-$x_pagare = Null; 
+$x_pagare = Null;
 $ox_pagare = Null;
 $x_mensaje = '';
 $x_readonly2 = '';
 $x_readonly = '';
+$x_telefono_casa_1 = '';
 $x_telefono_casa_2 = '';
 $x_telefono_casa_3 = '';
 $x_telefono_casa_4 = '';
@@ -68,6 +69,18 @@ $x_telefono_casa_7 = '';
 $x_telefono_casa_8 = '';
 $x_telefono_casa_9 = '';
 $x_telefono_casa_10 = '';
+$x_telefono_celular_1 = '';
+$x_telefono_celular_2 = '';
+$x_telefono_celular_3 = '';
+$x_telefono_celular_4 = '';
+$x_telefono_celular_5 = '';
+$x_telefono_celular_6 = '';
+$x_telefono_celular_7 = '';
+$x_telefono_celular_8 = '';
+$x_telefono_celular_9 = '';
+$x_telefono_celular_10 = '';
+$contador_telefono = 0;
+$contador_celular = 0;
 
 /* nuevo marcos */
 $x_minimo = 0;
@@ -92,7 +105,7 @@ $x_solicitud_id = @$_GET["solicitud_id"];
 if(empty($x_solicitud_id)){
 	$x_solicitud_id = @$_POST["x_solicitud_id"];
 }
-$sSqlWrk = "SELECT cliente_id FROM solicitud_cliente where solicitud_id = $x_solicitud_id";		
+$sSqlWrk = "SELECT cliente_id FROM solicitud_cliente where solicitud_id = $x_solicitud_id";
 $rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 $datawrk = phpmkr_fetch_array($rswrk);
 $x_cliente_id = $datawrk["cliente_id"];
@@ -101,7 +114,7 @@ $x_cliente_id = $datawrk["cliente_id"];
 $x_win = @$_GET["win"];
 if(empty($x_win)){
 	$x_win = @$_POST["x_win"];
-	
+
 }
 
 
@@ -122,23 +135,23 @@ if (($sAction == "") || (is_null($sAction))) {
 	$x_solicitud_status_id = @$_POST["x_solicitud_status_id"];
 	$x_folio = @$_POST["x_folio"];
 	$x_fecha_registro = @$_POST["x_fecha_registro"];
-	$x_hora_registro = $currtime;		
+	$x_hora_registro = $currtime;
 	$x_promotor_id = @$_POST["x_promotor_id"];
 	$x_importe_solicitado = @$_POST["x_importe_solicitado"];
 	$x_plazo_id = @$_POST["x_plazo_id"];
-	$x_forma_pago_id = @$_POST["x_forma_pago_id"];	
+	$x_forma_pago_id = @$_POST["x_forma_pago_id"];
 
 	$x_actividad_id = $_POST["x_actividad_id"];
 	$x_actividad_desc = $_POST["x_actividad_desc"];
 	$x_cliente_id = @$_POST["x_cliente_id"];
 	//nuevos valores
 	$x_nombre = @$_POST["x_nombre"];
-	$x_apellido_paterno = @$_POST["x_apellido_paterno"];	
+	$x_apellido_paterno = @$_POST["x_apellido_paterno"];
 	$x_apellido_materno = @$_POST["x_apellido_materno"];
 	$x_rfc = @$_POST["x_rfc"];
 	$x_curp = @$_POST["x_curp"];
-	
-	
+
+
 	$x_fecha_nacimiento = @$_POST["x_fecha_nacimiento"];
 	$x_sexo = @$_POST["x_sexo"];
 	$x_integrantes_familia = @$_POST["x_integrantes_familia"];
@@ -231,47 +244,47 @@ if (($sAction == "") || (is_null($sAction))) {
 	$x_inv_neg_activos_totales = @$_POST["x_inv_neg_activos_totales"];
 	$x_fecha = @$_POST["x_fecha"];
 	$x_propiedad_hipot = @$_POST["x_propiedad_hipot"];
-	
-	
-	
-	
+
+
+
+
 	//olds
 	//$x_nombre_completo = @$_POST["x_nombre"];
-			
-	//$x_tit_rfc = @$_POST["x_rfc"];	
+
+	//$x_tit_rfc = @$_POST["x_rfc"];
 	//$x_tit_curp = @$_POST["x_curp"];
 	//$x_tit_fecha_nac = @$_POST["x_fecha_nacimiento"];
 	$x_numero_hijos = @$_POST["x_integrantes_familia"];
 	$x_numero_hijos_dep = @$_POST["x_dependientes"];
-	$x_email = @$_POST["x_correo_electronico"];	
+	$x_email = @$_POST["x_correo_electronico"];
 	$x_nombre_conyuge = @$_POST["x_esposa"];
 	$x_sexo = @$_POST["x_sexo"];
-	
-	
-	$x_tipo_negocio = @$_POST["x_tipo_negocio"];	
-	$x_edad = @$_POST["x_edad"];	
+
+
+	$x_tipo_negocio = @$_POST["x_tipo_negocio"];
+	$x_edad = @$_POST["x_edad"];
 	$x_estado_civil_id = @$_POST["x_estado_civil_id"];
-	$x_nacionalidad_id = @$_POST["x_nacionalidad_id"];		
-	$x_empresa = @$_POST["x_empresa"];		
-	$x_puesto = @$_POST["x_puesto"];			
-	$x_fecha_contratacion = @$_POST["x_fecha_contratacion"];				
-	$x_salario_mensual = @$_POST["x_salario_mensual"];					
+	$x_nacionalidad_id = @$_POST["x_nacionalidad_id"];
+	$x_empresa = @$_POST["x_empresa"];
+	$x_puesto = @$_POST["x_puesto"];
+	$x_fecha_contratacion = @$_POST["x_fecha_contratacion"];
+	$x_salario_mensual = @$_POST["x_salario_mensual"];
 
 
 	$x_direccion_id = @$_POST["x_direccion_id"]; //checar debe estar como un hidden es  necesario
 	$x_calle = @$_POST["x_calle"];
 	$x_colonia = @$_POST["x_colonia"];
-	$x_entidad_id = @$_POST["x_entidad_id"];	
+	$x_entidad_id = @$_POST["x_entidad_id"];
 	$x_delegacion_id = @$_POST["x_delegacion_id"];
 
 	if(!empty($_POST["x_propietario_renta"])){
-		$x_propietario = $_POST["x_propietario_renta"];	
+		$x_propietario = $_POST["x_propietario_renta"];
 	}
 	if(!empty($_POST["x_propietario_familiar"])){
-		$x_propietario = $_POST["x_propietario_familiar"];	
+		$x_propietario = $_POST["x_propietario_familiar"];
 	}
 	if(!empty($_POST["x_propietario_ch"])){
-		$x_propietario = $_POST["x_propietario_ch"];	
+		$x_propietario = $_POST["x_propietario_ch"];
 	}
 
 
@@ -281,24 +294,24 @@ if (($sAction == "") || (is_null($sAction))) {
 	$x_vivienda_tipo_id = @$_POST["x_vivienda_tipo_id"];
 	$x_otro_tipo_vivienda = @$_POST["x_otro_tipo_vivienda"];
 	$x_telefono = @$_POST["x_telefono"];
-	$x_telefono_sec = @$_POST["x_telefono_sec"];		
+	$x_telefono_sec = @$_POST["x_telefono_sec"];
 	$x_telefono_secundario = @$_POST["x_telefono_secundario"];
 
 
 	$x_direccion_id2 = @$_POST["x_direccion_id2"];
 	$x_calle2 = @$_POST["x_calle2"];
 	$x_colonia2 = @$_POST["x_colonia2"];
-	$x_entidad_id2 = @$_POST["x_entidad_id2"];	
+	$x_entidad_id2 = @$_POST["x_entidad_id2"];
 	$x_delegacion_id2 = @$_POST["x_delegacion_id2"];
 
 	if(!empty($_POST["x_propietario_renta2"])){
-		$x_propietario2 = $_POST["x_propietario_renta2"];	
+		$x_propietario2 = $_POST["x_propietario_renta2"];
 	}
 	if(!empty($_POST["x_propietario_familiar2"])){
-		$x_propietario2 = $_POST["x_propietario_familiar2"];	
+		$x_propietario2 = $_POST["x_propietario_familiar2"];
 	}
 	if(!empty($_POST["x_propietario_ch2"])){
-		$x_propietario2 = $_POST["x_propietario_ch2"];	
+		$x_propietario2 = $_POST["x_propietario_ch2"];
 	}
 
 
@@ -314,25 +327,25 @@ if (($sAction == "") || (is_null($sAction))) {
 
 	$x_aval_id = @$_POST["x_aval_id"];
 	$x_nombre_completo_aval = @$_POST["x_nombre_completo_aval"];
-	$x_apellido_paterno_aval = @$_POST["x_apellido_paterno_aval"];	
-	$x_apellido_materno_aval = @$_POST["x_apellido_materno_aval"];		
-	
+	$x_apellido_paterno_aval = @$_POST["x_apellido_paterno_aval"];
+	$x_apellido_materno_aval = @$_POST["x_apellido_materno_aval"];
+
 	$x_parentesco_tipo_id_aval = @$_POST["x_parentesco_tipo_id_aval"];
-	
-	$x_aval_rfc = @$_POST["x_aval_rfc"];	
-	$x_aval_curp = @$_POST["x_aval_curp"];		
+
+	$x_aval_rfc = @$_POST["x_aval_rfc"];
+	$x_aval_curp = @$_POST["x_aval_curp"];
 
 	$x_tipo_negocio_aval = @$_POST["x_tipo_negocio_aval"];
-	$x_tit_fecha_nac_aval = @$_POST["x_tit_fecha_nac_aval"];	
-	
+	$x_tit_fecha_nac_aval = @$_POST["x_tit_fecha_nac_aval"];
+
 	$x_edad_aval = @$_POST["x_edad_aval"];
 	$x_sexo_aval = @$_POST["x_sexo_aval"];
 	$x_estado_civil_id_aval = @$_POST["x_estado_civil_id_aval"];
 	$x_numero_hijos_aval = @$_POST["x_numero_hijos_aval"];
-	$x_numero_hijos_dep_aval = @$_POST["x_numero_hijos_dep_aval"];	
+	$x_numero_hijos_dep_aval = @$_POST["x_numero_hijos_dep_aval"];
 	$x_nombre_conyuge_aval = @$_POST["x_nombre_conyuge_aval"];
 	$x_email_aval = @$_POST["x_email_aval"];
-	$x_nacionalidad_id_aval  = @$_POST["x_nacionalidad_id_aval"];	
+	$x_nacionalidad_id_aval  = @$_POST["x_nacionalidad_id_aval"];
 
 
 	$x_direccion_id3 = @$_POST["x_direccion_id3"];
@@ -347,28 +360,28 @@ if (($sAction == "") || (is_null($sAction))) {
 	$x_vivienda_tipo_id2 = @$_POST["x_vivienda_tipo_id2"];
 	$x_otro_tipo_vivienda3 = @$_POST["x_otro_tipo_vivienda3"];
 	$x_telefono3 = @$_POST["x_telefono3"];
-	$x_telefono3_sec = @$_POST["x_telefono3_sec"];	
-		
+	$x_telefono3_sec = @$_POST["x_telefono3_sec"];
+
 	$x_telefono_secundario3 = @$_POST["x_telefono_secundario3"];
 
 	$x_ingreso_aval_id = @$_POST["x_ingreso_aval_id"];
 	$x_ingresos_mensuales = @$_POST["x_ingresos_mensuales"];
-	$x_ingresos_familiar_1_aval = @$_POST["x_ingresos_familiar_1_aval"];				
-	$x_parentesco_tipo_id_ing_1_aval = @$_POST["x_parentesco_tipo_id_ing_1_aval"];				
-	$x_ingresos_familiar_2_aval = @$_POST["x_ingresos_familiar_2_aval"];					
-	$x_parentesco_tipo_id_ing_2_aval = @$_POST["x_parentesco_tipo_id_ing_2_aval"];					
-	$x_otros_ingresos_aval = @$_POST["x_otros_ingresos_aval"];	
-	$x_origen_ingresos_aval = @$_POST["x_origen_ingresos_aval"];		
-	$x_origen_ingresos_aval2 = @$_POST["x_origen_ingresos_aval2"];			
-	$x_origen_ingresos_aval3 = @$_POST["x_origen_ingresos_aval3"];				
-	
+	$x_ingresos_familiar_1_aval = @$_POST["x_ingresos_familiar_1_aval"];
+	$x_parentesco_tipo_id_ing_1_aval = @$_POST["x_parentesco_tipo_id_ing_1_aval"];
+	$x_ingresos_familiar_2_aval = @$_POST["x_ingresos_familiar_2_aval"];
+	$x_parentesco_tipo_id_ing_2_aval = @$_POST["x_parentesco_tipo_id_ing_2_aval"];
+	$x_otros_ingresos_aval = @$_POST["x_otros_ingresos_aval"];
+	$x_origen_ingresos_aval = @$_POST["x_origen_ingresos_aval"];
+	$x_origen_ingresos_aval2 = @$_POST["x_origen_ingresos_aval2"];
+	$x_origen_ingresos_aval3 = @$_POST["x_origen_ingresos_aval3"];
+
 	$x_ocupacion = @$_POST["x_ocupacion"];
 
-	
+
 	$x_direccion_id4 = @$_POST["x_direccion_id4"];
 	$x_calle3_neg = @$_POST["x_calle3_neg"];
 	$x_colonia3_neg = @$_POST["x_colonia3_neg"];
-	$x_entidad_id3_neg = @$_POST["x_entidad_id3_neg"];	
+	$x_entidad_id3_neg = @$_POST["x_entidad_id3_neg"];
 	$x_delegacion_id3_neg = @$_POST["x_delegacion_id3_neg"];
 	$x_propietario3_neg = @$_POST["x_propietario3_neg"];
 	$x_codigo_postal3_neg = @$_POST["x_codigo_postal3_neg"];
@@ -392,9 +405,9 @@ if (($sAction == "") || (is_null($sAction))) {
 	$x_ingresos_familiar_2 = @$_POST["x_ingresos_familiar_2"];
 	$x_parentesco_tipo_id_ing_2 = @$_POST["x_parentesco_tipo_id_ing_2"];
 	$x_otros_ingresos = @$_POST["x_otros_ingresos"];
-	$x_origen_ingresos = @$_POST["x_origen_ingresos"];	
-	$x_origen_ingresos2 = @$_POST["x_origen_ingresos2"];	
-	$x_origen_ingresos3 = @$_POST["x_origen_ingresos3"];			
+	$x_origen_ingresos = @$_POST["x_origen_ingresos"];
+	$x_origen_ingresos2 = @$_POST["x_origen_ingresos2"];
+	$x_origen_ingresos3 = @$_POST["x_origen_ingresos3"];
 
 
 	$x_nombre_completo_ref_1 = @$_POST["x_nombre_completo_ref_1"];
@@ -418,99 +431,99 @@ if (($sAction == "") || (is_null($sAction))) {
 	$x_parentesco_tipo_id_ref_5 = @$_POST["x_parentesco_tipo_id_ref_5"];
 
 	$x_comentario_promotor = @$_POST["x_comentario_promotor"];
-	$x_comentario_comite = @$_POST["x_comentario_comite"];	
+	$x_comentario_comite = @$_POST["x_comentario_comite"];
 
 
-	$x_checklist_1 = isset($_POST["x_checklist_1"]) ? 1 : 0;	
-	$x_checklist_2 = isset($_POST["x_checklist_2"]) ? 1 : 0;	
-	$x_checklist_3 = isset($_POST["x_checklist_3"]) ? 1 : 0;	
-	$x_checklist_4 = isset($_POST["x_checklist_4"]) ? 1 : 0;	
-	$x_checklist_5 = isset($_POST["x_checklist_5"]) ? 1 : 0;	
-	$x_checklist_6 = isset($_POST["x_checklist_6"]) ? 1 : 0;	
-	$x_checklist_7 = isset($_POST["x_checklist_7"]) ? 1 : 0;	
-	$x_checklist_8 = isset($_POST["x_checklist_8"]) ? 1 : 0;	
-	$x_checklist_9 = isset($_POST["x_checklist_9"]) ? 1 : 0;	
-	$x_checklist_10 = isset($_POST["x_checklist_10"]) ? 1 : 0;	
-	$x_checklist_11 = isset($_POST["x_checklist_11"]) ? 1 : 0;	
-	$x_checklist_12 = isset($_POST["x_checklist_12"]) ? 1 : 0;	
-	$x_checklist_13 = isset($_POST["x_checklist_13"]) ? 1 : 0;	
-	$x_checklist_14 = isset($_POST["x_checklist_14"]) ? 1 : 0;	
-	$x_checklist_15 = isset($_POST["x_checklist_15"]) ? 1 : 0;	
-	$x_checklist_16 = isset($_POST["x_checklist_16"]) ? 1 : 0;	
-	$x_checklist_17 = isset($_POST["x_checklist_17"]) ? 1 : 0;	
-	$x_checklist_18 = isset($_POST["x_checklist_18"]) ? 1 : 0;	
-	$x_checklist_19 = isset($_POST["x_checklist_19"]) ? 1 : 0;	
-	$x_checklist_20 = isset($_POST["x_checklist_20"]) ? 1 : 0;	
-	$x_checklist_21 = isset($_POST["x_checklist_21"]) ? 1 : 0;		
-	$x_checklist_22 = isset($_POST["x_checklist_22"]) ? 1 : 0;		
-	$x_checklist_23 = isset($_POST["x_checklist_23"]) ? 1 : 0;		
-	$x_checklist_24 = isset($_POST["x_checklist_24"]) ? 1 : 0;		
-	$x_checklist_25 = isset($_POST["x_checklist_25"]) ? 1 : 0;			
+	$x_checklist_1 = isset($_POST["x_checklist_1"]) ? 1 : 0;
+	$x_checklist_2 = isset($_POST["x_checklist_2"]) ? 1 : 0;
+	$x_checklist_3 = isset($_POST["x_checklist_3"]) ? 1 : 0;
+	$x_checklist_4 = isset($_POST["x_checklist_4"]) ? 1 : 0;
+	$x_checklist_5 = isset($_POST["x_checklist_5"]) ? 1 : 0;
+	$x_checklist_6 = isset($_POST["x_checklist_6"]) ? 1 : 0;
+	$x_checklist_7 = isset($_POST["x_checklist_7"]) ? 1 : 0;
+	$x_checklist_8 = isset($_POST["x_checklist_8"]) ? 1 : 0;
+	$x_checklist_9 = isset($_POST["x_checklist_9"]) ? 1 : 0;
+	$x_checklist_10 = isset($_POST["x_checklist_10"]) ? 1 : 0;
+	$x_checklist_11 = isset($_POST["x_checklist_11"]) ? 1 : 0;
+	$x_checklist_12 = isset($_POST["x_checklist_12"]) ? 1 : 0;
+	$x_checklist_13 = isset($_POST["x_checklist_13"]) ? 1 : 0;
+	$x_checklist_14 = isset($_POST["x_checklist_14"]) ? 1 : 0;
+	$x_checklist_15 = isset($_POST["x_checklist_15"]) ? 1 : 0;
+	$x_checklist_16 = isset($_POST["x_checklist_16"]) ? 1 : 0;
+	$x_checklist_17 = isset($_POST["x_checklist_17"]) ? 1 : 0;
+	$x_checklist_18 = isset($_POST["x_checklist_18"]) ? 1 : 0;
+	$x_checklist_19 = isset($_POST["x_checklist_19"]) ? 1 : 0;
+	$x_checklist_20 = isset($_POST["x_checklist_20"]) ? 1 : 0;
+	$x_checklist_21 = isset($_POST["x_checklist_21"]) ? 1 : 0;
+	$x_checklist_22 = isset($_POST["x_checklist_22"]) ? 1 : 0;
+	$x_checklist_23 = isset($_POST["x_checklist_23"]) ? 1 : 0;
+	$x_checklist_24 = isset($_POST["x_checklist_24"]) ? 1 : 0;
+	$x_checklist_25 = isset($_POST["x_checklist_25"]) ? 1 : 0;
 
-	$x_checklist_26 = isset($_POST["x_checklist_26"]) ? 1 : 0;			
-	$x_checklist_27 = isset($_POST["x_checklist_27"]) ? 1 : 0;			
-	$x_checklist_28 = isset($_POST["x_checklist_28"]) ? 1 : 0;			
-	$x_checklist_29 = isset($_POST["x_checklist_29"]) ? 1 : 0;			
-	$x_checklist_30 = isset($_POST["x_checklist_30"]) ? 1 : 0;			
-	$x_checklist_31 = isset($_POST["x_checklist_31"]) ? 1 : 0;				
-	$x_checklist_32 = isset($_POST["x_checklist_32"]) ? 1 : 0;					
-	
+	$x_checklist_26 = isset($_POST["x_checklist_26"]) ? 1 : 0;
+	$x_checklist_27 = isset($_POST["x_checklist_27"]) ? 1 : 0;
+	$x_checklist_28 = isset($_POST["x_checklist_28"]) ? 1 : 0;
+	$x_checklist_29 = isset($_POST["x_checklist_29"]) ? 1 : 0;
+	$x_checklist_30 = isset($_POST["x_checklist_30"]) ? 1 : 0;
+	$x_checklist_31 = isset($_POST["x_checklist_31"]) ? 1 : 0;
+	$x_checklist_32 = isset($_POST["x_checklist_32"]) ? 1 : 0;
 
-	$x_det_ck1 = @$_POST["x_det_ck1"];	
-	$x_det_ck2 = @$_POST["x_det_ck2"];	
-	$x_det_ck3 = @$_POST["x_det_ck3"];	
-	$x_det_ck4 = @$_POST["x_det_ck4"];	
-	$x_det_ck5 = @$_POST["x_det_ck5"];	
-	$x_det_ck6 = @$_POST["x_det_ck6"];	
-	$x_det_ck7 = @$_POST["x_det_ck7"];	
-	$x_det_ck8 = @$_POST["x_det_ck8"];	
-	$x_det_ck9 = @$_POST["x_det_ck9"];	
-	$x_det_ck10 = @$_POST["x_det_ck10"];	
-	$x_det_ck11 = @$_POST["x_det_ck11"];	
-	$x_det_ck12 = @$_POST["x_det_ck12"];	
-	$x_det_ck13 = @$_POST["x_det_ck13"];	
-	$x_det_ck14 = @$_POST["x_det_ck14"];	
-	$x_det_ck15 = @$_POST["x_det_ck15"];	
-	$x_det_ck16 = @$_POST["x_det_ck16"];	
-	$x_det_ck17 = @$_POST["x_det_ck17"];	
-	$x_det_ck18 = @$_POST["x_det_ck18"];	
-	$x_det_ck19 = @$_POST["x_det_ck19"];	
-	$x_det_ck20 = @$_POST["x_det_ck20"];	
-	$x_det_ck21 = @$_POST["x_det_ck21"];		
-	$x_det_ck22 = @$_POST["x_det_ck22"];		
-	$x_det_ck23 = @$_POST["x_det_ck23"];		
-	$x_det_ck24 = @$_POST["x_det_ck24"];		
-	$x_det_ck25 = @$_POST["x_det_ck25"];			
 
-	$x_det_ck26 = @$_POST["x_det_ck26"];			
-	$x_det_ck27 = @$_POST["x_det_ck27"];			
-	$x_det_ck28 = @$_POST["x_det_ck28"];			
-	$x_det_ck29 = @$_POST["x_det_ck29"];			
-	$x_det_ck30 = @$_POST["x_det_ck30"];			
-	$x_det_ck31 = @$_POST["x_det_ck31"];			
-	$x_det_ck32 = @$_POST["x_det_ck32"];				
+	$x_det_ck1 = @$_POST["x_det_ck1"];
+	$x_det_ck2 = @$_POST["x_det_ck2"];
+	$x_det_ck3 = @$_POST["x_det_ck3"];
+	$x_det_ck4 = @$_POST["x_det_ck4"];
+	$x_det_ck5 = @$_POST["x_det_ck5"];
+	$x_det_ck6 = @$_POST["x_det_ck6"];
+	$x_det_ck7 = @$_POST["x_det_ck7"];
+	$x_det_ck8 = @$_POST["x_det_ck8"];
+	$x_det_ck9 = @$_POST["x_det_ck9"];
+	$x_det_ck10 = @$_POST["x_det_ck10"];
+	$x_det_ck11 = @$_POST["x_det_ck11"];
+	$x_det_ck12 = @$_POST["x_det_ck12"];
+	$x_det_ck13 = @$_POST["x_det_ck13"];
+	$x_det_ck14 = @$_POST["x_det_ck14"];
+	$x_det_ck15 = @$_POST["x_det_ck15"];
+	$x_det_ck16 = @$_POST["x_det_ck16"];
+	$x_det_ck17 = @$_POST["x_det_ck17"];
+	$x_det_ck18 = @$_POST["x_det_ck18"];
+	$x_det_ck19 = @$_POST["x_det_ck19"];
+	$x_det_ck20 = @$_POST["x_det_ck20"];
+	$x_det_ck21 = @$_POST["x_det_ck21"];
+	$x_det_ck22 = @$_POST["x_det_ck22"];
+	$x_det_ck23 = @$_POST["x_det_ck23"];
+	$x_det_ck24 = @$_POST["x_det_ck24"];
+	$x_det_ck25 = @$_POST["x_det_ck25"];
+
+	$x_det_ck26 = @$_POST["x_det_ck26"];
+	$x_det_ck27 = @$_POST["x_det_ck27"];
+	$x_det_ck28 = @$_POST["x_det_ck28"];
+	$x_det_ck29 = @$_POST["x_det_ck29"];
+	$x_det_ck30 = @$_POST["x_det_ck30"];
+	$x_det_ck31 = @$_POST["x_det_ck31"];
+	$x_det_ck32 = @$_POST["x_det_ck32"];
 
 	$x_gasto_id = @$_POST["x_gasto_id"];
-	$x_gastos_prov1 = @$_POST["x_gastos_prov1"];			
-	$x_gastos_prov2 = @$_POST["x_gastos_prov2"];			
-	$x_gastos_prov3 = @$_POST["x_gastos_prov3"];				
-	$x_otro_prov = @$_POST["x_otro_prov"];					
-	$x_gastos_empleados = @$_POST["x_gastos_empleados"];					
-	$x_gastos_renta_negocio = @$_POST["x_gastos_renta_negocio"];					
-	$x_gastos_renta_casa = @$_POST["x_gastos_renta_casa"];					
-	$x_gastos_credito_hipotecario = @$_POST["x_gastos_credito_hipotecario"];					
-	$x_gastos_otros = @$_POST["x_gastos_otros"];					
+	$x_gastos_prov1 = @$_POST["x_gastos_prov1"];
+	$x_gastos_prov2 = @$_POST["x_gastos_prov2"];
+	$x_gastos_prov3 = @$_POST["x_gastos_prov3"];
+	$x_otro_prov = @$_POST["x_otro_prov"];
+	$x_gastos_empleados = @$_POST["x_gastos_empleados"];
+	$x_gastos_renta_negocio = @$_POST["x_gastos_renta_negocio"];
+	$x_gastos_renta_casa = @$_POST["x_gastos_renta_casa"];
+	$x_gastos_credito_hipotecario = @$_POST["x_gastos_credito_hipotecario"];
+	$x_gastos_otros = @$_POST["x_gastos_otros"];
 
 	$x_gasto_aval_id = @$_POST["x_gasto_aval_id"];
-	$x_gastos_prov1_aval = @$_POST["x_gastos_prov1_aval"];			
-	$x_gastos_prov2_aval = @$_POST["x_gastos_prov2_aval"];			
-	$x_gastos_prov3_aval = @$_POST["x_gastos_prov3_aval"];				
-	$x_otro_prov_aval = @$_POST["x_otro_prov_aval"];				
-	$x_gastos_empleados_aval = @$_POST["x_gastos_empleados_aval"];				
-	$x_gastos_renta_negocio_aval = @$_POST["x_gastos_renta_negocio_aval"];		
-	$x_gastos_renta_casa2 = @$_POST["x_gastos_renta_casa2"];					
-	$x_gastos_credito_hipotecario_aval = @$_POST["x_gastos_credito_hipotecario_aval"];					
-	$x_gastos_otros_aval = @$_POST["x_gastos_otros_aval"];					
+	$x_gastos_prov1_aval = @$_POST["x_gastos_prov1_aval"];
+	$x_gastos_prov2_aval = @$_POST["x_gastos_prov2_aval"];
+	$x_gastos_prov3_aval = @$_POST["x_gastos_prov3_aval"];
+	$x_otro_prov_aval = @$_POST["x_otro_prov_aval"];
+	$x_gastos_empleados_aval = @$_POST["x_gastos_empleados_aval"];
+	$x_gastos_renta_negocio_aval = @$_POST["x_gastos_renta_negocio_aval"];
+	$x_gastos_renta_casa2 = @$_POST["x_gastos_renta_casa2"];
+	$x_gastos_credito_hipotecario_aval = @$_POST["x_gastos_credito_hipotecario_aval"];
+	$x_gastos_otros_aval = @$_POST["x_gastos_otros_aval"];
 
 //los mios
 
@@ -582,7 +595,7 @@ switch ($sAction)
 			phpmkr_db_close($conn);
 			ob_end_clean();
 			header("Location: php_solicitudlist.php");
-			
+
 		}
 		break;
 	case "U": // Update
@@ -592,15 +605,15 @@ switch ($sAction)
 			//phpmkr_db_close($conn);
 			ob_end_clean();
 
-		
-		
+
+
 		}
 		break;
 	case "D": // DIRECCIONES
 		if($_POST["x_delegacion_id_temp"] != ""){
 			$x_delegacion_id2 = $_POST["x_delegacion_id_temp"];
 		}
-		break;				
+		break;
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -615,19 +628,19 @@ switch ($sAction)
 
 <link href="../php_project_esf.css" rel="stylesheet" type="text/css" />
 <!--googlemaps-->
-<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" /> 
+<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
   var geocoder;
-  var map;  
+  var map;
   var markersArray = [];
- 
-  
+
+
   function initialize() {
     geocoder = new google.maps.Geocoder();
 	// lo localizamos en la cuidad de mexico
-	
+
 	var lat = document.getElementById("x_latitud").value;
     var long = document.getElementById("x_longitud").value;
     var latlng = new google.maps.LatLng(lat,long);
@@ -639,17 +652,17 @@ switch ($sAction)
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 	addMarker(latlng)
   }
-  
+
   function addMarker(location) {
-	  
+
     marker = new google.maps.Marker({
       position: location,
       map: map
-	  
+
     });
     markersArray.push(marker);
   }
- 
+
   function codeAddress() {
 	  deleteOverlays();
     var address = document.getElementById("address").value;
@@ -657,22 +670,22 @@ switch ($sAction)
       if (status == google.maps.GeocoderStatus.OK) {
         map.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
-            map: map, 
+            map: map,
             position: results[0].geometry.location
-			
+
         });
 		//creamos un array con los markers
 		markersArray.push(marker);
 		//asignamos el valor de latidu y longitud a la variable hidden x_ubicacion
 		document.getElementById("x_latlong").value = results[0].geometry.location;
-		
-		
+
+
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
   }
-  
+
   // eliminamos los maracadores
   function deleteOverlays() {
     if (markersArray) {
@@ -682,17 +695,17 @@ switch ($sAction)
       markersArray.length = 0;
     }
   }
-  
-  
- 
-	  
+
+
+
+
 function mostrarOriginal(){
 	  deleteOverlays();
 	  var lat = document.getElementById("x_latitud").value;
       var long = document.getElementById("x_longitud").value;
 	  var latlng = new google.maps.LatLng(lat,long);
-	  
-	  
+
+
 	  var myOptions = {
       zoom: 12,
       center: latlng,
@@ -700,22 +713,22 @@ function mostrarOriginal(){
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 	addMarker(latlng)
-   
+
 	document.getElementById("x_latlong").value = latlng;
 	 }
-   </script> 
-   
-   
-<script type="text/javascript"> 
+   </script>
+
+
+<script type="text/javascript">
   var geocoder2;
-  var map2;  
+  var map2;
   var markersArray2 = [];
- 
-  
+
+
   function initialize2() {
     geocoder2 = new google.maps.Geocoder();
 	// lo localizamos en la cuidad de mexico
-	
+
 	var lat2 = document.getElementById("x_latitud2").value;
     var long2 = document.getElementById("x_longitud2").value;
 	if(lat2 == 0 && long2 == 0){
@@ -728,21 +741,21 @@ function mostrarOriginal(){
       center: latlng2,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
-    map2 = new google.maps.Map(document.getElementById("map_canvas2"), myOptions2);	
+    map2 = new google.maps.Map(document.getElementById("map_canvas2"), myOptions2);
 	addMarker2(latlng2);
 	document.getElementById("x_latlong2").value = latlng2;
   }
-  
+
   function addMarker2(location) {
-	  
+
     marker2 = new google.maps.Marker({
       position: location,
       map: map2
-	  
+
     });
     markersArray2.push(marker2);
   }
- 
+
   function codeAddress2() {
 	  deleteOverlays2();
     var address2 = document.getElementById("address2").value;
@@ -750,22 +763,22 @@ function mostrarOriginal(){
       if (status == google.maps.GeocoderStatus.OK) {
         map2.setCenter(results[0].geometry.location);
         var marker2 = new google.maps.Marker({
-            map: map2, 
+            map: map2,
             position: results[0].geometry.location
-			
+
         });
 		//creamos un array con los markers
 		markersArray2.push(marker2);
 		//asignamos el valor de latidu y longitud a la variable hidden x_ubicacion
 		document.getElementById("x_latlong2").value = results[0].geometry.location;
-		
-		
+
+
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
   }
-  
+
   // eliminamos los maracadores
   function deleteOverlays2() {
     if (markersArray2) {
@@ -775,17 +788,17 @@ function mostrarOriginal(){
       markersArray2.length = 0;
     }
   }
-  
-  
- 
-	  
+
+
+
+
 function mostrarOriginal(){
 	  deleteOverlays();
 	  var lat = document.getElementById("x_latitud").value;
       var long = document.getElementById("x_longitud").value;
 	  var latlng = new google.maps.LatLng(lat,long);
-	  
-	  
+
+
 	  var myOptions = {
       zoom: 12,
       center: latlng,
@@ -793,10 +806,10 @@ function mostrarOriginal(){
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 	addMarker(latlng)
-   
+
 	document.getElementById("x_latlong").value = latlng;
 	 }
-   </script>    
+   </script>
 
 </head>
 
@@ -804,10 +817,10 @@ function mostrarOriginal(){
 
 <script language="javascript"  src="../ew.js"></script>
 
-<script src="paisedohint.js"></script> 
+<script src="paisedohint.js"></script>
 <script type="text/javascript">
 <!--
-EW_dateSep = "/"; // set date separator	
+EW_dateSep = "/"; // set date separator
 
 //-->
 </script>
@@ -815,14 +828,14 @@ EW_dateSep = "/"; // set date separator
 <!--
 
 //window.onload = function(){
-	
+
 	function cargaEventos(){
 	//al cargar toda la pagina
 	//EVE2NTOS PARA ACTUALIZAR FORMATO PYME
 	//document.getElementById("siguiente").onclick = muestraOculta;
 	//document.getElementById("anterior").onclick = muestraOculta;
 	//document.getElementById("enviar").onclick = EW_checkMyForm;
-	//document.getElementById("seEnvioFormulario").onclick = ocultaMens;	
+	//document.getElementById("seEnvioFormulario").onclick = ocultaMens;
 
 
 
@@ -833,10 +846,10 @@ initialize();
 
 if(document.getElementById("x_hidden_mapa_negocio").value == 1){
 			initialize2();
-			
+
 			//si los mapas son diferentes cargamos el mapa dos.
 		}else{
-			// quito el ma´pa que esta pintado
+			// quito el maï¿½pa que esta pintado
 			quitaMapaNegocio();
 			}
 
@@ -863,110 +876,110 @@ if(document.getElementById("x_hidden_mapa_negocio").value == 1){
 	document.getElementById("x_flujos_neg_gasto_1").onchange = flujosDeNegocio;
 	document.getElementById("x_flujos_neg_gasto_2").onchange = flujosDeNegocio;
 	document.getElementById("x_flujos_neg_gasto_3").onchange = flujosDeNegocio;
-	
-	
-	
+
+
+
 function muestraOculta(){
- 	var id = this.id; 
+ 	var id = this.id;
  	if(id =="siguiente"){
 		document.getElementById("paginaUno").style.display ="none";
 		document.getElementById("paginaDos").style.display ="block";
 		document.getElementById("siguiente").style.display="none";
-		document.getElementById("anterior").style.display="block";	
+		document.getElementById("anterior").style.display="block";
 		} else{
 			document.getElementById("paginaUno").style.display ="block";
 			document.getElementById("paginaDos").style.display ="none";
 			document.getElementById("anterior").style.display="none";
 			document.getElementById("siguiente").style.display="block";
 			}
- }//function muestraOculta 
-	 
+ }//function muestraOculta
+
 		function totalVarible (){
 			t1 = document.getElementById("x_inv_neg_var_valor_1").value;
 			t2 = document.getElementById("x_inv_neg_var_valor_2").value;
 			t3 = document.getElementById("x_inv_neg_var_valor_3").value;
 			t4 = document.getElementById("x_inv_neg_var_valor_4").value;
 			total = 0;
-			
+
 			if(t1 == '')
 				n1 = 0;
 				else
 				n1 = parseFloat(document.getElementById("x_inv_neg_var_valor_1").value);
-				
+
 			if(t2 == '')
 				n2 = 0;
 				else
 				n2 = parseFloat(document.getElementById("x_inv_neg_var_valor_2").value);
-				
+
 			if(t3 == '')
 				n3 = 0;
 				else
 				n3 = parseFloat(document.getElementById("x_inv_neg_var_valor_3").value);
-				
+
 			if(t4 == '')
 				n4 = 0;
 				else
 				n4 = parseFloat(document.getElementById("x_inv_neg_var_valor_4").value);
-			
+
 			suma = n1 + n2 + n3 + n4;
-			
+
 			tempT = document.getElementById("x_inv_neg_total_fija").value;
-			
+
 			if(tempT == '')
 				nt = 0;
 				else
 				nt = parseFloat(document.getElementById("x_inv_neg_total_fija").value);
-			
-			
+
+
 			document.getElementById("x_inv_neg_total_var").value = suma;
 			document.getElementById("x_inv_neg_activos_totales").value = (suma + nt);
-			
+
 			}
-	 
-	     
-	 
+
+
+
 	function totalFija (){
 			t1 = document.getElementById("x_inv_neg_fija_valor_1").value;
 			t2 = document.getElementById("x_inv_neg_fija_valor_2").value;
 			t3 = document.getElementById("x_inv_neg_fija_valor_3").value;
 			t4 = document.getElementById("x_inv_neg_fija_valor_4").value;
 			total = 0;
-			
+
 			if(t1 == '')
 				n1 = 0;
 				else
 				n1 = parseFloat(document.getElementById("x_inv_neg_fija_valor_1").value);
-				
+
 			if(t2 == '')
 				n2 = 0;
 				else
 				n2 = parseFloat(document.getElementById("x_inv_neg_fija_valor_2").value);
-				
+
 			if(t3 == '')
 				n3 = 0;
 				else
 				n3 = parseFloat(document.getElementById("x_inv_neg_fija_valor_3").value);
-				
+
 			if(t4 == '')
 				n4 = 0;
 				else
 				n4 = parseFloat(document.getElementById("x_inv_neg_fija_valor_4").value);
-			
+
 			suma = n1 + n2 + n3 + n4;
-			
+
 			tempT = document.getElementById("x_inv_neg_total_var").value;
-			
+
 			if(tempT == '')
 				nt = 0;
 				else
 				nt = parseFloat(document.getElementById("x_inv_neg_total_var").value);
-			
-			
+
+
 			document.getElementById("x_inv_neg_total_fija").value = suma;
 			document.getElementById("x_inv_neg_activos_totales").value = (suma + nt);
-			
-			}	
-			
+
+			}
+
 			function ingresoFamiliar(){
 				t1 = document.getElementById("x_ing_fam_negocio").value;
 				t2 = document.getElementById("x_ing_fam_otro_th").value;
@@ -974,48 +987,48 @@ function muestraOculta(){
 				t4 = document.getElementById("x_ing_fam_2").value;
 				t5 = document.getElementById("x_ing_fam_deuda_1").value;
 				t6 = document.getElementById("x_ing_fam_deuda_2").value;
-				
+
 				if(t1 == '')
 				n1 = 0;
 				else
 				n1 = parseFloat(document.getElementById("x_ing_fam_negocio").value);
-				
+
 				if(t2 == '')
 				n2 = 0;
 				else
 				n2 = parseFloat(document.getElementById("x_ing_fam_otro_th").value);
-				
-				
+
+
 				if(t3 == '')
 				n3 = 0;
 				else
 				n3 = parseFloat(document.getElementById("x_ing_fam_1").value);
-				
+
 				if(t4 == '')
 				n4 = 0;
 				else
 				n4 = parseFloat(document.getElementById("x_ing_fam_2").value);
-				
+
 				if(t5 == '')
 				n5 = 0;
 				else
 				n5 = parseFloat(document.getElementById("x_ing_fam_deuda_1").value);
-				
-				
+
+
 				if(t6 == '')
 				n6 = 0;
 				else
 				n6 = parseFloat(document.getElementById("x_ing_fam_deuda_2").value);
-				
-				total =(n1 + n2 +n3 +n4)-(n5 + n6);	
-				
-				
-				document.getElementById("x_ing_fam_total").value = total;			
-				
+
+				total =(n1 + n2 +n3 +n4)-(n5 + n6);
+
+
+				document.getElementById("x_ing_fam_total").value = total;
+
 				}
-				
+
 				function flujosDeNegocio (){
-					
+
 					t1 = document.getElementById("x_flujos_neg_ventas").value;
 					t2 = document.getElementById("x_flujos_neg_proveedor_1").value;
 					t3 = document.getElementById("x_flujos_neg_proveedor_2").value;
@@ -1025,67 +1038,67 @@ function muestraOculta(){
 					t7 = document.getElementById("x_flujos_neg_gasto_2").value;
 					t8 = document.getElementById("x_flujos_neg_gasto_3").value;
 					total = 0;
-					
+
 					if(t1 == '')
 					n1 = 0;
 					else
 					n1 = parseFloat(document.getElementById("x_flujos_neg_ventas").value);
-					
+
 					if(t2 == '')
 					n2 = 0;
 					else
 					n2 = parseFloat(document.getElementById("x_flujos_neg_proveedor_1").value);
-					
+
 					if(t3 == '')
 					n3 = 0;
 					else
 					n3 = parseFloat(document.getElementById("x_flujos_neg_proveedor_2").value);
-					
+
 					if(t4 == '')
 					n4 = 0;
 					else
 					n4 = parseFloat(document.getElementById("x_flujos_neg_proveedor_3").value);
-					
+
 					if(t5 == '')
 					n5 = 0;
 					else
 					n5 = parseFloat(document.getElementById("x_flujos_neg_proveedor_4").value);
-					
+
 					if(t6 == '')
 					n6 = 0;
 					else
 					n6 = parseFloat(document.getElementById("x_flujos_neg_gasto_1").value);
-					
+
 					if(t7 == '')
 					n7 = 0;
 					else
 					n7 = parseFloat(document.getElementById("x_flujos_neg_gasto_2").value);
-					
+
 					if(t8 == '')
 					n8 = 0;
 					else
 					n8 = parseFloat(document.getElementById("x_flujos_neg_gasto_3").value);
-					
-					
-					total = ((n1)-(n2 + n3 + n4 + n5 +n6 +n7 +n8));					
-					
+
+
+					total = ((n1)-(n2 + n3 + n4 + n5 +n6 +n7 +n8));
+
 					 document.getElementById("x_ingreso_negocio").value = total;
 					 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
 function act(){}
 
 function buscadelegacion(){
 EW_this = document.solicitudedit;
-	EW_this.a_edit.value = "D";	
-	EW_this.submit();	
+	EW_this.a_edit.value = "D";
+	EW_this.submit();
 }
 
 function buscacliente(){
@@ -1103,19 +1116,19 @@ if(EW_this.x_importe_solicitado.value < 1000){
 	EW_this.x_importe_solicitado.focus();
 }
 
-/*	
+/*
 }else{
 
 	if (EW_this.x_importe_solicitado.value > 5000){
 		document.getElementById('aval').className = "TG_visible";
 	}else{
-		document.getElementById('aval').className = "TG_hidden";	
+		document.getElementById('aval').className = "TG_hidden";
 	}
-	
+
 	if (EW_this.x_importe_solicitado.value > 10000){
 		document.getElementById('garantias').className = "TG_visible";
 	}else{
-		document.getElementById('garantias').className = "TG_hidden";	
+		document.getElementById('garantias').className = "TG_hidden";
 	}
 }
 */
@@ -1127,36 +1140,36 @@ if(EW_this.x_importe_solicitado.value < 1000){
 	 // borramos el espacio desiganado a ael mapa de  negocio
 	 document.getElementById("mapaNegocio").innerHTML="";
 	 document.getElementById("x_hidden_mapa_negocio").value = 0;
-	 }	
-	 
+	 }
+
 function cargaMapaNegocio(){
 	document.getElementById("x_hidden_mapa_negocio").value = 1;
 	cargaMapa();
 		setTimeout("initialize2()",1000);
-	}	
+	}
 
 function EW_onError(form_object, input_object, object_type, error_message) {
-	alert(error_message);									
+	alert(error_message);
 	if (object_type == "RADIO" || object_type == "CHECKBOX") {
 		if (input_object[0])
 			input_object[0].focus();
 		else
 			input_object.focus();
-	}	else if (!EW_isHTMLArea(input_object, object_type)) { 
-		input_object.focus();  
-	}  
+	}	else if (!EW_isHTMLArea(input_object, object_type)) {
+		input_object.focus();
+	}
 	if (object_type == "TEXT" || object_type == "PASSWORD" || object_type == "TEXTAREA" || object_type == "FILE") {
 		if (!EW_isHTMLArea(input_object, object_type))
 			input_object.select();
 	}
-	return false;	
+	return false;
 }
 
 function EW_hasValue(obj, obj_type) {
 	if (obj_type == "TEXT" || obj_type == "PASSWORD" || obj_type == "TEXTAREA" || obj_type == "FILE")	{
-		if (obj.value.length == 0) 
-			return false;		
-		else 
+		if (obj.value.length == 0)
+			return false;
+		else
 			return true;
 	}	else if (obj_type == "SELECT") {
 		if (obj.type != "select-multiple" && obj.selectedIndex == 0)
@@ -1174,7 +1187,7 @@ function EW_hasValue(obj, obj_type) {
 		} else {
 			return (obj.checked);
 		}
-		return false;	
+		return false;
 	}
 }
 
@@ -1212,7 +1225,7 @@ if (validada == true && EW_this.x_plazo_id && EW_hasValue(EW_this.x_plazo_id, "T
 numer_pag = EW_this.x_plazo_id.value;
 				 if((numer_pag < 2 ) ||(numer_pag > 104)){
 					 // el numero de pagos es incorrecto deben ser minimo 2 maximo 88
-					 alert("El numero de pago es incorreto verifique por favor, MIN 2, MAX 104");			 
+					 alert("El numero de pago es incorreto verifique por favor, MIN 2, MAX 104");
 					 validada = false;
 					 }
  }
@@ -1245,10 +1258,10 @@ if (EW_this.x_fecha_nacimiento && !EW_hasValue(EW_this.x_fecha_nacimiento, "TEXT
 /*
 if (EW_this.x_fecha_nacimiento && !EW_checkdate(EW_this.x_fecha_nacimiento.value)) {
 	if (!EW_onError(EW_this, EW_this.x_fecha_nacimiento, "TEXT", "Formato de fecha incorrecto, verifique por favor., format = aaaa/mm/dd - fecha nacimiento"))
-		validada = false; 
+		validada = false;
 }*/
 if (EW_this.x_sexo && !EW_hasValue(EW_this.x_sexo, "TEXT" )) {
-	if (!EW_onError(EW_this, EW_this.x_sexo, "TEXT", "Por favor introduzca el campo requerido - sexo"))
+	if (!EW_onError(EW_this, EW_this.x_sexo, "TEXT", "Por favor introduzca el campo requerido - genero"))
 		validada = false;
 }
 if (EW_this.x_integrantes_familia && !EW_hasValue(EW_this.x_integrantes_familia, "TEXT" )) {
@@ -1257,7 +1270,7 @@ if (EW_this.x_integrantes_familia && !EW_hasValue(EW_this.x_integrantes_familia,
 }
 if (EW_this.x_integrantes_familia && !EW_checkinteger(EW_this.x_integrantes_familia.value)) {
 	if (!EW_onError(EW_this, EW_this.x_integrantes_familia, "TEXT", "Valor incorrecto, se espera un entero. - integrantes familia"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_dependientes && !EW_hasValue(EW_this.x_dependientes, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_dependientes, "TEXT", "Por favor introduzca el campo requerido - dependientes"))
@@ -1265,7 +1278,7 @@ if (EW_this.x_dependientes && !EW_hasValue(EW_this.x_dependientes, "TEXT" )) {
 }
 if (EW_this.x_dependientes && !EW_checkinteger(EW_this.x_dependientes.value)) {
 	if (!EW_onError(EW_this, EW_this.x_dependientes, "TEXT", "Valor incorrecto, se espera un entero. - dependientes"))
-		validada = false; 
+		validada = false;
 }
 /*
 if (EW_this.x_correo_electronico && !EW_hasValue(EW_this.x_correo_electronico, "TEXT" )) {
@@ -1274,7 +1287,7 @@ if (EW_this.x_correo_electronico && !EW_hasValue(EW_this.x_correo_electronico, "
 }
 if (EW_this.x_correo_electronico && !EW_checkemail(EW_this.x_correo_electronico.value)) {
 	if (!EW_onError(EW_this, EW_this.x_correo_electronico, "TEXT", "Email incorrecto, verifque por favor - correo electronico"))
-		validada = false; 
+		validada = false;
 }*/
 if (EW_this.x_calle_domicilio && !EW_hasValue(EW_this.x_calle_domicilio, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_calle_domicilio, "TEXT", "Por favor introduzca el campo requerido - calle domicilio"))
@@ -1300,7 +1313,7 @@ if (EW_this.x_codigo_postal_domicilio && !EW_hasValue(EW_this.x_codigo_postal_do
 }
 if (EW_this.x_codigo_postal_domicilio && !EW_checkinteger(EW_this.x_codigo_postal_domicilio.value)) {
 	if (!EW_onError(EW_this, EW_this.x_codigo_postal_domicilio, "TEXT", "Valor incorrecto, se espera un entero. - codigo postal domicilio"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_ubicacion_domicilio && !EW_hasValue(EW_this.x_ubicacion_domicilio, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_ubicacion_domicilio, "TEXT", "Por favor introduzca el campo requerido - ubicacion domicilio"))
@@ -1312,7 +1325,7 @@ if (EW_this.x_tipo_vivienda && !EW_hasValue(EW_this.x_tipo_vivienda, "TEXT" )) {
 }
 if (EW_this.x_renta_mensula_domicilio && !EW_checknumber(EW_this.x_renta_mensula_domicilio.value)) {
 	if (!EW_onError(EW_this, EW_this.x_renta_mensula_domicilio, "TEXT", "Formato de numero incorrecto, verifique por favor- renta mensula domicilio"))
-		validada = false; 
+		validada = false;
 }
 
 // telefonos del domicilio
@@ -1321,10 +1334,10 @@ if(EW_this.x_telefono_domicilio.value.length != 0 || EW_this.x_celular.value.len
    EW_this.x_otro_telefono_domicilio_2.value.length != 0 || EW_this.x_otro_tel_domicilio_1.value.length != 0 ){
 	//alguno de los telefono esta llenos
 	}else{
-		// no se ha llenado ningun telefono...es necesario llenar almenos uno de los 4		
+		// no se ha llenado ningun telefono...es necesario llenar almenos uno de los 4
 		alert("Por favor introduzca almenos 1 de los telefono listados en la seccion domicilio")
 		validada = false;
-		
+
 		}
 
 
@@ -1334,70 +1347,70 @@ if((EW_this.x_referencia_com_1.value.length != 0  && EW_this.x_referencia_com_2.
    (EW_this.x_referencia_com_2.value.length != 0  && EW_this.x_referencia_com_3.value.length != 0) ||
    (EW_this.x_referencia_com_2.value.length != 0  && EW_this.x_referencia_com_4.value.length != 0) ||
    (EW_this.x_referencia_com_3.value.length != 0  && EW_this.x_referencia_com_4.value.length != 0 )){
-	
-	if (EW_this.x_referencia_com_1 && EW_hasValue(EW_this.x_referencia_com_1, "TEXT" )) {	
+
+	if (EW_this.x_referencia_com_1 && EW_hasValue(EW_this.x_referencia_com_1, "TEXT" )) {
 		if (EW_this.x_parentesco_ref_1 && !EW_hasValue(EW_this.x_parentesco_ref_1, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_parentesco_ref_1, "TEXT", "Por favor introduzca el campo requerido - parentesco referencia 1"))
 		validada = false;
-		}	
+		}
 			if (EW_this.x_tel_referencia_1 && !EW_hasValue(EW_this.x_tel_referencia_1, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_tel_referencia_1, "TEXT", "Por favor introduzca el campo requerido - telefono referencia 1"))
 		validada = false;
 		}
-				
+
 	}//valida referncia uno
-	
-	
-	
-	if (EW_this.x_referencia_com_2 && EW_hasValue(EW_this.x_referencia_com_2, "TEXT" )) {	
+
+
+
+	if (EW_this.x_referencia_com_2 && EW_hasValue(EW_this.x_referencia_com_2, "TEXT" )) {
 		if (EW_this.x_parentesco_ref_2 && !EW_hasValue(EW_this.x_parentesco_ref_2, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_parentesco_ref_2, "TEXT", "Por favor introduzca el campo requerido - parentesco referencia 2"))
 		validada = false;
-		}	
+		}
 			if (EW_this.x_tel_referencia_2 && !EW_hasValue(EW_this.x_tel_referencia_2, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_tel_referencia_2, "TEXT", "Por favor introduzca el campo requerido - telefono referencia 2"))
 		validada = false;
 		}
-				
+
 	}//valida referncia 2
-	
-	
-	
-	if (EW_this.x_referencia_com_3 && EW_hasValue(EW_this.x_referencia_com_3, "TEXT" )) {	
+
+
+
+	if (EW_this.x_referencia_com_3 && EW_hasValue(EW_this.x_referencia_com_3, "TEXT" )) {
 		if (EW_this.x_parentesco_ref_3 && !EW_hasValue(EW_this.x_parentesco_ref_3, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_parentesco_ref_3, "TEXT", "Por favor introduzca el campo requerido - parentesco referencia 3"))
 		validada = false;
-		}	
+		}
 			if (EW_this.x_tel_referencia_3 && !EW_hasValue(EW_this.x_tel_referencia_3, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_tel_referencia_3, "TEXT", "Por favor introduzca el campo requerido - telefono referencia 3"))
 		validada = false;
 		}
-				
+
 	}//valida referncia 3
-	
-	
-	if (EW_this.x_referencia_com_4 && EW_hasValue(EW_this.x_referencia_com_4, "TEXT" )) {	
+
+
+	if (EW_this.x_referencia_com_4 && EW_hasValue(EW_this.x_referencia_com_4, "TEXT" )) {
 		if (EW_this.x_parentesco_ref_4 && !EW_hasValue(EW_this.x_parentesco_ref_4, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_parentesco_ref_4, "TEXT", "Por favor introduzca el campo requerido - parentesco referencia 4"))
 		validada = false;
-		}	
+		}
 			if (EW_this.x_tel_referencia_4 && !EW_hasValue(EW_this.x_tel_referencia_4, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_tel_referencia_4, "TEXT", "Por favor introduzca el campo requerido - telefono referencia 4"))
 		validada = false;
 		}
-				
+
 	}//valida referncia 4
-	
-	
-	
+
+
+
 	//se llenaron almenos dos campos
-		
+
 	}else{
-		alert("Debe introducir al menos dos referencias");		
+		alert("Debe introducir al menos dos referencias");
 		validada = false;
-	
+
 	}
-		
+
 
 
 
@@ -1426,11 +1439,11 @@ if (EW_this.x_ubicacion_negocio && !EW_hasValue(EW_this.x_ubicacion_negocio, "TE
 }
 if (EW_this.x_codigo_postal_negocio && !EW_checkinteger(EW_this.x_codigo_postal_negocio.value)) {
 	if (!EW_onError(EW_this, EW_this.x_codigo_postal_negocio, "TEXT", "Valor incorrecto, se espera un entero. - codigo postal negocio"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_renta_mensual && !EW_checknumber(EW_this.x_renta_mensual.value)) {
 	if (!EW_onError(EW_this, EW_this.x_renta_mensual, "TEXT", "Formato de numero incorrecto, verifique por favor- renta mensual"))
-		validada = false; 
+		validada = false;
 }*/
 /*
 if (EW_this.x_garantias && !EW_hasValue(EW_this.x_garantias, "TEXTAREA" )) {
@@ -1457,7 +1470,7 @@ if (EW_this.x_ing_fam_negocio && !EW_hasValue(EW_this.x_ing_fam_negocio, "TEXT" 
 }
 if (EW_this.x_ing_fam_negocio && !EW_checknumber(EW_this.x_ing_fam_negocio.value)) {
 	if (!EW_onError(EW_this, EW_this.x_ing_fam_negocio, "TEXT", "Formato de numero incorrecto, verifique por favor- ing fam negocio"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_ing_fam_otro_th && !EW_hasValue(EW_this.x_ing_fam_otro_th, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_ing_fam_otro_th, "TEXT", "Por favor introduzca el campo requerido - ing fam otro th"))
@@ -1465,7 +1478,7 @@ if (EW_this.x_ing_fam_otro_th && !EW_hasValue(EW_this.x_ing_fam_otro_th, "TEXT" 
 }
 if (EW_this.x_ing_fam_otro_th && !EW_checknumber(EW_this.x_ing_fam_otro_th.value)) {
 	if (!EW_onError(EW_this, EW_this.x_ing_fam_otro_th, "TEXT", "Formato de numero incorrecto, verifique por favor- ing fam otro th"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_ing_fam_1 && !EW_hasValue(EW_this.x_ing_fam_1, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_ing_fam_1, "TEXT", "Por favor introduzca el campo requerido - ing fam 1"))
@@ -1473,7 +1486,7 @@ if (EW_this.x_ing_fam_1 && !EW_hasValue(EW_this.x_ing_fam_1, "TEXT" )) {
 }
 if (EW_this.x_ing_fam_1 && !EW_checknumber(EW_this.x_ing_fam_1.value)) {
 	if (!EW_onError(EW_this, EW_this.x_ing_fam_1, "TEXT", "Formato de numero incorrecto, verifique por favor- ing fam 1"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_ing_fam_2 && !EW_hasValue(EW_this.x_ing_fam_2, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_ing_fam_2, "TEXT", "Por favor introduzca el campo requerido - ing fam 2"))
@@ -1481,7 +1494,7 @@ if (EW_this.x_ing_fam_2 && !EW_hasValue(EW_this.x_ing_fam_2, "TEXT" )) {
 }
 if (EW_this.x_ing_fam_2 && !EW_checknumber(EW_this.x_ing_fam_2.value)) {
 	if (!EW_onError(EW_this, EW_this.x_ing_fam_2, "TEXT", "Formato de numero incorrecto, verifique por favor- ing fam 2"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_ing_fam_deuda_1 && !EW_hasValue(EW_this.x_ing_fam_deuda_1, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_ing_fam_deuda_1, "TEXT", "Por favor introduzca el campo requerido - ing fam deuda 1"))
@@ -1489,7 +1502,7 @@ if (EW_this.x_ing_fam_deuda_1 && !EW_hasValue(EW_this.x_ing_fam_deuda_1, "TEXT" 
 }
 if (EW_this.x_ing_fam_deuda_1 && !EW_checknumber(EW_this.x_ing_fam_deuda_1.value)) {
 	if (!EW_onError(EW_this, EW_this.x_ing_fam_deuda_1, "TEXT", "Formato de numero incorrecto, verifique por favor- ing fam deuda 1"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_ing_fam_deuda_2 && !EW_hasValue(EW_this.x_ing_fam_deuda_2, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_ing_fam_deuda_2, "TEXT", "Por favor introduzca el campo requerido - ing fam deuda 2"))
@@ -1497,7 +1510,7 @@ if (EW_this.x_ing_fam_deuda_2 && !EW_hasValue(EW_this.x_ing_fam_deuda_2, "TEXT" 
 }
 if (EW_this.x_ing_fam_deuda_2 && !EW_checknumber(EW_this.x_ing_fam_deuda_2.value)) {
 	if (!EW_onError(EW_this, EW_this.x_ing_fam_deuda_2, "TEXT", "Formato de numero incorrecto, verifique por favor- ing fam deuda 2"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_ing_fam_total && !EW_hasValue(EW_this.x_ing_fam_total, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_ing_fam_total, "TEXT", "Por favor introduzca el campo requerido - ing fam total"))
@@ -1505,7 +1518,7 @@ if (EW_this.x_ing_fam_total && !EW_hasValue(EW_this.x_ing_fam_total, "TEXT" )) {
 }
 if (EW_this.x_ing_fam_total && !EW_checknumber(EW_this.x_ing_fam_total.value)) {
 	if (!EW_onError(EW_this, EW_this.x_ing_fam_total, "TEXT", "Formato de numero incorrecto, verifique por favor- ing fam total"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_flujos_neg_ventas && !EW_hasValue(EW_this.x_flujos_neg_ventas, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_ventas, "TEXT", "Por favor introduzca el campo requerido - flujos neg ventas"))
@@ -1513,7 +1526,7 @@ if (EW_this.x_flujos_neg_ventas && !EW_hasValue(EW_this.x_flujos_neg_ventas, "TE
 }
 if (EW_this.x_flujos_neg_ventas && !EW_checknumber(EW_this.x_flujos_neg_ventas.value)) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_ventas, "TEXT", "Formato de numero incorrecto, verifique por favor- flujos neg ventas"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_flujos_neg_proveedor_1 && !EW_hasValue(EW_this.x_flujos_neg_proveedor_1, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_proveedor_1, "TEXT", "Por favor introduzca el campo requerido - flujos neg proveedor 1"))
@@ -1521,7 +1534,7 @@ if (EW_this.x_flujos_neg_proveedor_1 && !EW_hasValue(EW_this.x_flujos_neg_provee
 }
 if (EW_this.x_flujos_neg_proveedor_1 && !EW_checknumber(EW_this.x_flujos_neg_proveedor_1.value)) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_proveedor_1, "TEXT", "Formato de numero incorrecto, verifique por favor- flujos neg proveedor 1"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_flujos_neg_proveedor_2 && !EW_hasValue(EW_this.x_flujos_neg_proveedor_2, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_proveedor_2, "TEXT", "Por favor introduzca el campo requerido - flujos neg proveedor 2"))
@@ -1529,7 +1542,7 @@ if (EW_this.x_flujos_neg_proveedor_2 && !EW_hasValue(EW_this.x_flujos_neg_provee
 }
 if (EW_this.x_flujos_neg_proveedor_2 && !EW_checknumber(EW_this.x_flujos_neg_proveedor_2.value)) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_proveedor_2, "TEXT", "Formato de numero incorrecto, verifique por favor- flujos neg proveedor 2"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_flujos_neg_proveedor_3 && !EW_hasValue(EW_this.x_flujos_neg_proveedor_3, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_proveedor_3, "TEXT", "Por favor introduzca el campo requerido - flujos neg proveedor 3"))
@@ -1537,7 +1550,7 @@ if (EW_this.x_flujos_neg_proveedor_3 && !EW_hasValue(EW_this.x_flujos_neg_provee
 }
 if (EW_this.x_flujos_neg_proveedor_3 && !EW_checknumber(EW_this.x_flujos_neg_proveedor_3.value)) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_proveedor_3, "TEXT", "Formato de numero incorrecto, verifique por favor- flujos neg proveedor 3"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_flujos_neg_proveedor_4 && !EW_hasValue(EW_this.x_flujos_neg_proveedor_4, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_proveedor_4, "TEXT", "Por favor introduzca el campo requerido - flujos neg proveedor 4"))
@@ -1545,7 +1558,7 @@ if (EW_this.x_flujos_neg_proveedor_4 && !EW_hasValue(EW_this.x_flujos_neg_provee
 }
 if (EW_this.x_flujos_neg_proveedor_4 && !EW_checknumber(EW_this.x_flujos_neg_proveedor_4.value)) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_proveedor_4, "TEXT", "Formato de numero incorrecto, verifique por favor- flujos neg proveedor 4"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_flujos_neg_gasto_1 && !EW_hasValue(EW_this.x_flujos_neg_gasto_1, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_gasto_1, "TEXT", "Por favor introduzca el campo requerido - flujos neg gasto 1"))
@@ -1553,7 +1566,7 @@ if (EW_this.x_flujos_neg_gasto_1 && !EW_hasValue(EW_this.x_flujos_neg_gasto_1, "
 }
 if (EW_this.x_flujos_neg_gasto_1 && !EW_checknumber(EW_this.x_flujos_neg_gasto_1.value)) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_gasto_1, "TEXT", "Formato de numero incorrecto, verifique por favor- flujos neg gasto 1"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_flujos_neg_gasto_2 && !EW_hasValue(EW_this.x_flujos_neg_gasto_2, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_gasto_2, "TEXT", "Por favor introduzca el campo requerido - flujos neg gasto 2"))
@@ -1561,7 +1574,7 @@ if (EW_this.x_flujos_neg_gasto_2 && !EW_hasValue(EW_this.x_flujos_neg_gasto_2, "
 }
 if (EW_this.x_flujos_neg_gasto_2 && !EW_checknumber(EW_this.x_flujos_neg_gasto_2.value)) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_gasto_2, "TEXT", "Formato de numero incorrecto, verifique por favor- flujos neg gasto 2"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_flujos_neg_gasto_3 && !EW_hasValue(EW_this.x_flujos_neg_gasto_3, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_gasto_3, "TEXT", "Por favor introduzca el campo requerido - flujos neg gasto 3"))
@@ -1569,11 +1582,11 @@ if (EW_this.x_flujos_neg_gasto_3 && !EW_hasValue(EW_this.x_flujos_neg_gasto_3, "
 }
 if (EW_this.x_flujos_neg_gasto_3 && !EW_checknumber(EW_this.x_flujos_neg_gasto_3.value)) {
 	if (!EW_onError(EW_this, EW_this.x_flujos_neg_gasto_3, "TEXT", "Formato de numero incorrecto, verifique por favor- flujos neg gasto 3"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_ingreso_negocio && !EW_checknumber(EW_this.x_ingreso_negocio.value)) {
 	if (!EW_onError(EW_this, EW_this.x_ingreso_negocio, "TEXT", "Formato de numero incorrecto, verifique por favor- ingreso negocio"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_inv_neg_fija_valor_1 && !EW_hasValue(EW_this.x_inv_neg_fija_valor_1, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_fija_valor_1, "TEXT", "Por favor introduzca el campo requerido - inv neg fija valor 1"))
@@ -1581,7 +1594,7 @@ if (EW_this.x_inv_neg_fija_valor_1 && !EW_hasValue(EW_this.x_inv_neg_fija_valor_
 }
 if (EW_this.x_inv_neg_fija_valor_1 && !EW_checknumber(EW_this.x_inv_neg_fija_valor_1.value)) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_fija_valor_1, "TEXT", "Formato de numero incorrecto, verifique por favor- inv neg fija valor 1"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_inv_neg_fija_valor_2 && !EW_hasValue(EW_this.x_inv_neg_fija_valor_2, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_fija_valor_2, "TEXT", "Por favor introduzca el campo requerido - inv neg fija valor 2"))
@@ -1589,7 +1602,7 @@ if (EW_this.x_inv_neg_fija_valor_2 && !EW_hasValue(EW_this.x_inv_neg_fija_valor_
 }
 if (EW_this.x_inv_neg_fija_valor_2 && !EW_checknumber(EW_this.x_inv_neg_fija_valor_2.value)) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_fija_valor_2, "TEXT", "Formato de numero incorrecto, verifique por favor- inv neg fija valor 2"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_inv_neg_fija_valor_3 && !EW_hasValue(EW_this.x_inv_neg_fija_valor_3, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_fija_valor_3, "TEXT", "Por favor introduzca el campo requerido - inv neg fija valor 3"))
@@ -1597,7 +1610,7 @@ if (EW_this.x_inv_neg_fija_valor_3 && !EW_hasValue(EW_this.x_inv_neg_fija_valor_
 }
 if (EW_this.x_inv_neg_fija_valor_3 && !EW_checknumber(EW_this.x_inv_neg_fija_valor_3.value)) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_fija_valor_3, "TEXT", "Formato de numero incorrecto, verifique por favor- inv neg fija valor 3"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_inv_neg_fija_valor_4 && !EW_hasValue(EW_this.x_inv_neg_fija_valor_4, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_fija_valor_4, "TEXT", "Por favor introduzca el campo requerido - inv neg fija valor 4"))
@@ -1605,7 +1618,7 @@ if (EW_this.x_inv_neg_fija_valor_4 && !EW_hasValue(EW_this.x_inv_neg_fija_valor_
 }
 if (EW_this.x_inv_neg_fija_valor_4 && !EW_checknumber(EW_this.x_inv_neg_fija_valor_4.value)) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_fija_valor_4, "TEXT", "Formato de numero incorrecto, verifique por favor- inv neg fija valor 4"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_inv_neg_total_fija && !EW_hasValue(EW_this.x_inv_neg_total_fija, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_total_fija, "TEXT", "Por favor introduzca el campo requerido - inv neg total fija"))
@@ -1613,7 +1626,7 @@ if (EW_this.x_inv_neg_total_fija && !EW_hasValue(EW_this.x_inv_neg_total_fija, "
 }
 if (EW_this.x_inv_neg_total_fija && !EW_checknumber(EW_this.x_inv_neg_total_fija.value)) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_total_fija, "TEXT", "Formato de numero incorrecto, verifique por favor- inv neg total fija"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_inv_neg_var_valor_1 && !EW_hasValue(EW_this.x_inv_neg_var_valor_1, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_var_valor_1, "TEXT", "Por favor introduzca el campo requerido - inv neg var valor 1"))
@@ -1621,7 +1634,7 @@ if (EW_this.x_inv_neg_var_valor_1 && !EW_hasValue(EW_this.x_inv_neg_var_valor_1,
 }
 if (EW_this.x_inv_neg_var_valor_1 && !EW_checknumber(EW_this.x_inv_neg_var_valor_1.value)) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_var_valor_1, "TEXT", "Formato de numero incorrecto, verifique por favor- inv neg var valor 1"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_inv_neg_var_valor_2 && !EW_hasValue(EW_this.x_inv_neg_var_valor_2, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_var_valor_2, "TEXT", "Por favor introduzca el campo requerido - inv neg var valor 2"))
@@ -1629,7 +1642,7 @@ if (EW_this.x_inv_neg_var_valor_2 && !EW_hasValue(EW_this.x_inv_neg_var_valor_2,
 }
 if (EW_this.x_inv_neg_var_valor_2 && !EW_checknumber(EW_this.x_inv_neg_var_valor_2.value)) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_var_valor_2, "TEXT", "Formato de numero incorrecto, verifique por favor- inv neg var valor 2"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_inv_neg_var_valor_3 && !EW_hasValue(EW_this.x_inv_neg_var_valor_3, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_var_valor_3, "TEXT", "Por favor introduzca el campo requerido - inv neg var valor 3"))
@@ -1637,7 +1650,7 @@ if (EW_this.x_inv_neg_var_valor_3 && !EW_hasValue(EW_this.x_inv_neg_var_valor_3,
 }
 if (EW_this.x_inv_neg_var_valor_3 && !EW_checknumber(EW_this.x_inv_neg_var_valor_3.value)) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_var_valor_3, "TEXT", "Formato de numero incorrecto, verifique por favor- inv neg var valor 3"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_inv_neg_var_valor_4 && !EW_hasValue(EW_this.x_inv_neg_var_valor_4, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_var_valor_4, "TEXT", "Por favor introduzca el campo requerido - inv neg var valor 4"))
@@ -1645,7 +1658,7 @@ if (EW_this.x_inv_neg_var_valor_4 && !EW_hasValue(EW_this.x_inv_neg_var_valor_4,
 }
 if (EW_this.x_inv_neg_var_valor_4 && !EW_checknumber(EW_this.x_inv_neg_var_valor_4.value)) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_var_valor_4, "TEXT", "Formato de numero incorrecto, verifique por favor- inv neg var valor 4"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_inv_neg_total_var && !EW_hasValue(EW_this.x_inv_neg_total_var, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_total_var, "TEXT", "Por favor introduzca el campo requerido - inv neg total var"))
@@ -1653,7 +1666,7 @@ if (EW_this.x_inv_neg_total_var && !EW_hasValue(EW_this.x_inv_neg_total_var, "TE
 }
 if (EW_this.x_inv_neg_total_var && !EW_checknumber(EW_this.x_inv_neg_total_var.value)) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_total_var, "TEXT", "Formato de numero incorrecto, verifique por favor- inv neg total var"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_inv_neg_activos_totales && !EW_hasValue(EW_this.x_inv_neg_activos_totales, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_activos_totales, "TEXT", "Por favor introduzca el campo requerido - inv neg activos totales"))
@@ -1661,7 +1674,7 @@ if (EW_this.x_inv_neg_activos_totales && !EW_hasValue(EW_this.x_inv_neg_activos_
 }
 if (EW_this.x_inv_neg_activos_totales && !EW_checknumber(EW_this.x_inv_neg_activos_totales.value)) {
 	if (!EW_onError(EW_this, EW_this.x_inv_neg_activos_totales, "TEXT", "Formato de numero incorrecto, verifique por favor- inv neg activos totales"))
-		validada = false; 
+		validada = false;
 }
 if (EW_this.x_fecha && !EW_hasValue(EW_this.x_fecha, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_fecha, "TEXT", "Por favor introduzca el campo requerido - fecha"))
@@ -1669,7 +1682,7 @@ if (EW_this.x_fecha && !EW_hasValue(EW_this.x_fecha, "TEXT" )) {
 }
 if (EW_this.x_fecha && !EW_checkdate(EW_this.x_fecha.value)) {
 	//if (!EW_onError(EW_this, EW_this.x_fecha, "TEXT", "Formato de fecha incorrecto, verifique por favor., format = aaaa/mm/dd - fecha"))
-		validada = false; 
+		validada = false;
 }*/
 
 
@@ -1684,16 +1697,16 @@ if(validada == true){
 
 function valorMax(elemento){
 				//verifaca si le valor de campo para numero de pagos es correcto de ser un valor entre 2 hasta 88
-				
+
 				numer_pag = document.getElementById("x_plazo_id").value;
 				 if((numer_pag < 2 ) ||(numer_pag > 104)){
 					 // el numero de pagos es incorrecto deben ser minimo 2 maximo 88
-					 alert("El numero de pago es incorreto verifique por favor");					 
-					 
+					 alert("El numero de pago es incorreto verifique por favor");
+
 					 }
-				
-				
-				
+
+
+
 				}
 
 
@@ -1729,19 +1742,19 @@ if(!empty($x_mensaje)){exit();
 
 <?php if($x_win == 1){ ?>
 <a href="cuentas_view.php?key=<?php echo $x_cliente_id; ?>">Regresar a los datos del Cliente</a>
-<?php 
+<?php
 }
 if($x_win == 2){
 	$sSqlWrk = "
-	SELECT 
+	SELECT
 		crm_caso_id
-	FROM 
+	FROM
 		crm_caso
-	WHERE 
+	WHERE
 		solicitud_id = ".$x_solicitud_id."
 		and crm_caso_tipo_id = 1
 	";
-	
+
 	$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 	$datawrk = phpmkr_fetch_array($rswrk);
 	$x_crm_caso_id = $datawrk["crm_caso_id"];
@@ -1749,7 +1762,7 @@ if($x_win == 2){
 ?>
 
 <a href="casos_view.php?key=<?php echo $x_crm_caso_id; ?>">Regresar a los datos del Caso</a>
-<?php 
+<?php
 }
 if($x_win == 3){
 ?>
@@ -1769,10 +1782,10 @@ if($x_win == 3){
 <input type="hidden" name="x_gasto_id" value="<?php echo $x_gasto_id; ?>" />
 <input type="hidden" name="x_ingreso_aval_id" value="<?php echo $x_ingreso_aval_id; ?>" />
 <input type="hidden" name="x_gasto_aval_id" value="<?php echo $x_gasto_aval_id; ?>" />
- 
+
 
 <table width="700" border="0" align="center" cellpadding="0" cellspacing="0">
-  
+
   <tr>
     <td width="141">&nbsp;</td>
     <td width="433">&nbsp;</td>
@@ -1786,11 +1799,11 @@ if($x_win == 3){
   <tr>
     <td colspan="3"></td>
     </tr>
-  
+
   <tr>
     <td colspan="3" align="left" valign="top"><table width="674" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td colspan="5" class="texto_normal">&nbsp;       
+        <td colspan="5" class="texto_normal">&nbsp;
           </td>
       </tr>
       <tr>
@@ -1798,7 +1811,7 @@ if($x_win == 3){
         <td colspan="2">&nbsp;</td>
         <td class="texto_normal">&nbsp;</td>
         <td align="center" valign="middle">&nbsp;
-       
+
         </td>
       </tr>
       <tr>
@@ -1808,7 +1821,7 @@ if($x_win == 3){
         </b></div></td>
         <td class="texto_normal"><div align="right">Status:</div></td>
         <td>
-        
+
             <?php
 
 		if($x_solicitud_status_id < 5){
@@ -1818,9 +1831,9 @@ if($x_win == 3){
 		if($_SESSION["crm_UserRolID"] == 7) {
 			$sSqlWrk = "SELECT solicitud_status_id, descripcion FROM solicitud_status Where  solicitud_status_id = ".@$x_solicitud_status_id;
 		}else{
-			$sSqlWrk = "SELECT `solicitud_status_id`, `descripcion` FROM `solicitud_status`";		
+			$sSqlWrk = "SELECT `solicitud_status_id`, `descripcion` FROM `solicitud_status`";
 		}
-		
+
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -1840,18 +1853,18 @@ if($x_win == 3){
 			$sSqlWrk = "SELECT descripcion FROM solicitud_status Where solicitud_status_id = ".$x_solicitud_status_id;
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 			$datawrk = phpmkr_fetch_array($rswrk);
-			echo $datawrk["descripcion"]; 			
-			@phpmkr_free_result($rswrk);			
-			
+			echo $datawrk["descripcion"];
+			@phpmkr_free_result($rswrk);
+
 ?>
 			<input type="hidden" name="x_solicitud_status_id" value="<?php echo $x_solicitud_status_id; ?>"  />
-            
+
 <?php
-		
+
 		}
 
-		?>        
-        
+		?>
+
         </td>
       </tr>
       <tr>
@@ -1871,7 +1884,7 @@ if($x_win == 3){
 		if($_SESSION["crm_UserRolID"] == 7) {
 			$sSqlWrk = "SELECT promotor_id, nombre_completo FROM promotor Where promotor_id = ".$_SESSION["crm_PromotorID"];
 		}else{
-			$sSqlWrk = "SELECT `promotor_id`, `nombre_completo` FROM `promotor`";		
+			$sSqlWrk = "SELECT `promotor_id`, `nombre_completo` FROM `promotor`";
 		}
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
@@ -1899,7 +1912,7 @@ if($x_win == 3){
 		if($_SESSION["crm_UserRolID"] == 7) {
 			$sSqlWrk = "SELECT `vendedor_id`, `nombre_completo` FROM `vendedor`";
 		}else{
-			$sSqlWrk = "SELECT `vendedor_id`, `nombre_completo` FROM `vendedor`";		
+			$sSqlWrk = "SELECT `vendedor_id`, `nombre_completo` FROM `vendedor`";
 		}
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
@@ -2017,14 +2030,14 @@ if($x_win == 3){
       </tr>
     </table></td>
   </tr>
-  
+
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr></table>
-  
-  
+
+
   <!--aqui inserto el formulario----.................................................................................................-->
   <table width="700" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
@@ -2104,16 +2117,16 @@ if($x_win == 3){
               <input name="x_fecha_nacimiento" type="text" id="x_fecha_nacimiento" value="<?php echo FormatDateTime(@$x_tit_fecha_nac,7); ?>" size="25" readonly="readonly" />
               &nbsp;<img src="../images/ew_calendar.gif" id="cx_fecha_nacimiento" onClick="javascript: Calendar.setup(
             {
-            inputField : 'x_fecha_nacimiento', 
+            inputField : 'x_fecha_nacimiento',
             ifFormat : '%d/%m/%Y',
-            button : 'cx_fecha_nacimiento' 
+            button : 'cx_fecha_nacimiento'
             }
             );" style="cursor:pointer;cursor:hand;" />
               </span></td>
-      <td width="105">Sexo</td>
+      <td width="105">Genero</td>
       <td width="103"><label>
         <select name="x_sexo" id="x_sexo" disabled="disabled" >
-        <option value="1" <?php if($x_sexo == 1){echo("SELECTED");} ?> >Masculino</option> 
+        <option value="1" <?php if($x_sexo == 1){echo("SELECTED");} ?> >Masculino</option>
 		<option value="2" <?php if($x_sexo == 2){echo("SELECTED");} ?>>Femenino</option>
         </select>
       </label></td>
@@ -2156,9 +2169,9 @@ if($x_win == 3){
       <td colspan="6"><input type="text" name="x_fecha_ini_act_prod" id="x_fecha_ini_act_prod" value="<?php echo FormatDateTime(@$x_fecha_ini_act_prod,7);?>"   maxlength="100" size="30" readonly="readonly" />
       &nbsp;<img src="../images/ew_calendar.gif" id="cxfecha_ini_act_prod" onclick="javascript: Calendar.setup(
             {
-            inputField : 'x_fecha_ini_act_prod', 
-           ifFormat : '%d/%m/%Y', 
-            button : 'cxfecha_ini_act_prod' 
+            inputField : 'x_fecha_ini_act_prod',
+           ifFormat : '%d/%m/%Y',
+            button : 'cxfecha_ini_act_prod'
             }
             );" style="cursor:pointer;cursor:hand;" /></td>
     </tr>
@@ -2264,10 +2277,10 @@ if($x_win == 3){
 		?>
       </td>
       <td><div align="left"><span class="texto_normal">
-              
+
         </span><span class="texto_normal">
         <div id="txtHint1" class="texto_normal">
-        Del/Mun:
+        Alcaldia:
         <?php
 		if($x_entidad_domicilio > 0) {
 		$x_delegacion_idList = "<select name=\"x_delegacion_id\" class=\"texto_normal\" disabled=\"disabled\">";
@@ -2321,10 +2334,10 @@ if($x_win == 3){
 		$x_vivienda_tipo_idList .= "</select>";
 		echo $x_vivienda_tipo_idList;
 		?>
-      
-      
-      
-      
+
+
+
+
       </td>
       <td>Antiguedad (a&ntilde;os)</td>
       <td colspan="5"><input type="text" name="x_antiguedad" id="x_antiguedad"  value="<?php echo htmlspecialchars(@$x_antiguedad) ?>" maxlength="10" size="20" readonly="readonly" /></td>
@@ -2401,7 +2414,7 @@ if($x_win == 3){
     <tr>
       <td colspan="11" id="tableHead"><table width="100%" border="0">
   <tr>
-    <td colspan="4"  bgcolor="#CCFFCC">Telefonos fijos <?php if($contador_telefono < 1){$contador_telefono = 1;}?> 
+    <td colspan="4"  bgcolor="#CCFFCC">Telefonos fijos <?php if($contador_telefono < 1){$contador_telefono = 1;}?>
       <input type="hidden" name="contador_telefono"  id="contador_telefono" value="<?php echo $contador_telefono ?>"/> </td>
     <td width="58%" colspan="6"  bgcolor="#87CEEB">Celulares<?php if($contador_celular < 1) {$contador_celular = 1;}?> <input type="hidden" name="contador_celular" id="contador_celular" value="<?php echo $contador_celular;?>" /></td>
     </tr> </table>
@@ -2446,7 +2459,7 @@ if($x_win == 3){
 		@phpmkr_free_result($rswrk);
 		$x_entidad_idList .= "</select>";
 		echo $x_entidad_idList;
-		?> 
+		?>
 		</td>
         <td width="21%">Comentario</td>
         <td width="37%"><input type="text" name="x_comentario_celular_1" value="<?php echo $x_comentario_celular_1;?>"  size="30" maxlength="250"  readonly="readonly" /></td>
@@ -2470,7 +2483,7 @@ if($x_win == 3){
         <!--<input name="x_comentario_casa_2'" type="text" value="<?php echo $x_comentario_casa_2;?>" size="30" maxlength="250" />--></td>
       </tr>
     </table>
-    <?php }?>  
+    <?php }?>
     </div></td>
     <td><div id="telefono_celular_2">
     <?php if(!empty($x_telefono_celular_2)) {?>
@@ -2504,8 +2517,8 @@ if($x_win == 3){
         <td width="37%"><input type="text" name="x_comentario_celular_2"  value="<?php echo $x_comentario_celular_2;?>"size="30" maxlength="250" readonly="readonly" /></td>
       </tr>
     </table>
-    <?php }?>    
-    
+    <?php }?>
+
     </div></td>
   </tr>
   <tr>
@@ -2525,8 +2538,8 @@ if($x_win == 3){
         <!--<input name="x_comentario_casa_3'" type="text" value="<?php x_comentario_casa_3;?>" size="30" maxlength="250" />--></td>
       </tr>
     </table>
-    <?php }?> 
-    
+    <?php }?>
+
     </div></td>
     <td><div id="telefono_celular_3">
     <?php if(!empty($x_telefono_celular_3)) {?>
@@ -2559,8 +2572,8 @@ if($x_win == 3){
         <td width="37%"><input type="text" name="x_comentario_celular_3"  value="<?php echo $x_comentario_celular_3;?>"size="30" maxlength="250" readonly="readonly" /></td>
       </tr>
     </table>
-    <?php }?>    
-    
+    <?php }?>
+
     </div></td>
   </tr>
   <tr>
@@ -2580,7 +2593,7 @@ if($x_win == 3){
         <!--<input name="x_comentario_casa_4'" type="text" value="<?php x_comentario_casa_4;?>" size="30" maxlength="250" />--></td>
       </tr>
     </table>
-    <?php }?> 
+    <?php }?>
     </div></td>
     <td><div id="telefono_celular_4">
     <?php if(!empty($x_telefono_celular_4)) {?>
@@ -2613,7 +2626,7 @@ if($x_win == 3){
         <td width="37%"><input type="text" name="x_comentario_celular_4"  value="<?php echo $x_comentario_celular_4;?>"size="30" maxlength="250" /></td>
       </tr>
     </table>
-    <?php }?>    
+    <?php }?>
     </div></td>
   </tr><tr>
     <td> <div id="x_telefono_casa_5">
@@ -2632,7 +2645,7 @@ if($x_win == 3){
         <!--<input name="x_comentario_casa_5'" type="text" value="<?php x_comentario_casa_5;?>" size="30" maxlength="250" />--></td>
       </tr>
     </table>
-    <?php }?> 
+    <?php }?>
     </div></td>
     <td><div id="telefono_celular_5">
     <?php if(!empty($x_telefono_celular_5)) {?>
@@ -2665,7 +2678,7 @@ if($x_win == 3){
         <td width="37%"><input type="text" name="x_comentario_celular_5"  value="<?php echo $x_comentario_celular_5;?>"size="30" maxlength="250" /></td>
       </tr>
     </table>
-    <?php }?>    
+    <?php }?>
     </div></td>
   </tr><tr>
     <td> <div id="x_telefono_casa_6">
@@ -2684,7 +2697,7 @@ if($x_win == 3){
         <!--<input name="x_comentario_casa_6'" type="text" value="<?php x_comentario_casa_6;?>" size="30" maxlength="250" />--></td>
       </tr>
     </table>
-    <?php }?> 
+    <?php }?>
     </div></td>
     <td><div id="telefono_celular_6">
     <?php if(!empty($x_telefono_celular_6)) {?>
@@ -2717,7 +2730,7 @@ if($x_win == 3){
         <td width="37%"><input type="text" name="x_comentario_celular_6"  value="<?php echo $x_comentario_celular_6;?>"size="30" maxlength="250" /></td>
       </tr>
     </table>
-    <?php }?>    
+    <?php }?>
     </div></td>
   </tr><tr>
     <td> <div id="x_telefono_casa_7">
@@ -2736,7 +2749,7 @@ if($x_win == 3){
         <!--<input name="x_comentario_casa_7'" type="text" value="<?php x_comentario_casa_7;?>" size="30" maxlength="250" />--></td>
       </tr>
     </table>
-    <?php }?> 
+    <?php }?>
     </div></td>
     <td><div id="telefono_celular_7">
     <?php if(!empty($x_telefono_celular_7)) {?>
@@ -2769,7 +2782,7 @@ if($x_win == 3){
         <td width="37%"><input type="text" name="x_comentario_celular_7"  value="<?php echo $x_comentario_celular_7;?>"size="30" maxlength="250" /></td>
       </tr>
     </table>
-    <?php }?>    
+    <?php }?>
     </div></td>
   </tr><tr>
     <td> <div id="x_telefono_casa_8">
@@ -2788,7 +2801,7 @@ if($x_win == 3){
         <!--<input name="x_comentario_casa_8'" type="text" value="<?php x_comentario_casa_8;?>" size="30" maxlength="250" />--></td>
       </tr>
     </table>
-    <?php }?> 
+    <?php }?>
     </div></td>
     <td><div id="telefono_celular_8">
     <?php if(!empty($x_telefono_celular_8)) {?>
@@ -2821,7 +2834,7 @@ if($x_win == 3){
         <td width="37%"><input type="text" name="x_comentario_celular_8"  value="<?php echo $x_comentario_celular_8;?>"size="30" maxlength="250" /></td>
       </tr>
     </table>
-    <?php }?>    
+    <?php }?>
     </div></td>
   </tr><tr>
     <td> <div id="x_telefono_casa_9">
@@ -2840,7 +2853,7 @@ if($x_win == 3){
         <!--<input name="x_comentario_casa_9'" type="text" value="<?php x_comentario_casa_9;?>" size="30" maxlength="250" />--></td>
       </tr>
     </table>
-    <?php }?> 
+    <?php }?>
     </div></td>
     <td><div id="telefono_celular_9">
     <?php if(!empty($x_telefono_celular_9)) {?>
@@ -2873,7 +2886,7 @@ if($x_win == 3){
         <td width="37%"><input type="text" name="x_comentario_celular_9"  value="<?php echo $x_comentario_celular_9;?>"size="30" maxlength="250" /></td>
       </tr>
     </table>
-    <?php }?>    
+    <?php }?>
     </div></td>
   </tr><tr>
     <td> <div id="x_telefono_casa_10">
@@ -2892,7 +2905,7 @@ if($x_win == 3){
         <!--<input name="x_comentario_casa_10'" type="text" value="<?php x_comentario_casa_10;?>" size="30" maxlength="250" />--></td>
       </tr>
     </table>
-    <?php }?> 
+    <?php }?>
     </div></td>
     <td><div id="telefono_celular_10">
     <?php if(!empty($x_telefono_celular_10)) {?>
@@ -2925,7 +2938,7 @@ if($x_win == 3){
         <td width="37%"><input type="text" name="x_comentario_celular_10"  value="<?php echo $x_comentario_celular_10;?>"size="30" maxlength="250" /></td>
       </tr>
     </table>
-    <?php }?>    
+    <?php }?>
     </div></td>
   </tr><tr>
     <td> <div id="x_telefono_casa_11">
@@ -2934,15 +2947,15 @@ if($x_win == 3){
     </div></td>
   </tr>
 </table>
-    
-    
-    
+
+
+
     </td></tr>
     <tr>
       <td colspan="11"  align="center" valign="top" bgcolor="#FFE6E6" class="texto_normal_bold">Datos del Negocio</td>
     </tr>
      <tr>
-      <td colspan="11" id="tableHead"><strong>Mismos mapa que el domicilio 
+      <td colspan="11" id="tableHead"><strong>Mismos mapa que el domicilio
           <input type="checkbox" name="x_mismos_datos_domiclio" <?php echo $x_checked;?>  onchange="llenaDatosNegocio();" /></strong></td>
     </tr>
     <tr>
@@ -3031,17 +3044,17 @@ if($x_win == 3){
 		$x_entidad_idList2 .= "</select>";
 		echo $x_entidad_idList2;
 		?>
-      
-      
-      
-      
+
+
+
+
       </td>
       <td><div align="left"><span class="texto_normal">
 		<input type="hidden" name="x_delegacion_id_temp" value="" />
 
         </span><span class="texto_normal">
-        <div id="txtHint2" class="texto_normal">        
-		Del/Mun:        
+        <div id="txtHint2" class="texto_normal">
+		Alcaldia:
         <?php
 		if($x_entidad_negocio > 0 ){
 		$x_delegacion_idList = "<select name=\"x_delegacion_id2\" class=\"texto_normal\" disabled=\"disabled\" >";
@@ -3095,11 +3108,11 @@ if($x_win == 3){
 		$x_vivienda_tipo_idList .= "</select>";
 		echo $x_vivienda_tipo_idList;
 		?>
-      
-      
-      
-      
-      
+
+
+
+
+
       </td>
       <td>Antiguedad (a&ntilde;os)</td>
       <td colspan="5"><input type="text" name="x_antiguedad_negocio" id="x_antiguedad_negocio"  value="<?php echo htmlspecialchars(@$x_antiguedad_negocio) ?>" maxlength="10" size="20" readonly="readonly" /></td>
@@ -3142,7 +3155,7 @@ if($x_win == 3){
     <tr>
       <td colspan="11"></td>
   </tr></table>
-   
+
     <table width="90%">
       <tr>
       <td colspan="11" id="tableHead"><p></td>
@@ -3183,13 +3196,13 @@ if($x_win == 3){
 		$x_parentesco_tipo_idList .= "</select>";
 		echo $x_parentesco_tipo_idList;
 		?>
-      
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+
+
       </td>
       </tr>
     <tr>
@@ -3221,9 +3234,9 @@ if($x_win == 3){
 		$x_parentesco_tipo_idList .= "</select>";
 		echo $x_parentesco_tipo_idList;
 		?>
-      
-      
-      
+
+
+
       </td>
       </tr>
     <tr>
@@ -3255,9 +3268,9 @@ if($x_win == 3){
 		$x_parentesco_tipo_idList .= "</select>";
 		echo $x_parentesco_tipo_idList;
 		?>
-      
-      
-      
+
+
+
       </td>
       </tr>
     <tr>
@@ -3290,10 +3303,10 @@ if($x_win == 3){
 		$x_parentesco_tipo_idList .= "</select>";
 		echo $x_parentesco_tipo_idList;
 		?>
-      
-      
-      
-      
+
+
+
+
       </td>
       </tr>
     <tr>
@@ -3309,12 +3322,12 @@ if($x_win == 3){
       <td width="3">&nbsp;</td>
       <td width="48">&nbsp;</td>
     </tr>
-    
-</table>
-   
-    
 
-  
+</table>
+
+
+
+
 
 
 
@@ -3488,7 +3501,7 @@ if($x_win == 3){
         <td width="127">&nbsp;</td>
         <td colspan="10">&nbsp;</td>
       </tr>
- 
+
         <tr></tr>
         <tr>
           <td colspan="19" id="tableHead2"><p></p></td>
@@ -3575,7 +3588,7 @@ if($x_win == 3){
         <tr>
           <td colspan="19" id="tableHead2"><p></p></td>
         </tr>
-       
+
       </table>
       <table width="870" border="0" align="center" cellpadding="0" cellspacing="0">
        <tr>
@@ -3616,9 +3629,9 @@ if($x_win == 3){
     <td>&nbsp;</td>
     <td align="left" valign="top">
 	  <div align="center">
-      
-       <?php if($x_solicitud_status_id == 2 and ($_SESSION["php_project_esf_status_UserRolID"] == 12 ||  $_SESSION["php_project_esf_status_UserRolID"] == 1||  $_SESSION["php_project_esf_status_UserRolID"] == 2)){?> 
-           
+
+       <?php if($x_solicitud_status_id == 2 and ($_SESSION["php_project_esf_status_UserRolID"] == 12 ||  $_SESSION["php_project_esf_status_UserRolID"] == 1||  $_SESSION["php_project_esf_status_UserRolID"] == 2)){?>
+
           <?php
 		$x_entidad_idList = "<select name=\"x_comite_credito_explicacion_id\"  id=\"x_comite_credito_explicacion_id\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
@@ -3638,13 +3651,13 @@ if($x_win == 3){
 		@phpmkr_free_result($rswrk);
 		$x_entidad_idList .= "</select>";
 		echo $x_entidad_idList;
-		?> 
-           
-           
-           
-	    
-        <?php }else{?>        
-        
+		?>
+
+
+
+
+        <?php }else{?>
+
                <?php
 		$x_entidad_idList = "<select name=\"x_comite_credito_explicacion_id\" $x_readonly2 id=\"x_comite_credito_explicacion_id\"  >";
 		$x_entidad_idList .= "<option value=''>Seleccione</option>";
@@ -3664,8 +3677,8 @@ if($x_win == 3){
 		@phpmkr_free_result($rswrk);
 		$x_entidad_idList .= "</select>";
 		echo $x_entidad_idList;
-		?> 
-        
+		?>
+
          <?php } ?>
 	      </div></td>
     <td>&nbsp;</td>
@@ -3687,13 +3700,13 @@ if($x_win == 3){
     <td>&nbsp;</td>
     <td align="left" valign="top">
 	  <div align="center">
-           
+
 	    <textarea name="x_comentario_comite" cols="100" rows="5" <?php echo $x_readonly;?> ><?php echo $x_comentario_comite;?> </textarea>
-        
+
 	      </div></td>
     <td>&nbsp;</td>
   </tr>
-  
+
     <tr>
     <td colspan="3" bgcolor="#FFE6E6"><div align="center"><span class="texto_normal_bold"><?php if(($x_solicitud_status_id == 4 || $x_solicitud_status_id == 2 ) and ($_SESSION["php_project_esf_status_UserRolID"] == 2 ||  $_SESSION["php_project_esf_status_UserRolID"] == 1||  $_SESSION["php_project_esf_status_UserRolID"] == 4 ||  $_SESSION["php_project_esf_status_UserRolID"] == 13)){?> Comentarios del Comite de Cr&eacute;dito Interno<?php }?></span></div></td>
     </tr>
@@ -3706,12 +3719,12 @@ if($x_win == 3){
     <td>&nbsp;</td>
     <td align="left" valign="top">
 	  <div align="center">
-       <?php if(($x_solicitud_status_id == 4 || $x_solicitud_status_id == 2 )  and ($_SESSION["php_project_esf_status_UserRolID"] == 2 ||  $_SESSION["php_project_esf_status_UserRolID"] == 1 ||  $_SESSION["php_project_esf_status_UserRolID"] == 4  ||  $_SESSION["php_project_esf_status_UserRolID"] == 13 )){?>     
+       <?php if(($x_solicitud_status_id == 4 || $x_solicitud_status_id == 2 )  and ($_SESSION["php_project_esf_status_UserRolID"] == 2 ||  $_SESSION["php_project_esf_status_UserRolID"] == 1 ||  $_SESSION["php_project_esf_status_UserRolID"] == 4  ||  $_SESSION["php_project_esf_status_UserRolID"] == 13 )){?>
 	    <textarea name="x_comentario_comite_interno" cols="100" rows="5" <?php echo $x_readonly;?> ><?php echo $x_comentario_comite_interno; ?></textarea>
-        
-        <?php }else{?>        
+
+        <?php }else{?>
          &nbsp;
-         
+
          <?php } ?>
 	      </div></td>
     <td>&nbsp;</td>
@@ -3723,15 +3736,15 @@ if($x_win == 3){
     <td>&nbsp;</td>
     <td><input type="hidden" name="x_latitud" id="x_latitud" value="<?php echo $x_latitud+0;?>" />
     	<input type="hidden" name="x_longitud" id="x_longitud" value="<?php echo $x_longitud+0; ?>" />
-    
+
     </td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <td>&nbsp;</td>
-    <td><div> 
+    <td><div>
    Direcci&oacute;n : <input id="address" type="textbox" value="" size="60" >
-    <input type="button" value="Buscar" onclick="codeAddress();" />    
+    <input type="button" value="Buscar" onclick="codeAddress();" />
     <input onClick="mostrarOriginal();" type=button value="Mostrar original"/>
     <input onClick="deleteOverlays();" type=button value="Limpiar"/>
     </div> </td>
@@ -3744,9 +3757,9 @@ if($x_win == 3){
     </td>
     <td>&nbsp;</td>
   </tr>
-    
-   
-   
+
+
+
     <tr><td colspan="3"><div id="mapaNegocio"><table width="100%">
     <tr>
     <td colspan="3" bgcolor="#FFE6E6"><div align="center">Direcci&oacute;n en mapa negocio</div></td>
@@ -3755,15 +3768,15 @@ if($x_win == 3){
     <td>&nbsp;</td>
     <td><input type="hidden" name="x_latitud2" id="x_latitud2" value="<?php echo $x_latitud2+0;?>" />
     	<input type="hidden" name="x_longitud2" id="x_longitud2" value="<?php echo $x_longitud2+0; ?>" />
-    
+
     </td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <td>&nbsp;</td>
-    <td><div> 
+    <td><div>
    Direcci&oacute;n : <input id="address2" type="textbox" value="" size="60" >
-    <input type="button" value="Buscar" onclick="codeAddress2();" />    
+    <input type="button" value="Buscar" onclick="codeAddress2();" />
     <input onClick="mostrarOriginal2();" type=button value="Mostrar original"/>
     <input onClick="deleteOverlays2();" type=button value="Limpiar"/>
     </div> </td>
@@ -3775,27 +3788,27 @@ if($x_win == 3){
     <input type="hidden" name="x_latlong2" id="x_latlong2" />
     </td>
     <td>&nbsp;</td>
-  </tr></table></div></td></tr> 
-      
-      
-      
+  </tr></table></div></td></tr>
+
+
+
       </table>
-  
-  
+
+
   <!-- aqui termina.....................................................................................................................-->
-  	
-	
-         
-          
-             
-            
-        
-            
-             
-             
-            
-     <table><tr><td>  
-     <?php if($_SESSION["crm_UserRolID"] < 4){ 
+
+
+
+
+
+
+
+
+
+
+
+     <table><tr><td>
+     <?php if($_SESSION["crm_UserRolID"] < 4){
 /*
 capacidad de pago mensual TITULAR (CPM)----------------------------------------------------------------
 
@@ -3807,49 +3820,49 @@ ingresos =  ingresos1 + ingresos2
 
 cpm = (ingresos + otros ingresos + ingresos familiares) - (personas dependientes * (700)  + credito hipotecario o renta(solicitar datos del arrendatario: nombre y telefono)
  + costos de vivienda(200) + tel(400))
- 
+
 capacidad de pago semanal (cps) = (cpm / 4) * .40
-  
+
 Esto solo lo ve el coordinador de credito.
 */
   		/*	$x_ventas_menusuales = ($x_ingresos_negocio != "") ? $x_ingresos_negocio : 0;
-  			$x_salario = ($x_salario_mensual != "") ? $x_salario_mensual : 0;			
-  			$x_otros_ing = ($x_otros_ingresos != "") ? $x_otros_ingresos : 0;			
-  			$x_ing_fam1 = ($x_ingresos_familiar_1 != "") ? $x_ingresos_familiar_1 : 0;						
-  			$x_ing_fam2 = ($x_ingresos_familiar_2 != "") ? $x_ingresos_familiar_2 : 0;									
+  			$x_salario = ($x_salario_mensual != "") ? $x_salario_mensual : 0;
+  			$x_otros_ing = ($x_otros_ingresos != "") ? $x_otros_ingresos : 0;
+  			$x_ing_fam1 = ($x_ingresos_familiar_1 != "") ? $x_ingresos_familiar_1 : 0;
+  			$x_ing_fam2 = ($x_ingresos_familiar_2 != "") ? $x_ingresos_familiar_2 : 0;
 
-  			$x_prov1 = ($x_gastos_prov1 != "") ? $x_gastos_prov1 : 0;          
-  			$x_prov2 = ($x_gastos_prov2 != "") ? $x_gastos_prov2 : 0;          
-  			$x_prov3 = ($x_gastos_prov3 != "") ? $x_gastos_prov3 : 0;          			
-  			$x_otrop = ($x_otro_prov != "") ? $x_otro_prov : 0;          						
-  			$x_empleados = ($x_gastos_empleados != "") ? $x_gastos_empleados : 0;          						
-  			$x_ren_neg = ($x_gastos_renta_negocio != "") ? $x_gastos_renta_negocio : 0;          			
-  			$x_ren_cas = ($x_gastos_renta_casa != "") ? $x_gastos_renta_casa : 0;          						
+  			$x_prov1 = ($x_gastos_prov1 != "") ? $x_gastos_prov1 : 0;
+  			$x_prov2 = ($x_gastos_prov2 != "") ? $x_gastos_prov2 : 0;
+  			$x_prov3 = ($x_gastos_prov3 != "") ? $x_gastos_prov3 : 0;
+  			$x_otrop = ($x_otro_prov != "") ? $x_otro_prov : 0;
+  			$x_empleados = ($x_gastos_empleados != "") ? $x_gastos_empleados : 0;
+  			$x_ren_neg = ($x_gastos_renta_negocio != "") ? $x_gastos_renta_negocio : 0;
+  			$x_ren_cas = ($x_gastos_renta_casa != "") ? $x_gastos_renta_casa : 0;
   			$x_hipo = ($x_gastos_credito_hipotecario != "") ? $x_gastos_credito_hipotecario : 0;
-  			$x_gas_otros = ($x_gastos_otros != "") ? $x_gastos_otros : 0;          									
-	
+  			$x_gas_otros = ($x_gastos_otros != "") ? $x_gastos_otros : 0;
+
 			$x_dep = ($x_numero_hijos_dep != "") ? $x_numero_hijos_dep : 0;
 			$x_ren = $x_ren_cas + $x_hipo;*/
-			
+
 
 			/*$x_ingresos1 = ($x_ventas_menusuales - ($x_prov1 + $x_prov2 + $x_prov3 + $x_otrop + $x_gas_otros + $x_empleados + $x_ren_neg));
-			
+
 			$x_ingresos2 = $x_salario;
 
 			$x_ingresos = $x_ingresos1 + $x_ingresos2;
 
 			$x_cpm = (($x_ingresos + $x_otros_ing + $x_ing_fam1 + $x_ing_fam2) - (($x_dep * 700) + $x_ren + 200 + 300));
-			
+
 			$x_cps = ($x_cpm / 4) * .40;*/
-			
-			
+
+
 			$x_ing_fam_total = ($x_ing_fam_total != "") ? $x_ing_fam_total : 0;
 			$x_ingreso_negocio = ($x_ingreso_negocio != "") ? $x_ingreso_negocio : 0;
 			$x_renta_mensula_domicilio = ($x_renta_mensula_domicilio != "") ? $x_renta_mensula_domicilio : 0;
 			$x_renta_mensual = ($x_renta_mensual != "") ? $x_renta_mensual : 0;
 			$x_dependientes = ($x_dependientes != "") ? $x_dependientes : 0;
-			
-			
+
+
 			$x_ingresos = $x_ing_fam_total + $x_ingreso_negocio;
 			$x_rentas = $x_renta_mensula_domicilio + $x_renta_mensual +200 +300;
 			$x_gasto_hijos = ($x_dependientes * 700);
@@ -3857,12 +3870,12 @@ Esto solo lo ve el coordinador de credito.
 
 			$x_cpm = $x_ingresos - ($x_rentas+ $x_gasto_hijos );
 			$x_cps = ($x_cpm / 4) * .40;
-			
-			
+
+
 
 			echo "<b>
 			Capacidad de Pago Mensual: ".FormatNumber(@$x_cpm,0,2,0,1)."<br>
-			Capacidad de Pago Semanal: ".FormatNumber(@$x_cps,0,2,0,1)."		
+			Capacidad de Pago Semanal: ".FormatNumber(@$x_cps,0,2,0,1)."
 			</b>
 			";
 
@@ -3879,51 +3892,51 @@ ingresos =  ingresos1 + ingresos2
 
 cpm = (ingresos + otros ingresos + ingresos familiares) - (personas dependientes * (700)  + credito hipotecario o renta(solicitar datos del arrendatario: nombre y telefono)
  + costos de vivienda(200) + tel(400))
- 
+
 capacidad de pago semanal (cps) = (cpm / 4) * .40
-  
+
 Esto solo lo ve el coordinador de credito.
 */
   			$x_ventas_menusuales = ($x_ingresos_mensuales != "") ? $x_ingresos_mensuales : 0;
-//  			$x_salario = ($x_salario_mensual != "") ? $x_salario_mensual : 0;			
-  			$x_otros_ing = ($x_otros_ingresos_aval != "") ? $x_otros_ingresos_aval : 0;			
-  			$x_ing_fam1 = ($x_ingresos_familiar_1_aval != "") ? $x_ingresos_familiar_1_aval : 0;						
-  			$x_ing_fam2 = ($x_ingresos_familiar_2_aval != "") ? $x_ingresos_familiar_2_aval : 0;									
+//  			$x_salario = ($x_salario_mensual != "") ? $x_salario_mensual : 0;
+  			$x_otros_ing = ($x_otros_ingresos_aval != "") ? $x_otros_ingresos_aval : 0;
+  			$x_ing_fam1 = ($x_ingresos_familiar_1_aval != "") ? $x_ingresos_familiar_1_aval : 0;
+  			$x_ing_fam2 = ($x_ingresos_familiar_2_aval != "") ? $x_ingresos_familiar_2_aval : 0;
 
-  			$x_prov1 = ($x_gastos_prov1_aval != "") ? $x_gastos_prov1_aval : 0;          
-  			$x_prov2 = ($x_gastos_prov2_aval != "") ? $x_gastos_prov2_aval : 0;          
-  			$x_prov3 = ($x_gastos_prov3_aval != "") ? $x_gastos_prov3_aval : 0;          			
-  			$x_otrop = ($x_otro_prov_aval != "") ? $x_otro_prov_aval : 0;          						
-  			$x_empleados = ($x_gastos_empleados_aval != "") ? $x_gastos_empleados_aval : 0;          						
-  			$x_ren_neg = ($x_gastos_renta_negocio_aval != "") ? $x_gastos_renta_negocio_aval : 0;          			
-  			$x_ren_cas = ($x_gastos_renta_casa2 != "") ? $x_gastos_renta_casa2 : 0;          						
+  			$x_prov1 = ($x_gastos_prov1_aval != "") ? $x_gastos_prov1_aval : 0;
+  			$x_prov2 = ($x_gastos_prov2_aval != "") ? $x_gastos_prov2_aval : 0;
+  			$x_prov3 = ($x_gastos_prov3_aval != "") ? $x_gastos_prov3_aval : 0;
+  			$x_otrop = ($x_otro_prov_aval != "") ? $x_otro_prov_aval : 0;
+  			$x_empleados = ($x_gastos_empleados_aval != "") ? $x_gastos_empleados_aval : 0;
+  			$x_ren_neg = ($x_gastos_renta_negocio_aval != "") ? $x_gastos_renta_negocio_aval : 0;
+  			$x_ren_cas = ($x_gastos_renta_casa2 != "") ? $x_gastos_renta_casa2 : 0;
   			$x_hipo = ($x_gastos_credito_hipotecario_aval != "") ? $x_gastos_credito_hipotecario_aval : 0;
-  			$x_gas_otros = ($x_gastos_otros_aval != "") ? $x_gastos_otros_aval : 0;          									
-	
+  			$x_gas_otros = ($x_gastos_otros_aval != "") ? $x_gastos_otros_aval : 0;
+
 			$x_dep = ($x_numero_hijos_dep_aval != "") ? $x_numero_hijos_dep_aval : 0;
 			$x_ren = $x_ren_cas + $x_hipo;
-			
+
 
 			/*$x_ingresos1 = ($x_ventas_menusuales - ($x_prov1 + $x_prov2 + $x_prov3 + $x_otrop + $x_gas_otros + $x_empleados + $x_ren_neg));
-			
+
 //			$x_ingresos2 = $x_salario;
 			$x_ingresos2 = 0;
 
 			$x_ingresos = $x_ingresos1 + $x_ingresos2;
 
 			$x_cpm = (($x_ingresos + $x_otros_ing + $x_ing_fam1 + $x_ing_fam2) - (($x_dep * 700) + $x_ren + 200 + 300));
-			
+
 			$x_cps = ($x_cpm / 4) * .40;
 */
 			/*echo "<b>
 			Capacidad de Pago Mensual AVAL: ".FormatNumber(@$x_cpm,0,2,0,1)."<br>
-			Capacidad de Pago Semanal AVAL: ".FormatNumber(@$x_cps,0,2,0,1)."		
+			Capacidad de Pago Semanal AVAL: ".FormatNumber(@$x_cps,0,2,0,1)."
 			</b>
 			";*/
 			} ?></td>
 
     <td><div align="center">
-      
+
     </div></td>
     <td>&nbsp;</td>
   </tr>
@@ -3970,7 +3983,7 @@ function LoadData($conn)
 		$bLoadData = true;
 		$row = phpmkr_fetch_array($rs);
 
-		// Get the field contents $x_cliente_id 
+		// Get the field contents $x_cliente_id
 		$GLOBALS["x_solicitud_id"] = $row["solicitud_id"];
 		$GLOBALS["x_credito_tipo_id"] = $row["credito_tipo_id"];
 		$GLOBALS["x_solicitud_status_id"] = $row["solicitud_status_id"];
@@ -3980,13 +3993,13 @@ function LoadData($conn)
 		$GLOBALS["x_vendedor_id"] = $row["vendedor_id"];
 		$GLOBALS["x_importe_solicitado"] = $row["importe_solicitado"];
 		$GLOBALS["x_plazo_id"] = $row["plazo_id"];
-		$GLOBALS["x_forma_pago_id"] = $row["forma_pago_id"];		
+		$GLOBALS["x_forma_pago_id"] = $row["forma_pago_id"];
 		$GLOBALS["x_contrato"] = $row["contrato"];
 		$GLOBALS["x_pagare"] = $row["pagare"];
 		$GLOBALS["x_comentario_promotor"] = $row["comentario_promotor"];
 		$GLOBALS["x_comentario_comite"] = $row["comentario_comite"];
 		$GLOBALS["x_actividad_id"] = $row["actividad_id"];
-		$GLOBALS["x_actividad_desc"] = $row["actividad_desc"];				
+		$GLOBALS["x_actividad_desc"] = $row["actividad_desc"];
 		/* nuevo marcos 10/02/2020 */
 		$GLOBALS["x_minimo"] = $row["minimo"];
 		$GLOBALS["x_maximo"] = $row["maximo"];
@@ -4003,45 +4016,45 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 		//TIPO DE SOLICITUD
 		$sqlTC ="SELECT descripcion FROM  credito_tipo JOIN solicitud ON(solicitud.credito_tipo_id = credito_tipo.credito_tipo_id ) ";
 		$sqlTC.= "WHERE solicitud.solicitud_id = $x_solicitud_id";
-		
+
 		$rsTC = phpmkr_query($sqlTC,$conn) or die("Failed to execute query: TIPO CREDITO" . phpmkr_error() . '<br>SQL: ' . $sSql);
 		$rowTC = phpmkr_fetch_array($rsTC);
-		
+
 		$GLOBALS["x_tipo_credito_descripcion"] = $rowTC["descripcion"];
-		
-		
-		//CLIENTE		
+
+
+		//CLIENTE
 		$sSql = "select cliente.* from cliente join solicitud_cliente on solicitud_cliente.cliente_id = cliente.cliente_id where solicitud_cliente.solicitud_id = $x_solicitud_id";
 		$rs2 = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 		$row2 = phpmkr_fetch_array($rs2);
-		$GLOBALS["x_cliente_id"] = $row2["cliente_id"];		
+		$GLOBALS["x_cliente_id"] = $row2["cliente_id"];
 		$GLOBALS["x_usuario_id"] = $row2["usuario_id"];
 		$GLOBALS["x_nombre_completo"] = $row2["nombre_completo"];
-		
-		$GLOBALS["x_apellido_paterno"] = $row2["apellido_paterno"];		
-		$GLOBALS["x_apellido_materno"] = $row2["apellido_materno"];				
+
+		$GLOBALS["x_apellido_paterno"] = $row2["apellido_paterno"];
+		$GLOBALS["x_apellido_materno"] = $row2["apellido_materno"];
 		$GLOBALS["x_rfc"] = $row2["rfc"];
-		$GLOBALS["x_curp"] = $row2["curp"];						
-		$GLOBALS["x_tit_fecha_nac"] = $row2["fecha_nac"];					
+		$GLOBALS["x_curp"] = $row2["curp"];
+		$GLOBALS["x_tit_fecha_nac"] = $row2["fecha_nac"];
 		$GLOBALS["x_esposa"] = $row2["nombre_conyuge"];
 		$GLOBALS["x_tipo_negocio"] = $row2["tipo_negocio"];
 		$GLOBALS["x_edad"] = $row2["edad"];
 		$GLOBALS["x_sexo"] = $row2["sexo"];
 		$GLOBALS["x_estado_civil_id"] = $row2["estado_civil_id"];
 		$GLOBALS["x_integrantes_familia"] = $row2["numero_hijos"];
-		$GLOBALS["x_dependientes"] = $row2["numero_hijos_dep"];		
+		$GLOBALS["x_dependientes"] = $row2["numero_hijos_dep"];
 		$GLOBALS["x_nombre_conyuge"] = $row2["nombre_conyuge"];
-		$GLOBALS["x_correo_electronico"] = $row2["email"];		
-		$GLOBALS["x_nacionalidad_id"] = $row2["nacionalidad_id"];				
-		$GLOBALS["x_empresa"] = $row2["empresa"];		
-		$GLOBALS["x_puesto"] = $row2["puesto"];		
-		$GLOBALS["x_fecha_contratacion"] = $row2["fecha_contratacion"];		
-		$GLOBALS["x_salario_mensual"] = $row2["salario_mensual"];		
-		
+		$GLOBALS["x_correo_electronico"] = $row2["email"];
+		$GLOBALS["x_nacionalidad_id"] = $row2["nacionalidad_id"];
+		$GLOBALS["x_empresa"] = $row2["empresa"];
+		$GLOBALS["x_puesto"] = $row2["puesto"];
+		$GLOBALS["x_fecha_contratacion"] = $row2["fecha_contratacion"];
+		$GLOBALS["x_salario_mensual"] = $row2["salario_mensual"];
+
 			$GLOBALS["x_rol_hogar_id"] = $row2["rol_hogar_id"];
 		$GLOBALS["x_fecha_ini_act_prod"] = $row2["fecha_ini_act_prod"];
-		
-			
+
+
 		$sSql = "select * from negocio where cliente_id = ".$GLOBALS["x_cliente_id"];
 		$rsn5 = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 		$rown5 = phpmkr_fetch_array($rsn5);
@@ -4051,19 +4064,19 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 		$GLOBALS["x_atiende_titular"] = $rown5["atiende_titular"];
 		$GLOBALS["x_personas_trabajando"] = $rown5["personas_trabajando"];
 		$GLOBALS["x_destino_credito_id"] = $rown5["destino_credito_id"];
-		
-		
+
+
 		//valor de la llave cliente_id
 		//$sqlClienteid = "SELECT cliente_id FROM solicitud_cliente WHERE solicitud_cliente ="
 
 
-		$sqlD = "SELECT * FROM direccion WHERE cliente_id = ".$GLOBALS["x_cliente_id"]." and direccion_tipo_id = 1 order by direccion_id desc limit 1";		
+		$sqlD = "SELECT * FROM direccion WHERE cliente_id = ".$GLOBALS["x_cliente_id"]." and direccion_tipo_id = 1 order by direccion_id desc limit 1";
 		$sSql2 = "select * from direccion join delegacion
 		on delegacion.delegacion_id = direccion.delegacion_id where cliente_id = ".$GLOBALS["x_cliente_id"]." and direccion_tipo_id = 1 order by direccion_id desc limit 1";
 		$rs3 = phpmkr_query($sqlD,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 		$row3 = phpmkr_fetch_array($rs3);
 		$GLOBALS["x_direccion_id"] = $row3["direccion_id"];
-		
+
 		$GLOBALS["x_calle_domicilio"] = $row3["calle"];
 		$GLOBALS["x_colonia_domicilio"] = $row3["colonia"];
 		$GLOBALS["x_delegacion_id"] = $row3["delegacion_id"];
@@ -4074,8 +4087,8 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 		$GLOBALS["x_antiguedad"] = $row3["antiguedad"];
 		$GLOBALS["x_tipo_vivienda"] = $row3["vivienda_tipo_id"];
 		$GLOBALS["x_otro_tipo_vivienda"] = $row3["otro_tipo_vivienda"];
-		$GLOBALS["x_telefono_domicilio"] = $row3["telefono"];		
-		$GLOBALS["x_celular"] = $row3["telefono_movil"];					
+		$GLOBALS["x_telefono_domicilio"] = $row3["telefono"];
+		$GLOBALS["x_celular"] = $row3["telefono_movil"];
 		$GLOBALS["x_otro_tel_domicilio_1"] = $row3["telefono_secundario"];
 		$GLOBALS["x_tel_arrendatario_domicilio"] = $row3["propietario"];
 		$GLOBALS["x_numero_exterior"] = $row3["numero_exterior"];
@@ -4084,12 +4097,12 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 		$GLOBALS["x_compania_celular_id_2"] = $row3["compania_celular_id_2"];
 		//falta telefono secundario
 
-		$sqlD = "SELECT * FROM direccion WHERE cliente_id = ".$GLOBALS["x_cliente_id"]." and direccion_tipo_id = 2 order by direccion_id desc limit 1";	
+		$sqlD = "SELECT * FROM direccion WHERE cliente_id = ".$GLOBALS["x_cliente_id"]." and direccion_tipo_id = 2 order by direccion_id desc limit 1";
 		$sSql = "select * from direccion join delegacion
 		on delegacion.delegacion_id = direccion.delegacion_id where cliente_id = ".$GLOBALS["x_cliente_id"]." and direccion_tipo_id = 2 order by direccion_id desc limit 1";
 		$rs4 = phpmkr_query($sqlD,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 		$row4 = phpmkr_fetch_array($rs4);
-		
+
 			$GLOBALS["x_direccion_id2"] = $row4["direccion_id"];
 			//$GLOBALS["x_giro_negocio"] = $row4["giro_negocio"];
 			$GLOBALS["x_calle_negocio"] = $row4["calle"];
@@ -4099,16 +4112,16 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 			$GLOBALS["x_codigo_postal_negocio"] = $row4["codigo_postal"];
 			$GLOBALS["x_tipo_local_negocio"] = $row4["vivienda_tipo_id"];
 			$GLOBALS["x_antiguedad_negocio"] = $row4["antiguedad"];
-			$GLOBALS["x_tel_arrendatario_negocio"] = $row4["propietario"]; 
+			$GLOBALS["x_tel_arrendatario_negocio"] = $row4["propietario"];
 			//$GLOBALS["x_renta_mensual"] = $row4["renta_mensual"]; //renta mensula esta en gasto...mas bien no esta guardada deberia estar en gastos
 			$GLOBALS["x_tel_negocio"] = $row4["telefono"];
 			$GLOBALS["x_delegacion_id2"] = $row4["delegacion_id"];
-		
-		
+
+
 		/*$GLOBALS["x_direccion_id2"] = $row4["direccion_id"];
 		$GLOBALS["x_calle2"] = $row4["calle"];
 		$GLOBALS["x_colonia2"] = $row4["colonia"];
-		
+
 //		$GLOBALS["x_otra_delegacion2"] = $row4["otra_delegacion"];
 		$GLOBALS["x_entidad_id2"] = $row4["entidad_id"];
 		$GLOBALS["x_codigo_postal2"] = $row4["codigo_postal"];
@@ -4126,24 +4139,24 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 		$GLOBALS["x_aval_id"] = $row5["aval_id"];
 		$GLOBALS["x_nombre_completo_aval"] = $row5["nombre_completo"];
 		$GLOBALS["x_apellido_paterno_aval"] = $row5["apellido_paterno"];
-		$GLOBALS["x_apellido_materno_aval"] = $row5["apellido_materno"];								
-		
+		$GLOBALS["x_apellido_materno_aval"] = $row5["apellido_materno"];
+
 		$GLOBALS["x_aval_rfc"] = $row5["rfc"];
-		$GLOBALS["x_aval_curp"] = $row5["curp"];						
+		$GLOBALS["x_aval_curp"] = $row5["curp"];
 		$GLOBALS["x_parentesco_tipo_id_aval"] = $row5["parentesco_tipo_id"];
 
 
 		$GLOBALS["x_tipo_negocio_aval"] = $row5["tipo_negocio"];
 		$GLOBALS["x_edad_aval"] = $row5["edad"];
 
-		$GLOBALS["x_tit_fecha_nac_aval"] = $row5["fecha_nac"];			
+		$GLOBALS["x_tit_fecha_nac_aval"] = $row5["fecha_nac"];
 		$GLOBALS["x_sexo_aval"] = $row5["sexo"];
 		$GLOBALS["x_estado_civil_id_aval"] = $row5["estado_civil_id"];
 		$GLOBALS["x_numero_hijos_aval"] = $row5["numero_hijos"];
-		$GLOBALS["x_numero_hijos_dep_aval"] = $row5["numero_hijos_dep"];			
+		$GLOBALS["x_numero_hijos_dep_aval"] = $row5["numero_hijos_dep"];
 		$GLOBALS["x_nombre_conyuge_aval"] = $row5["nombre_conyuge"];
-		$GLOBALS["x_email_aval"] = $row5["email"];		
-		$GLOBALS["x_nacionalidad_id_aval"] = $row5["nacionalidad_id"];									
+		$GLOBALS["x_email_aval"] = $row5["email"];
+		$GLOBALS["x_nacionalidad_id_aval"] = $row5["nacionalidad_id"];
 
 
 		$GLOBALS["x_telefono3"] = $row5["telefono"];
@@ -4152,7 +4165,7 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 
 
 		if($GLOBALS["x_aval_id"] != ""){
-			
+
 			//notenemos aval en este tipo de solicitud...este codigo no se ejecuta
 			$sSql = "select * from direccion join delegacion
 		on delegacion.delegacion_id = direccion.delegacion_id where aval_id = ".$GLOBALS["x_aval_id"]." and direccion_tipo_id = 3 order by direccion_id desc limit 1";
@@ -4170,17 +4183,17 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 			$GLOBALS["x_vivienda_tipo_id2"] = $row6["vivienda_tipo_id"];
 			$GLOBALS["x_otro_tipo_vivienda3"] = $row6["otro_tipo_vivienda"];
 			$GLOBALS["x_telefono3"] = $row6["telefono"];
-			$GLOBALS["x_telefono3_sec"] = $row6["telefono_movil"];								
+			$GLOBALS["x_telefono3_sec"] = $row6["telefono_movil"];
 			$GLOBALS["x_telefono_secundario3"] = $row6["telefono_secundario"];
 
-			//este codigo no se ejecuta	
+			//este codigo no se ejecuta
 			$sSql = "select * from direccion join delegacion
 		on delegacion.delegacion_id = direccion.delegacion_id where aval_id = ".$GLOBALS["x_aval_id"]." and direccion_tipo_id = 4 order by direccion_id desc limit 1";
 			$rs6_2 = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 			$row6_2 = phpmkr_fetch_array($rs6_2);
-			
-			
-			
+
+
+
 			$GLOBALS["x_direccion_id4"] = $row6_2["direccion_id"];
 			$GLOBALS["x_calle3_neg"] = $row6_2["calle"];
 			$GLOBALS["x_colonia3_neg"] = $row6_2["colonia"];
@@ -4206,9 +4219,9 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 			$GLOBALS["x_ingresos_familiar_2_aval"] = $row8["ingresos_familiar_2"];
 			$GLOBALS["x_parentesco_tipo_id_ing_2_aval"] = $row8["parentesco_tipo_id2"];
 			$GLOBALS["x_otros_ingresos_aval"] = $row8["otros_ingresos"];
-			$GLOBALS["x_origen_ingresos_aval"] = $row8["origen_ingresos"];		
-			$GLOBALS["x_origen_ingresos_aval2"] = $row8["origen_ingresos_fam_1"];										
-			$GLOBALS["x_origen_ingresos_aval3"] = $row8["origen_ingresos_fam_2"];													
+			$GLOBALS["x_origen_ingresos_aval"] = $row8["origen_ingresos"];
+			$GLOBALS["x_origen_ingresos_aval2"] = $row8["origen_ingresos_fam_1"];
+			$GLOBALS["x_origen_ingresos_aval3"] = $row8["origen_ingresos_fam_2"];
 
 			//la tabla gasto aval no se usa en este tipo de solicitud
 			$sSql = "select * from gasto_aval where aval_id = ".$GLOBALS["x_aval_id"];
@@ -4218,18 +4231,18 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 			$GLOBALS["x_gastos_prov1_aval"] = $row12["gastos_prov1"];
 			$GLOBALS["x_gastos_prov2_aval"] = $row12["gastos_prov2"];
 			$GLOBALS["x_gastos_prov3_aval"] = $row12["gastos_prov3"];
-			$GLOBALS["x_otro_prov_aval"] = $row12["otro_prov"];			
-			$GLOBALS["x_gastos_empleados_aval"] = $row12["gastos_empleados"];					
+			$GLOBALS["x_otro_prov_aval"] = $row12["otro_prov"];
+			$GLOBALS["x_gastos_empleados_aval"] = $row12["gastos_empleados"];
 			$GLOBALS["x_gastos_renta_negocio_aval"] = $row12["gastos_renta_negocio"];
 			$GLOBALS["x_gastos_renta_casa2"] = $row12["gastos_renta_casa"];
 			$GLOBALS["x_gastos_credito_hipotecario_aval"] = $row12["gastos_credito_hipotecario"];
-			$GLOBALS["x_gastos_otros_aval"] = $row12["gastos_otros"];		
+			$GLOBALS["x_gastos_otros_aval"] = $row12["gastos_otros"];
 
 
 			if(!empty($GLOBALS["x_propietario2"])){
 				if(!empty($GLOBALS["x_gastos_renta_casa2"])){
 					$GLOBALS["x_propietario_renta2"] = $GLOBALS["x_propietario2"];
-					$GLOBALS["x_propietario2"] = "";				
+					$GLOBALS["x_propietario2"] = "";
 				}else{
 					if(!empty($GLOBALS["x_gastos_credito_hipotecario_aval"])){
 						$GLOBALS["x_propietario_ch2"] = $GLOBALS["x_propietario2"];
@@ -4238,7 +4251,7 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 				}
 			}
 
-			
+
 		}else{
 
 			$GLOBALS["x_ingreso_aval_id"] = "";
@@ -4292,46 +4305,46 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 			$GLOBALS["x_otro_tipo_vivienda3_neg"] = "";
 			$GLOBALS["x_telefono3_neg"] = "";
 			$GLOBALS["x_telefono_secundario3_neg"] = "";
-			
+
 		}
 
 		//la tabla garantia no se usa ene sta solicitud,,. no hay campo garantia solo existe  solicitud dde compra
 		$sSql = "select * from garantia where solicitud_id = ".$GLOBALS["x_solicitud_id"];
 		$rs7 = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 		$row7 = phpmkr_fetch_array($rs7);
-		$GLOBALS["x_garantia_id"] = $row7["garantia_id"];		
+		$GLOBALS["x_garantia_id"] = $row7["garantia_id"];
 		$GLOBALS["x_garantia_desc"] = $row7["descripcion"];
-		$GLOBALS["x_garantia_valor"] = $row7["valor"];		
+		$GLOBALS["x_garantia_valor"] = $row7["valor"];
 
 		//seleccion de gastos
-		
+
 		$sSQL = "SELECT * FROM gasto WHERE solicitud_id = ".$GLOBALS["x_solicitud_id"]."";
 		$rsg = phpmkr_query($sSQL,$conn) or die ("Error en gasto".phpmkr_error()."sql".$sSQL);
 		$rowg = phpmkr_fetch_array($rsg);
 		$GLOBALS["x_gasto_id"] = $rowg["gasto_id"];
 		$GLOBALS["x_renta_mensual"]= $rowg["gastos_renta_negocio"]; //negocio
 		$GLOBALS["x_renta_mensula_domicilio"]= $rowg["gastos_renta_casa"]; // casa
-		
-		
-		
+
+
+
 		//seleccion de formato PYME
 
 		$sSql = "SELECT * FROM formatoindividual WHERE cliente_id = ".$GLOBALS["x_cliente_id"]."" ;
-		
-		
+
+
 		//$sSql = "select * from ingreso where solicitud_id = ".$GLOBALS["x_solicitud_id"];
 		$rs8 = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 		$row8 = phpmkr_fetch_array($rs8);
-		
+
 		$GLOBALS["x_otro_telefono_domicilio_2"] = $row8["otro_telefono_domicilio_2"];
 		$GLOBALS["x_giro_negocio"] = $row8["giro_negocio"];
-		$GLOBALS["x_propiedad_hipot"]= $row8["prop_hipotec"];
+		//$GLOBALS["x_propiedad_hipot"]= $row8["prop_hipotec"];
 		//$GLOBALS["x_solicitud_compra"] = $row8["solicitud_compra"];
 		$GLOBALS["x_ing_fam_negocio"] = $row8["ing_fam_negocio"];
 		$GLOBALS["x_ing_fam_otro_th"] = $row8["ing_fam_otro_th"];//este no estaba
 		$GLOBALS["x_ing_fam_1"] = $row8["ing_fam_1"];
 		$GLOBALS["x_ing_fam_2"] = $row8["ing_fam_2"];
-		$GLOBALS["x_ing_fam_deuda_1"] = $row8["ing_fam_deuda_1"];   
+		$GLOBALS["x_ing_fam_deuda_1"] = $row8["ing_fam_deuda_1"];
 		$GLOBALS["x_ing_fam_deuda_2"] = $row8["ing_fam_deuda_2"];
 		$GLOBALS["x_ing_fam_total"] = $row8["ing_fam_total"];
 		$GLOBALS["x_ing_fam_cuales_1"] = $row8["ing_fam_cuales_1"];
@@ -4350,17 +4363,17 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 		$GLOBALS["x_flujos_neg_cual_1"] = $row8["flujos_neg_cual_1"];
 		$GLOBALS["x_flujos_neg_cual_2"] = $row8["flujos_neg_cual_2"];
 		$GLOBALS["x_flujos_neg_cual_3"] = $row8["flujos_neg_cual_3"];
-		$GLOBALS["x_flujos_neg_cual_4"] = $row8["flujos_neg_cual_4"];		
+		$GLOBALS["x_flujos_neg_cual_4"] = $row8["flujos_neg_cual_4"];
 		$GLOBALS["x_flujos_neg_cual_5"] = $row8["flujos_neg_cual_5"];
 		$GLOBALS["x_flujos_neg_cual_6"] = $row8["flujos_neg_cual_6"];
 		$GLOBALS["x_flujos_neg_cual_7"] = $row8["flujos_neg_cual_7"];
 		$GLOBALS["x_ingreso_negocio"] = $row8["ingreso_negocio"];
 		$GLOBALS["x_inv_neg_fija_conc_1"] = $row8["inv_neg_fija_conc_1"];
 		$GLOBALS["x_inv_neg_fija_conc_2"] = $row8["inv_neg_fija_conc_2"];
-		$GLOBALS["x_inv_neg_fija_conc_3"] = $row8["inv_neg_fija_conc_3"];		
+		$GLOBALS["x_inv_neg_fija_conc_3"] = $row8["inv_neg_fija_conc_3"];
 		$GLOBALS["x_inv_neg_fija_conc_4"] = $row8["inv_neg_fija_conc_4"];
 		$GLOBALS["x_inv_neg_fija_valor_1"] = $row8["inv_neg_fija_valor_1"];
-		$GLOBALS["x_inv_neg_fija_valor_2"] = $row8["inv_neg_fija_valor_2"];		
+		$GLOBALS["x_inv_neg_fija_valor_2"] = $row8["inv_neg_fija_valor_2"];
 		$GLOBALS["x_inv_neg_fija_valor_3"] = $row8["inv_neg_fija_valor_3"];
 		$GLOBALS["x_inv_neg_fija_valor_4"] = $row8["inv_neg_fija_valor_4"];
 		$GLOBALS["x_inv_neg_total_fija"] = $row8["inv_neg_total_fija"];
@@ -4374,7 +4387,7 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 		$GLOBALS["x_inv_neg_var_valor_4"] = $row8["inv_neg_var_valor_4"];
 		$GLOBALS["x_inv_neg_total_var"] = $row8["inv_neg_total_var"];
 		$GLOBALS["x_inv_neg_activos_totales"] = $row8["inv_neg_activos_totales"];
-													
+
 
 
 		//gasto de la renta de la casa verificar lso datos............  estos datos no se gauardaorn cuando se levanto la solicitud
@@ -4385,18 +4398,18 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 		$GLOBALS["x_gastos_prov1"] = $row12["gastos_prov1"];
 		$GLOBALS["x_gastos_prov2"] = $row12["gastos_prov2"];
 		$GLOBALS["x_gastos_prov3"] = $row12["gastos_prov3"];
-		$GLOBALS["x_otro_prov"] = $row12["otro_prov"];			
-		$GLOBALS["x_gastos_empleados"] = $row12["gastos_empleados"];					
+		$GLOBALS["x_otro_prov"] = $row12["otro_prov"];
+		$GLOBALS["x_gastos_empleados"] = $row12["gastos_empleados"];
 		$GLOBALS["x_renta_mensual"] = $row12["gastos_renta_negocio"]; //RENTA DEL NEGOCIO
 		$GLOBALS["x_renta_mensula_domicilio"] = $row12["gastos_renta_casa"]; //RENTA DEL DOMICILIO
 		/*$GLOBALS["x_gastos_credito_hipotecario"] = $row12["gastos_credito_hipotecario"];
-		$GLOBALS["x_gastos_otros"] = $row12["gastos_otros"];	*/	
+		$GLOBALS["x_gastos_otros"] = $row12["gastos_otros"];	*/
 
 		if(!empty($GLOBALS["x_propietario"])){
 
 			if(!empty($GLOBALS["x_gastos_renta_casa"])){
 				$GLOBALS["x_propietario_renta"] = $GLOBALS["x_propietario"];
-				$GLOBALS["x_propietario"] = "";				
+				$GLOBALS["x_propietario"] = "";
 			}else{
 				if(!empty($GLOBALS["x_gastos_credito_hipotecario"])){
 					$GLOBALS["x_propietario_ch"] = $GLOBALS["x_propietario"];
@@ -4433,7 +4446,7 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 		$GLOBALS["x_x_referencia_com_1"] = "";
 		$GLOBALS["x_telefono_1"] = "";
 		$GLOBALS["x_parentesco_tipo_id_ref_1"] = "";
-	
+
 
 		$x_count = 1;
 		$sSql = "select * from referencia where solicitud_id = ".$GLOBALS["x_solicitud_id"]." order by referencia_id";
@@ -4456,32 +4469,32 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 		}else{
 			$x_credito_id = "";
 		}
-		
+
 		$x_count_2 = 1;
 		$sSql = "select * from  telefono where cliente_id = ".$GLOBALS["x_cliente_id"]."  AND telefono_tipo_id = 1 order by telefono_id";
 		$rs9 = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
-		while ($row9 = phpmkr_fetch_array($rs9)){			
+		while ($row9 = phpmkr_fetch_array($rs9)){
 			$GLOBALS["x_telefono_casa_$x_count_2"] = $row9["numero"];
 			$GLOBALS["x_comentario_casa_$x_count_2"] = $row9["comentario"];
 			$GLOBALS["contador_telefono"] = $x_count_2;
 			$x_count_2++;
-			
+
 		}
-		
-		
+
+
 
 
 
 		$x_count_3 = 1;
 		$sSql = "select * from  telefono where cliente_id = ".$GLOBALS["x_cliente_id"]."  AND telefono_tipo_id = 2 order by telefono_id";
 		$rs9 = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
-		while ($row9e = phpmkr_fetch_array($rs9)){			
+		while ($row9e = phpmkr_fetch_array($rs9)){
 			$GLOBALS["x_telefono_celular_$x_count_3"] = $row9e["numero"];
 			$GLOBALS["x_comentario_celular_$x_count_3"] = $row9e["comentario"];
-			$GLOBALS["x_compania_celular_$x_count_3"] = $row9e["compania_id"];	
+			$GLOBALS["x_compania_celular_$x_count_3"] = $row9e["compania_id"];
 			$GLOBALS["contador_celular"] = $x_count_3;
 			$x_count_3++;
-			
+
 		}
 
 //GOOGLEMAPS
@@ -4489,24 +4502,34 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 		$rs8 = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 		$row8 = phpmkr_fetch_array($rs8);
 		$x_latlong = $row8["latlong"];
-		
+
 		$x_coordenadas = explode(",", $x_latlong);
-		
-		$GLOBALS["x_latitud"] = trim($x_coordenadas[0], "("); 
-		$GLOBALS["x_longitud"] = trim($x_coordenadas[1],")") ;
-		
-		
+
+		if ($x_latlong != null) {
+			$GLOBALS["x_latitud"] = trim($x_coordenadas[0], "(");
+			$GLOBALS["x_longitud"] = trim($x_coordenadas[1],")") ;
+		} else {
+			$GLOBALS["x_latitud"] = 0;
+			$GLOBALS["x_longitud"] = 0;
+		}
+
+
 		//GOOGLEMAPS negocio
 		$sSql = "select  * from  google_maps_neg  credito where cliente_id = ".$GLOBALS["x_cliente_id"];
 		$rs9 = phpmkr_query($sSql,$conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: ' . $sSql);
 		$row9 = phpmkr_fetch_array($rs9);
 		$x_latlong2 = $row9["latlong"];
-		
+
 		$x_coordenadas2 = explode(",", $x_latlong2);
 		$GLOBALS["x_google_maps_neg_id"] = $row9["google_maps_neg_id"];
 		//echo"google_id".$GLOBALS["x_google_maps_id"];
-		$GLOBALS["x_latitud2"] = trim($x_coordenadas2[0], "("); 
-		$GLOBALS["x_longitud2"] = trim($x_coordenadas2[1],")") ;
+		if ($x_latlong2 != null) {
+			$GLOBALS["x_latitud2"] = trim($x_coordenadas2[0], "(");
+			$GLOBALS["x_longitud2"] = trim($x_coordenadas2[1],")") ;
+		} else {
+			$GLOBALS["x_latitud2"] = 0;
+			$GLOBALS["x_longitud2"] = 0;
+		}
 		//$GLOBALS["x_latlong"] = $row8["latlong"];
 
 
@@ -4514,16 +4537,16 @@ $GLOBALS["x_comite_credito_explicacion_id"] = $row["comite_credito_explicacion_i
 if($x_coordenadas2 == $x_coordenadas){
 	$GLOBALS["x_checked"]= 'checked="checked"';
 	$GLOBALS["x_hidden_mapa_negocio"] = 0;
-	// el mapa es el mismo 
-	
+	// el mapa es el mismo
+
 	}
 
 	}
 	phpmkr_free_result($rs);
-	phpmkr_free_result($rs2);	
-	phpmkr_free_result($rs3);		
-	phpmkr_free_result($rs4);			
-	phpmkr_free_result($rs5);				
+	phpmkr_free_result($rs2);
+	phpmkr_free_result($rs3);
+	phpmkr_free_result($rs4);
+	phpmkr_free_result($rs5);
 	if (isset($rs6)) {
 		phpmkr_free_result($rs6);
 	}
@@ -4561,9 +4584,9 @@ if($x_coordenadas2 == $x_coordenadas){
 
 
 function EditData($conn){
-	
+
 	phpmkr_query('START TRANSACTION;', $conn) or die("Failed to execute query: " . phpmkr_error() . '<br>SQL: BEGIN TRAN');
-	
+
 	global $x_solicitud_id;
 	$sSql = "SELECT * FROM `solicitud`";
 	$sWhere = "";
@@ -4571,7 +4594,7 @@ function EditData($conn){
 	$sHaving = "";
 	$sOrderBy = "";
 	if ($sWhere <> "") { $sWhere .= " AND "; }
-	$sTmp =  (get_magic_quotes_gpc()) ? stripslashes($x_solicitud_id) : $x_solicitud_id;	
+	$sTmp =  (get_magic_quotes_gpc()) ? stripslashes($x_solicitud_id) : $x_solicitud_id;
 	$sWhere .= "(`solicitud_id` = " . addslashes($sTmp) . ")";
 	$sSql .= " WHERE " . $sWhere;
 	if ($sGroupBy <> "") {
@@ -4587,12 +4610,12 @@ function EditData($conn){
 	if (phpmkr_num_rows($rs) == 0) {
 		$bEditData = false; // Update Failed
 	}else{
-	
+
 		$theValue = ($GLOBALS["x_credito_tipo_id"] != "") ? intval($GLOBALS["x_credito_tipo_id"]) : "0";
 		$fieldList["`credito_tipo_id`"] = $theValue;
 		$theValue = ($GLOBALS["x_solicitud_status_id"] != "") ? intval($GLOBALS["x_solicitud_status_id"]) : "0";
 		$fieldList["`solicitud_status_id`"] = $theValue;
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_folio"]) : $GLOBALS["x_folio"]; 
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_folio"]) : $GLOBALS["x_folio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`folio`"] = $theValue;
 		$theValue = ($GLOBALS["x_fecha_registro"] != "") ? " '" . ConvertDateToMysqlFormat($GLOBALS["x_fecha_registro"]) . "'" : "Null";
@@ -4605,18 +4628,18 @@ function EditData($conn){
 		$fieldList["`plazo_id`"] = $theValue;
 		$theValue = ($GLOBALS["x_forma_pago_id"] != "") ? intval($GLOBALS["x_forma_pago_id"]) : "0";
 		$fieldList["`forma_pago_id`"] = $theValue;
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_comentario_promotor"]) : $GLOBALS["x_comentario_promotor"]; 
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_comentario_promotor"]) : $GLOBALS["x_comentario_promotor"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`comentario_promotor`"] = $theValue;
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_comentario_comite"]) : $GLOBALS["x_comentario_comite"]; 
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_comentario_comite"]) : $GLOBALS["x_comentario_comite"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`comentario_comite`"] = $theValue;
 
 
 		$theValue = ($GLOBALS["x_actividad_id"] != "") ? intval($GLOBALS["x_actividad_id"]) : "0";
 		$fieldList["`actividad_id`"] = $theValue;
-	
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_actividad_desc"]) : $GLOBALS["x_actividad_desc"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_actividad_desc"]) : $GLOBALS["x_actividad_desc"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`actividad_desc`"] = $theValue;
 
@@ -4636,56 +4659,56 @@ function EditData($conn){
 		if(!$x_result){
 			echo phpmkr_error() . '<br>SQL: ' . $sSql;
 			phpmkr_query('rollback;', $conn);
-			
+
 			exit();
 		}
-		
+
 		//CLIENTE
 		$fieldList = NULL;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_nombre"]) : $GLOBALS["x_nombre"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_nombre"]) : $GLOBALS["x_nombre"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`nombre_completo`"] = $theValue;
-		 
+
 		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_apellido_paterno"]) : $GLOBALS["x_apellido_paterno"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`apellido_paterno`"] = $theValue;
 
 		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_apellido_materno"]) : $GLOBALS["x_apellido_materno"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
-		$fieldList["`apellido_materno`"] = $theValue;	
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_rfc"]) : $GLOBALS["x_rfc"];  
+		$fieldList["`apellido_materno`"] = $theValue;
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_rfc"]) : $GLOBALS["x_rfc"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`rfc`"] = $theValue;
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_curp"]) : $GLOBALS["x_curp"]; 
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_curp"]) : $GLOBALS["x_curp"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
-		$fieldList["`curp`"] = $theValue;	
-			
+		$fieldList["`curp`"] = $theValue;
+
 		$theValue = ($GLOBALS["x_fecha_nacimiento"] != "") ? " '" . ConvertDateToMysqlFormat($GLOBALS["x_fecha_nacimiento"]) . "'" : "NULL";
 		$fieldList["`fecha_nac`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_sexo"] != "") ? intval($GLOBALS["x_sexo"]) : "0";
-		$fieldList["`sexo`"] = $theValue;	
-		
+		$fieldList["`sexo`"] = $theValue;
+
 		$theValue = ($GLOBALS["x_integrantes_familia"] != "") ? intval($GLOBALS["x_integrantes_familia"]) : "NULL";
 		$fieldList["`numero_hijos`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_dependientes"] != "") ? intval($GLOBALS["x_dependientes"]) : "NULL";
 		$fieldList["`numero_hijos_dep`"] = $theValue;
-		
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_correo_electronico"]) : $GLOBALS["x_correo_electronico"]; 
+
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_correo_electronico"]) : $GLOBALS["x_correo_electronico"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`email`"] = $theValue;
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_esposa"]) : $GLOBALS["x_esposa"]; 
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_esposa"]) : $GLOBALS["x_esposa"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`nombre_conyuge`"] = $theValue;
-		
+
 		// Field promotor_id
 		$theValue = ($GLOBALS["x_promotor_id"] != "") ? intval($GLOBALS["x_promotor_id"]) : "NULL";
 		$fieldList["`promotor_id`"] = $theValue;
-		
+
 		$sSql = "UPDATE `cliente` SET ";
 		foreach ($fieldList as $key=>$temp) {
 			$sSql .= "$key = $temp, ";
@@ -4698,64 +4721,64 @@ function EditData($conn){
 
 		if(!$x_result){
 			echo phpmkr_error() . '<br>SQL: ' . $sSql;
-			phpmkr_query('rollback;', $conn);	 
+			phpmkr_query('rollback;', $conn);
 			exit();
 		}
-		
-		
+
+
 		//DIR PARTICULAR
 
 
 		if($GLOBALS["x_direccion_id"] > 0 ){
 
 			$fieldList = NULL;
-			
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_calle_domicilio"]) : $GLOBALS["x_calle_domicilio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_calle_domicilio"]) : $GLOBALS["x_calle_domicilio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`calle`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_colonia_domicilio"]) : $GLOBALS["x_colonia_domicilio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_colonia_domicilio"]) : $GLOBALS["x_colonia_domicilio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`colonia`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_entidad_domicilio"]) : $GLOBALS["x_entidad_domicilio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_entidad_domicilio"]) : $GLOBALS["x_entidad_domicilio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`entidad`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_codigo_postal_domicilio"] != "") ? intval($GLOBALS["x_codigo_postal_domicilio"]) : "NULL";
 		$fieldList["`codigo_postal`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ubicacion_domicilio"]) : $GLOBALS["x_ubicacion_domicilio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ubicacion_domicilio"]) : $GLOBALS["x_ubicacion_domicilio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`ubicacion`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tipo_vivienda"]) : $GLOBALS["x_tipo_vivienda"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tipo_vivienda"]) : $GLOBALS["x_tipo_vivienda"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`vivienda_tipo_id`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_telefono_domicilio"]) : $GLOBALS["x_telefono_domicilio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_telefono_domicilio"]) : $GLOBALS["x_telefono_domicilio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`telefono`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_celular"]) : $GLOBALS["x_celular"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_celular"]) : $GLOBALS["x_celular"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`telefono_movil`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_otro_tel_domicilio_1"]) : $GLOBALS["x_otro_tel_domicilio_1"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_otro_tel_domicilio_1"]) : $GLOBALS["x_otro_tel_domicilio_1"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`telefono_secundario`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_delegacion_id"] != "") ? intval($GLOBALS["x_delegacion_id"]) : "0";
 	    $fieldList["`delegacion_id`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_antiguedad"]) : $GLOBALS["x_antiguedad"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_antiguedad"]) : $GLOBALS["x_antiguedad"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`antiguedad`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tel_arrendatario_domicilio"]) : $GLOBALS["x_tel_arrendatario_domicilio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tel_arrendatario_domicilio"]) : $GLOBALS["x_tel_arrendatario_domicilio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
-		$fieldList["`propietario`"] = $theValue;		
-		
+		$fieldList["`propietario`"] = $theValue;
+
 		// update
 			$sSql = "UPDATE `direccion` SET ";
 			foreach ($fieldList as $key=>$temp) {
@@ -4766,10 +4789,10 @@ function EditData($conn){
 			}
 			$sSql .= " WHERE direccion_id = " . $GLOBALS["x_direccion_id"];
 			$x_result = phpmkr_query($sSql,$conn) or die("Error: ".phpmkr_error()."statement :".sSql);
-	
+
 			if(!$x_result){
 				echo phpmkr_error() . '<br>SQL cliente par: ' . $sSql;
-				phpmkr_query('rollback;', $conn);	 
+				phpmkr_query('rollback;', $conn);
 				exit();
 			}
 
@@ -4781,135 +4804,135 @@ function EditData($conn){
 				// Field cliente_id
 			//	$theValue = ($GLOBALS["x_cliente_id"] != "") ? intval($GLOBALS["x_cliente_id"]) : "NULL";
 				$fieldList["`cliente_id`"] = $GLOBALS["x_cliente_id"];
-			
+
 				// Field aval_id
 			//	$theValue = ($GLOBALS["x_aval_id"] != "") ? intval($GLOBALS["x_aval_id"]) : "NULL";
 				$fieldList["`aval_id`"] = 0;
-			
+
 				// Field promotor_id
 			//	$theValue = ($GLOBALS["x_promotor_id"] != "") ? intval($GLOBALS["x_promotor_id"]) : "NULL";
 				$fieldList["`promotor_id`"] = 0;
-			
+
 				// Field direccion_tipo_id
 			//	$theValue = ($GLOBALS["x_direccion_tipo_id"] != "") ? intval($GLOBALS["x_direccion_tipo_id"]) : "NULL";
 				$fieldList["`direccion_tipo_id`"] = 1;
-			
+
 				// Field calle
-				
-				$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_calle_domicilio"]) : $GLOBALS["x_calle_domicilio"]; 
+
+				$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_calle_domicilio"]) : $GLOBALS["x_calle_domicilio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`calle`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_colonia_domicilio"]) : $GLOBALS["x_colonia_domicilio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_colonia_domicilio"]) : $GLOBALS["x_colonia_domicilio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`colonia`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_entidad_domicilio"]) : $GLOBALS["x_entidad_domicilio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_entidad_domicilio"]) : $GLOBALS["x_entidad_domicilio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`entidad`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_codigo_postal_domicilio"] != "") ? intval($GLOBALS["x_codigo_postal_domicilio"]) : "NULL";
 		$fieldList["`codigo_postal`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ubicacion_domicilio"]) : $GLOBALS["x_ubicacion_domicilio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ubicacion_domicilio"]) : $GLOBALS["x_ubicacion_domicilio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`ubicacion`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tipo_vivienda"]) : $GLOBALS["x_tipo_vivienda"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tipo_vivienda"]) : $GLOBALS["x_tipo_vivienda"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`vivienda_tipo_id`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_telefono_domicilio"]) : $GLOBALS["x_telefono_domicilio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_telefono_domicilio"]) : $GLOBALS["x_telefono_domicilio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`telefono`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_celular"]) : $GLOBALS["x_celular"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_celular"]) : $GLOBALS["x_celular"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`telefono_movil`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_otro_tel_domicilio_1"]) : $GLOBALS["x_otro_tel_domicilio_1"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_otro_tel_domicilio_1"]) : $GLOBALS["x_otro_tel_domicilio_1"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`telefono_secundario`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_delegacion_id"] != "") ? intval($GLOBALS["x_delegacion_id"]) : "0";
 		$fieldList["`delegacion_id`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_antiguedad"]) : $GLOBALS["x_antiguedad"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_antiguedad"]) : $GLOBALS["x_antiguedad"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`antiguedad`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tel_arrendatario_domicilio"]) : $GLOBALS["x_tel_arrendatario_domicilio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tel_arrendatario_domicilio"]) : $GLOBALS["x_tel_arrendatario_domicilio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`propietario`"] = $theValue;
-		
-				
+
+
 				// insert into database
 				$sSql = "INSERT INTO `direccion` (";
 				$sSql .= implode(",", array_keys($fieldList));
 				$sSql .= ") VALUES (";
 				$sSql .= implode(",", array_values($fieldList));
 				$sSql .= ")";
-			
+
 				$x_result = phpmkr_query($sSql, $conn) or die("error  direccion:". phpmkr_error()."statement:".$sSql);
 				if(!$x_result){
 					echo phpmkr_error() . '<br>SQL AQUI: ' . $sSql;
-					phpmkr_query('rollback;', $conn);	 
+					phpmkr_query('rollback;', $conn);
 					exit();
 				}
 			}
 		}// ELSE DIRECCION
-		
+
 		//DIR NEG
 
 		if($GLOBALS["x_direccion_id2"] > 0 ){
-	
+
 		$fieldList = NULL;
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_calle_negocio"]) : $GLOBALS["x_calle_negocio"]; 
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_calle_negocio"]) : $GLOBALS["x_calle_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`calle`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_colonia_negocio"]) : $GLOBALS["x_colonia_negocio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_colonia_negocio"]) : $GLOBALS["x_colonia_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`colonia`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_entidad_negocio"]) : $GLOBALS["x_entidad_negocio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_entidad_negocio"]) : $GLOBALS["x_entidad_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`entidad`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_codigo_postal_domicilio"] != "") ? intval($GLOBALS["x_codigo_postal_negocio"]) : "NULL";
 		$fieldList["`codigo_postal`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ubicacion_negocio"]) : $GLOBALS["x_ubicacion_negocio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ubicacion_negocio"]) : $GLOBALS["x_ubicacion_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`ubicacion`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tipo_local_negocio"]) : $GLOBALS["x_tipo_local_negocio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tipo_local_negocio"]) : $GLOBALS["x_tipo_local_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`vivienda_tipo_id`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tel_negocio"]) : $GLOBALS["x_tel_negocio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tel_negocio"]) : $GLOBALS["x_tel_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`telefono`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_celular"]) : $GLOBALS["x_celular"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_celular"]) : $GLOBALS["x_celular"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`telefono_movil`"] = $theValue;
-		
+
 			$theValue = ($GLOBALS["x_delegacion_id2"] != "") ? intval($GLOBALS["x_delegacion_id2"]) : "0";
 			$fieldList["`delegacion_id`"] = $theValue;
-		
-		
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_antiguedad_negocio"]) : $GLOBALS["x_antiguedad"]; 
+
+
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_antiguedad_negocio"]) : $GLOBALS["x_antiguedad"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`antiguedad`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tel_arrendatario_negocio"]) : $GLOBALS["x_tel_arrendatario_negocio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tel_arrendatario_negocio"]) : $GLOBALS["x_tel_arrendatario_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`propietario`"] = $theValue;
-		
-		
-	
+
+
+
 			// update
 			$sSql = "UPDATE `direccion` SET ";
 			foreach ($fieldList as $key=>$temp) {
@@ -4920,10 +4943,10 @@ function EditData($conn){
 			}
 			$sSql .= " WHERE cliente_id = ". $GLOBALS["x_cliente_id"]." and direccion_tipo_id = 2";
 			$x_result = phpmkr_query($sSql,$conn) or die("ERROR...".phpmkr_error()."sql direccion dos".$sSql);
-			
+
 			if(!$x_result){
 				echo phpmkr_error() . '<br>SQL cliente neg: ' . $sSql;
-				phpmkr_query('rollback;', $conn);	 
+				phpmkr_query('rollback;', $conn);
 				exit();
 			}
 
@@ -4935,91 +4958,91 @@ function EditData($conn){
 				// Field cliente_id
 			//	$theValue = ($GLOBALS["x_cliente_id"] != "") ? intval($GLOBALS["x_cliente_id"]) : "NULL";
 				$fieldList["`cliente_id`"] = $GLOBALS["x_cliente_id"];
-			
+
 				// Field aval_id
 			//	$theValue = ($GLOBALS["x_aval_id"] != "") ? intval($GLOBALS["x_aval_id"]) : "NULL";
 				$fieldList["`aval_id`"] = 0;
-			
+
 				// Field promotor_id
 			//	$theValue = ($GLOBALS["x_promotor_id"] != "") ? intval($GLOBALS["x_promotor_id"]) : "NULL";
 				$fieldList["`promotor_id`"] = 0;
-			
+
 				// Field direccion_tipo_id
 			//	$theValue = ($GLOBALS["x_direccion_tipo_id"] != "") ? intval($GLOBALS["x_direccion_tipo_id"]) : "NULL";
 				$fieldList["`direccion_tipo_id`"] = 2;
-			
+
 				//*------------------------------------------------------------------------------------------------------
-				
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_calle_negocio"]) : $GLOBALS["x_calle_negocio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_calle_negocio"]) : $GLOBALS["x_calle_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`calle`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_colonia_negocio"]) : $GLOBALS["x_colonia_negocio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_colonia_negocio"]) : $GLOBALS["x_colonia_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`colonia`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_entidad_negocio"]) : $GLOBALS["x_entidad_negocio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_entidad_negocio"]) : $GLOBALS["x_entidad_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`entidad`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_codigo_postal_domicilio"] != "") ? intval($GLOBALS["x_codigo_postal_negocio"]) : "NULL";
 		$fieldList["`codigo_postal`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ubicacion_negocio"]) : $GLOBALS["x_ubicacion_negocio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ubicacion_negocio"]) : $GLOBALS["x_ubicacion_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`ubicacion`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tipo_local_negocio"]) : $GLOBALS["x_tipo_local_negocio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tipo_local_negocio"]) : $GLOBALS["x_tipo_local_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`vivienda_tipo_id`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tel_negocio"]) : $GLOBALS["x_tel_negocio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tel_negocio"]) : $GLOBALS["x_tel_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`telefono`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_celular"]) : $GLOBALS["x_celular"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_celular"]) : $GLOBALS["x_celular"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
-		$fieldList["`telefono_movil`"] = $theValue;		
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_antiguedad_negocio"]) : $GLOBALS["x_antiguedad"]; 
+		$fieldList["`telefono_movil`"] = $theValue;
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_antiguedad_negocio"]) : $GLOBALS["x_antiguedad"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`antiguedad`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tel_arrendatario_negocio"]) : $GLOBALS["x_tel_arrendatario_negocio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tel_arrendatario_negocio"]) : $GLOBALS["x_tel_arrendatario_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`propietario`"] = $theValue;
-					
+
 		$theValue = ($GLOBALS["x_delegacion_id2"] != "") ? intval($GLOBALS["x_delegacion_id2"]) : "0";
-		$fieldList["`delegacion_id`"] = $theValue;		
-			
+		$fieldList["`delegacion_id`"] = $theValue;
+
 				// insert into database
 				$sSql = "INSERT INTO `direccion` (";
 				$sSql .= implode(",", array_keys($fieldList));
 				$sSql .= ") VALUES (";
 				$sSql .= implode(",", array_values($fieldList));
 				$sSql .= ")";
-			
+
 				$x_result = phpmkr_query($sSql, $conn) or die("Error  insert domicilio dos:".phpmkr_error()."statement".$sSql);
 				if(!$x_result){
 					echo phpmkr_error() . '<br>SQL: ' . $sSql;
-					phpmkr_query('rollback;', $conn);	 
+					phpmkr_query('rollback;', $conn);
 					exit();
 				}
 			}
 		}
-		
-		
-		//GARANTIAS 
+
+
+		//GARANTIAS
 		if($GLOBALS["x_garantia_id"] != ""){
-			
-			$fieldList = NULL;		
-			
-			$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_garantia_desc"]) : $GLOBALS["x_garantia_desc"]; 
+
+			$fieldList = NULL;
+
+			$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_garantia_desc"]) : $GLOBALS["x_garantia_desc"];
 			$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 			$fieldList["`descripcion`"] = $theValue;
 			$theValue = ($GLOBALS["x_garantia_valor"] != "") ? " '" . doubleval($GLOBALS["x_garantia_valor"]) . "'" : "NULL";
 			$fieldList["`valor`"] = $theValue;
-			
+
 			// update
 			$sSql = "UPDATE `garantia` SET ";
 			foreach ($fieldList as $key=>$temp) {
@@ -5033,28 +5056,28 @@ function EditData($conn){
 
 			if(!$x_result){
 				echo phpmkr_error() . '<br>SQL: ' . $sSql;
-				phpmkr_query('rollback;', $conn);	 
+				phpmkr_query('rollback;', $conn);
 				exit();
 			}
-			
+
 		}else{
-		
+
 			if($GLOBALS["x_garantia_desc"] != ""){
 				$fieldList = NULL;
 				// Field cliente_id
 			//	$theValue = ($GLOBALS["x_cliente_id"] != "") ? intval($GLOBALS["x_cliente_id"]) : "NULL";
 				$fieldList["`solicitud_id`"] = $GLOBALS["x_solicitud_id"];
-			
+
 				// Field descripcion
-				$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_garantia_desc"]) : $GLOBALS["x_garantia_desc"]; 
+				$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_garantia_desc"]) : $GLOBALS["x_garantia_desc"];
 				$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 				$fieldList["`descripcion`"] = $theValue;
-			
+
 				// Field valor
 				$theValue = ($GLOBALS["x_garantia_valor"] != "") ? " '" . doubleval($GLOBALS["x_garantia_valor"]) . "'" : "NULL";
 				$fieldList["`valor`"] = $theValue;
-			
-			
+
+
 				// insert into database
 				$sSql = "INSERT INTO `garantia` (";
 				$sSql .= implode(",", array_keys($fieldList));
@@ -5064,25 +5087,25 @@ function EditData($conn){
 				$x_result = phpmkr_query($sSql, $conn);
 				if(!$x_result){
 					echo phpmkr_error() . '<br>SQL: ' . $sSql;
-					phpmkr_query('rollback;', $conn);	 
+					phpmkr_query('rollback;', $conn);
 					exit();
 				}
-		
+
 			}//fin else
 		}// fin garatias
-		
-		
-		
+
+
+
 		//GASTOS
-	if($GLOBALS["x_solicitud_id"] > 0){ 
+	if($GLOBALS["x_solicitud_id"] > 0){
 		$fieldList = NULL;
-		
+
 		$theValue = ($GLOBALS["x_renta_mensual"] != "") ? " '" . doubleval($GLOBALS["x_renta_mensual"]) . "'" : "NULL";
 		$fieldList["`gastos_renta_negocio`"] = $theValue;
-	
-	
+
+
 		$theValue = ($GLOBALS["x_renta_mensula_domicilio"] != "") ? doubleval($GLOBALS["x_renta_mensula_domicilio"]) : "0";
-		$fieldList["`gastos_renta_casa`"] = $theValue;	
+		$fieldList["`gastos_renta_casa`"] = $theValue;
 
 		// update
 		$sSql = "UPDATE `gasto` SET ";
@@ -5097,44 +5120,44 @@ function EditData($conn){
 
 		if(!$x_result){
 			echo phpmkr_error() . '<br>SQL: ' . $sSql;
-			phpmkr_query('rollback;', $conn);	 
+			phpmkr_query('rollback;', $conn);
 			exit();
 		}
-		
+
 	}else{
 		$fieldList = NULL;
 		$fieldList["`solicitud_id`"] = $GLOBALS["x_solicitud_id"];
-		
-		
+
+
 		$theValue = ($GLOBALS["x_renta_mensual"] != "") ? " '" . doubleval($GLOBALS["x_renta_mensual"]) : "0";
 		$fieldList["`gastos_renta_negocio`"] = $theValue;
-	
-	
+
+
 		$theValue = ($GLOBALS["x_renta_mensula_domicilio"] != "") ? doubleval($GLOBALS["x_renta_mensula_domicilio"]) : "0";
 		$fieldList["`gastos_renta_casa`"] = $theValue;
-		
-		
-		
+
+
+
 		// insert into database
 		$sSql = "INSERT INTO `gasto` (";
 		$sSql .= implode(",", array_keys($fieldList));
 		$sSql .= ") VALUES (";
 		$sSql .= implode(",", array_values($fieldList));
 		$sSql .= ")";
-	
+
 		$x_result = phpmkr_query($sSql, $conn);
 		if(!$x_result){
 			echo phpmkr_error() . '<br>SQL: ' . $sSql;
-			phpmkr_query('rollback;', $conn);	 
+			phpmkr_query('rollback;', $conn);
 			exit();
 		}
-	}		
-			
-			
-		
+	}
+
+
+
 		//referencias
-		
-		
+
+
 		//REFERENCIAS
 
 		$sSql = " delete from referencia WHERE solicitud_id = " . $GLOBALS["x_solicitud_id"];
@@ -5142,240 +5165,240 @@ function EditData($conn){
 
 		if(!$x_result){
 			echo phpmkr_error() . '<br>SQL: ' . $sSql;
-			phpmkr_query('rollback;', $conn);	 
+			phpmkr_query('rollback;', $conn);
 			exit();
 		}
-		
+
 		$x_counter = 1;
 		while($x_counter < 6){
-	
+
 			$fieldList = NULL;
 			// Field cliente_id
 	//		$theValue = ($GLOBALS["x_cliente_id"] != "") ? intval($GLOBALS["x_cliente_id"]) : "NULL";
 			$fieldList["`solicitud_id`"] = $GLOBALS["x_solicitud_id"];
-	
-	
+
+
 			if($GLOBALS["x_referencia_com_$x_counter"] != ""){
-			
+
 				// Field nombre_completo
-				$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_referencia_com_$x_counter"]) : $GLOBALS["x_referencia_com_$x_counter"]; 
+				$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_referencia_com_$x_counter"]) : $GLOBALS["x_referencia_com_$x_counter"];
 				$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 				$fieldList["`nombre_completo`"] = $theValue;
-			
+
 				// Field telefono
-				$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tel_referencia_$x_counter"]) : $GLOBALS["x_tel_referencia_$x_counter"]; 
+				$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_tel_referencia_$x_counter"]) : $GLOBALS["x_tel_referencia_$x_counter"];
 				$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 				$fieldList["`telefono`"] = $theValue;
-			
+
 				// Field parentesco_tipo_id
 				$theValue = ($GLOBALS["x_parentesco_ref_$x_counter"] != "") ? intval($GLOBALS["x_parentesco_ref_$x_counter"]) : "NULL";
 				$fieldList["`parentesco_tipo_id`"] = $theValue;
-			
+
 				// insert into database
 				$sSql = "INSERT INTO `referencia` (";
 				$sSql .= implode(",", array_keys($fieldList));
 				$sSql .= ") VALUES (";
 				$sSql .= implode(",", array_values($fieldList));
 				$sSql .= ")";
-			
+
 				$x_result = phpmkr_query($sSql, $conn);
 				if(!$x_result){
 					echo phpmkr_error() . '<br>SQL: ' . $sSql;
-					phpmkr_query('rollback;', $conn);	 
+					phpmkr_query('rollback;', $conn);
 					exit();
 				}
-	
+
 			}
-	
-	
+
+
 			$x_counter++;
 		}
-		
-		
-		
-		
-			
-			
-			
+
+
+
+
+
+
+
 			//FORMATOINDIVIDUAL
 
-	if($GLOBALS["x_cliente_id"] > 0){ 
+	if($GLOBALS["x_cliente_id"] > 0){
 	$fieldList = NULL;
 		//no esta el campo en la tabla domicilio por esa razon se inserta en la tabla adquisicionmaquinaria
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_otro_telefono_domicilio_2"]) : $GLOBALS["x_otro_telefono_domicilio_2"]; 
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_otro_telefono_domicilio_2"]) : $GLOBALS["x_otro_telefono_domicilio_2"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`otro_telefono_domicilio_2`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_giro_negocio"]) : $GLOBALS["x_giro_negocio"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_giro_negocio"]) : $GLOBALS["x_giro_negocio"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`giro_negocio`"] = $theValue;
-		
-		
-		
+
+
+
 		$theValue = ($GLOBALS["x_ing_fam_negocio"] != "") ? " '" . doubleval($GLOBALS["x_ing_fam_negocio"]). "'" : "NULL";
 		$fieldList["`ing_fam_negocio`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_ing_fam_otro_th"] != "") ? " '" . doubleval($GLOBALS["x_ing_fam_otro_th"]). "'" : "NULL";
 		$fieldList["`ing_fam_otro_th`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_ing_fam_1"] != "") ? " '" . doubleval($GLOBALS["x_ing_fam_1"]). "'" : "NULL";
 		$fieldList["`ing_fam_1`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_ing_fam_2"] != "") ? " '" . doubleval($GLOBALS["x_ing_fam_2"]). "'" : "NULL";
 		$fieldList["`ing_fam_2`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_ing_fam_deuda_1"] != "") ? " '" . doubleval($GLOBALS["x_ing_fam_deuda_1"]). "'" : "NULL";
 		$fieldList["`ing_fam_deuda_1`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_ing_fam_deuda_2"] != "") ? " '" . doubleval($GLOBALS["x_ing_fam_deuda_2"]). "'" : "NULL";
 		$fieldList["`ing_fam_deuda_2`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_ing_fam_total"] != "") ? " '" . doubleval($GLOBALS["x_ing_fam_total"]) . "'" : "NULL";
 		$fieldList["`ing_fam_total`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ing_fam_cuales_1"]) : $GLOBALS["x_ing_fam_cuales_1"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ing_fam_cuales_1"]) : $GLOBALS["x_ing_fam_cuales_1"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`ing_fam_cuales_1`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ing_fam_cuales_2"]) : $GLOBALS["x_ing_fam_cuales_2"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ing_fam_cuales_2"]) : $GLOBALS["x_ing_fam_cuales_2"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`ing_fam_cuales_2`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ing_fam_cuales_3"]) : $GLOBALS["x_ing_fam_cuales_3"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ing_fam_cuales_3"]) : $GLOBALS["x_ing_fam_cuales_3"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`ing_fam_cuales_3`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ing_fam_cuales_4"]) : $GLOBALS["x_ing_fam_cuales_4"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ing_fam_cuales_4"]) : $GLOBALS["x_ing_fam_cuales_4"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`ing_fam_cuales_4`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ing_fam_cuales_5"]) : $GLOBALS["x_ing_fam_cuales_5"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_ing_fam_cuales_5"]) : $GLOBALS["x_ing_fam_cuales_5"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`ing_fam_cuales_5`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_flujos_neg_ventas"] != "") ? " '" .doubleval( $GLOBALS["x_flujos_neg_ventas"]) . "'" : "NULL";
 		$fieldList["`flujos_neg_ventas`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_flujos_neg_proveedor_1"] != "") ? " '" . doubleval($GLOBALS["x_flujos_neg_proveedor_1"]) . "'" : "NULL";
 		$fieldList["`flujos_neg_proveedor_1`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_flujos_neg_proveedor_2"] != "") ? " '" . doubleval($GLOBALS["x_flujos_neg_proveedor_2"]) . "'" : "NULL";
 		$fieldList["`flujos_neg_proveedor_2`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_flujos_neg_proveedor_3"] != "") ? " '" . doubleval($GLOBALS["x_flujos_neg_proveedor_3"]) . "'" : "NULL";
 		$fieldList["`flujos_neg_proveedor_3`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_flujos_neg_proveedor_4"] != "") ? " '" . doubleval($GLOBALS["x_flujos_neg_proveedor_4"] ). "'" : "NULL";
 		$fieldList["`flujos_neg_proveedor_4`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_flujos_neg_gasto_1"] != "") ? " '" . doubleval($GLOBALS["x_flujos_neg_gasto_1"]) . "'" : "NULL";
 		$fieldList["`flujos_neg_gasto_1`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_flujos_neg_gasto_2"] != "") ? " '" . doubleval($GLOBALS["x_flujos_neg_gasto_2"]) . "'" : "NULL";
 		$fieldList["`flujos_neg_gasto_2`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_flujos_neg_gasto_3"] != "") ? " '" . doubleval($GLOBALS["x_flujos_neg_gasto_3"]). "'" : "NULL";
 		$fieldList["`flujos_neg_gasto_3`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_flujos_neg_cual_1"]) : $GLOBALS["x_flujos_neg_cual_1"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_flujos_neg_cual_1"]) : $GLOBALS["x_flujos_neg_cual_1"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`flujos_neg_cual_1`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_flujos_neg_cual_2"]) : $GLOBALS["x_flujos_neg_cual_2"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_flujos_neg_cual_2"]) : $GLOBALS["x_flujos_neg_cual_2"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`flujos_neg_cual_2`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_flujos_neg_cual_3"]) : $GLOBALS["x_flujos_neg_cual_3"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_flujos_neg_cual_3"]) : $GLOBALS["x_flujos_neg_cual_3"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`flujos_neg_cual_3`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_flujos_neg_cual_4"]) : $GLOBALS["x_flujos_neg_cual_4"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_flujos_neg_cual_4"]) : $GLOBALS["x_flujos_neg_cual_4"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`flujos_neg_cual_4`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_flujos_neg_cual_5"]) : $GLOBALS["x_flujos_neg_cual_5"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_flujos_neg_cual_5"]) : $GLOBALS["x_flujos_neg_cual_5"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`flujos_neg_cual_5`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_flujos_neg_cual_6"]) : $GLOBALS["x_flujos_neg_cual_6"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_flujos_neg_cual_6"]) : $GLOBALS["x_flujos_neg_cual_6"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`flujos_neg_cual_6`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_flujos_neg_cual_7"]) : $GLOBALS["x_flujos_neg_cual_7"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_flujos_neg_cual_7"]) : $GLOBALS["x_flujos_neg_cual_7"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`flujos_neg_cual_7`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_ingreso_negocio"] != "") ? " '" . doubleval($GLOBALS["x_ingreso_negocio"]). "'" : "NULL";
 		$fieldList["`ingreso_negocio`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_fija_conc_1"]) : $GLOBALS["x_inv_neg_fija_conc_1"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_fija_conc_1"]) : $GLOBALS["x_inv_neg_fija_conc_1"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`inv_neg_fija_conc_1`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_fija_conc_2"]) : $GLOBALS["x_inv_neg_fija_conc_2"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_fija_conc_2"]) : $GLOBALS["x_inv_neg_fija_conc_2"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`inv_neg_fija_conc_2`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_fija_conc_3"]) : $GLOBALS["x_inv_neg_fija_conc_3"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_fija_conc_3"]) : $GLOBALS["x_inv_neg_fija_conc_3"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`inv_neg_fija_conc_3`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_fija_conc_4"]) : $GLOBALS["x_inv_neg_fija_conc_4"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_fija_conc_4"]) : $GLOBALS["x_inv_neg_fija_conc_4"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`inv_neg_fija_conc_4`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_inv_neg_fija_valor_1"] != "") ? " '" . $GLOBALS["x_inv_neg_fija_valor_1"] . "'" : "NULL";
 		$fieldList["`inv_neg_fija_valor_1`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_inv_neg_fija_valor_2"] != "") ? " '" . $GLOBALS["x_inv_neg_fija_valor_2"] . "'" : "NULL";
 		$fieldList["`inv_neg_fija_valor_2`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_inv_neg_fija_valor_3"] != "") ? " '" . $GLOBALS["x_inv_neg_fija_valor_3"] . "'" : "NULL";
 		$fieldList["`inv_neg_fija_valor_3`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_inv_neg_fija_valor_4"] != "") ? " '" . $GLOBALS["x_inv_neg_fija_valor_4"] . "'" : "NULL";
 		$fieldList["`inv_neg_fija_valor_4`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_inv_neg_total_fija"] != "") ? " '" . $GLOBALS["x_inv_neg_total_fija"] . "'" : "NULL";
 		$fieldList["`inv_neg_total_fija`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_var_conc_1"]) : $GLOBALS["x_inv_neg_var_conc_1"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_var_conc_1"]) : $GLOBALS["x_inv_neg_var_conc_1"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`inv_neg_var_conc_1`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_var_conc_2"]) : $GLOBALS["x_inv_neg_var_conc_2"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_var_conc_2"]) : $GLOBALS["x_inv_neg_var_conc_2"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`inv_neg_var_conc_2`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_var_conc_3"]) : $GLOBALS["x_inv_neg_var_conc_3"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_var_conc_3"]) : $GLOBALS["x_inv_neg_var_conc_3"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`inv_neg_var_conc_3`"] = $theValue;
-		
-		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_var_conc_4"]) : $GLOBALS["x_inv_neg_var_conc_4"]; 
+
+		$theValue = (!get_magic_quotes_gpc()) ? addslashes($GLOBALS["x_inv_neg_var_conc_4"]) : $GLOBALS["x_inv_neg_var_conc_4"];
 		$theValue = ($theValue != "") ? " '" . $theValue . "'" : "NULL";
 		$fieldList["`inv_neg_var_conc_4`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_inv_neg_var_valor_1"] != "") ? " '" .doubleval( $GLOBALS["x_inv_neg_var_valor_1"]). "'" : "NULL";
 		$fieldList["`inv_neg_var_valor_1`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_inv_neg_var_valor_2"] != "") ? " '" . doubleval($GLOBALS["x_inv_neg_var_valor_2"]) . "'" : "NULL";
 		$fieldList["`inv_neg_var_valor_2`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_inv_neg_var_valor_3"] != "") ? " '" . doubleval($GLOBALS["x_inv_neg_var_valor_3"]) . "'" : "NULL";
 		$fieldList["`inv_neg_var_valor_3`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_inv_neg_var_valor_4"] != "") ? " '" . doubleval($GLOBALS["x_inv_neg_var_valor_4"]) . "'" : "NULL";
 		$fieldList["`inv_neg_var_valor_4`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_inv_neg_total_var"] != "") ? " '" . doubleval($GLOBALS["x_inv_neg_total_var"]) . "'" : "NULL";
 		$fieldList["`inv_neg_total_var`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_inv_neg_activos_totales"] != "") ? " '" . doubleval($GLOBALS["x_inv_neg_activos_totales"]) . "'" : "NULL";
 		$fieldList["`inv_neg_activos_totales`"] = $theValue;
-		
+
 		$theValue = ($GLOBALS["x_fecha"] != "") ? " '" . ConvertDateToMysqlFormat($GLOBALS["x_fecha"]) . "'" : "NULL";
 		$fieldList["`fecha`"] = $theValue;
-		
+
 		$sSql = "UPDATE `formatoindividual` SET ";
 		foreach ($fieldList as $key=>$temp) {
 			$sSql .= "$key = $temp, ";
@@ -5387,28 +5410,26 @@ function EditData($conn){
 		$x_result = phpmkr_query($sSql,$conn) or die("ERROR FATAL...".phpmkr_error()."SQL STATEMENT".$sSql);
 			if(!$x_result){
 					echo phpmkr_error() . '<br>SQL: ' . $sSql;
-					phpmkr_query('rollback;', $conn);	 
+					phpmkr_query('rollback;', $conn);
 					exit();
 		}
 	}
-			
-			
 
-		
-	
+
+
+
+
 	}//fin else  phpmkr_num_rows($rs) == 0
-	
+
 	//terminamos transaccion
-	
-	
-		phpmkr_query('commit;', $conn);	
-	
-	
+
+
+		phpmkr_query('commit;', $conn);
+
+
 	return true;
 	}
 
 
 
 ?>
-
-
