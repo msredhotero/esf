@@ -1792,9 +1792,11 @@ if($x_win == 3){
             <?php
 		@$x_estado_civil_idList = "<select name=\"x_promotor_id\" $x_readonly2 class=\"texto_normal\">";
 		$x_estado_civil_idList .= "<option value=''>Seleccione</option>";
-		
-		$sSqlWrk = "SELECT `promotor_id`, `nombre_completo` FROM promotor where promotor_id in (60,61)";
-		
+		if($_SESSION["crm_UserRolID"] == 7) {
+			$sSqlWrk = "SELECT promotor_id, nombre_completo FROM promotor Where promotor_id = ".$_SESSION["crm_PromotorID"];
+		}else{
+			$sSqlWrk = "SELECT `promotor_id`, `nombre_completo` FROM `promotor`";
+		}
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -3703,15 +3705,12 @@ Esto solo lo ve el coordinador de credito.
 <table align="center">
 	<tr>
 		<td>
-			<input name="ActionValidar" type="button" id="btnValidar" class="boton_medium_validar" value="Validar Lista Negra" />
-		</td>
-		<td>
-			<img id="btnReporte" src="../images/pdf.png" width="48" style="cursor: pointer;">
+			<input name="ActionValidar" type="button" id="btnValidar" class="boton_medium_validar" value="Validar Lista Negra" /><?php ?>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<input name="Action2" type="button" id="agregarSolicitud" class="boton_medium" value="Agregar Solicitud" onclick="EW_checkMyForm();" />
+			<input name="Action2" type="button" id="agregarSolicitud" class="boton_medium" value="Agregar Solicitud" onclick="EW_checkMyForm();" /><?php ?>
 		</td>
 	</tr>
 </table>
@@ -3720,7 +3719,6 @@ Esto solo lo ve el coordinador de credito.
 <script>
 	$(document).ready(function(){
 		$('#agregarSolicitud').hide();
-		$('#btnReporte').hide();
 
 		$('#btnValidar').click(function() {
 			$.ajax({
@@ -3740,10 +3738,8 @@ Esto solo lo ve el coordinador de credito.
 					if (response.error == true) {
 						alert('No es poscible cargar la solicitud: ' + ' \n\r ' + response.datoscliente + ' \n\r ' + response.datosproveedor + ' \n\r ' + response.datosbeneficiario);
 						$('#agregarSolicitud').hide();
-						$('#btnReporte').show();
 					} else {
 						$('#agregarSolicitud').show();
-						$('#btnReporte').show();
 					}
 
 				}
@@ -5624,6 +5620,7 @@ function AddData($conn){
 	$strsql .= implode(",", array_values($fieldList));
 	$strsql .= ")";
 		//phpmkr_query($strsql, $conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $strsql);
+
 
 
 
