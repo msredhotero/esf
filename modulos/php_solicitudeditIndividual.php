@@ -2213,11 +2213,9 @@ if($x_win == 3){
             <?php
 		$x_estado_civil_idList = "<select name=\"x_promotor_id\" $x_readonly2 class=\"texto_normal\">";
 		$x_estado_civil_idList .= "<option value=''>Seleccione</option>";
-		if($_SESSION["crm_UserRolID"] == 7) {
-			$sSqlWrk = "SELECT promotor_id, nombre_completo FROM promotor Where promotor_id = ".$_SESSION["crm_PromotorID"];
-		}else{
-			$sSqlWrk = "SELECT `promotor_id`, `nombre_completo` FROM `promotor`";
-		}
+		
+		$sSqlWrk = "SELECT `promotor_id`, `nombre_completo` FROM `promotor`";
+		
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
