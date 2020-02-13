@@ -338,75 +338,15 @@ switch ($sAction)
 </style>
 
 <!--googlemaps-->
-<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<link href="https://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript" src="../scripts/jquery-1.4.js"></script>
 <script type="text/javascript" src="../scripts/jquery-ui-1.8.custom.min.js"></script>
 <script type="text/javascript" src="../scripts/jquery.themeswitcher.js"></script>
 
 
 <script language="javascript" src="tipoCuenta/formatos/js/carga_telefonos.js"></script>
-<script language="javascript">
-$(document).ready(function() {
-	status_sol = $('#x_solicitud_status_id').val();
 
-	//alert(status_sol);
-	if(status_sol == 11){
-		 $("#x_div_fecha_supervision_tex").css("display", "block");
-		 $("#x_div_fecha_supervision_in").css("display", "block");
-		}
-
-	$('#x_realizo_supervision').click(function (evento){
-		if ($("#x_realizo_supervision").attr("checked")){
-         $('#x_realizo_supervision').val("1");
-      }else{
-         $('#x_realizo_supervision').val("0");
-      }
-   });
-   $('#x_calculo_capacidad_pago').click( function (evento){
-	   if ($("#x_calculo_capacidad_pago").attr("checked")){
-		   $('#x_calculo_capacidad_pago').val("1");//attr('value',1);
-		   }else{
-			   $('#x_calculo_capacidad_pago'). val("0");//attr('value',1);
-
-			   }
-
-
-	   });
-
-	$('#x_calcula_curp').click(function (evento){
-		var nombre = $('#x_nombre').val();
-		var paterno = $('#x_apellido_parterno').val();
-		var materno = $('#x_apellido_materno').val();
-		var fecha = $('#x_fecha_nacimiento').val();
-		var sexo = $('#x_sexo').val();
-		var nacimiento = $('#x_entidad_nacimiento').val();
-		var ff = fecha.split("/");
-		var dia = ff[0];
-		var mes = ff[1];
-		var anio = ff[2];
-		alert("CALCULA CURP");
-		//alert(ff)
-		$("#txtHintcurp").load("generaCurp.php?q1="+nombre+"&q2="+paterno+"&q3="+materno+"&q4="+dia+"&q5="+mes+"&q6="+anio+"&q7="+nacimiento+"&q8="+sexo+"");
-		});
-
-	$('#x_calcula_rfc').click(function (evento){
-		var nombre = $('#x_nombre').val();
-		var paterno = $('#x_apellido_parterno').val();
-		var materno = $('#x_apellido_materno').val();
-		var fecha = $('#x_fecha_nacimiento').val();
-		var sexo = $('#x_sexo').val();
-		var nacimiento = $('#x_entidad_nacimiento').val();
-		var ff = fecha.split("/");
-		var dia = ff[0];
-		var mes = ff[1];
-		var anio = ff[2];
-		alert("CALCULA RFC");
-		$("#txtHintrfc").load("generaRfc.php?q1="+nombre+"&q2="+paterno+"&q3="+materno+"&q4="+dia+"&q5="+mes+"&q6="+anio+"&q7="+nacimiento+"&q8="+sexo+"");
-		});
-
-});
-</script>
 <script type="text/javascript">
   var geocoder;
   var map;
@@ -1030,10 +970,7 @@ if (validada == true && EW_this.x_promotor_id && !EW_hasValue(EW_this.x_promotor
 		validada = false;
 }
 
-if (validada == true && EW_this.x_credito_tipo_id && !EW_hasValue(EW_this.x_credito_tipo_id, "SELECT" )) {
-	if (!EW_onError(EW_this, EW_this.x_credito_tipo_id, "SELECT", "Indique el credito deseado."))
-		validada = false;
-}
+
 if (validada == true && EW_this.x_importe_solicitado && !EW_hasValue(EW_this.x_importe_solicitado, "TEXT" )) {
 	if (!EW_onError(EW_this, EW_this.x_importe_solicitado, "TEXT", "Indique el importe del credito a solicitar."))
 		validada = false;
@@ -1792,9 +1729,9 @@ if($x_win == 3){
             <?php
 		@$x_estado_civil_idList = "<select name=\"x_promotor_id\" $x_readonly2 class=\"texto_normal\">";
 		$x_estado_civil_idList .= "<option value=''>Seleccione</option>";
-		
+
 		$sSqlWrk = "SELECT `promotor_id`, `nombre_completo` FROM promotor where promotor_id in (60,61)";
-		
+
 		$rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 		if ($rswrk) {
 			$rowcntwrk = 0;
@@ -3719,6 +3656,63 @@ Esto solo lo ve el coordinador de credito.
 </body>
 <script>
 	$(document).ready(function(){
+		status_sol = $('#x_solicitud_status_id').val();
+
+		//alert(status_sol);
+		if(status_sol == 11){
+			 $("#x_div_fecha_supervision_tex").css("display", "block");
+			 $("#x_div_fecha_supervision_in").css("display", "block");
+			}
+
+		$('#x_realizo_supervision').click(function (evento){
+			if ($("#x_realizo_supervision").attr("checked")){
+	         $('#x_realizo_supervision').val("1");
+	      }else{
+	         $('#x_realizo_supervision').val("0");
+	      }
+	   });
+	   $('#x_calculo_capacidad_pago').click( function (evento){
+		   if ($("#x_calculo_capacidad_pago").attr("checked")){
+			   $('#x_calculo_capacidad_pago').val("1");//attr('value',1);
+			   }else{
+				   $('#x_calculo_capacidad_pago'). val("0");//attr('value',1);
+
+				   }
+
+
+		   });
+
+		$('#x_calcula_curp').click(function (evento){
+			var nombre = $('#x_nombre').val();
+			var paterno = $('#x_apellido_parterno').val();
+			var materno = $('#x_apellido_materno').val();
+			var fecha = $('#x_fecha_nacimiento').val();
+			var sexo = $('#x_sexo').val();
+			var nacimiento = $('#x_entidad_nacimiento').val();
+			var ff = fecha.split("/");
+			var dia = ff[0];
+			var mes = ff[1];
+			var anio = ff[2];
+			alert("CALCULA CURP");
+			//alert(ff)
+			$("#txtHintcurp").load("generaCurp.php?q1="+nombre+"&q2="+paterno+"&q3="+materno+"&q4="+dia+"&q5="+mes+"&q6="+anio+"&q7="+nacimiento+"&q8="+sexo+"");
+			});
+
+		$('#x_calcula_rfc').click(function (evento){
+			var nombre = $('#x_nombre').val();
+			var paterno = $('#x_apellido_parterno').val();
+			var materno = $('#x_apellido_materno').val();
+			var fecha = $('#x_fecha_nacimiento').val();
+			var sexo = $('#x_sexo').val();
+			var nacimiento = $('#x_entidad_nacimiento').val();
+			var ff = fecha.split("/");
+			var dia = ff[0];
+			var mes = ff[1];
+			var anio = ff[2];
+			alert("CALCULA RFC");
+			$("#txtHintrfc").load("generaRfc.php?q1="+nombre+"&q2="+paterno+"&q3="+materno+"&q4="+dia+"&q5="+mes+"&q6="+anio+"&q7="+nacimiento+"&q8="+sexo+"");
+			});
+
 		$('#agregarSolicitud').hide();
 		$('#btnReporte').hide();
 
@@ -3748,6 +3742,9 @@ Esto solo lo ve el coordinador de credito.
 
 				}
 			});
+		});
+		$('#btnReporte').click(function() {
+			window.open("../reportes/rptConstanciaListaNegra.php?apellidopaterno=" + $('#x_apellido_parterno').val() + '&apellidomaterno=' + $('#x_apellido_materno').val() + '&nombre=' + $('#x_nombre').val() + '&proveedor=' + $('#x_proveedor_nombrecompleto').val() + '&beneficiario=' + $('#x_beneficiario_nombrecompleto').val() ,'_blank');
 		});
 	});
 </script>

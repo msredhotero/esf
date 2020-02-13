@@ -19,76 +19,177 @@ class ServiciosReferencias {
 		return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
 	}
 
-	function verificarListaNegraOfac($cliente, $proveedor, $beneficiario) {
-		$validaC = true;
-		$validaP = true;
-		$validaB = true;
+	function verificarListaNegraOfacsimple($nombrecompleto) {
+		$valida = 1;
 
-		$cliente 		= strtolower(str_replace('"', '', str_replace('/', '', str_replace('.', '', str_replace(')', '', str_replace('(', '', str_replace('_', '', str_replace('-', '', str_replace(',', '', str_replace('.', '', trim(str_replace(' ', '', trim($cliente)))))))))))));
-		$proveedor 		= strtolower(str_replace('"', '', str_replace('/', '', str_replace('.', '', str_replace(')', '', str_replace('(', '', str_replace('_', '', str_replace('-', '', str_replace(',', '', str_replace('.', '', trim(str_replace(' ', '', trim($proveedor)))))))))))));
-		$beneficiario 	= strtolower(str_replace('"', '', str_replace('/', '', str_replace('.', '', str_replace(')', '', str_replace('(', '', str_replace('_', '', str_replace('-', '', str_replace(',', '', str_replace('.', '', trim(str_replace(' ', '', trim($beneficiario)))))))))))));
+		$nombrecompleto 		= strtolower(str_replace(';', '',str_replace('"', '', str_replace('/', '', str_replace('.', '', str_replace(')', '', str_replace('(', '', str_replace('_', '', str_replace('-', '', str_replace(',', '', str_replace('.', '', trim(str_replace(' ', '', trim($nombrecompleto))))))))))))));
 
-		$sqlClienteOfac = sprintf("SELECT * FROM csv_sdn WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(sdn_name, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', '')) ='%s'",
-            mysql_real_escape_string($cliente));
+		$sqlOfac = sprintf("SELECT * FROM csv_sdn WHERE lower( REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(sdn_name, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', ''), ';', '')  ) ='%s'",
+            ($nombrecompleto));
+
+		//die(var_dump($sqlClienteOfac));
+
+		$resOfac = $this->query($sqlOfac,0);
+		if (mysql_num_rows($resOfac) > 0) {
+			$valida = 0;
+		}
+
+
+		$sqlLN = sprintf("SELECT * FROM csv_lista_lpb WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', ''), ';', '') ) ='%s'",
+            ($nombrecompleto));
+
+		//die(var_dump($sqlClienteOfac));
+
+		$resLN = $this->query($sqlLN,0);
+		if (mysql_num_rows($resLN) > 0) {
+			$valida = 0;
+		}
+
+		$sqlLN2 = sprintf("SELECT * FROM csv_lista_negra_cnbv WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', '')) ='%s'",
+            ($nombrecompleto));
+
+		//die(var_dump($sqlClienteOfac));
+
+		$resLN2 = $this->query($sqlLN2,0);
+		if (mysql_num_rows($resLN2) > 0) {
+			$valida = 0;
+		}
+
+		return $valida;
+	}
+
+	function verificarListaNegraOfac($cliente, $proveedor, $beneficiario,$clientereverso) {
+		$validaC = 1;
+		$validaP = 1;
+		$validaB = 1;
+
+		$cliente 		= strtolower(str_replace(';', '',str_replace('"', '', str_replace('/', '', str_replace('.', '', str_replace(')', '', str_replace('(', '', str_replace('_', '', str_replace('-', '', str_replace(',', '', str_replace('.', '', trim(str_replace(' ', '', trim($cliente))))))))))))));
+		$proveedor 		= strtolower(str_replace(';', '',str_replace('"', '', str_replace('/', '', str_replace('.', '', str_replace(')', '', str_replace('(', '', str_replace('_', '', str_replace('-', '', str_replace(',', '', str_replace('.', '', trim(str_replace(' ', '', trim($proveedor))))))))))))));
+		$beneficiario 	= strtolower(str_replace(';', '',str_replace('"', '', str_replace('/', '', str_replace('.', '', str_replace(')', '', str_replace('(', '', str_replace('_', '', str_replace('-', '', str_replace(',', '', str_replace('.', '', trim(str_replace(' ', '', trim($beneficiario))))))))))))));
+		$clientereverso 		= strtolower(str_replace(';', '',str_replace('"', '', str_replace('/', '', str_replace('.', '', str_replace(')', '', str_replace('(', '', str_replace('_', '', str_replace('-', '', str_replace(',', '', str_replace('.', '', trim(str_replace(' ', '', trim($clientereverso))))))))))))));
+
+		$sqlClienteOfac = sprintf("SELECT * FROM csv_sdn WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(sdn_name, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', ''), ';', '') ) ='%s'",
+            ($cliente));
 
 		//die(var_dump($sqlClienteOfac));
 
 		$resClienteOfac = $this->query($sqlClienteOfac,0);
 		if (mysql_num_rows($resClienteOfac) > 0) {
-			$validaC = false;
+			$validaC = 0;
 		}
 
-		$sqlProveedorOfac = sprintf("SELECT * FROM csv_sdn WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(sdn_name, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', '')) ='%s'",
-            mysql_real_escape_string($proveedor));
+		$sqlClienteReversoOfac = sprintf("SELECT * FROM csv_sdn WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(sdn_name, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', ''), ';', '') ) ='%s'",
+            ($clientereverso));
+
+		$resClienteReversoOfac = $this->query($sqlClienteReversoOfac,0);
+		if (mysql_num_rows($resClienteReversoOfac) > 0) {
+			$validaC = 0;
+		}
+
+		$sqlProveedorOfac = sprintf("SELECT * FROM csv_sdn WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(sdn_name, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', ''), ';', '') ) ='%s'",
+            ($proveedor));
 
 		//die(var_dump($sqlProveedorOfac));
 
 		$resProveedorOfac = $this->query($sqlProveedorOfac,0);
 		if (mysql_num_rows($resProveedorOfac) > 0) {
-			$validaP = false;
+			$validaP = 0;
 		}
 
-		$sqlBeneficiarioOfac = sprintf("SELECT * FROM csv_sdn WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(sdn_name, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', '')) ='%s'",
-            mysql_real_escape_string($beneficiario));
+		$sqlBeneficiarioOfac = sprintf("SELECT * FROM csv_sdn WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(sdn_name, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', ''), ';', '') ) ='%s'",
+            ($beneficiario));
 
 		//die(var_dump($sqlProveedorOfac));
 
 		$resBeneficiarioOfac = $this->query($sqlBeneficiarioOfac,0);
 		if (mysql_num_rows($resBeneficiarioOfac) > 0) {
-			$validaB = false;
+			$validaB = 0;
 		}
 
 		/**********************  fin ofac ***************************************/
 
 
-		$sqlClienteLN = sprintf("SELECT * FROM csv_lista_lpb WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', '')) ='%s'",
-            mysql_real_escape_string($cliente));
+		$sqlClienteLN = sprintf("SELECT * FROM csv_lista_lpb WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', ''), ';', '') ) ='%s'",
+            ($cliente));
 
 		//die(var_dump($sqlClienteOfac));
 
 		$resClienteLN = $this->query($sqlClienteLN,0);
 		if (mysql_num_rows($resClienteLN) > 0) {
-			$validaC = false;
+			$validaC = 0;
 		}
 
-		$sqlProveedorLN = sprintf("SELECT * FROM csv_lista_lpb WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', '')) ='%s'",
-            mysql_real_escape_string($proveedor));
+		$sqlClienteReversoLN = sprintf("SELECT * FROM csv_lista_lpb WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', ''), ';', '') ) ='%s'",
+            ($clientereverso));
+
+		//die(var_dump($sqlClienteOfac));
+
+		$resClienteReversoLN = $this->query($sqlClienteReversoLN,0);
+		if (mysql_num_rows($resClienteReversoLN) > 0) {
+			$validaC = 0;
+		}
+
+		$sqlProveedorLN = sprintf("SELECT * FROM csv_lista_lpb WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', ''), ';', '') ) ='%s'",
+            ($proveedor));
 
 		//die(var_dump($sqlProveedorOfac));
 
 		$resProveedorLN = $this->query($sqlProveedorLN,0);
 		if (mysql_num_rows($resProveedorLN) > 0) {
-			$validaP = false;
+			$validaP = 0;
 		}
 
-		$sqlBeneficiarioLN = sprintf("SELECT * FROM csv_lista_lpb WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', '')) ='%s'",
-            mysql_real_escape_string($beneficiario));
+		$sqlBeneficiarioLN = sprintf("SELECT * FROM csv_lista_lpb WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', ''), ';', '') ) ='%s'",
+            ($beneficiario));
 
 		//die(var_dump($sqlProveedorOfac));
 
 		$resBeneficiarioLN = $this->query($sqlBeneficiarioLN,0);
 		if (mysql_num_rows($resBeneficiarioLN) > 0) {
-			$validaB = false;
+			$validaB = 0;
+		}
+
+		/**********************  fin lista negra lpb ***************************************/
+
+
+		$sqlClienteLN2 = sprintf("SELECT * FROM csv_lista_negra_cnbv WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', ''), ';', '') ) ='%s'",
+            ($cliente));
+
+		//die(var_dump($sqlClienteOfac));
+
+		$resClienteLN2 = $this->query($sqlClienteLN2,0);
+		if (mysql_num_rows($resClienteLN2) > 0) {
+			$validaC = 0;
+		}
+
+		$sqlClienteReversoLN2 = sprintf("SELECT * FROM csv_lista_negra_cnbv WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', ''), ';', '') ) ='%s'",
+            ($clientereverso));
+
+		//die(var_dump($sqlClienteOfac));
+
+		$resClienteReversoLN2 = $this->query($sqlClienteReversoLN2,0);
+		if (mysql_num_rows($resClienteReversoLN2) > 0) {
+			$validaC = 0;
+		}
+
+		$sqlProveedorLN2 = sprintf("SELECT * FROM csv_lista_negra_cnbv WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', ''), ';', '') ) ='%s'",
+            ($proveedor));
+
+		//die(var_dump($sqlProveedorOfac));
+
+		$resProveedorLN2 = $this->query($sqlProveedorLN2,0);
+		if (mysql_num_rows($resProveedorLN2) > 0) {
+			$validaP = 0;
+		}
+
+		$sqlBeneficiarioLN2 = sprintf("SELECT * FROM csv_lista_negra_cnbv WHERE lower(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, '".'"'."', ''), '/', ''), '.', ''), ')', ''), '(', ''), '_', ''), '-', ''), ',', ''), ' ', ''), ';', '') ) ='%s'",
+            ($beneficiario));
+
+		//die(var_dump($sqlProveedorOfac));
+
+		$resBeneficiarioLN2 = $this->query($sqlBeneficiarioLN2,0);
+		if (mysql_num_rows($resBeneficiarioLN2) > 0) {
+			$validaB = 0;
 		}
 
 

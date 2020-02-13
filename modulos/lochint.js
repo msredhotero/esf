@@ -12,7 +12,7 @@ if (xmlHttpLoc==null)
   {
   alert ("Your browser does not support AJAX!");
   return;
-  } 
+  }
 
 var url="getLoc.php";
 url=url+"?q1="+municipio;
@@ -20,15 +20,16 @@ url=url+"&q2="+localidadname;
 url=url+"&sid="+Math.random();
 //xmlHttpLoc.onreadystatechange=stateChanged;
 
+/*
 xmlHttpLoc.onreadystatechange=function(){
      if (xmlHttpLoc.readyState==4 || xmlHttpLoc.readyState=="complete"){
             document.getElementById(ctlName).innerHTML=xmlHttpLoc.responseText;
         }
      };
-
+*/
 xmlHttpLoc.open("GET",url,true);
 xmlHttpLoc.send(null);
-} 
+}
 
 
 function showLoc2(munId,ctlName,localidadname, mismoval,estado)
@@ -42,7 +43,7 @@ if (xmlHttpLoc==null)
   {
   alert ("Your browser does not support AJAX!");
   return;
-  } 
+  }
 
 var url="getLoc_new.php";
 url=url+"?q1="+municipio;
@@ -59,13 +60,13 @@ xmlHttpLoc.onreadystatechange=function(){
 
 xmlHttpLoc.open("GET",url,true);
 xmlHttpLoc.send(null);
-} 
+}
 /*
-function stateChanged() 
-{ 
+function stateChanged()
+{
 
 if (xmlHttpLoc.readyState==4)
-{ 
+{
 		document.getElementById("txtHint1").innerHTML=xmlHttpLoc.responseText;
 }
 }
