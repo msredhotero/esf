@@ -79,48 +79,48 @@ while($datawrkmain = phpmkr_fetch_array($rswrkmain)){
 	# SI EL CAMPO DE PENALIZACION ES MAYOR DE 0 SIGNIFICA QUE  ES UN CREDITO QUE NO SE COBRARA MORATORIOS, SOLO SE GENERARAN PENALIZACIONES Y COMISION
 	# DE COMBRANZA SI APLICARA EL CASO.
 
-	if($x_penalizacion > 0){
+	if($x_penalizacion > 0) {
 		echo "entra cred_num".$x_credito_num."<br>";
 
 		#aqui entra el calculo de las penalizaciones y las comisiones de los creditos con el nuevo esquema de penalizaciones
-		if(empty($x_iva)){
+		if(empty($x_iva)) {
 		   $x_iva = 0;
 		}
 
 		$x_dias_vencidos = datediff('d', $x_fecha_vencimiento, $currdate, false);
 
 		$x_dia = strtoupper(date('l',strtotime($x_fecha_vencimiento)));
-   	echo "fecha  vencimeinto".$x_fecha_vencimiento;
-   	echo "fecha actual".$currdate;
-   	echo "dias vencido".$x_dias_vencidos."<br>";
+   		echo "fecha  vencimeinto".$x_fecha_vencimiento;
+   		echo "fecha actual".$currdate;
+   		echo "dias vencido".$x_dias_vencidos."<br>";
 
 		$x_dias_gracia = 2;
 		switch ($x_dia)
 		{
-				case "MONDAY": // Get a record to display
-					$x_dias_gracia = 2;
-					break;
-				case "TUESDAY": // Get a record to display
-					$x_dias_gracia = 2;
-					break;
-				case "WEDNESDAY": // Get a record to display
-					$x_dias_gracia = 4;
-					break;
-				case "THURSDAY": // Get a record to display
-					$x_dias_gracia = 4;
-					break;
-				case "FRIDAY": // Get a record to display
-					$x_dias_gracia = 4;
-					break;
-				case "SATURDAY": // Get a record to display
-					$x_dias_gracia = 3;
-					break;
-				case "SUNDAY": // Get a record to display
-					$x_dias_gracia = 2;
-					break;
+			case "MONDAY": // Get a record to display
+				$x_dias_gracia = 2;
+				break;
+			case "TUESDAY": // Get a record to display
+				$x_dias_gracia = 2;
+				break;
+			case "WEDNESDAY": // Get a record to display
+				$x_dias_gracia = 4;
+				break;
+			case "THURSDAY": // Get a record to display
+				$x_dias_gracia = 4;
+				break;
+			case "FRIDAY": // Get a record to display
+				$x_dias_gracia = 4;
+				break;
+			case "SATURDAY": // Get a record to display
+				$x_dias_gracia = 3;
+				break;
+			case "SUNDAY": // Get a record to display
+				$x_dias_gracia = 2;
+				break;
 		}
 
-		if($x_dias_vencidos >= $x_dias_gracia){
+		if ($x_dias_vencidos >= $x_dias_gracia) {
 
 			#echo "foram de pago mensual y  penalizacion mayor de 0 <br>";
 			# es la nueva forma de pago
@@ -129,50 +129,56 @@ while($datawrkmain = phpmkr_fetch_array($rswrkmain)){
 			#el no de vencimeinto se toma para generar el no de penalizacion mas 2000
 			# en monto de la penalizacion sera igual al campode penalizaciones, si tiene iva el monto debera cubrir iva. monto pen = 150 iva =20.68 + interes moratorio = 129.31
 			#solo se aplica si la forma de pago es mensual y si el campo de penalizacion esta lleno
-			if(empty($x_iva)){
-			$x_iva = 0;
+			if (empty($x_iva)) {
+				$x_iva = 0;
 			}
 
 
-		# si dias vencidos es mayor a dias de gracia entonces se gera el nuevo vencimeinto.
-		if($x_iva > 0){
-			# si el iva es mayo de cero entonces se calcula el monto del iva
-			$x_interes_moratorio = $x_penalizacion /  1.16 ;
-			$x_iva_moratorio = $x_penalizacion - $x_interes_moratorio;
+			# si dias vencidos es mayor a dias de gracia entonces se gera el nuevo vencimeinto.
+			if ($x_iva > 0) {
+				# si el iva es mayo de cero entonces se calcula el monto del iva
+				$x_interes_moratorio = $x_penalizacion /  1.16 ;
+				$x_iva_moratorio = $x_penalizacion - $x_interes_moratorio;
 			}else{
 				$x_interes_moratorio = $x_penalizacion;
 				$x_iva_moratorio = 0;
+			}
+			
+			$x_tot_venc =$x_interes_moratorio + $x_iva_moratorio ;
+			$x_vencimiento_num_nuevo = $x_vencimiento_num + 2000;
+
+			# seleccionamos la fecha del ultimo vencimeinto, para generar las penalizaciones con esa misma fecha
+			$sqlFecha = "SELECT  fecha_vencimiento  FROM vencimiento WHERE credito_id = $x_credito_id  and vencimiento_num < 2000  order by  vencimiento_num DESC limit 0,1 ";
+			$rsFecha = phpmkr_query($sqlFecha, $conn) or die ("Error al seleccioanr la fecha del ultimo venciento.". phpmkr_error(). "sql:".$sqlFecha);
+			$rowFecha = phpmkr_fetch_array($rsFecha);
+			$x_fecha_nuevo_vencimiento = $rowFecha["fecha_vencimiento"];
+			
+			#no 2000 para penalizaciones
+			#no 3000 para comisiones
+			if($x_vencimiento_num_nuevo < 3000){
+			
+				#verificamos que ese venciemiento vencido no tenga aun ninguna penalizacion generada.
+				$sqlBuscaPenalizacion  = "SELECT * FROM vencimiento WHERE vencimiento_num = $x_vencimiento_num_nuevo  and credito_id = $x_credito_id";
+				$rsBuscaPenalizacion = phpmkr_query($sqlBuscaPenalizacion, $conn) or die ("Error al seleccionar".phpmkr_error()."sql:".$sqlBuscaPenalizacion);
+				
+				#echo "sql penalizaciones".$sqlBuscaPenalizacion."<br>";
+				$x_no_penalizaciones  = mysql_num_rows($rsBuscaPenalizacion);
+				
+				#echo "nuemro de  penalizaciones = ".$x_no_penalizaciones ."<br>";
+				if($x_no_penalizaciones < 1) {
+				
+				#Si o hay ningun registro de penalizacion para el vencimeinto, se genera uno
+				$sSqlWrk = "INSERT INTO `vencimiento` (`vencimiento_id`, `credito_id`, `vencimiento_num`, `vencimiento_status_id`, `fecha_vencimiento`, `importe`, `interes`, `interes_moratorio`, `iva`, `iva_mor`, `total_venc`, `fecha_genera_remanente`)";
+				$sSqlWrk .= " VALUES (NULL, $x_credito_id, $x_vencimiento_num_nuevo, '1', \"$x_fecha_nuevo_vencimiento\", '0', '0', $x_interes_moratorio , '0', $x_iva_moratorio, $x_tot_venc, NULL); ";
+				phpmkr_query($sSqlWrk,$conn) or die ("Error al insertar el nuevo vencimiento".phpmkr_error()."sql:". $sSqlWrk);
+
 				}
-		$x_tot_venc =$x_interes_moratorio + $x_iva_moratorio ;
-		$x_vencimiento_num_nuevo = $x_vencimiento_num + 2000;
-
-		# seleccionamos la fecha del ultimo vencimeinto, para generar las penalizaciones con esa misma fecha
-		$sqlFecha = "SELECT  fecha_vencimiento  FROM vencimiento WHERE credito_id = $x_credito_id  and vencimiento_num < 2000  order by  vencimiento_num DESC limit 0,1 ";
-		$rsFecha = phpmkr_query($sqlFecha, $conn) or die ("Error al seleccioanr la fecha del ultimo venciento.". phpmkr_error(). "sql:".$sqlFecha);
-		$rowFecha = phpmkr_fetch_array($rsFecha);
-		$x_fecha_nuevo_vencimiento = $rowFecha["fecha_vencimiento"];
-		#no 2000 para penalizaciones
-		#no 3000 para comisiones
-		if($x_vencimiento_num_nuevo < 3000){
-		#verificamos que ese venciemiento vencido no tenga aun ninguna penalizacion generada.
-		$sqlBuscaPenalizacion  = "SELECT * FROM vencimiento WHERE vencimiento_num = $x_vencimiento_num_nuevo  and credito_id = $x_credito_id";
-		$rsBuscaPenalizacion = phpmkr_query($sqlBuscaPenalizacion, $conn) or die ("Error al seleccionar".phpmkr_error()."sql:".$sqlBuscaPenalizacion);
-		#echo "sql penalizaciones".$sqlBuscaPenalizacion."<br>";
-		$x_no_penalizaciones  = mysql_num_rows($rsBuscaPenalizacion);
-		#echo "nuemro de  penalizaciones = ".$x_no_penalizaciones ."<br>";
-		if($x_no_penalizaciones < 1){
-		#Si o hay ningun registro de penalizacion para el vencimeinto, se genera uno
-		$sSqlWrk = "INSERT INTO `vencimiento` (`vencimiento_id`, `credito_id`, `vencimiento_num`, `vencimiento_status_id`, `fecha_vencimiento`, `importe`, `interes`, `interes_moratorio`, `iva`, `iva_mor`, `total_venc`, `fecha_genera_remanente`)";
-		$sSqlWrk .= " VALUES (NULL, $x_credito_id, $x_vencimiento_num_nuevo, '1', \"$x_fecha_nuevo_vencimiento\", '0', '0', $x_interes_moratorio , '0', $x_iva_moratorio, $x_tot_venc, NULL); ";
-		phpmkr_query($sSqlWrk,$conn) or die ("Error al insertar el nuevo vencimiento".phpmkr_error()."sql:". $sSqlWrk);
-
-		}
 
 
-		# actualizamos el vencimeinto a vencido
-		$sSqlWrk = "update vencimiento set vencimiento_status_id = 3 where vencimiento_id = $x_vencimiento_id ";
-		phpmkr_query($sSqlWrk,$conn);
-		}// fin si vencimiento numero es menor de 3000
+				# actualizamos el vencimeinto a vencido
+				$sSqlWrk = "update vencimiento set vencimiento_status_id = 3 where vencimiento_id = $x_vencimiento_id ";
+				phpmkr_query($sSqlWrk,$conn);
+			}// fin si vencimiento numero es menor de 3000
 
 		# VERICAMOS EL MONTO QUE TIENE EL CREDITO COMO VENCIDO
 		# SI EL MONTO VENCIDO CARRESPONDE AL PAGO COMPLETO DE DOS VENCIMIENTOS ENTONCES SE GENERA LA COMSION

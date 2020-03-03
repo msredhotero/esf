@@ -56,6 +56,7 @@ function verificarListaNegraOfac($serviciosReferencias) {
    $resV['datosproveedor'] = '';
    $resV['datosbeneficiario'] = '';
    $resV['error'] = false;
+   $mensaje = '';
 
    $cadResultado = '';
 
@@ -71,6 +72,7 @@ function verificarListaNegraOfac($serviciosReferencias) {
    } else {
       $resV['datoscliente']= 'El cliente '.$apellidopaterno.' '.$apellidomaterno.' '.$nombre.' SI fue encuentrado/a en listas negras ';
       $resV['error'] = true;
+      $mensaje .= '<p>El cliente '.$apellidopaterno.' '.$apellidomaterno.' '.$nombre.' SI fue encuentrado/a en listas negras </p>';
    }
 
    if ($res['proveedor']==1) {
@@ -78,6 +80,7 @@ function verificarListaNegraOfac($serviciosReferencias) {
    } else {
       $resV['datosproveedor'] = 'El proveedor '.$_POST['proveedor'].' SI fue encuentrado/a en listas negras ';
       $resV['error'] = true;
+      $mensaje .= '<p>El proveedor '.$_POST['proveedor'].' SI fue encuentrado/a en listas negras </p>';
    }
 
    if ($res['beneficiario']==1) {
@@ -85,6 +88,21 @@ function verificarListaNegraOfac($serviciosReferencias) {
    } else {
       $resV['datosbeneficiario'] = 'El beneficiario '.$_POST['beneficiario'].' SI fue encuentrado/a en listas negras ';
       $resV['error'] = true;
+      $mensaje .= '<p>El beneficiario '.$_POST['beneficiario'].' SI fue encuentrado/a en listas negras </p>';
+   }
+
+   if ($resV['error'] == true) {
+      $para  = 'oficialdecumplimiento@financieracrea.com'; // atención a la coma
+      // subject
+      $titulo = "== AGENTE/S ENCONTRADOS EN LA LISTA NEGRA ==";
+      //$cabeceras = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+      $cabeceras = 'From: atencionalcliente@financieracrea.com';
+
+      $mensaje .= 'Fecha de validacion: '.date('Y-m-d H:i:s');
+      
+      // Mail it
+      mail($para, $titulo, $mensaje, $cabeceras);
    }
 
    header('Content-type: application/json');

@@ -192,9 +192,10 @@ class ServiciosReferencias {
 			$validaB = 0;
 		}
 
-
 		return array('cliente'=>$validaC,'proveedor'=>$validaP,'beneficiario'=>$validaB);
 	}
+
+
 
 	function devolverEvaluacion($idsolicitud) {
 		$sql = "SELECT
