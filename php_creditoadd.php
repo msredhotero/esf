@@ -591,11 +591,15 @@ $x_credito_num_new = $datawrk["credito_num_new"] + 1;
 	  <td class="ewTableAltRow">
 
       <?php
+	  
+	  echo "#de cliente es ".$x_cliente_num."";
 	  if(empty($x_cliente_num) || $x_cliente_num == 0){
 $sSqlWrk = "SELECT max(cliente_num+0) as cliente_num_new FROM cliente ";
 $rswrk = phpmkr_query($sSqlWrk,$conn) or die("Failed to execute query" . phpmkr_error() . ' SQL:' . $sSqlWrk);
 $datawrk = phpmkr_fetch_array($rswrk);
 $x_cliente_num = $datawrk["cliente_num_new"] + 1;
+
+
 @phpmkr_free_result($rswrk);
 	  }
 	  ?>

@@ -39,7 +39,7 @@ error_reporting(E_ALL);
 // Database configuration
 
 $db_server   = 'localhost';
-$db_name     = 'financ13_esf';
+$db_name     = 'test_esf';
 $db_username = 'root';
 $db_password = ''; 
 

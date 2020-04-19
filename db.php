@@ -93,13 +93,18 @@ define("DB", "expoco24_esf");
 
 */
 
+/*define("USER", "u235498999_esf");
+
+define("PASS", "rhcp7575");
+
+define("DB", "financ13_esf");*/
+
+
 define("USER", "u235498999_esf");
 
 define("PASS", "rhcp7575");
 
 define("DB", "u235498999_esf");
-
-
 
 
 
